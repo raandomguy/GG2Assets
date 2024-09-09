@@ -3,8 +3,6 @@
 #base robot_gatebot.pop
 #base conga_weapons.pop
 
-#base judge_restricts.pop
-
 population
 {
 	StartingCurrency	650

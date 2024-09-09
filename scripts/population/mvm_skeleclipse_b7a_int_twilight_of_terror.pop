@@ -18,8 +18,6 @@
 
 #base robot_giant.pop
 #base robot_standard.pop
-#base judge_restricts.pop	//	This popfile bans the following: Phlog, Ubersaw, Milk/Jarate slow, Crit/Uber canteens, Milk syringes
-							//	Med shield, Uber duration bonus, Milk/Jarate recharge rate, EH, Beggars Bazooka, Rocket Specialist
 
 population
 {
