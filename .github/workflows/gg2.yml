@@ -6,7 +6,7 @@ name: CI
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
-    branches: [ "main" ]
+    branches: [ "DISABLED" ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -49,13 +49,13 @@ jobs:
         run: |
           mv 'tf/download/.github/HOW TO INSTALL!.gif' .
           {
-            zip -r archive-assets.zip tf -x '*/.*' -x '*.bz2' -x 'tf_mvm_missioncycle.res' 
-            zip archive-assets.zip 'HOW TO INSTALL!.gif'
+            zip -r gg2-assets.zip tf -x '*/.*' -x '*.bz2' -x 'tf_mvm_missioncycle.res' 
+            zip gg2-assets.zip 'HOW TO INSTALL!.gif'
           } &
           
           {
-            zip -r archive-assets-no-maps.zip tf -x '*/.*' -x '*.bz2' -x 'tf/download/maps/*' -x 'tf_mvm_missioncycle.res'
-            zip archive-assets-no-maps.zip 'HOW TO INSTALL!.gif'
+            zip -r gg2-assets-no-maps.zip tf -x '*/.*' -x '*.bz2' -x 'tf/download/maps/*' -x 'tf_mvm_missioncycle.res'
+            zip gg2-assets-no-maps.zip 'HOW TO INSTALL!.gif'
           } &
           wait
           rm 'HOW TO INSTALL!.gif'
@@ -65,7 +65,7 @@ jobs:
         with:
           args: --exclude '*' --include '*.zip' --follow-symlinks --delete
         env:
-          AWS_S3_BUCKET: fastdl-archive
+          AWS_S3_BUCKET: fastdl-gg2
           AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
           AWS_REGION: 'auto'   # optional: defaults to us-east-1
@@ -92,9 +92,9 @@ jobs:
           {
             ssh -o StrictHostKeyChecking=no -p ${a[0]} ${a[1]} "touch /var/tf2server/tf/occupiedservers/wake; exit 0"
 
-            rsync -a -e "ssh -p ${a[0]} -o StrictHostKeyChecking=no" --delete --update --exclude=".*" --exclude="*.bz2" --exclude="tf_mvm_missioncycle.res" --exclude="mapcycle.txt" . ${a[1]}:/var/tf2server/tf/archive/
-            ssh -p ${a[0]} -o StrictHostKeyChecking=no ${a[1]} mkdir -p /var/www/html/gameassets/archive
-            rsync -a -e "ssh -p ${a[0]} -o StrictHostKeyChecking=no" --delete --update --include="*/" --include="*.bz2" --exclude="*" . ${a[1]}:/var/www/html/gameassets/archive/
+            rsync -a -e "ssh -p ${a[0]} -o StrictHostKeyChecking=no" --delete --update --exclude=".*" --exclude="*.bz2" --exclude="tf_mvm_missioncycle.res" --exclude="mapcycle.txt" . ${a[1]}:/var/tf2server/tf/gg2/
+            ssh -p ${a[0]} -o StrictHostKeyChecking=no ${a[1]} mkdir -p /var/www/html/gameassets/gg2
+            rsync -a -e "ssh -p ${a[0]} -o StrictHostKeyChecking=no" --delete --update --include="*/" --include="*.bz2" --exclude="*" . ${a[1]}:/var/www/html/gameassets/gg2/
           
           } &
           done
