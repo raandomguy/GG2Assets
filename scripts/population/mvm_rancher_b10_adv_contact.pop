@@ -34,7 +34,6 @@
 
 #base robot_giant.pop
 #base robot_standard.pop
-#base judge_restricts.pop
 elmarcianito
 {
     StartingCurrency 800
@@ -286,7 +285,6 @@ elmarcianito
             "projectile trail particle" 	"~"
         }
     }
-    LuaScriptFile "scripts/killeveryoneandleave.lua"
     SpawnTemplate MissionName
     PointTemplates
     {		
@@ -1929,7 +1927,7 @@ elmarcianito
                 "origin" "0 0 0"
                 "angles" "0 0 0"
                 "solid" "6"
-                "modelscale" "2.8"
+                "modelscale" "2.0"
                 "DisableShadows" "1"
                 "TeamNum" "3"
                 "health" "1500"
@@ -1955,17 +1953,27 @@ elmarcianito
                 "param" "1"
                 "delay" "0.1"
             }
+            point_push
+			{
+				"targetname" "boss_push"
+				"radius" "400"
+				"magnitude" "1300"
+				"innerradius" "400"
+				"startdisabled" 1
+				"spawnflags" 8
+				"origin" "0 0 0"
+			}
             trigger_multiple
             {
                 "targetname" "excusemesir"
                 "origin" "0 0 0"
-                "mins" "-50 -50 -50"
-                "maxs" "50 50 50"
+                "mins" "-90 -90 -90"
+                "maxs" "90 90 90"
                 "spawnflags" "1"
-                "filtername" "filter_red"
-                "OnStartTouch" "!activatorRunScriptCodeself.ApplyAbsVelocityImpulse(Vector(0,0,500))0.2-1"
+                "filtername" "filter_is_red"
+                "OnStartTouch" "!activatorRunScriptCodeself.ApplyAbsVelocityImpulse(Vector(0,0,700))0.2-1"
                 "OnStartTouch" "nuker_hitbox,$SetProp$m_CollisionGroup,1,0,-1"
-                "OnEndTouchAll" "nuker_hitbox,$SetProp$m_CollisionGroup,0,0,-1"
+                "OnEndTouchAll" "nuker_hitbox,$SetProp$m_CollisionGroup,0,0.5,-1"
                 "wait" "0.1"
                 "StartDisabled" "0"
             }
@@ -1980,7 +1988,13 @@ elmarcianito
             {
                 "target" "excusemesir"
                 "action" "disable"
-                "delay" "0.6"
+                "delay" "0.9"
+            }
+            OnSpawnOutput
+            {
+                "target" "boss_push"
+                "action" "disable"
+                "delay" "0.8"
             }
             OnSpawnOutput
             {
@@ -8858,6 +8872,7 @@ elmarcianito
                 "OnTrigger" "prop_move,SetSpeed,1,23,1"
                 "OnTrigger" "ufo_light*,lighton,,15.5,1"
                 "OnTrigger" "ufo_light*,lightoff,,22.5,1"
+                "OnTrigger" "ufo_light*,Kill,,24.5,1"
                 "OnTrigger" "missile_model,$setkey$renderfx,5,24,1"
                 "OnTrigger" "indicatorfortheclueless,start,,15.5,1"
                 "OnTrigger" "indicatorfortheclueless,stop,,22,1"
