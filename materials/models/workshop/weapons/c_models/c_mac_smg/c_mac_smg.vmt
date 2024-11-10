@@ -1,0 +1,70 @@
+VertexlitGeneric
+{
+	$basetexture           "models/workshop/weapons/c_models/c_mac_smg/c_mac_smg"
+
+	$lightwarptexture      "models/lightwarps/softened_weapon_lightwarp"
+
+	$envmap                "env_cubemap"
+	$envmaptint            "[.15 .1 .1]"
+	$basealphaenvmapmask   1
+
+	$phong                 1
+	$phongexponent         6
+	$phongboost            7
+	$phongfresnelranges    "[.25 2 1]"
+	$basemapalphaphongmask 1
+
+	$rimlight              1
+	$rimlightexponent      20
+	$rimlightboost         .125
+
+	$sheenmap              "cubemaps/cubemap_sheen001"
+	$sheenmapmask          "effects/animatedsheen/animatedsheen0"
+	$sheenmaptint          "[ 1 1 1 ]"
+	$sheenmapmaskframe     0
+	$sheenindex            0
+
+	$cloakPassEnabled      1
+	$sheenPassEnabled      1
+
+	$yellow                0
+
+	$glowcolor             1
+
+	Proxies
+	{
+		AnimatedWeaponSheen
+		{
+			animatedtexturevar         $sheenmapmask
+			animatedtextureframenumvar $sheenmapmaskframe
+			animatedtextureframerate   40
+		}
+		invis
+		{
+		}
+		ModelGlowColor
+		{
+			resultVar $glowcolor
+		}
+		Equals
+		{
+			srcVar1   $glowcolor
+			resultVar $selfillumtint
+		}
+		Equals
+		{
+			srcVar1   $glowcolor
+			resultVar $color2
+		}
+		YellowLevel
+		{
+			resultVar $yellow
+		}
+		Multiply
+		{
+			srcVar1   $color2
+			srcVar2   $yellow
+			resultVar $color2
+		}
+	}
+}
