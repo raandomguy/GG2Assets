@@ -29,11 +29,6 @@ Oh_Dios_Mio_Es_Eso_Una_Pizza_Tower_Referencia
     PrecacheSound "thousand_march_loop.mp3"
     PrecacheSound "war_timer_idle_loop.mp3"
     PrecacheSound "war_timer_increase.mp3"
-    PrecacheModel "models/bots/boss_bot/better_carrier.mdl"
-    PrecacheModel "models/bots/boss_bot/better_carrier_door_back_static.mdl"
-    PrecacheModel "models/bots/boss_bot/better_carrier_door_front.mdl"
-    PrecacheModel "models/bots/boss_bot/better_carrier_door_middle.mdl"
-    PrecacheModel "models/bots/boss_bot/better_carrier_radar.mdl"
 
     PrecacheGeneric "materials/models/bots/boss_bot/carrier_tracks.vtf"
     PrecacheGeneric "materials/models/bots/boss_bot/carrier_tracks.vmt"
@@ -266,106 +261,6 @@ Oh_Dios_Mio_Es_Eso_Una_Pizza_Tower_Referencia
     }
     PointTemplates
     {
-        bigasstanksincoming
-        {
-            func_tracktrain
-				{
-					"targetname" "heyguysumithinkthereisatank"
-					"target" "tank_carrier_1_1"
-					"origin" "3757 3167 248"
-					"velocitytype" "1"
-                    "orientationtype" "0"
-					"startspeed" "20"
-					"speed" "0"
-				}
-                 func_tracktrain
-				{
-					"targetname" "heyguysumithinkthereisatankaswell"
-					"target" "tank_carrier_2_1"
-					"origin" "3310 3876 274"
-					"velocitytype" "1"
-                    "orientationtype" "0"
-					"startspeed" "20"
-					"speed" "0"
-				}
-                prop_dynamic
-                {
-                    "targetname" "massivefuckingcarriertank"
-                    "parentname" "heyguysumithinkthereisatank"
-                    "model"      "models/bots/boss_bot/better_carrier.mdl"
-                    "skin"       "0"
-                    "origin"     "3757 3167 248"
-                    "angles"     "-90 180 180"
-                    "modelscale" "0.1"
-                    "solid"      "0"
-                    "renderamt"  "255"
-                    "rendercolor"  "255 255 255"
-                    "disableshadows" "1"
-                    "disablebonefollowers" 1
-                }
-                prop_dynamic
-                {
-                    "targetname" "massivefuckingcarriertank2"
-                    "parentname" "heyguysumithinkthereisatankaswell"
-                    "model"      "models/bots/boss_bot/better_carrier.mdl"
-                    "skin"       "0"
-                    "origin"     "3310 3876 274"
-                    "angles"     "180 90 270"
-                    "modelscale" "0.1"
-                    "solid"      "0"
-                    "renderamt"  "255"
-                    "rendercolor"  "255 255 255"
-                    "disableshadows" "1"
-                    "disablebonefollowers" 1
-                }
-                prop_dynamic
-                {
-                    "targetname" "massivefuckingcarriertank2"
-                    "parentname" "heyguysumithinkthereisatankaswell"
-                    "model"      "models/bots/boss_bot/better_carrier_door_back_static.mdl"
-                    "skin"       "0"
-                    "origin"     "3310 3876 274"
-                    "angles"     "180 90 270"
-                    "modelscale" "0.1"
-                    "solid"      "0"
-                    "renderamt"  "255"
-                    "rendercolor"  "255 255 255"
-                    "disableshadows" "1"
-                    "disablebonefollowers" 1
-                }
-                prop_dynamic
-                {
-                    "targetname" "massivefuckingcarriertank2"
-                    "parentname" "heyguysumithinkthereisatankaswell"
-                    "model"      "models/bots/boss_bot/better_carrier_door_front.mdl"
-                    "skin"       "0"
-                    "origin"     "3310 3876 274"
-                    "angles"     "180 90 270"
-                    "modelscale" "0.1"
-                    "solid"      "0"
-                    "renderamt"  "255"
-                    "rendercolor"  "255 255 255"
-                    "disableshadows" "1"
-                    "disablebonefollowers" 1
-                }
-                
-                prop_dynamic
-                {
-                    "targetname" "massivefuckingcarriertank2"
-                    "parentname" "heyguysumithinkthereisatankaswell"
-                    "model"      "models/bots/boss_bot/better_carrier_radar.mdl"
-                    "skin"       "0"
-                    "origin"     "3310 3876 274"
-                    "angles"     "180 90 270"
-                    "modelscale" "0.1"
-                    "solid"      "0"
-                    "renderamt"  "255"
-                    "rendercolor"  "255 255 255"
-                    "disableshadows" "1"
-                    "disablebonefollowers" 1
-                }
-                
-        }
         boss_dead_heavy
 			{
 				OnParentKilledOutput
