@@ -37,8 +37,6 @@
 #base robot_standard.pop
 #base athazar_weapon_pack_red.pop
 
-#base judge_restricts.pop	// TEMPORARY //  Prevents bullshit from randoms
-
 // spawnbot_left
 // spawnbot_right
 // spawnbot_top

@@ -2,7 +2,6 @@
 #base robot_giant.pop
 #base robot_scroob.pop
 #base custom_upgrades_scroob.pop
-#base judge_restricts.pop
 
 // WAVE 1 - 0$ + B(100$)
 // -------------------

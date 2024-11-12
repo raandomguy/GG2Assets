@@ -4,7 +4,6 @@
 #base robot_tank_small_turret.pop
 #base robot_tank_vac.pop
 #base conga_weapons.pop
-#base ender_custom.pop
 population
 {
 	StartingCurrency	900
