@@ -1,6 +1,6 @@
 // Halloween 666 on such a tiny map
-// by SpectÎ»torâ„¢ : https://steamcommunity.com/id/ImNotSpecNotes/
-// æ„Ÿè°¢å¥½æ—¶å…‰æœåŠ¡å™¨ååŠ©æˆ‘æµ‹è¯•çš„CNTF2ç¤¾åŒºæˆå‘˜ä»¬ã€‚
+// by Spectλtor™ : https://steamcommunity.com/id/ImNotSpecNotes/
+// 感谢好时光服务器协助我测试的CNTF2社区成员们。
 
 #base robot_standard.pop
 #base robot_giant.pop
@@ -10,16 +10,16 @@
 
 WaveSchedule
 {
-    StartingCurrency 3000 // åˆå§‹é‡‘é’±
-    CanBotsAttackWhileInSpawnRoom no // å¦‚æžœæ˜¯yesï¼Œæœºå™¨äººåœ¨é‡ç”ŸåŒºå†…ä¾¿ä¼šå¼€å§‹æ”»å‡»çŽ©å®¶
-    RespawnWaveTime 4 // å¤æ´»æ³¢æ¬¡æ—¶é—´ã€‚è¯¥å€¼ä¹˜ä»¥2åŸºæœ¬ç­‰äºŽæ¯ä¸ªäººçš„å¤æ´»æ—¶é—´
-    FixedRespawnWaveTime Yes // å¤æ´»æ—¶é—´å›ºå®šã€‚å¦‚æžœä¸º0ï¼Œéšç€å›žåˆæŽ¨ç§»ï¼Œå¤æ´»æ—¶é—´ä¼šè¶Šæ¥è¶Šé•¿
-    AddSentryBusterWhenDamageDealtExceeds 3000 // æ­¥å“¨é€ æˆçš„ä¼¤å®³è¶…è¿‡è¯¥é˜ˆå€¼æ—¶ï¼Œç”Ÿæˆæ­¥å“¨æ¯ç­è€…
-    AddSentryBusterWhenKillCountExceeds 15 // æ­¥å“¨çš„å‡»æ€æ•°è¶…è¿‡è¯¥é˜ˆå€¼æ—¶ï¼Œç”Ÿæˆæ­¥å“¨æ¯ç­è€…
-    Advanced 1 // å¼€å¯é«˜çº§éš¾åº¦ï¼Œç”¨äºŽæ¸¸æˆçš„æˆç»©ç»Ÿè®¡
-    EventPopfile Halloween // å¯ç”¨ä¸‡åœ£èŠ‚æ¨¡å¼ï¼Œæœºå™¨äººä¼šè‡ªåŠ¨å˜æˆåƒµå°¸çš®è‚¤ï¼ŒåŒæ—¶å›žåˆæ¡å°†æ˜¾ç¤ºä¸º666
+    StartingCurrency 3000 // 初始金钱
+    CanBotsAttackWhileInSpawnRoom no // 如果是yes，机器人在重生区内便会开始攻击玩家
+    RespawnWaveTime 4 // 复活波次时间。该值乘以2基本等于每个人的复活时间
+    FixedRespawnWaveTime Yes // 复活时间固定。如果为0，随着回合推移，复活时间会越来越长
+    AddSentryBusterWhenDamageDealtExceeds 3000 // 步哨造成的伤害超过该阈值时，生成步哨毁灭者
+    AddSentryBusterWhenKillCountExceeds 15 // 步哨的击杀数超过该阈值时，生成步哨毁灭者
+    Advanced 1 // 开启高级难度，用于游戏的成绩统计
+    EventPopfile Halloween // 启用万圣节模式，机器人会自动变成僵尸皮肤，同时回合条将显示为666
 
-    Templates // è¯¥ä»»åŠ¡æˆ–è®¸ä¼šç”¨åˆ°çš„æœºå™¨äººæ¨¡æ¿
+    Templates // 该任务或许会用到的机器人模板
     {
         //
         // Featured Halloween Templates
@@ -280,6 +280,8 @@ WaveSchedule
 				"afterburn immunity" 1
 				"wet immunity" 1
                 "health regen" -25 // last 80 seconds at most
+                "ignored by bots" 1 // so medics wont heal them and stuck in spawn
+                "health from healers reduced" 0 // can't be healed
 			}
             EventChangeAttributes
             {
@@ -824,9 +826,18 @@ WaveSchedule
     SpawnTemplate "Tombstone_telelogic"
     SpawnTemplate "Rift_Middle_Remove"
     //SpawnTemplate "Tutorial_Localizaiton"
-
+    SpawnTemplate missionname
     PointTemplates
     {
+        missionname
+    	{  
+	    	logic_auto 
+	    	{
+		    	"origin" "0 0 0" 
+		    	"targetname" "missionname"				
+		    	"OnMapSpawn" "tf_objective_resource,$SetClientProp$m_iszMvMPopfileName,(ADV) Reanimation,0,-1"
+	    	}
+   	 	}
         Rift_Middle_Remove
         {
             logic_auto
@@ -851,9 +862,9 @@ WaveSchedule
             {
                 "targetname" "bloodrift_tutorial_localization"
                 "origin" "-4256 1824 -208"
-                "display_text" "æ³¨æ„è¿™äº›è¡€è‰²æ³•é˜µï¼å½“å®ƒä»¬å¯ç”¨æ—¶ï¼Œè¸©è¿›åŽ»å¯ä»¥èŽ·å¾—è¿·ä½ æš´å‡»ï¼Œä½†ä»£ä»·æ˜¯æŸå¤±éƒ¨åˆ†ç”Ÿå‘½å€¼ï¼" // This line is the text of annotation - translate it to your language :)
+                "display_text" "注意这些血色法阵！当它们可用时，踩进去可以获得迷你暴击，但代价是损失部分生命值！" // This line is the text of annotation - translate it to your language :)
                 //"display_text" "TEST"
-                "lifetime"     "10" //æ–‡æœ¬æŒç»­æ—¶é—´
+                "lifetime"     "10" //文本持续时间
             }
             trigger_once
             {
@@ -961,11 +972,11 @@ WaveSchedule
         Tombstone_tutorial
         {
             KeepAlive 1
-            training_annotation //æç¤ºæ–‡æœ¬
+            training_annotation //提示文本
             {
                 "targetname"   "tomb_hint"
-                "display_text" "Zombies are rising up from this tombstone! Destroy it!" //æç¤ºå…·ä½“æ–‡æœ¬
-                "lifetime"     "10" //æ–‡æœ¬æŒç»­æ—¶é—´
+                "display_text" "Zombies are rising up from this tombstone! Destroy it!" //提示具体文本
+                "lifetime"     "10" //文本持续时间
             }
         }
         Tombstone_remove
@@ -1082,20 +1093,8 @@ WaveSchedule
             Target wave_finished_relay
             Action Trigger
         }
-        InitWaveOutPut
-        {
-            Target gamerules
-            Action RunScriptCode
-    		Param "
-               	local ent = Entities.FindByClassname(null, `tf_objective_resource`)
-               	if (ent)
-               	{
-                   		NetProps.SetPropString(ent, `m_iszMvMPopfileName`, `(Adv) Reanimation`)
-            	}	
-        	"
-        	}
-        Explanation
-        {
+        Explanation  
+		{
             Line "{b8383b}>The Detective :{FFFFFF} Mecenaries, welcome to the Newfolk Campsite."
             Line "{b8383b}>The Detective :{FFFFFF} According to some witnesses, this campsite was cursed by a bloodthirst group of cult."
             Line "{b8383b}>The Detective :{FFFFFF} They summoned monsters from another world, which are wreaking havoc on this place."
@@ -1104,7 +1103,7 @@ WaveSchedule
         // How to use the tomb template? 
         // Spawn a Tombstone_Reviver first. Then spawn a dmgindicator 2 seconds after its death at spawnbot_tank.
         // This gimmick can be cycled after dmgindicator's death.
-        // å…ˆç”Ÿæˆä¸€ä¸ªTombstone_Reviverã€‚åœ¨å®ƒæ­»åŽ0.02ç§’ï¼ŒäºŽspawnbot_tankç”Ÿæˆä¸€ä¸ªdmgindicatorã€‚åœ¨å®ƒæ­»åŽå³å¯è¿›è¡Œä¸‹ä¸€æ¬¡ç”Ÿæˆã€‚
+        // 先生成一个Tombstone_Reviver。在它死后0.02秒，于spawnbot_tank生成一个dmgindicator。在它死后即可进行下一次生成。
         //
         // STAGE 1 : 1000 - 3 minutes - THE BORING
         WaveSpawn
@@ -1289,6 +1288,8 @@ WaveSchedule
             WaitBetweenSpawns 0
         
             TotalCurrency 100
+
+            FirstSpawnWarningSound mvm/mvm_tank_start.wav
         
             Tank
             {
@@ -1740,6 +1741,8 @@ WaveSchedule
             WaitBetweenSpawns 0
         
             TotalCurrency 100
+
+            FirstSpawnWarningSound mvm/mvm_tank_start.wav
         
             Tank
             {
@@ -2254,6 +2257,8 @@ WaveSchedule
             WaitBetweenSpawns 0
         
             TotalCurrency 100
+
+            FirstSpawnWarningSound mvm/mvm_tank_start.wav
         
             Tank
             {
@@ -2645,6 +2650,7 @@ WaveSchedule
                 TFBot
                 { 
                     Template T_TFBot_Giant_Pyro_Armoured
+                    Tag tombtele
                 }
                 TFBot
                 { 
@@ -2734,6 +2740,7 @@ WaveSchedule
                 TFBot
                 { 
                     Template T_TFBot_Giant_Pyro_Armoured 
+                    Tag tombtele
                 }
             }
         }
@@ -2800,6 +2807,8 @@ WaveSchedule
             WaitBetweenSpawns 0
         
             TotalCurrency 100
+
+            FirstSpawnWarningSound mvm/mvm_tank_start.wav
         
             Tank
             {
@@ -3070,14 +3079,14 @@ WaveSchedule
 }
 
 // Spawnbots:
-// spawnbot - å±±ä¸˜ä¸Šæ–¹
-// spawnbot_mission_sentrybuster - å±±ä¸˜ä¸Šæ–¹
-// spawnbot_mission_sniper - å±±ä¸˜ä¸Šæ–¹
-// spawnbot_mission_spy - å±±ä¸˜ä¸Šæ–¹
-// spawnbot_tank - å¦å…‹å…¥å£å¤„
+// spawnbot - 山丘上方
+// spawnbot_mission_sentrybuster - 山丘上方
+// spawnbot_mission_sniper - 山丘上方
+// spawnbot_mission_spy - 山丘上方
+// spawnbot_tank - 坦克入口处
 // 
-// spawnbot_underworld - åœ°ä¸‹ä¸–ç•Œä¸­å¿ƒ
-// spawnbot_underworld_support - åœ°ä¸‹ä¸–ç•Œå¤–å›´
+// spawnbot_underworld - 地下世界中心
+// spawnbot_underworld_support - 地下世界外围
 //
 // Bombs:
 //
