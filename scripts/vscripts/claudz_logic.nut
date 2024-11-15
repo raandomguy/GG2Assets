@@ -335,34 +335,3 @@ for (local i = 1, player; i <= MaxClients().tointeger(); i++)
 // Setting a error handler allows us to view vscript error messages, even if we are not testing locally i.e. on potato testing server
 ClaudzUtil.DebugSteamIds <- {}
 ClaudzUtil.DebugSteamIds["[U:1:66915592]"] <- 1
-seterrorhandler(function(e)
-{
-	for (local player; player = Entities.FindByClassname(player, "player");)
-	{
-		if (ClaudzUtil.DebugSteamIds.rawin(NetProps.GetPropString(player, "m_szNetworkIDString")))
-		{
-			local Chat = @(m) (printl(m), ClientPrint(player, 2, m))
-			ClientPrint(player, 3, format("\x07FF0000AN ERROR HAS OCCURRED [%s].\nCheck console for details", e))
-
-			Chat(format("\n====== TIMESTAMP: %g ======\nAN ERROR HAS OCCURRED [%s]", Time(), e))
-			Chat("CALLSTACK")
-			local s, l = 2
-			while (s = getstackinfos(l++))
-				Chat(format("*FUNCTION [%s()] %s line [%d]", s.func, s.src, s.line))
-			Chat("LOCALS")
-			if (s = getstackinfos(2))
-			{
-				foreach (n, v in s.locals)
-				{
-					local t = type(v)
-					t ==    "null" ? Chat(format("[%s] NULL"  , n))    :
-					t == "integer" ? Chat(format("[%s] %d"    , n, v)) :
-					t ==   "float" ? Chat(format("[%s] %.14g" , n, v)) :
-					t ==  "string" ? Chat(format("[%s] \"%s\"", n, v)) :
-									 Chat(format("[%s] %s %s" , n, t, v.tostring()))
-				}
-			}
-			return
-		}
-	}
-})
