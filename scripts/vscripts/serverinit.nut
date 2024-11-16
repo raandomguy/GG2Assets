@@ -74,10 +74,9 @@ function __potato::OnEntitiesSpawned() {
 		if (nobreak) {
 			try {
 				IncludeScript("potato/" + fp, include[1])
-				return
 			} catch (e) {
 				if (startswith(e, "Failed to include script \"potato/" + fp))
-					return
+					continue
 				throw e
 			}
 		}
