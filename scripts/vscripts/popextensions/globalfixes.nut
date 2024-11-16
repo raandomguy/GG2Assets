@@ -46,6 +46,7 @@ if (GlobalFixesEntity == null) GlobalFixesEntity = SpawnEntityFromTable("info_te
 		// }
 
 		function HolidayPunchFix(params) {
+
 			local wep   = params.weapon
 			local index = PopExtUtil.GetItemIndex(wep)
 			if (index != ID_HOLIDAY_PUNCH || !(params.damage_type & DMG_CRITICAL)) return
@@ -54,13 +55,16 @@ if (GlobalFixesEntity == null) GlobalFixesEntity = SpawnEntityFromTable("info_te
 			if (victim != null && victim.IsPlayer() && victim.IsBotOfType(TF_BOT_TYPE)) {
 				victim.Taunt(TAUNT_MISC_ITEM, MP_CONCEPT_TAUNT_LAUGH)
 
-				local tfclass      = victim.GetPlayerClass()
+				local tfclass = victim.GetPlayerClass()
 				local class_string = PopExtUtil.Classes[tfclass]
-				local botmodel     = format("models/bots/%s/bot_%s.mdl", class_string, class_string)
+
+				if (victim.GetModelName() == format("models/player/%s.mdl", class_string)) return
+
+				local botmodel = format("models/bots/%s/bot_%s.mdl", class_string, class_string)
 
 				victim.SetCustomModelWithClassAnimations(format("models/player/%s.mdl", class_string))
 
-				PopExtUtil.PlayerRobotModel(player, botmodel)
+				PopExtUtil.PlayerRobotModel(victim, botmodel)
 
 				//overwrite the existing bot model think to remove it after taunt
 				victim.GetScriptScope().PlayerThinkTable.BotModelThink <- function() {

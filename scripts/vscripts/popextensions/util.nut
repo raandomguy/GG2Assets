@@ -508,17 +508,17 @@
 				MissionAttributes.RaiseValueError("PlayerAttributes", attrib, "Cannot set string attributes!")
 			else
 			{
-
 				if (!item)
-					player.AddCustomAttribute(attrib, value.tofloat(), -1)
-				// else if ("CustomWeapons" in player.GetScriptScope() && item in player.GetScriptScope().CustomWeapons)
+					EntFireByHandle(player, "RunScriptCode", format("self.AddCustomAttribute(`%s`, %.2f, -1)", attrib, value.tofloat()), -1, null, null)
 				else
+				if ("CustomWeapons" in player.GetScriptScope())
 				{
 					item.AddAttribute(attrib, value.tofloat(), -1)
 					item.ReapplyProvision()
 				}
-				// else
-					// EntFireByHandle(item, "RunScriptCode", format("self.AddAttribute(`%s`, %1.8e, -1); self.ReapplyProvision()", attrib, value.tofloat()), -1, null, null)
+				else
+					EntFireByHandle(item, "RunScriptCode", format("self.AddAttribute(`%s`, %.2f, -1); self.ReapplyProvision()", attrib, value.tofloat()), -1, null, null)
+
 
 				if (attrib in healthattribs) EntFireByHandle(player, "RunScriptCode", "self.SetHealth(self.GetMaxHealth())", -1, null, null)
 			}
@@ -539,7 +539,7 @@
 		 EntFireByHandle(this.ClientCommand, "Command", format("slot%d", slot + 1), -1, player, player);
 	}
 
-	function Explanation(message, printColor = COLOR_YELLOW, messagePrefix = "Explanation: ", syncChatWithGameText = false, textPrintTime = -1, textScanTime = 0.02) {
+	function DoExplanation(message, printColor = COLOR_YELLOW, messagePrefix = "Explanation: ", syncChatWithGameText = false, textPrintTime = -1, textScanTime = 0.02) {
 		local rgb = this.HexToRgb("FFFF66")
 		local txtent = SpawnEntityFromTable("game_text", {
 			effect = 2,
@@ -641,11 +641,11 @@
 	}
 
 	function Explanation(message, printColor = COLOR_YELLOW, messagePrefix = "Explanation: ", syncChatWithGameText = false, textPrintTime = -1, textScanTime = 0.02) {
-		Explanation.call(PopExtUtil, message, printColor, messagePrefix, syncChatWithGameText, textPrintTime, textScanTime)
+		DoExplanation.call(PopExtUtil, message, printColor, messagePrefix, syncChatWithGameText, textPrintTime, textScanTime)
 	}
 
 	function Info(message, printColor = COLOR_YELLOW, messagePrefix = "Explanation: ", syncChatWithGameText = false, textPrintTime = -1, textScanTime = 0.02) {
-		Explanation.call(PopExtUtil, message, printColor, messagePrefix, syncChatWithGameText, textPrintTime, textScanTime)
+		DoExplanation.call(PopExtUtil, message, printColor, messagePrefix, syncChatWithGameText, textPrintTime, textScanTime)
 	}
 
 	function IsAlive(player) {
@@ -1591,6 +1591,25 @@
 		);
 	}
 
+	function OnWeaponFire(wep, func) {
+
+		if (wep == null) return
+
+		wep.ValidateScriptScope()
+		local scope = wep.GetScriptScope()
+
+		scope.last_fire_time <- 0.0
+
+		scope.ItemThinkTable[format("OnWeaponFire_%d_%d", wep.GetOwner().GetScriptScope().userid, wep.entindex())] <- function() {
+			local fire_time = GetPropFloat(self, "m_flLastFireTime")
+			if (fire_time > last_fire_time) {
+				func.call(scope)
+				last_fire_time = fire_time
+			}
+			return
+		}
+	}
+
 	Events = {
 
 		function OnGameEvent_mvm_wave_complete(params) { PopExtUtil.IsWaveStarted = false }
@@ -1617,6 +1636,7 @@
 		}
 
 		function OnGameEvent_post_inventory_application(params) {
+			if (GetRoundState() == GR_STATE_PREROUND) return
 
 			local player = GetPlayerFromUserID(params.userid)
 

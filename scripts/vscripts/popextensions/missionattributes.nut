@@ -37,11 +37,11 @@ if (!("ScriptUnloadTable" in ROOT)) ::ScriptUnloadTable <- {}
 			MissionAttributes.SetConvar("tf_forced_holiday", value)
 			if (value == kHoliday_None) return
 
-			local ent = FindByName(null, "MissionAttrHoliday");
+			local ent = FindByName(null, "_popext_missionattr_holiday");
 			if (ent != null) ent.Kill();
 
 			SpawnEntityFromTable("tf_logic_holiday", {
-				targetname   = "MissionAttrHoliday",
+				targetname   = "_popext_missionattr_holiday",
 				holiday_type = value
 			});
 
@@ -216,6 +216,42 @@ if (!("ScriptUnloadTable" in ROOT)) ::ScriptUnloadTable <- {}
 					local sapper = EntIndexToHScript(params.index)
 					SetPropBool(sapper, "m_bDisposableBuilding", true)
 				}
+			}
+		}
+
+		// =======================================================================================
+		// Fix "Set DamageType Ignite" not actually making most weapons ignite on hit
+		// WARNING: Rafmod already does this, enabling this on potato servers will ALWAYS stack,
+		// 			since there does not seem to be a way to turn off the rafmod fix
+		// =======================================================================================
+
+		SetDamageTypeIgniteFix = function(value) {
+
+			// Afterburn damage and duration varies from weapon to weapon, we don't want to override those
+			// This list leaves out only the volcano fragment and the heater
+			local ignitingWeaponsClassname = [
+				"tf_weapon_particle_cannon",
+				"tf_weapon_flamethrower",
+				"tf_weapon_rocketlauncher_fireball",
+				"tf_weapon_flaregun",
+				"tf_weapon_flaregun_revenge",
+				"tf_weapon_compound_bow"
+			]
+
+			MissionAttributes.TakeDamageTable.SetDamageTypeIgniteFix <- function(params) {
+
+				local wep = params.weapon
+				local victim = params.const_entity
+				local attacker = params.inflictor
+
+				if ( wep == null || attacker == null || attacker == victim
+					|| wep.GetClassname() in ignitingWeaponsClassname
+					|| PopExtUtil.GetItemIndex(wep) == ID_HUO_LONG_HEATMAKER
+					|| PopExtUtil.GetItemIndex(wep) == ID_SHARPENED_VOLCANO_FRAGMENT
+					|| wep.GetAttribute("Set DamageType Ignite", 10) == 10
+				) return
+
+				PopExtUtil.Ignite(victim)
 			}
 		}
 
@@ -2434,23 +2470,22 @@ if (!("ScriptUnloadTable" in ROOT)) ::ScriptUnloadTable <- {}
 		// 		bot.AddCustomAttribute("override footstep sound set", 2.0, -1)
 		// 	}
 	}
-	CurAttrs = {} // Array storing currently modified attributes.
-	ConVars  = {} //table storing original convar values
-	SoundsToReplace = {}
+	CurAttrs			= {} // Array storing currently modified attributes.
+	ConVars  			= {} //table storing original convar values
+	SoundsToReplace 	= {}
 
-	ThinkTable      = {}
-	TakeDamageTable = {}
+	ThinkTable     		= {}
+	TakeDamageTable 	= {}
 	TakeDamageTablePost = {}
-	SpawnHookTable  = {}
-	DeathHookTable  = {}
-	//InitWaveTable = {}
-	DisconnectTable = {}
-	StartWaveTable = {}
-	ChangeClassTable = {}
+	SpawnHookTable   	= {}
+	DeathHookTable  	= {}
+	//InitWaveTable 	= {}
+	DisconnectTable 	= {}
+	StartWaveTable  	= {}
+	ChangeClassTable 	= {}
+	DebugText        	= false
 
-	DebugText        = false
-
-	PathNum = 0
+	PathNum 			= 0
 
 	RedMoneyValue = 0
 
@@ -2612,9 +2647,6 @@ if (!("ScriptUnloadTable" in ROOT)) ::ScriptUnloadTable <- {}
 		function OnGameEvent_mvm_mission_complete(params)
 		{
 			foreach (_, func in ScriptUnloadTable) func()
-			MissionAttributes.ResetConvars()
-			if ("MissionAttrEntity" in ROOT) MissionAttrEntity.Kill()
-			delete ::MissionAttributes
 		}
 		function OnGameEvent_teamplay_broadcast_audio(params)
 		{

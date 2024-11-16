@@ -1,8 +1,12 @@
-::popExtensionsVersion <- "09.03.2024.1"
+::popExtensionsVersion <- "09.30.2024.1"
 local _root = getroottable()
 
 local o = Entities.FindByClassname(null, "tf_objective_resource")
+
+//save popfile name in global scope when we first initialize
+//if the popfile name changed, a new pop has loaded, clean everything up.
 ::__popname <- NetProps.GetPropString(o, "m_iszMvMPopfileName")
+
 // ::commentaryNode <- SpawnEntityFromTable("point_commentary_node", {targetname = "  IGNORE THIS ERROR \r"})
 
 //overwrite AddThinkToEnt
@@ -48,8 +52,10 @@ if (!("_AddThinkToEnt" in _root))
 }
 ::PopExtMain <- {
 
-	//save popfile name in global scope when we first initialize
-	//if the popfile name changed, a new pop has loaded, clean everything up.
+	//manual cleanup flag, set to true for missions that are created for a specific map.
+	//automated unloading is meant for multiple missions on one map, purpose-built map/mission combos (like zm_redridge) don't need this.
+	ManualCleanup = false
+
 	function PlayerCleanup(player) {
 
 		NetProps.SetPropInt(player, "m_nRenderMode", kRenderNormal)
@@ -60,6 +66,7 @@ if (!("_AddThinkToEnt" in _root))
 
 		if (scope.len() <= 5) return
 
+		//ignore these variables when cleaning up
 		local ignore_table = {
 			"self"      : null
 			"__vname"   : null
@@ -125,6 +132,7 @@ if (!("_AddThinkToEnt" in _root))
 	}
 	Events = {
 		function OnGameEvent_post_inventory_application(params) {
+			if (GetRoundState() == GR_STATE_PREROUND) return
 
 			local player = GetPlayerFromUserID(params.userid)
 
@@ -188,16 +196,19 @@ if (!("_AddThinkToEnt" in _root))
 			PopExtMain.PlayerCleanup(player)
 		}
 
-		function OnGameEvent_teamplay_round_start(params) {
+		function OnGameEvent_teamplay_round_start(_) {
 
+			//clean up all wearables that are not owned by a player or a bot
 			for (local wearable; wearable = FindByClassname(wearable, "tf_wearable*");)
 				if (wearable.GetOwner() == null || IsPlayerABot(wearable.GetOwner()))
 					EntFireByHandle(wearable, "Kill", "", -1, null, null)
 
-			//same pop, don't run clean-up
-			if (__popname == GetPropString(o, "m_iszMvMPopfileName")) return
+			//same pop or manual cleanup flag set, don't run
+			if (__popname == GetPropString(o, "m_iszMvMPopfileName") || PopExtMain.ManualCleanup) return
 
-			for (local i = 1; i <= MaxClients().tointeger(); i++) {
+			//clean up all players
+			local maxclients = MaxClients().tointeger()
+			for (local i = 1; i <= maxclients; i++) {
 
 				local player = PlayerInstanceFromIndex(i)
 
@@ -206,6 +217,10 @@ if (!("_AddThinkToEnt" in _root))
 				PopExtMain.PlayerCleanup(player)
 			}
 
+			//clean up missionattributes
+			MissionAttributes.Cleanup()
+
+			//nuke it all
 			local cleanup = [
 
 				"MissionAttributes"
@@ -257,7 +272,8 @@ if (!("_AddThinkToEnt" in _root))
 __CollectGameEventCallbacks(PopExtMain.Events)
 
 //HACK: forces post_inventory_application to fire on pop load
-for (local i = 1; i <= MaxClients().tointeger(); i++)
+local maxclients = MaxClients().tointeger()
+for (local i = 1; i <= maxclients; i++)
 	if (PlayerInstanceFromIndex(i) != null)
 		EntFireByHandle(PlayerInstanceFromIndex(i), "RunScriptCode", "self.Regenerate(true)", 0.015, null, null)
 
@@ -284,5 +300,6 @@ Include("tags")
 
 Include("globalfixes")
 Include("spawntemplate")
+
 // Include("tutorialtools")
 // Include("populator")
