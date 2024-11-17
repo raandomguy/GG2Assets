@@ -4079,7 +4079,7 @@ Oh_Dios_Mio_Es_Eso_Una_Pizza_Tower_Referencia
 				Tank
 				{
                     SpawnTemplate time_add_4
-					Health	25000
+					Health	20000
 					Speed 60
 					Skin 4
                 		DisableSmokestack 1   
@@ -4253,11 +4253,11 @@ Oh_Dios_Mio_Es_Eso_Una_Pizza_Tower_Referencia
             Name "part3_finale"
             WaitForAllDead "part3_3"
             Where spawnbot
-            TotalCount 6
-            MaxActive 4
+            TotalCount 5
+            MaxActive 3
             SpawnCount 1
             WaitBeforeStarting 0
-            WaitBetweenSpawns 12
+            WaitBetweenSpawns 14
         
             TotalCurrency 100
         
