@@ -815,23 +815,6 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 	}
 	CustomWeapon  
 	{
-		Name				"Cloakwork"
-		OriginalItemName	"TF_WEAPON_REVOLVER"
-		"set_item_texture_wear"					0		//	Factory New
-		"paintkit_proto_def_index"				431		//	Team Blackout
-		"self add cond on hit"					66		//	Becomes invisible
-		"self add cond on hit duration"			4
-		"weapon spread bonus"					0.1
-		"damage penalty"						0.1
-		"cannot disguise"						1	
-		"switch from wep deploy time decreased"	0.3
-		"alt-fire disabled"						1		//	meant to disable cloaking from wristwatch when equipped but it only somewhat breaks
-		"cloak consume rate decreased"			69		//	practically no cloak from wristwatch, forcing you to flee from danger when having no ammo
-		"special item description"				"Cloaks for 4s when hitting an enemy; +90% accuracy; +70% holster speed; -90% damage; cant disguise nor manually cloak via watches"
-		//
-	}
-	CustomWeapon  
-	{
 		Name				"Eternal Earner"
 		OriginalItemName	"The Big Earner"
 		"disguise on backstab"			1
@@ -930,7 +913,6 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 			Secondary	"Cloak Leak"
 			Secondary	"Magnum Opus"
 			Secondary	"AB+"
-			Secondary	"Cloakwork"
 			Melee		"Eternal Earner"
 			Melee		"Joker"
 		}
