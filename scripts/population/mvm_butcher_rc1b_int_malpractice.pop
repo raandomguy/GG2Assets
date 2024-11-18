@@ -75,14 +75,6 @@ This_fucking_sucks,_actually.
 	ZombiesNoWave666		1	[$SIGSEGV]
 	FastNPCUpdate			1	[$SIGSEGV]
 	ForceRobotBleed			1	[$SIGSEGV]
-
-
-	ClassLimit
-	{
-		Medic	0	// this is temporary but GET OUT
-	}
-
-
 	// Custom Weapons
 
 	PrecacheModel	"models/ctf2w/weapons/c_models/c_payoff/c_payoff.mdl"
