@@ -55,7 +55,6 @@
 This_fucking_sucks,_actually.
 {
 
-	MaxRedPlayers	4	// TEMPORARY // Prevents bullshit from randoms
 
 
 	StartingCurrency	600
@@ -67,15 +66,15 @@ This_fucking_sucks,_actually.
 	EventPopfile		Halloween
 	CanBotsAttackWhileInSpawnRoom	no
 
-	NoRomevisionCosmetics	1	 
-	TextPrintTime			0	 
-	BotsAreHumans        	2	 
-	ForceHoliday          	2	 
-	NoThrillerTaunt			1	 	// no more
-	NoCritPumpkin			1	 
-	ZombiesNoWave666		1	 
-	FastNPCUpdate			1	 
-	ForceRobotBleed			1	 
+	NoRomevisionCosmetics	1	[$SIGSEGV]
+	TextPrintTime			0	[$SIGSEGV]
+	BotsAreHumans        	2	[$SIGSEGV]
+	ForceHoliday          	2	[$SIGSEGV]
+	NoThrillerTaunt			1	[$SIGSEGV]	// no more
+	NoCritPumpkin			1	[$SIGSEGV]
+	ZombiesNoWave666		1	[$SIGSEGV]
+	FastNPCUpdate			1	[$SIGSEGV]
+	ForceRobotBleed			1	[$SIGSEGV]
 
 
 	ClassLimit
@@ -87,7 +86,7 @@ This_fucking_sucks,_actually.
 	// Custom Weapons
 
 	PrecacheModel	"models/ctf2w/weapons/c_models/c_payoff/c_payoff.mdl"
-	PrecacheModel	"models/workshop/weapons/c_models/c_nailgun/c_nailgun.mdl"
+	PrecacheModel	"models/weapons/c_models/c_energy_drink/c_energy_drink_green.mdl"
 
 	PrecacheModel	"models/ctf2w/weapons/c_models/c_spitfire_rocketlauncher/c_spitfire_rocketlauncher.mdl"
 	PrecacheModel	"models/ctf2w/weapons/c_models/c_spitfire_rocketlauncher/w_rocket_spitfire.mdl"
@@ -100,6 +99,7 @@ This_fucking_sucks,_actually.
 	PrecacheModel	"models/ctf2w/weapons/c_models/c_techlauncher/shellprojectile.mdl"
 
 	PrecacheModel	"models/weapons/c_models/c_canned_ration/c_canned_ration.mdl"
+	PrecacheModel	"models/weapons/c_models/c_canned_ration/c_ration_plate.mdl"
 
 	PrecacheModel	"models/weapons/c_models/c_gamma_gazer/c_gamma_gazer_1.mdl"
 	PrecacheModel	"models/ctf2w/weapons/w_models/w_mini_pda.mdl"
@@ -234,7 +234,7 @@ This_fucking_sucks,_actually.
 	}
 
 
-	ExtraLoadoutItems	 
+	ExtraLoadoutItems	[$SIGSEGV]
 	{
 		Engineer
 		{
@@ -600,7 +600,7 @@ This_fucking_sucks,_actually.
 				"airblast vulnerability multiplier"	0.5
 				"override footstep sound set"		3	// adding this because it's halloween and they aren't on wheels
 			}
-			ChangeAttributes    //Periodically changes bot attributes, defined in EventChangeAttributes
+			ChangeAttributes [$SIGSEGV]  //Periodically changes bot attributes, defined in EventChangeAttributes
 			{
 				Delay		10
 				Cooldown	10
@@ -690,10 +690,10 @@ This_fucking_sucks,_actually.
 			Attributes	MiniBoss
 			WeaponRestrictions	PrimaryOnly
 			Item	"The Huntsman"
-			Skin	1  
-			UseCustomModel	"models/bots/skeleton_sniper/skeleton_sniper_fixed.mdl"	 
+			Skin	1 [$SIGSEGV]
+			UseCustomModel	"models/bots/skeleton_sniper/skeleton_sniper_fixed.mdl"	[$SIGSEGV]
             DeathSound  	"=75|misc/halloween/skeleton_break.wav"
-			UseHumanAnimations 1  
+			UseHumanAnimations 1 [$SIGSEGV]
 			ItemModel
 			{
 				ItemName	"Zombie Sniper"
@@ -1231,7 +1231,7 @@ This_fucking_sucks,_actually.
 				"faster reload rate"	0.6
 				"fire input on hit"	"!self^RunScriptCode^AthazarWeaponPack.PillPopper.call(this)"
 				
-				"add attributes on hit"	"healing received penalty|0.5|5"	// Total Heavy Deathâ„¢
+				"add attributes on hit"	"healing received penalty|0.5|5"	// Total Heavy Death™
 			}
 			
 			CharacterAttributes
@@ -1270,7 +1270,7 @@ This_fucking_sucks,_actually.
 				"fire rate bonus"		0.6
 				"faster reload rate"	0.6
 				"fire input on hit"	"!self^RunScriptCode^AthazarWeaponPack.PillPopper.call(this)"
-				"add attributes on hit"	"healing received penalty|0.5|5"	// Total Heavy Deathâ„¢
+				"add attributes on hit"	"healing received penalty|0.5|5"	// Total Heavy Death™
 			}
 		}
 
@@ -1617,7 +1617,7 @@ This_fucking_sucks,_actually.
 			Target	wave_finished_relay
 			Action	Trigger
 		}
-		Explanation	 
+		Explanation	[$SIGSEGV]
 		{
 			Line	"{yellow}[WARNING] This mission features a significant amount of Medics, present on every wave."
 			Line	"{yellow}Various waves feature new medic types and you will be warned of what they are on each wave."
@@ -1637,10 +1637,10 @@ This_fucking_sucks,_actually.
 			{
 				Template	T_TFBot_Sniper_Huntsman
 				Name	"Skeletal Archer"
-				Skin	1  
-				UseCustomModel	"models/bots/skeleton_sniper/skeleton_sniper_fixed.mdl"	 
+				Skin	1 [$SIGSEGV]
+				UseCustomModel	"models/bots/skeleton_sniper/skeleton_sniper_fixed.mdl"	[$SIGSEGV]
 				DeathSound  	"=75|misc/halloween/skeleton_break.wav"
-				UseHumanAnimations 1  
+				UseHumanAnimations 1 [$SIGSEGV]
 				ItemModel
 				{
 					ItemName	"Zombie Sniper"
@@ -1794,7 +1794,7 @@ This_fucking_sucks,_actually.
 			Target	wave_finished_relay
 			Action	Trigger
 		}
-		Explanation	 
+		Explanation	[$SIGSEGV]
 		{
 			Line	"{yellow}[WARNING] This wave features {blue}Acidifier Medics."
 			Line	"{yellow}Acidifier Medics grant bleed on hit to their patients!"
@@ -2344,7 +2344,7 @@ This_fucking_sucks,_actually.
 			Target	wave_finished_relay
 			Action	Trigger
 		}
-		Explanation	 
+		Explanation	[$SIGSEGV]
 		{
 			Line	"{yellow}[WARNING] This wave features {blue}Cauterizer Medics."
 			Line	"{yellow}Cauterizer Medics will grant ignite on hit to their patients!"
@@ -2422,10 +2422,10 @@ This_fucking_sucks,_actually.
 				{
 					Template	T_TFBot_Sniper_Huntsman
 					Name	"Skeletal Archer"
-					Skin	1  
-					UseCustomModel	"models/bots/skeleton_sniper/skeleton_sniper_fixed.mdl"	 
+					Skin	1 [$SIGSEGV]
+					UseCustomModel	"models/bots/skeleton_sniper/skeleton_sniper_fixed.mdl"	[$SIGSEGV]
 					DeathSound  	"=75|misc/halloween/skeleton_break.wav"
-					UseHumanAnimations 1  
+					UseHumanAnimations 1 [$SIGSEGV]
 					ItemAttributes
 					{
 						ItemName	"The Huntsman"
@@ -2550,7 +2550,7 @@ This_fucking_sucks,_actually.
 			Target	wave_finished_relay
 			Action	Trigger
 		}
-		Explanation	 
+		Explanation	[$SIGSEGV]
 		{
 			Line	"{yellow}[WARNING] This wave features {blue}Giant Pill Poppers."
 			Line	"{yellow}Pill Poppers fire special healing grenades, healing allies caught in their radius. Getting hit by these pills will momentarily lower your healing received from {red}ALL {yellow}sources."
@@ -2777,7 +2777,7 @@ This_fucking_sucks,_actually.
 			Target	wave_finished_relay
 			Action	Trigger
 		}
-		Explanation	 
+		Explanation	[$SIGSEGV]
 		{
 			Line	"{yellow}[WARNING] This wave features {blue}Giant Transmitter Medics."
 			Line	"{yellow}These Medics grant homing projectiles to their patient!"
@@ -2996,7 +2996,7 @@ This_fucking_sucks,_actually.
 			Target	wave_finished_relay
 			Action	Trigger
 		}
-		Explanation	 
+		Explanation	[$SIGSEGV]
 		{
 			Line	"{yellow}[WARNING] This wave features {blue}all Medic types you've seen so far."
 			Line	"{yellow}However, {blue}Uber Medics {yellow}work differently this wave and grant an infinite Uber to only their patients until death."

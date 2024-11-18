@@ -52,9 +52,9 @@ if(!("StyleSystemHideRankPlayerSteamIDs" in ROOT))
 	}
 
 	ParamsTable = {
-		Tank                = 200
-		Tank_TextColor      = "80 220 80"
-		Tank_TextSize       = 35
+		Tank              = 200
+		Tank_TextColor    = "80 220 80"
+		Tank_TextSize     = 35
 		Tank_TextDuration = 5
 
 		Boss              = 200
@@ -160,7 +160,7 @@ if(!("StyleSystemHideRankPlayerSteamIDs" in ROOT))
 	}
 	function OnGameEvent_player_death(params)
 	{
-		if(bActive)
+		if(bActive && !(params.death_flags & 32))
 		{
 			local sScoreType
 			local hVictim = GetPlayerFromUserID(params.userid)
