@@ -300,7 +300,6 @@ WaveSchedule
             TFBot
             {
                 Template T_TFBot_Scout_Bonk
-                // WaitForAllJewsBurnt Always
             }
         }
            
