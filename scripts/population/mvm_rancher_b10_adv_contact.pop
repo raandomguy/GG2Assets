@@ -1921,13 +1921,14 @@ elmarcianito
                 "target" "!parent"
                 "startdisabled" "0"
             }
+            
             obj_sentrygun //obj_teleporter
             {
                 "targetname" "nuker_hitbox"
                 "origin" "0 0 0"
                 "angles" "0 0 0"
                 "solid" "6"
-                "modelscale" "2.0"
+                "modelscale" "2.8"
                 "DisableShadows" "1"
                 "TeamNum" "3"
                 "health" "1500"
@@ -1935,17 +1936,11 @@ elmarcianito
                 "rendermode" "10" //10
                 "renderamt" "0" //0
                 "SolidToPlayer" "0"
-                "damagefilter" "filter_red"
-                //"OnDestroyed" "!parent:kill:0:0:-1,0,-1"
+                "damagefilter" "filter_is_red"
+                //"OnDestroyed" "!parent:kill:0:0:-1,0,-1" //for some reason, OnDestroyed has stopped working
                 "OnDamaged" "player,$DisplayTextCenter,$$=test(!caller.m_iHealth>1,'Nuke HP: '..string(max(!caller.m_iHealth, 0)),''),0,-1"
-                //"CollisionGroup" "20"
+                "OnDamaged" "!parentRunScriptCodetry{if(caller.GetHealth()<1){self.Kill()}}catch(e){}0-1"
             } 
-            // OnSpawnOutput
-            // {
-            //     Target "!parent"
-            //     "action" "$SetCollisionFilter"
-            //     "param" "filter_is_blu_engi"
-            // }
             OnSpawnOutput
             {
                 Target "!parent"
@@ -1953,27 +1948,17 @@ elmarcianito
                 "param" "1"
                 "delay" "0.1"
             }
-            point_push
-			{
-				"targetname" "boss_push"
-				"radius" "400"
-				"magnitude" "1300"
-				"innerradius" "400"
-				"startdisabled" 1
-				"spawnflags" 8
-				"origin" "0 0 0"
-			}
             trigger_multiple
             {
                 "targetname" "excusemesir"
                 "origin" "0 0 0"
-                "mins" "-90 -90 -90"
-                "maxs" "90 90 90"
+                "mins" "-80 -80 -80"
+                "maxs" "80 80 80"
                 "spawnflags" "1"
                 "filtername" "filter_is_red"
-                "OnStartTouch" "!activatorRunScriptCodeself.ApplyAbsVelocityImpulse(Vector(0,0,700))0.2-1"
+                "OnStartTouch" "!activatorRunScriptCodeself.ApplyAbsVelocityImpulse(Vector(0,0,1000))0.2-1"
                 "OnStartTouch" "nuker_hitbox,$SetProp$m_CollisionGroup,1,0,-1"
-                "OnEndTouchAll" "nuker_hitbox,$SetProp$m_CollisionGroup,0,0.5,-1"
+                "OnEndTouchAll" "nuker_hitbox,$SetProp$m_CollisionGroup,0,0.2,-1"
                 "wait" "0.1"
                 "StartDisabled" "0"
             }
@@ -1989,12 +1974,6 @@ elmarcianito
                 "target" "excusemesir"
                 "action" "disable"
                 "delay" "0.9"
-            }
-            OnSpawnOutput
-            {
-                "target" "boss_push"
-                "action" "disable"
-                "delay" "0.8"
             }
             OnSpawnOutput
             {
@@ -2016,11 +1995,13 @@ elmarcianito
                 "param" "filter_is_red"
                 "delay" "0.1"
             }
+
             OnSpawnOutput
             {
                 Target "nuker_hitbox"
                 Action "AddOutput"
                 Param "$OnDestroyed !parent:kill:0:0:-1,0,-1"
+                Delay 0.3
             }
             prop_dynamic
             {
@@ -8626,7 +8607,7 @@ elmarcianito
                 "angles" "0 90 0"
 				"model" "models/props_mvm/hologram_projector.mdl"
 				"solid" "0"
-				"defaultanim" "ref"
+				"defaultanim" "idle"
 				"skin" "0" 
                 "disableshadows" "1"
                 "disablebonefollowers" "1"
@@ -8709,7 +8690,7 @@ elmarcianito
                 "angles" "0 90 0"
 				"model" "models/props_mvm/hologram_projector.mdl"
 				"solid" "0"
-				"defaultanim" "ref"
+				"defaultanim" "idle"
 				"skin" "0" 
                 "disableshadows" "1"
                 "disablebonefollowers" "1"
@@ -8736,7 +8717,7 @@ elmarcianito
                 "angles" "0 90 0"
 				"model" "models/props_mvm/hologram_projector.mdl"
 				"solid" "0"
-				"defaultanim" "ref"
+				"defaultanim" "idle"
 				"skin" "0" 
                 "disableshadows" "1"
                 "disablebonefollowers" "1"
@@ -8791,7 +8772,7 @@ elmarcianito
                 "angles" "0 90 0"
 				"model" "models/props_mvm/hologram_projector.mdl"
 				"solid" "0"
-				"defaultanim" "ref"
+				"defaultanim" "idle"
 				"skin" "0" 
                 "disableshadows" "1"
                 "disablebonefollowers" "1"
@@ -8818,7 +8799,7 @@ elmarcianito
                 "angles" "0 90 0"
 				"model" "models/props_mvm/hologram_projector.mdl"
 				"solid" "0"
-				"defaultanim" "ref"
+				"defaultanim" "idle"
 				"skin" "0" 
                 "disableshadows" "1"
                 "disablebonefollowers" "1"
