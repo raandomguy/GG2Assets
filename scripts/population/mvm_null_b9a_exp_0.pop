@@ -1799,11 +1799,12 @@ WaveSchedule
 				local ent = Entities.FindByClassname(null, `tf_objective_resource`)
 				if (ent)
 				{
-					NetProps.SetPropString(ent, `m_iszMvMPopfileName`, `(Exp)`)
+					// NetProps.SetPropString(ent, `m_iszMvMPopfileName`, `(Exp)`)
+					ent.AcceptInput(`$SetClientProp$m_iszMvMPopfileName`, `(Exp)`, null, null)
 				}
 				local resource = Entities.FindByClassname(null, `tf_objective_resource`)
-				NetProps.SetPropInt(resource, `m_nMannVsMachineWaveCount`, 1)
-                NetProps.SetPropInt(resource, `m_nMannVsMachineMaxWaveCount`, 4)
+				resource.AcceptInput(`$SetClientProp$m_nMannVsMachineWaveCount`, `1`, null, null)
+                resource.AcceptInput(`$SetClientProp$m_nMannVsMachineMaxWaveCount`, `4`, null, null)
 			"
 		}
 		DoneOutput
@@ -1820,8 +1821,8 @@ WaveSchedule
 				Param "
                 EntFire(`wave_start_relay_ironman`, `Trigger`)
                 local resource = Entities.FindByClassname(null, `tf_objective_resource`)
-                NetProps.SetPropInt(resource, `m_nMannVsMachineWaveCount`, 1)
-                NetProps.SetPropInt(resource, `m_nMannVsMachineMaxWaveCount`, 4)
+                resource.AcceptInput(`$SetClientProp$m_nMannVsMachineWaveCount`, `1`, null, null)
+                resource.AcceptInput(`$SetClientProp$m_nMannVsMachineMaxWaveCount`, `4`, null, null)
 				"
 			}
 		}
@@ -2590,11 +2591,12 @@ WaveSchedule
 				local ent = Entities.FindByClassname(null, `tf_objective_resource`)
 				if (ent)
 				{
-					NetProps.SetPropString(ent, `m_iszMvMPopfileName`, `(Exp) The Horrors`)
+					// NetProps.SetPropString(ent, `m_iszMvMPopfileName`, `(Exp) The Horrors`)
+					ent.AcceptInput(`$SetClientProp$m_iszMvMPopfileName`, `(Exp) The Horrors`, null, null)
 				}
 				local resource = Entities.FindByClassname(null, `tf_objective_resource`)
 				NetProps.SetPropInt(resource, `m_nMannVsMachineWaveCount`, 2)
-                NetProps.SetPropInt(resource, `m_nMannVsMachineMaxWaveCount`, 4)
+                resource.AcceptInput(`$SetClientProp$m_nMannVsMachineMaxWaveCount`, `4`, null, null)
 			"
 		}
 		DoneOutput
@@ -2612,7 +2614,7 @@ WaveSchedule
                 EntFire(`wave_start_relay_ironman`, `Trigger`)
                 local resource = Entities.FindByClassname(null, `tf_objective_resource`)
                 NetProps.SetPropInt(resource, `m_nMannVsMachineWaveCount`, 2)
-                NetProps.SetPropInt(resource, `m_nMannVsMachineMaxWaveCount`, 4)
+                resource.AcceptInput(`$SetClientProp$m_nMannVsMachineMaxWaveCount`, `4`, null, null)
 				"
 			}
 		}
@@ -3833,11 +3835,12 @@ WaveSchedule
 				local ent = Entities.FindByClassname(null, `tf_objective_resource`)
 				if (ent)
 				{
-					NetProps.SetPropString(ent, `m_iszMvMPopfileName`, `(Exp) Under The Moonlight`)
+					// NetProps.SetPropString(ent, `m_iszMvMPopfileName`, `(Exp) Under The Moonlight`)
+					ent.AcceptInput(`$SetClientProp$m_iszMvMPopfileName`, `(Exp) Under The Moonlight`, null, null)
 				}
 				local resource = Entities.FindByClassname(null, `tf_objective_resource`)
 				NetProps.SetPropInt(resource, `m_nMannVsMachineWaveCount`, 3)
-                NetProps.SetPropInt(resource, `m_nMannVsMachineMaxWaveCount`, 4)
+                resource.AcceptInput(`$SetClientProp$m_nMannVsMachineMaxWaveCount`, `4`, null, null)
 				TankExt.SetValueOverrides({
 					VACTANK_RESIST_MULT = 0.85
 				})
@@ -3868,7 +3871,7 @@ WaveSchedule
                 EntFire(`wave_start_relay_ironman`, `Trigger`)
                 local resource = Entities.FindByClassname(null, `tf_objective_resource`)
                 NetProps.SetPropInt(resource, `m_nMannVsMachineWaveCount`, 3)
-                NetProps.SetPropInt(resource, `m_nMannVsMachineMaxWaveCount`, 4)
+                resource.AcceptInput(`$SetClientProp$m_nMannVsMachineMaxWaveCount`, `4`, null, null)
 				TankExt.SetValueOverrides({
 					VACTANK_RESIST_MULT = 0.85
 				})
@@ -5107,7 +5110,8 @@ WaveSchedule
 				local ent = Entities.FindByClassname(null, `tf_objective_resource`)
 				if (ent)
 				{
-					NetProps.SetPropString(ent, `m_iszMvMPopfileName`, `(Exp) 0`)
+					// NetProps.SetPropString(ent, `m_iszMvMPopfileName`, `(Exp) 0`)
+					ent.AcceptInput(`$SetClientProp$m_iszMvMPopfileName`, `(Exp) 0`, null, null)
 				}
 				local resource = Entities.FindByClassname(null, `tf_objective_resource`)
 				NetProps.SetPropInt(resource, `m_nMannVsMachineWaveCount`, 3)
