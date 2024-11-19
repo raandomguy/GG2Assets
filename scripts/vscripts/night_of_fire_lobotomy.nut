@@ -1,31 +1,28 @@
-// File last updated 2.9.2024, update 3.3
+// Helper script file for Nightsky - Night of Fire, to reduce the amount of verbosity InitWaveOutput has
 
-// Helper script file to handle fireball rocket logic + huntsman arrow ignite
+// Wave initialisation
+IncludeScript("popextensions_main.nut", getroottable())
+MissionAttrs
+({
+	WaveStartCountdown = 5
+	ForceHoliday = 2
+	NoRome = 1
+	NoThrillerTaunt = 1
+	NoCrumpkins = 1
+	HuntsmanDamageFix = 1
+})
+EntFire("route1_holos*", "SetModel", "models/props_mvm/robot_hologram_color.mdl")
+EntFire("route2_holos*", "SetModel", "models/props_mvm/robot_hologram_color.mdl")
+EntFire("route1_holos*", "color", "169 56 214")
+EntFire("route2_holos*", "color", "169 56 214")
 
 // I basically stole the detect projectile logic from PopExt's customattributes.
 // Credit to Royal who wrote the original code RocketPenetration from PopExt.
 PopExt.AddRobotTag("bombi_explosion", {
 	OnSpawn = function(bot,tag) {
+		local scope = bot.GetScriptScope()
 		local wep = bot.GetActiveWeapon()
-		wep.ValidateScriptScope()
-		local wepScope = wep.GetScriptScope()
-
-		wepScope.last_fire_time <- 0.0
-		wepScope.forceAttacking <- false
-
-		wepScope.CheckWeaponFire <- function() {
-			local fire_time = GetPropFloat(self, "m_flLastFireTime")
-			if (fire_time > last_fire_time && !forceAttacking) {
-				local owner = self.GetOwner()
-				if (owner) {
-					OnShot(owner)
-				}
-				last_fire_time = fire_time
-			}
-			return
-		}
-
-		wepScope.FindRocket <- function(owner) {
+		scope.FindRocket <- function(owner) {
 			local entity = null
 			for (local entity; entity = FindByClassnameWithin(entity, "tf_projectile_*", owner.GetOrigin(), 500);) {
 				if (entity.GetOwner() != owner) {
@@ -37,12 +34,10 @@ PopExt.AddRobotTag("bombi_explosion", {
 			return null
 		}
 
-		wepScope.OnShot <- function(owner) {
-			local rocket = FindRocket(owner)
+		PopExtUtil.OnWeaponFire(wep, function(){
+			local rocket = scope.FindRocket(bot)
 
-			if (rocket == null) {
-				return
-			}
+			if (rocket == null) return
 
 			PopExtUtil.SetDestroyCallback(rocket, function(){
 				local impactPoint = self.GetOrigin()
@@ -53,8 +48,7 @@ PopExt.AddRobotTag("bombi_explosion", {
 					effect_name = "bombinomicon_burningdebris_halloween"
 				})
 			})
-		}
-		PopExtUtil.AddThinkToEnt(wep, "CheckWeaponFire")
+		})
 	}
 })
 
@@ -69,6 +63,7 @@ CustomAttributes.TakeDamagePostTable["night_of_fire_lobotomy_bombi_explosion_ign
 
 }
 
+// Since popext's customattributes on bots is not working
 PopExt.AddRobotTag("arrow_ignite", {
 	OnSpawn = function(bot,tag) {
 		bot.ValidateScriptScope()
