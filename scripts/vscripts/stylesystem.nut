@@ -169,6 +169,7 @@ if(!("StyleSystemHideRankPlayerSteamIDs" in ROOT))
 			local iTeamNumAttacker = hAttacker ? hAttacker.GetTeam() : -1
 			if(hVictim.IsBotOfType(TF_BOT_TYPE))
 			{
+				if(hVictim.HasBotTag("bot_nopoints")) return
 				if(iTeamNumVictim != 2 && iTeamNumVictim != iTeamNumAttacker)
 				{
 					local iMaxHealth = hVictim.GetMaxHealth()

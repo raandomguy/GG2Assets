@@ -447,7 +447,7 @@ Real?
 		"custom item model"	"models/empty.mdl"
 		"is_passive_weapon"	1
 		"melee airblast"	1
-		"melee range multiplier"	2
+		"melee range multiplier"	1.75
 		"melee bounds multiplier"	1.5
 
 		"custom kill icon"	"purgatory"
@@ -3025,6 +3025,7 @@ Real?
 				"OnTrigger"		"skybreaker_intro_beams_*,Stop,,17.7,-1"
 				"OnTrigger"		"gamerules,PlayVO,mvm/giant_heavy/giant_heavy_entrance.wav,17.7,-1"
 				"OnTrigger"		"point_populator_interface,$ResumeWavespawn,7-4_LIKE_ANTENNAS_TO_HEAVEN,17.7,-1"
+				"OnTrigger"		"i_guess_we_really_are_some_kind_of_war_without_reason,Trigger,,17.7,-1
 				"OnTrigger"		"finale_flashbang_out,Fade,,17.75,-1"
 
 				"OnTrigger"		"player,$PlaySoundToSelf,vo/mvm/mght/taunts/heavy_mvm_m_taunts02.mp3,19,-1"
@@ -3613,6 +3614,7 @@ Real?
 				"OnTrigger"		"@f@filter_skybreaker@player,$SetLocalOrigin,832 -1899 275,10,-1"
 				"OnTrigger"		"GET_OUT,Enable,,10,-1"
 				"OnTrigger"		"GET_OUT,Disable,,11,-1"
+				"OnTrigger"		"GET_OUT,Kill,,11,-1"
 				"OnTrigger"		"player,$DisplayTextChat,{blue}127-THR Skybreaker{reset} has escaped the Underworld!,10,-1"
 				"OnTrigger"		"player,$PlaySoundToSelf,ui/halloween_boss_player_becomes_it.wav,10,-1"
 
@@ -3861,6 +3863,11 @@ Real?
 			{
 				Target			ultrakrill
 				Action			Trigger
+			}
+			logic_relay
+			{
+				"targetname"	"i_guess_we_really_are_some_kind_of_war_without_reason"
+				"OnTrigger"		"tf_objective_resource,$SetClientProp$m_iszMvMPopfileName,LIKE ANTENNAS TO HEAVEN (BRUTAL),0,-1"
 			}
 		}
 
@@ -9428,6 +9435,7 @@ Real?
 			{
 				Template	T_TFBot_Heavyweapons_Heavyweight_Champ
 				Name		"Punchie"
+				Tag	bot_nopoints
 			}
 		}
 		WaveSpawn
@@ -9444,6 +9452,7 @@ Real?
 			{
 				Template	T_TFBot_Scout_Sandman
 				Attributes	AlwaysCrit
+				Tag	bot_nopoints
 			}
 		}
 	}
@@ -9657,6 +9666,7 @@ Real?
 				Attributes	AlwaysFireWeapon
 				Item	"Fire Marshal"
 				Item	"Invisible Flame"
+				Tag	bot_nopoints
 				ItemAttributes
 				{
 					ItemName	"Invisible Flame"
@@ -9887,6 +9897,7 @@ Real?
 			{
 				Class	Heavyweapons
 				Skill	Normal
+				Tag	bot_nopoints
 			}
 		}
 		WaveSpawn
@@ -9906,6 +9917,7 @@ Real?
 				Skill	Hard
 				Item	"Armored Authority"
 				Item	"Fancy Dress Uniform"
+				Tag	bot_nopoints
 			}
 		}
 
@@ -10156,6 +10168,7 @@ Real?
 				Class	Demoman
 				Skill	Expert
 				Tag	"bot_goldweapon|Goldified Grenade Launcher|I FUCKING LOVE GOLD"
+				Tag	bot_nopoints
 				Item	"The Frag Proof Fragger"
 				Item	"The Juggernaut Jacket"
 				ItemAttributes
@@ -10348,6 +10361,18 @@ Real?
 		}
 		WaveSpawn
 		{
+			Name	ezclear
+			WaitForAllSpawned	wave5b
+			Support		Limited
+			TotalCount	0
+			MaxActive	0
+			SpawnCount	0
+			WaitBeforeStarting	5
+			FirstSpawnMessage	"{yellow}Combat Tanks DO NOT deploy and will instead idle at hatch to pave the way for bots."
+			FirstSpawnWarningSound	"ui/cyoa_ping_available.wav"
+		}
+		WaveSpawn
+		{
 			Name	wave5c
 			WaitForAllDead	wave5b
 			TotalCurrency	100
@@ -10386,6 +10411,7 @@ Real?
 						Template	T_TFBot_Soldier_Extended_Buff_Banner
 						Skill		Normal
 						Item	"Stout Shako"
+						Tag	bot_nopoints
 						ItemAttributes
 						{
 							ItemName	"Stout Shako"
@@ -10397,6 +10423,7 @@ Real?
 						Template	T_TFBot_Soldier_Extended_Buff_Banner
 						Skill		Normal
 						Item	"Stout Shako"
+						Tag	bot_nopoints
 						ItemAttributes
 						{
 							ItemName	"Stout Shako"
@@ -10409,6 +10436,7 @@ Real?
 						Template	T_TFBot_Soldier_Extended_Buff_Banner
 						Skill		Normal
 						Item	"Stout Shako"
+						Tag	bot_nopoints
 						ItemAttributes
 						{
 							ItemName	"Stout Shako"
@@ -10425,14 +10453,17 @@ Real?
 					TFBot
 					{
 						Template	T_TFBot_Skeleton_Archer
+						Tag	bot_nopoints
 					}
 					TFBot
 					{
 						Template	T_TFBot_Skeleton_Archer
+						Tag	bot_nopoints
 					}
 					TFBot
 					{
 						Template	T_TFBot_Skeleton_Archer
+						Tag	bot_nopoints
 					}
 
 				}
@@ -10451,6 +10482,7 @@ Real?
 						Item	"Pretty Boy's Pocket Pistol"
 						Item	"The Fed-Fightin' Fedora"
 						Item	"Dillinger's Duffel"
+						Tag	bot_nopoints
 					}
 					TFBot
 					{
@@ -10462,6 +10494,7 @@ Real?
 						Item	"Pretty Boy's Pocket Pistol"
 						Item	"The Fed-Fightin' Fedora"
 						Item	"Dillinger's Duffel"
+						Tag	bot_nopoints
 					}
 					TFBot
 					{
@@ -10473,6 +10506,7 @@ Real?
 						Item	"Pretty Boy's Pocket Pistol"
 						Item	"The Fed-Fightin' Fedora"
 						Item	"Dillinger's Duffel"
+						Tag	bot_nopoints
 					}
 
 				}
@@ -10490,6 +10524,7 @@ Real?
 						Item	"Baby Face's Blaster"
 						Item	"The Fed-Fightin' Fedora"
 						Item	"Dillinger's Duffel"
+						Tag	bot_nopoints
 					}
 					TFBot
 					{
@@ -10500,6 +10535,7 @@ Real?
 						Item	"Baby Face's Blaster"
 						Item	"The Fed-Fightin' Fedora"
 						Item	"Dillinger's Duffel"
+						Tag	bot_nopoints
 					}
 					TFBot
 					{
@@ -10510,6 +10546,7 @@ Real?
 						Item	"Baby Face's Blaster"
 						Item	"The Fed-Fightin' Fedora"
 						Item	"Dillinger's Duffel"
+						Tag	bot_nopoints
 					}
 
 				}
@@ -10552,11 +10589,12 @@ Real?
 		WaveSpawn
 		{
 			Name	wave5_super_scout_support
-			WaitForAllDead	wave5c	
+			WaitForAllSpawned	wave5c	
 			TotalCount	69
 			MaxActive	3
 			SpawnCount	1
 			Support		1
+			WaitBeforeStarting	10
 			WaitBetweenSpawns	20
 			Where	spawnbot
 			Where	flankers
@@ -10565,6 +10603,7 @@ Real?
 			{
 				Template	T_TFBot_Giant_Scout_Fast
 				ClassIcon	scout_fast_supportgiant
+				Tag	bot_nopoints
 			}
 		}
 
@@ -10806,6 +10845,7 @@ Real?
 					Item	"Pyromancer's Mask"
 					MaxVisionRange	600
 					Skill	Hard
+					Tag	bot_nopoints
 				}
 				TFBot
 				{
@@ -10816,6 +10856,7 @@ Real?
 					Item	"Pyromancer's Mask"
 					MaxVisionRange	600
 					Skill	Hard
+					Tag	bot_nopoints
 				}
 				TFBot
 				{
@@ -10826,11 +10867,13 @@ Real?
 					Item	"Pyromancer's Mask"
 					MaxVisionRange	600
 					Skill	Hard
+					Tag	bot_nopoints
 				}
 				TFBot
 				{
 					Template	T_TFBot_Soldier_Guttertank
 					Attributes	AlwaysCrit
+					Tag	bot_nopoints
 				}
 			}
 		}
@@ -10852,6 +10895,7 @@ Real?
 				Attributes	AlwaysCrit
 				Item	"The Frag Proof Fragger"
 				Item	"The Juggernaut Jacket"
+				Tag	bot_nopoints
 				ItemAttributes
 				{
 					ItemName	"The Juggernaut Jacket"
