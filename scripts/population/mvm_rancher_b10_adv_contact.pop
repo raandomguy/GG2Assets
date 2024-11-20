@@ -81,7 +81,7 @@ elmarcianito
     PrecacheModel "models\props_forest\saw_blade.mdl"
     PrecacheModel "models/props_mvm/indicator/indicator_circle.mdl"
 	PrecacheModel "models\props_invasion\props_alien\arch.mdl"
-
+    PrecacheModel "models/props_mvm/gatebot_hologram.mdl"
     PrecacheSound "lastlegs_alt_cmprsd.mp3"
     PrecacheSound "drg_run_stais_remix.mp3"
     PrecacheSound "ui/cyoa_musicmoregun.mp3"
