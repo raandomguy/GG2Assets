@@ -1,4 +1,4 @@
-// mvm_madhattan_rc6a.bsp
+// mvm_madhattan_rc5a.bsp
 Events <- {
 	function OnGameEvent_recalculate_holidays(_) {
 		if (GetRoundState() != Constants.ERoundState.GR_STATE_PREROUND) return

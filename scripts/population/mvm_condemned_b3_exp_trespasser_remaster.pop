@@ -219,6 +219,10 @@ WaveSchedule
 	PrecacheModel "models/weapons/w_bugbait.mdl"												//viro projectile
 	PrecacheModel "models/weapons/df_bow/df_bow.mdl"											//ceremonial
 	PrecacheModel "models/weapons/c_models/c_assault_battering_ram/c_assault_battering_ram.mdl"	//riot shield
+	PrecacheModel "models/weapons/custom/derringer.mdl"											//derringer
+
+	// This will not get added to the download table unless it is included here.
+	PrecacheGeneric	"materials/hud/leaderboard_class_sentry_gun" [$SIGSEGV]
 
 
 //[/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////]//

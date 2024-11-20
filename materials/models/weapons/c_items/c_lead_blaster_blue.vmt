@@ -1,22 +1,27 @@
 "VertexlitGeneric"
 {
-	"$baseTexture" "models/weapons/c_models/c_cratesmasher/c_cratesmasher"
+	"$basetexture" "models/weapons/c_items/c_lead_blaster_blue"
+  //"$bumpmap" "models/weapons/c_items/c_lead_blaster_normal"
 
-	"$lightwarptexture" "models/lightwarps/weapon_lightwarp"
-
-	"$phong" "1"
-	"$phongexponent" "25"
-	"$phongboost" "5"
-	"$phongfresnelranges" "[.25 .5 1]"
 	"$basemapalphaphongmask" "1"
+	"$phong" "1"
+	"$phongexponent" "15"
+	"$phongboost" "8"	
+	//"$lightwarptexture" "models/lightwarps/weapon_lightwarp"
+  "$lightwarptexture" "models/weapons/c_items/c_ambassador_lightwarp"
+	"$phongfresnelranges"	"[.25 .5 1]"
+  
+  //"$envmap"			"env_cubemap"
+	//"$envmaptint"			"[.3 .3 .3]"
+  //"$envmapmask" "models/weapons/c_items/c_lead_blaster_envmask"
+  //"$normalmapalphaenvmapmask" "1" // This doesn't seem to work with Phong enabled in the alpha channel!
+  //"$basealphaenvmapmask" "0"
 
 	"$rimlight" "1"
-	"$rimlightexponent" "4"
-	"$rimlightboost" "2"
+	"$rimlightexponent" "10"	
+	"$rimlightboost" "1.5"
 
 	"$ambientocclusion" "1"
-
-	"$yellow" "0"
 
 	"$glowcolor" "1"
 
@@ -55,15 +60,6 @@
 			"srcVar1"  "$glowcolor"
 			"resultVar" "$color2"
 		}
-		"YellowLevel"
-		{
-			"resultVar" "$yellow"
-		}
-		"Multiply"
-		{
-			"srcVar1" "$color2"
-			"srcVar2" "$yellow"
-			"resultVar" "$color2"
-		}
 	}
 }
+
