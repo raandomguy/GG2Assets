@@ -14,27 +14,27 @@ WaveSchedule
 	AddSentryBusterWhenDamageDealtExceeds	2500	// 3000 >:)
 	AddSentryBusterWhenKillCountExceeds		12	// 15 >:)
 	// EventPopFile Halloween
-	// ZombiesNo666   //Ideally the ONLY rafmod in this mission
+	// ZombiesNo666 [$SIGSEGV] //Ideally the ONLY rafmod in this mission
 	// ^ thanks to PDA thse are uneccessary ujel
 	// rafmod just for the fastdl stuff to work:
-	PrecacheModel							models/bots/boss_bot/paintable_tank_v2/boss_tank.mdl  
-	PrecacheModel							models/bots/boss_bot/paintable_tank_v2/boss_tank_damage1.mdl  
-	PrecacheModel							models/bots/boss_bot/paintable_tank_v2/boss_tank_damage2.mdl  
-	PrecacheModel							models/bots/boss_bot/paintable_tank_v2/boss_tank_damage3.mdl  
-	PrecacheModel							models/bots/boss_bot/paintable_tank_v2/tank_track_L.mdl  
-	PrecacheModel							models/bots/boss_bot/paintable_tank_v2/tank_track_R.mdl  
-	PrecacheModel							models/bots/boss_bot/paintable_tank_v2/bomb_mechanism.mdl  
+	PrecacheModel							models/bots/boss_bot/paintable_tank_v2/boss_tank.mdl [$SIGSEGV]
+	PrecacheModel							models/bots/boss_bot/paintable_tank_v2/boss_tank_damage1.mdl [$SIGSEGV]
+	PrecacheModel							models/bots/boss_bot/paintable_tank_v2/boss_tank_damage2.mdl [$SIGSEGV]
+	PrecacheModel							models/bots/boss_bot/paintable_tank_v2/boss_tank_damage3.mdl [$SIGSEGV]
+	PrecacheModel							models/bots/boss_bot/paintable_tank_v2/tank_track_L.mdl [$SIGSEGV]
+	PrecacheModel							models/bots/boss_bot/paintable_tank_v2/tank_track_R.mdl [$SIGSEGV]
+	PrecacheModel							models/bots/boss_bot/paintable_tank_v2/bomb_mechanism.mdl [$SIGSEGV]
 	// fix rafmod fix stacking with popext fix:
-	FixHuntsmanDamageBonus					0  	// Fix huntsman damage bonus upgrade so it is applied correctly. Does not affect huntsman bots (default: 0)
+	FixHuntsmanDamageBonus					0 [$SIGSEGV]	// Fix huntsman damage bonus upgrade so it is applied correctly. Does not affect huntsman bots (default: 0)
 
 	Templates
 	{
-		Boss_But_Now_With_Phases	// FINISH LATER. MAYBE MAKE PHASE 1 STRONGER. MAKE PHASE 3 (AUTOJUMP W PARACHUTE)
+		Boss_But_Now_With_Phases
 		{
 			Class		Soldier
-			Name		"The Eugenesis"
+			Name		"Soul Hive"
 			ClassIcon	soldier_hyper_lite
-			Health		35000	// 30000	// 35000
+			Health		40000	// 35000	// 30000	// 35000
 			Attributes	MiniBoss
 			AutoJumpMin	2
 			AutoJumpMax	4
@@ -596,7 +596,7 @@ WaveSchedule
 			MaxActive			3
 			SpawnCount			1
 			WaitBeforeStarting	5
-			WaitBetweenSpawns	25
+			WaitBetweenSpawns	24	// 25
 			TotalCurrency		150
 
 			TFBot
@@ -609,12 +609,17 @@ WaveSchedule
 				Item		"Bull Locks"
 				Item		"Immobile Suit"
 				// Tag			popext_spell|0|9|2|5
-				Tag			"popext_spell{type = SPELL_FIREBALL, cooldown = 9, delay = 2, repeats = 5}"
+				Tag			"popext_spell{type = SPELL_FIREBALL, cooldown = 9, delay = 10, repeats = 5}"
 
 				ItemAttributes
 				{
 					ItemName					"Halloween Spellbook"
 					"dmg penalty vs buildings"	10	// 100 damage vs buildings
+				}
+
+				CharacterAttributes
+				{
+					"cancel falling damage"	1
 				}
 			}
 		}
@@ -982,6 +987,12 @@ WaveSchedule
 				Template	T_TFBot_Giant_Soldier_Spammer_Reload	// Crit
 				Item		"The Freedom Feathers"
 				Item		"Private Maggot Muncher"
+
+				CharacterAttributes
+				{
+					"rocket jump damage reduction"	0
+					"cancel falling damage"			1
+				}
 			}
 		}
 
@@ -1008,6 +1019,12 @@ WaveSchedule
 				// Tag					popext_giveweapon|tf_weapon_fireaxe|153
 				Tag					"popext_giveweapon{ weapon = `tf_weapon_fireaxe` id = `153`}"
 				Item				"The Person in the Iron Mask"
+
+				CharacterAttributes
+				{
+					"cancel falling damage"	1
+					"head scale"			0.7
+				}
 			}
 		}
 		// add more, out of ideas rn
@@ -1117,6 +1134,12 @@ WaveSchedule
 				Template	T_TFBot_Giant_Soldier_Spammer_Reload	// _Crit
 				Item		"The Freedom Feathers"
 				Item		"Private Maggot Muncher"
+
+				CharacterAttributes
+				{
+					"rocket jump damage reduction"	0
+					"cancel falling damage"			1
+				}
 			}
 		}
 	}
@@ -1206,7 +1229,7 @@ WaveSchedule
 
 			RandomChoice
 			{
-				// Shuffle	1  
+				// Shuffle	1 [$SIGSEGV]
 
 				TFBot
 				{
@@ -1272,13 +1295,18 @@ WaveSchedule
 
 			RandomChoice
 			{
-				Shuffle	1  
+				Shuffle	1 [$SIGSEGV]
 
 				TFBot
 				{
 					Template	T_TFBot_Soldier_Extended_Buff_Banner
 					ClassIcon	soldier_banner_trio
 					Item		"The Crit Cloak"
+
+					CharacterAttributes
+					{
+						"rocket jump damage reduction"	0
+					}
 				}
 
 				TFBot
@@ -1286,6 +1314,11 @@ WaveSchedule
 					Template	T_TFBot_Soldier_Extended_Battalion
 					ClassIcon	soldier_banner_trio
 					Item		"The Crit Cloak"
+
+					CharacterAttributes
+					{
+						"rocket jump damage reduction"	0
+					}
 				}
 
 				TFBot
@@ -1293,6 +1326,11 @@ WaveSchedule
 					Template	T_TFBot_Soldier_Extended_Concheror
 					ClassIcon	soldier_banner_trio
 					Item		"The Crit Cloak"
+
+					CharacterAttributes
+					{
+						"rocket jump damage reduction"	0
+					}
 				}
 			}
 		}
@@ -1320,6 +1358,11 @@ WaveSchedule
 				Item	"Bread Heads"
 				Item	"Bread Biter"
 				Name	"Overbreaded Soldier"
+
+				CharacterAttributes
+				{
+					"rocket jump damage reduction"	0
+				}
 			}
 
 			FirstSpawnOutPut
@@ -1376,12 +1419,22 @@ WaveSchedule
 				{
 					Template	T_TFBot_Soldier_Extended_Battalion
 					Item		"The Crit Cloak"
+
+					CharacterAttributes
+					{
+						"rocket jump damage reduction"	0
+					}
 				}
 
 				TFBot
 				{
 					Template	T_TFBot_Soldier_Extended_Battalion
 					Item		"The Crit Cloak"
+
+					CharacterAttributes
+					{
+						"rocket jump damage reduction"	0
+					}
 				}
 			}
 		}
@@ -1440,6 +1493,11 @@ WaveSchedule
 				Template	T_TFBot_Giant_Scout
 				Item		"The Biomech Backpack"
 				Item		"The Alien Cranium"
+
+				CharacterAttributes
+				{
+					"cancel falling damage"	1
+				}
 			}
 		}
 
@@ -1457,7 +1515,7 @@ WaveSchedule
 
 			RandomChoice
 			{
-				Shuffle	1  
+				Shuffle	1 [$SIGSEGV]
 
 				TFBot
 				{
@@ -1475,6 +1533,11 @@ WaveSchedule
 					Item	"Bread Heads"
 					Item	"Bread Biter"
 					Name	"Overbreaded Soldier"
+
+					CharacterAttributes
+					{
+						"rocket jump damage reduction"	0
+					}
 				}
 			}
 		}
@@ -1498,6 +1561,11 @@ WaveSchedule
 				Item	"Bread Heads"
 				Item	"Bread Biter"
 				Name	"Overbreaded Soldier"
+
+				CharacterAttributes
+				{
+					"rocket jump damage reduction"	0
+				}
 			}
 		}
 
@@ -1543,6 +1611,11 @@ WaveSchedule
 				Item	"Scottish Snarl"
 				Item	"Pickled Paws"
 				Item	"The Tartan Shade"
+
+				CharacterAttributes
+				{
+					"rocket jump damage reduction"	0
+				}
 			}
 		}
 
@@ -1563,6 +1636,11 @@ WaveSchedule
 				Template	T_TFBot_Giant_Scout
 				Item		"The Biomech Backpack"
 				Item		"The Alien Cranium"
+
+				CharacterAttributes
+				{
+					"cancel falling damage"	1
+				}
 			}
 		}
 
@@ -1585,18 +1663,34 @@ WaveSchedule
 					Template	T_TFBot_Giant_Soldier_Spammer
 					Item		"The Chaser"
 					Item		"Poopy Doe"
+
+					CharacterAttributes
+					{
+						"rocket jump damage reduction"	0
+						"cancel falling damage"			1
+					}
 				}
 
 				TFBot
 				{
 					Template	T_TFBot_Soldier_Extended_Concheror
 					Item		"The Crit Cloak"
+
+					CharacterAttributes
+					{
+						"rocket jump damage reduction"	0
+					}
 				}
 
 				TFBot
 				{
 					Template	T_TFBot_Soldier_Extended_Concheror
 					Item		"The Crit Cloak"
+
+					CharacterAttributes
+					{
+						"rocket jump damage reduction"	0
+					}
 				}
 			}
 		}
@@ -1726,6 +1820,11 @@ WaveSchedule
 					Item		Mannvich	// Surprised I haven't seen this more.
 					Item		"Commissar's Coat"
 					Item		"Ivan The Inedible"
+
+					CharacterAttributes
+					{
+						"cancel falling damage"	1
+					}
 				}
 
 				TFBot
@@ -1824,7 +1923,7 @@ WaveSchedule
 				Item		"Bull Locks"
 				Item		"Immobile Suit"
 				// Tag			popext_spell|0|9|2|5
-				Tag			"popext_spell{type = SPELL_FIREBALL, cooldown = 9, delay = 2, repeats = 5}"
+				Tag			"popext_spell{type = SPELL_FIREBALL, cooldown = 9, delay = 1, repeats = 5}"
 
 				ItemAttributes
 				{
@@ -1963,6 +2062,7 @@ WaveSchedule
 				CharacterAttributes
 				{
 					"dmg pierces resists absorbs"	1
+					"cancel falling damage"			1
 				}
 			}
 		}
@@ -2018,6 +2118,7 @@ WaveSchedule
 						"overheal decay bonus"			0.01	// overheal near instantly decays upon death/disconnect (yes this is exploitable it's int idc)
 						"move speed bonus"				5	// keep up dammit
 						"cannot pick up intelligence"	1	// but don't yknow troll unsuspecting teams
+						"cancel falling damage"			1
 					}
 				}
 			}
@@ -2049,6 +2150,7 @@ WaveSchedule
 				CharacterAttributes
 				{
 					"dmg pierces resists absorbs"	1
+					"cancel falling damage"			1
 				}
 			}
 		}
@@ -2072,6 +2174,12 @@ WaveSchedule
 					Template	T_TFBot_Giant_Soldier_Spammer
 					Item		"The Chaser"
 					Item		"Poopy Doe"
+
+					CharacterAttributes
+					{
+						"rocket jump damage reduction"	0
+						"cancel falling damage"			1
+					}
 				}
 
 				TFBot
@@ -2235,7 +2343,7 @@ WaveSchedule
 
 			RandomChoice
 			{
-				Shuffle	1  
+				Shuffle	1 [$SIGSEGV]
 
 				TFBot
 				{
@@ -2252,7 +2360,7 @@ WaveSchedule
 					// Tag					popext_giveweapon|tf_weapon_fists|5
 					Tag					"popext_giveweapon{ weapon = `tf_weapon_fists` id = `5`}"
 					// Tag					"popext_spawnhere|655 515 220|0.1"
-					Tag					"popext_spawnhere{ where = 655 515 220}"
+					Tag					"popext_spawnhere{ where = `655 515 220`}"
 					// Tag					popext_addcond|64|0.5
 					Health				200
 					Scale				1.2
@@ -2280,7 +2388,7 @@ WaveSchedule
 					// Tag					popext_giveweapon|tf_weapon_fists|5
 					Tag					"popext_giveweapon{ weapon = `tf_weapon_fists` id = `5`}"
 					// Tag					"popext_spawnhere|-950 1500 218|0.1"
-					Tag					"popext_spawnhere{ where = -950 1500 218}"
+					Tag					"popext_spawnhere{ where = `-950 1500 218`}"
 					// Tag					popext_addcond|64|0.5
 					Health				200
 					Scale				1.2
