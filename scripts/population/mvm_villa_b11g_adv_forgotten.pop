@@ -204,32 +204,6 @@ WaveSchedule
 				Output "!activator,CallScriptFunction,RefundMain,0"
 			}
 		}
-		Syringe {
-			Name "Magic Syringe"
-			Description "Shots have a will of their own. Every 7th shot conspires against you, such that you may not come back."
-			//or goes against you
-			Attribute "mod see enemy health"
-			Cap 1
-			Increment 1
-			Cost 400
-			
-			AllowedWeapons {
-				ClassName "TF_WEAPON_CROSSBOW"
-			}
-			
-			SecondaryAttributes {
-				"special item description" "Shots have a will of their own. Every 7th shot conspires against you,"
-				"special item description 2" "such that you may not come back."
-			}
-			
-			OnApply {
-				Output "!activator,RunScriptFile,crossbow.nut,0"
-				Output "!activator,CallScriptFunction,purchaseCrossbow,0"
-			}
-			OnDowngrade {
-				Output "!activator,CallScriptFunction,refundCrossbow,0"
-			}
-		}
 	}  
 	
 	Templates 
