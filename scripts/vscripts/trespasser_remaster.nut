@@ -2605,7 +2605,7 @@ if(hObjectiveResource && hObjectiveResource.IsValid()) hObjectiveResource.Accept
 					local iBit = 1 << i
 					if(iPlayerCond & iBit && i != 7) hBot.AddCondEx(i, 0.03, null)
 					if(iPlayerCondEx & iBit) hBot.AddCondEx(i + 32, 0.03, null)
-					if(iPlayerCondEx2 & iBit && i != 12) hBot.AddCondEx(i + 64, 0.03, null)
+					if(iPlayerCondEx2 & iBit && i != 13) hBot.AddCondEx(i + 64, 0.03, null)
 					if(iPlayerCondEx3 & iBit) hBot.AddCondEx(i + 96, 0.03, null)
 					if(iPlayerCondEx4 & iBit) hBot.AddCondEx(i + 128, 0.03, null)
 				}
