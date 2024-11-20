@@ -1450,35 +1450,7 @@ WaveSchedule
 				ItemName "The Dragon's Fury"
 			}
 		}
-		circuit_phlog
-		{
-			Name "Unstable Mod: Trash Furnace"
-			Description "+Deflect projectiles with alt-fire +Deflects fill mmph +50% mmph duration +Deflects can fill mmph while active -Damage no longer fills mmph" 
-			Attribute "cannot giftwrap" 
-			Cap 1 
-			Increment 1
-			Cost 0
-			SecondaryAttributes
-			{
-				"mod rage on hit bonus" 5
-			}
 
-			AllowedWeapons 
-			{
-				ItemName "The Phlogistinator"
-			}
-
-			// these are required
-			OnApply
-			{
-				// DR stands for deflect rage
-				Output "popscript,$DR_Purchased,,0"
-			}
-			OnDowngrade
-			{
-				Output "popscript,$PersonalProjectileShieldRefunded,,0"
-			}
-		}
 		Degreaser
 		{
 			Name "Unstable Mod: Gas Jockey"
