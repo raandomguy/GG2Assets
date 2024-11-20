@@ -3025,7 +3025,7 @@ Real?
 				"OnTrigger"		"skybreaker_intro_beams_*,Stop,,17.7,-1"
 				"OnTrigger"		"gamerules,PlayVO,mvm/giant_heavy/giant_heavy_entrance.wav,17.7,-1"
 				"OnTrigger"		"point_populator_interface,$ResumeWavespawn,7-4_LIKE_ANTENNAS_TO_HEAVEN,17.7,-1"
-				"OnTrigger"		"i_guess_we_really_are_some_kind_of_war_without_reason,Trigger,,17.7,-1
+				"OnTrigger"		"i_guess_we_really_are_some_kind_of_war_without_reason,Trigger,,17.7,-1"
 				"OnTrigger"		"finale_flashbang_out,Fade,,17.75,-1"
 
 				"OnTrigger"		"player,$PlaySoundToSelf,vo/mvm/mght/taunts/heavy_mvm_m_taunts02.mp3,19,-1"
