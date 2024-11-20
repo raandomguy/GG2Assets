@@ -764,17 +764,18 @@ elmarcianito
                 "effect_name" "cinefx_goldrush"
                 "start_active" "0"
             }
-            trigger_ignite
+            trigger_hurt
             {
                 "TargetName" "oops_you_died"
                 "StartDisabled" "1"
-                "SpawnFlags" "1"
                 "origin" "0 0 150"
                 "mins" "-300 -300 -300"
                 "maxs" "300 300 300"
+                "damage" "300"
+                "spawnflags" "64"
+                "damagetype" "64"
+				"onhurtplayer" "!activator,$igniteplayerduration,10,0,-1"
                 "filtername" "redteam"
-                "burn_duration" "8"
-                "damage_percent_per_second" "50"
                 "$killicon" "firedeath"
             }
             logic_relay
@@ -11958,7 +11959,7 @@ elmarcianito
                 Attributes MiniBoss
                 Attributes	"UseBossHealthBar"
                 Tag cannon_puppet
-                Health	25000 
+                Health	20000 
                 ClassIcon red2_lite
                 UseCustomModel "models/empty.mdl"
                 Scale 0.01
@@ -14632,7 +14633,7 @@ elmarcianito
                 Attributes MiniBoss
                 Attributes	"UseBossHealthBar"
                 Tag cannon_puppet
-                Health	30000 
+                Health	20000 
                 ClassIcon red2_lite
                 UseCustomModel "models/empty.mdl"
                 Scale 0.01
