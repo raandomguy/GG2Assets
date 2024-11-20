@@ -2,7 +2,7 @@ WaveSchedule
 {
 	// RAFMOD BEGIN
 
-	PointTemplates  
+	PointTemplates [$SIGSEGV]
 	{
 		PackTemplate	// cause i dont want extra melee speed. LITE MADE THIS. ALL CREDIT FOR THIS PART GOES TO LITE. https://steamcommunity.com/profiles/76561198300633951
 		{
@@ -53,22 +53,23 @@ WaveSchedule
 	}
 	// weapons by randomguy
 
-	CustomWeapon  	// Many pellet go brrrrr... Based off of the Super Shotgun from Doom 2.
+	CustomWeapon [$SIGSEGV]	// Many pellet go brrrrr... Based off of the Super Shotgun from Doom 2.
 	{
-		Name						"The Super Shotgun"
-		OriginalItemName			"The Force-a-Nature"
-		"special item description"	"[INFO] Shoots 15 pellets. Has halved ammo and clip size."
-		"bullets per shot bonus"	1.5
+		Name							"The Super Shotgun"
+		OriginalItemName				"The Force-a-Nature"
+		"special item description"		"[INFO] Shoots 15 pellets. Has halved ammo and clip size."
+		"bullets per shot bonus"		1.5
 		// "mod ammo per shot"			2
-		"maxammo primary reduced"	0.5
-		"clip size penalty"			0.17
+		"maxammo primary reduced"		0.5
+		"clip size penalty"				0.17
 		// fixed_shot_pattern			1
 		// "reload time increased"		1.2
 		// "fire rate bonus"			1	// remove FaN's fire rate bonus.
-		"hand scale"				1.5	// hear me out...
+		// "hand scale"				1.5	// hear me out...
+		"add attributes when active"	"hand scale|1.5"	// Now shouldn't be passive.
 	}
 
-	CustomWeapon  	// Blacky gave me this idea.
+	CustomWeapon [$SIGSEGV]	// Blacky gave me this idea.
 	{
 		Name								"The Carpet Bomber"
 		OriginalItemName					"The Air Strike"
@@ -85,7 +86,7 @@ WaveSchedule
 		set_item_texture_wear				0
 	}
 
-	CustomWeapon  	// Pyro's Phlogistinator but banner effects.
+	CustomWeapon [$SIGSEGV]	// Pyro's Phlogistinator but banner effects.
 	{
 		Name						"The Flagbearer's Flogistinator"
 		OriginalItemName			"The Phlogistinator"
@@ -93,7 +94,7 @@ WaveSchedule
 		"effect cond override"		1711376	// buffbanner (normal) + concheror (x256) + battalions (x65536)
 	}
 
-	CustomWeapon  	// was originally just a Bison Minigun, PDA Expert gave me ideas for a rework when that ended as horribly as you could imagine.
+	CustomWeapon [$SIGSEGV]	// was originally just a Bison Minigun, PDA Expert gave me ideas for a rework when that ended as horribly as you could imagine.
 	{
 		Name									"The Handheld Tesla"
 		OriginalItemName						"Upgradeable TF_WEAPON_MINIGUN"
@@ -118,20 +119,26 @@ WaveSchedule
 		crits_become_minicrits					1	// energy weapon
 	}
 
-	DisallowUpgrade  	// Already penetrates.
+	DisallowUpgrade [$SIGSEGV]	// Already penetrates.
 	{
 		Upgrade		"projectile penetration heavy"
 		ItemName	"The Handheld Tesla"
 	}
 
-	CustomWeapon  	// Pre-JI GRU. Inspured by Drcactus overclocks.
+	CustomWeapon [$SIGSEGV]	// Pre-JI GRU. Inspured by Drcactus overclocks.
 	{
 		Name						"The Gloves of Running Urgently 2015-16 (Pre-JI)"
-		OriginalItemName			"Gloves of Running Urgently MvM"
-		"special item description"	"[INFO] Old GRU. No health drain, mark for death."
+		// OriginalItemName			"Gloves of Running Urgently MvM"
+		// Caused inspect issues.
+		OriginalItemName			"Gloves of Running Urgently"
+		"special item description"	"[INFO] Old GRU. No health drain, mark for death. Damage penalty."
+		"self mark for death"		3
+		"provide on active"			1
+		"damage penalty"			0.75
+		mod_maxhealth_drain_rate	0
 	}
 
-	CustomWeapon  	// Smoll shield medigun.
+	CustomWeapon [$SIGSEGV]	// Smoll shield medigun.
 	{
 		Name						"The Battering Ram"
 		OriginalItemName			"Upgradeable TF_WEAPON_MEDIGUN"
@@ -143,16 +150,16 @@ WaveSchedule
 		"increase buff duration"	2	// 2x shield duration.
 		"cannot giftwrap"			2	// Lua magic.
 	}
-	PrecacheModel	models/props_mvm/mvm_comically_small_player_shield.mdl  	// for smol shield medigun. Model by Lite.
-	LuaScriptFile	scripts/small_shield_overclock.lua  	// for smol shield medigun. by Royal.
+	PrecacheModel	models/props_mvm/mvm_comically_small_player_shield.mdl [$SIGSEGV]	// for smol shield medigun. Model by Lite.
+	LuaScriptFile	scripts/small_shield_overclock.lua [$SIGSEGV]	// for smol shield medigun. by Royal.
 
-	PlayerItemEquipSpawnTemplate  
+	PlayerItemEquipSpawnTemplate [$SIGSEGV]
 	{
 		Name		LilShieldTemplate
 		ItemName	"The Battering Ram"
 	}
 
-	CustomWeapon  	// Engineer passive for more aggressive play
+	CustomWeapon [$SIGSEGV]	// Engineer passive for more aggressive play
 	{
 		Name						"The Frontier's Aggressor"
 		OriginalItemName			"The Cozy Camper"
@@ -164,13 +171,13 @@ WaveSchedule
 		"special item description"	"[INFO] Aggressive playstyle. Increases primary firing speed by 20%, reload speed by 70% and provides health/ammo regeneration."
 	}
 
-	PlayerItemEquipSpawnTemplate  
+	PlayerItemEquipSpawnTemplate [$SIGSEGV]
 	{
 		Name		PackTemplate
 		ItemName	"The Frontier's Aggressor"
 	}
 	// weapon concepts by PDA Expert (used with permission)
-	// CustomWeapon  	// "op but fun" - blacky
+	// CustomWeapon [$SIGSEGV]	// "op but fun" - blacky
 	// {
 	// Name											"The Follower"
 	// OriginalItemName								"Upgradeable TF_WEAPON_ROCKETLAUNCHER"
@@ -195,7 +202,7 @@ WaveSchedule
 	// }
 	// ^ you're getting replaced.
 
-	CustomWeapon  
+	CustomWeapon [$SIGSEGV]
 	{
 		Name							"The Blast Handcannon"
 		OriginalItemName				"The Detonator"
@@ -221,7 +228,7 @@ WaveSchedule
 		"custom impact sound"			=80|weapons/explode4.wav
 	}
 
-	CustomWeapon  
+	CustomWeapon [$SIGSEGV]
 	{
 		Name							"The Beggar's Bomber"
 		OriginalItemName				"The Iron Bomber"
@@ -255,7 +262,7 @@ WaveSchedule
 	// Upgrade		"clip size upgrade atomic"
 	// ItemName	"The Marble Zone"
 	// }
-	// CustomWeapon  
+	// CustomWeapon [$SIGSEGV]
 	// {
 	// Name									"Signal Sterilizer"
 	// OriginalItemName						"The Detonator"
@@ -278,7 +285,7 @@ WaveSchedule
 	// }
 	// you kinda smell to balance. out.
 
-	CustomWeapon  
+	CustomWeapon [$SIGSEGV]
 	{
 		Name						"The Stasis Shock"
 		OriginalItemName			"Upgradeable TF_WEAPON_BONESAW"
@@ -296,7 +303,7 @@ WaveSchedule
 		"custom kill icon"			obj_attachment_sapper
 	}
 
-	CustomWeapon  
+	CustomWeapon [$SIGSEGV]
 	{
 		Name							"The Plasma Bow"
 		OriginalItemName				"The Huntsman"
@@ -322,7 +329,7 @@ WaveSchedule
 		"mult dmg vs tanks"				0.5	// kinda does shred tanks a BIT more than i'd like tbh
 	}
 
-	CustomWeapon  
+	CustomWeapon [$SIGSEGV]
 	{
 		Name							"The Wild Revolver"
 		OriginalItemName				"Upgradeable TF_WEAPON_REVOLVER"
@@ -342,7 +349,7 @@ WaveSchedule
 		"custom weapon reload sound"	=80|weapons/357/357_reload3.wav
 	}
 
-	ExtraLoadoutItems  
+	ExtraLoadoutItems [$SIGSEGV]
 	{
 		AllowEquipOutsideSpawn	1	// Allow equipping items outside spawn
 
@@ -396,7 +403,7 @@ WaveSchedule
 		}
 	}
 
-	ExtendedUpgrades  
+	ExtendedUpgrades [$SIGSEGV]
 	{
 		Supershotty_INeedMoreBoolets
 		{
