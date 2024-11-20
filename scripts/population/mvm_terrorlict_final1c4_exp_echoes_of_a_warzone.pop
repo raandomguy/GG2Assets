@@ -20,8 +20,8 @@ Oh_Dios_Mio_Es_Eso_Una_Pizza_Tower_Referencia
     ForceHoliday 2
     WaveStartCountdown 3
     TextPrintTime 0
-    AllowBotExtraSlots 1 
     RobotLimit 40
+    AllowBotExtraSlots 1
     ExtraBotSlotsNoDeathcam 0
     DisableSound "music.mvm_lost_wave"
     PrecacheSound "militaryprecision.mp3"
@@ -34,6 +34,7 @@ Oh_Dios_Mio_Es_Eso_Una_Pizza_Tower_Referencia
     PrecacheGeneric "materials/models/bots/boss_bot/carrier_tracks.vmt"
     PrecacheGeneric "materials/models/bots/boss_bot/carrier_tracks_backwards.vmt"
     PrecacheGeneric "materials/models/bots/boss_bot/carrier_tracks_forwards.vmt"
+    PrecacheModel "models/props_frontline/zeppelin_skybox.mdl"
     PrecacheModel "models/bots/soldier/bot_soldier_gibby.mdl"
     PrecacheModel "models/bots/heavy_boss/bot_heavy_boss_gibby.mdl"  
     PrecacheModel "models/bots/heavy_boss/bot_heavy_gray_boss.mdl"  
@@ -2240,7 +2241,6 @@ Oh_Dios_Mio_Es_Eso_Una_Pizza_Tower_Referencia
         TFBot
         { Template T_TFBot_Sniper ClassIcon spy_sniper PreferClass Sniper }
     }
-    LuaScriptFile "scripts/killeveryoneandleave.lua"
     Mission // For Wave #
     {
         Where spawnbot
