@@ -2,6 +2,10 @@
 
 //Make all the arrows red. Because.
 EntFire("bombpath_holograms*","color","255 50 50") //Chrstin told me how to do these.
+//Make the bomb into the Halloween Pass-Time JACK.
+EntFire("intel","setmodel","models/passtime/ball/passtime_ball_halloween.mdl") //PDA Expert helped here.
+EntFire("intel","setmodelscale",1.3) //Yoovy's mission "Boneworks", a 666 Medieval Intermediate on Mannworks inspired this btw.
+//Here: https://testing.potato.tf/tf/scripts/population/mvm_mannworks_int_boneworks.pop
 
 //function7
 //lol just a changeattributes relay i prob could've put this in the pop but i don't care.
@@ -56,7 +60,7 @@ function SpawnChangeAttributes()
 	})
 	SpawnEntityFromTable("game_text", {
 		targetname = "bottom_text"
-		message = "THE EUGENESIS"
+		message = "SOUL HIVE"
 		x = -1
 		y = 0.45
 		spawnflags = 1
