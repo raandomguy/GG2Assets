@@ -17,12 +17,10 @@ Oh_Dios_Mio_Es_Eso_Una_Pizza_Tower_Referencia
     NoThrillerTaunt 1
     EventPopfile Halloween
     NoCritPumpkin 1
-    ForceHoliday 2
     WaveStartCountdown 3
     TextPrintTime 0
     RobotLimit 40
     AllowBotExtraSlots 1
-    ExtraBotSlotsNoDeathcam 0
     DisableSound "music.mvm_lost_wave"
     PrecacheSound "militaryprecision.mp3"
     PrecacheSound "thousand_march_intro.mp3"
@@ -560,12 +558,6 @@ Oh_Dios_Mio_Es_Eso_Una_Pizza_Tower_Referencia
                 "GlowColor" "0 255 0 255"
                 "target" "!parent"
 				"targetname" "tower_glow"
-            }
-            OnParentKilledOutput
-            {
-                Target !self
-                Action kill
-                Delay 0.2
             }
             OnParentKilledOutput
             {
@@ -1586,7 +1578,7 @@ Oh_Dios_Mio_Es_Eso_Una_Pizza_Tower_Referencia
             logic_relay
             {
                 "targetname" "addbossseconds"
-                "OnTrigger" "bignet,RunScriptCode,TextualTimer.Add(180),0,-1"
+                "OnTrigger" "bignet,RunScriptCode,TextualTimer.Add(120),0,-1"
                 "OnTrigger" "tf_gamerules,PlayVO,vo\announcer_time_added.mp3,0,-1"
                 "OnTrigger" "tf_gamerules,PlayVO,war_timer_increase.mp3,0,-1"
                 
