@@ -1361,6 +1361,29 @@ Oh_Dios_Mio_Es_Eso_Una_Pizza_Tower_Referencia
 				"force_map_reset" "1"
 				"classname" "game_round_win"
 			}
+            trigger_hurt // just ensures the bots dies
+			{
+				"TargetName" "sweepthosebots"
+				"origin" "0 0 0"
+				"mins" "-10000 -10000 -10000"
+				"maxs" "10000 10000 10000"
+				"damage" "80000"
+                "damagecap" "80000"
+                "damagemodel" "0"
+                "damagetype" "1"
+                "filtername" "filter_bossdeath" // ensures red team and boss not dies suddenly
+                "nodmgforce" "1"
+                "spawnflags" "1"
+                "StartDisabled" "1"
+			}
+			
+			filter_tf_bot_has_tag 
+            {
+                "targetname" "filter_bossdeath"
+                "Negated" "1"
+                "require_all_tags" "1"
+                "tags" "bot_bossdeath"
+            }
             logic_relay
 			{
 				"targetname" "redlose_relay"
@@ -1371,7 +1394,7 @@ Oh_Dios_Mio_Es_Eso_Una_Pizza_Tower_Referencia
                 "OnTrigger"  "thisshitwillkillyoubro*,disable,,0.15,1"
                 "OnTrigger" "thisshitwillkillyoubro_particle*,kill,,0,1"
                 "OnTrigger" "player*,$AddCond,22,0,-1"
-                "OnTrigger" "player*,$Suicide,,0.3,-1"
+                "OnTrigger" "sweepthosebots,enable,,0.3,-1"
                 "OnTrigger"  "pop_interface,PauseBotSpawning,,0,1"
                 "OnTrigger"  "wave_lost,Fade,,0.10,-1"
                 "OnTrigger"  "add5seconds,disable,,0,1"
@@ -2388,7 +2411,7 @@ Oh_Dios_Mio_Es_Eso_Una_Pizza_Tower_Referencia
             Squad
             {
                 TFBot
-                { Template T_TFBot_Giant_Soldier ClassIcon 	soldier_and_demo_giant Name "Mutated Private" Attributes AlwaysCrit Item "The Diplomat" Item "Breach and Bomb" CharacterAttributes { "voice pitch scale" 0.2 } }
+                { Template T_TFBot_Giant_Soldier ClassIcon soldier_and_demo_giant Name "Mutated Private" Attributes AlwaysCrit Item "The Diplomat" Item "Breach and Bomb" CharacterAttributes { "voice pitch scale" 0.2 } }
                 TFBot
                 { Template T_TFBot_Medic_QuickFix Name "Fallen Doctor" Item "The Second Opinion" Item "Bunnyhopper's Ballistics Vest" CharacterAttributes { "voice pitch scale" 0.2 } }
                 TFBot
@@ -4349,6 +4372,7 @@ Oh_Dios_Mio_Es_Eso_Una_Pizza_Tower_Referencia
                 SpawnTemplate punch_projectiles
                 SpawnTemplate boss_dead_heavy
                 Skill expert
+                Tag bot_bossdeath
                 Health 110000
                 UseMeleeThreatPrioritization 1
                 Attributes UseBossHealthBar
