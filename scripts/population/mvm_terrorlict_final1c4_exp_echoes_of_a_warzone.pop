@@ -19,6 +19,7 @@ Oh_Dios_Mio_Es_Eso_Una_Pizza_Tower_Referencia
     NoCritPumpkin 1
     WaveStartCountdown 3
     TextPrintTime 0
+    MaxRedPlayers 6
     RobotLimit 40
     AllowBotExtraSlots 1
     DisableSound "music.mvm_lost_wave"
