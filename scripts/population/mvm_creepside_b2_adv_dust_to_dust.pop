@@ -80,22 +80,23 @@ gettysburg
     PrecacheModel models/weapons/w_models/w_grenade_grenadelauncher_gray.mdl
     PrecacheModel models/weapons/c_models/c_fists_of_steel_gray/c_fists_of_steel_gray.mdl
     PrecacheModel models/roller.mdl
+    PrecacheModel models/props_mvm/reversemvm_whitewall_176x152.mdl
 
-    PrecacheSound citadel_siren.mp3
-    PrecacheSound penulti_cmprsd.mp3
-    PrecacheSound crawl_yard_extended.mp3
-    PrecacheSound ambient/machines/teleport1.wav
-    PrecacheSound vlvx_song4.mp3
-    PrecacheSound music/stingers/hl1_stinger_song27.mp3
+    PrecacheSound #citadel_siren.mp3
+    PrecacheSound #penulti_cmprsd.mp3
+    PrecacheSound #crawl_yard_extended.mp3
+    PrecacheSound #ambient/machines/teleport1.wav
+    PrecacheSound #vlvx_song4.mp3
+    PrecacheSound #music/stingers/hl1_stinger_song27.mp3
     PrecacheSound #music/hl2_song33.mp3
     PrecacheSound #music/hl2_song19.mp3
     PrecacheSound #music/hl1_song14.mp3
     PrecacheSound #music/hl1_song5.mp3
     PrecacheSound #music/hl1_song3.mp3
-    PrecacheSound darkhallspreloop.mp3
-    PrecacheSound darkhalls_loop.mp3
-    PrecacheSound npc/roller/mine/rmine_explode_shock1.wav
-    PrecacheSound "dusk to dusk.mp3"
+    PrecacheSound #darkhallspreloop.mp3
+    PrecacheSound #darkhalls_loop.mp3
+    PrecacheSound #npc/roller/mine/rmine_explode_shock1.wav
+    PrecacheSound "#dusk to dusk.mp3"
 
     //most of these templates are garbage i made them like 3 years ago (the ones that arent garbage i did not make)
     SpawnTemplate LoadModels
@@ -113,6 +114,7 @@ gettysburg
     SpawnTemplate fixgrayhats
     SpawnTemplate OtherHints
     SpawnTemplate SpawnNobuild
+    SpawnTemplate PusherBlocker
 
     DisallowUpgrade "Overheal Expert"
     DisallowUpgrade "Canteen Specialist"
@@ -6805,8 +6807,6 @@ gettysburg
     {
         SpawnTemplate RedBot_Teleport_Logic
         SpawnTemplate BotTeleporters
-        SpawnTemplate DisableNativeEngineerHints
-        SpawnTemplate NewEngineerHints
         SpawnTemplate StopKillingYourself
 
         InitWaveOutput
@@ -9988,52 +9988,23 @@ gettysburg
     //         Name 6a
     //         Where spawnbot
     //         TotalCount 90
-    //         SpawnCount 1
-    //         MaxActive 1
+    //         SpawnCount 20
+    //         MaxActive 20
 
     //         WaitBeforeStarting 1
-    //         WaitBetweenSpawns 1
+    //         WaitBetweenSpawns 0
 
     //         TFBot
+    //         {
+    //             Class Engineer
+    //             TeleportWhere spawnbot
+    //             ExtAttr BuildDispenserAsTeleporter
+
+    //             CharacterAttributes
     //             {
-    //                 Name "Kritzkrieg Medic"
-    //                 Class Medic
-    //                 ClassIcon medic_kritz2
-    //                 Skill Expert
-    //                 Attributes SpawnWithFullCharge
-    //                 Item "The Kritzkrieg"
-    //                 Item "The Vita-Saw"
-    //                 Item "Power Spike"
-    //                 Item "Derangement Garment"
-    //                 Item "Taunt: Borrowed Bones"
-    //                 MaxVisionRange 256
-    //                 Attributes AlwaysCrit
-
-    //                 StripItemSlot 0
-    //                 Action Mobber
-    //                 CustomEyeGlowColor "0 0 0"
-                    
-    //                 ItemAttributes
-    //                 {
-    //                     ItemName "The Kritzkrieg"
-    //                     "ubercharge rate bonus" 100
-    //                     "uber duration bonus" 92
-    //                 }
-
-    //                 ItemAttributes
-    //                 {
-    //                     ItemName "The Vita-Saw"
-    //                     "max health additive penalty" 0
-    //                 }
-
-    //                 CharacterAttributes
-    //                 {
-    //                     "bot medic uber health threshold" 225
-    //                     "move speed bonus" 1.2
-    //                     "voice pitch scale" 0
-    //                     "fire input on kill" "!activator^$tauntfromitem^taunt: borrowed bones"
-    //                 }
+    //                 "move speed bonus" 2
     //             }
+    //         }
     //     }
     // }
 
@@ -10300,7 +10271,7 @@ gettysburg
             {
                 "targetname" "wave4_stinger"            
                 "health"     "10"
-                "message"    "music/stingers/hl1_stinger_song27.mp3"
+                "message"    "#music/stingers/hl1_stinger_song27.mp3"
                 "pitch"      "100"
                 "pitchstart" "100"
                 "radius"     "200000"
@@ -10313,7 +10284,7 @@ gettysburg
             {
                 "targetname" "wave4_stinger"            
                 "health"     "10"
-                "message"    "music/stingers/hl1_stinger_song27.mp3"
+                "message"    "#music/stingers/hl1_stinger_song27.mp3"
                 "pitch"      "100"
                 "pitchstart" "100"
                 "radius"     "200000"
@@ -10377,7 +10348,7 @@ gettysburg
             {
                 "targetname" "wave5_prewave"            
                 "health"     "9"
-                "message"    "dusk to dusk.mp3"
+                "message"    "#dusk to dusk.mp3"
                 "pitch"      "100"
                 "pitchstart" "100"
                 "radius"     "200000"
@@ -10390,7 +10361,7 @@ gettysburg
             {
                 "targetname" "wave5_prewave"            
                 "health"     "9"
-                "message"    "dusk to dusk.mp3"
+                "message"    "#dusk to dusk.mp3"
                 "pitch"      "100"
                 "pitchstart" "100"
                 "radius"     "200000"
@@ -10403,7 +10374,7 @@ gettysburg
             {
                 "targetname" "wave5_music_talk"            
                 "health"     "10"
-                "message"    "music/hl2_song17.mp3"
+                "message"    "#music/hl2_song17.mp3"
                 "pitch"      "100"
                 "pitchstart" "100"
                 "radius"     "200000"
@@ -11864,6 +11835,56 @@ gettysburg
             }
         }
 
+        PusherBlocker
+        {
+            NoFixup 1
+
+            trigger_push //troublesome spawn
+            {
+                targetname graypusher
+                origin "1690 2190 860"
+                mins "-100 -240 -150"
+                maxs "100 320 150"
+                pushdir "0 90 0"
+                speed 180
+                spawnflags 1
+                startdisabled 0
+            }
+
+            trigger_hurt //kills after a while if a blu bot somehow manages to get stuck
+            {
+                targetname graypusher_hurttrigger
+                origin "1690 2190 860"
+                mins "-100 -240 -150"
+                maxs "100 320 150"
+                damage 1
+                damagetype 0
+                damagemodel 1
+                nodmgforce 1
+                filtername blu_filter
+                spawnflags 1
+                startdisabled 0
+            }
+
+            filter_activator_tfteam
+            {
+                targetname blu_filter
+                teamnum 3
+            }
+
+            trigger_push
+            {
+                targetname graypusher
+                origin "2830 4694 860"
+                mins "-300 -100 -150"
+                maxs "400 100 150"
+                pushdir "0 180 0"
+                speed 90
+                spawnflags 1
+                startdisabled 0
+            }
+        }
+
         ExtraPacks
         {
             NoFixup 1
@@ -11931,113 +11952,6 @@ gettysburg
                             hPlayer.AcceptInput(`$SetClientProp$m_iTeamNum`, `3`, null, null)
                 }
                 __CollectGameEventCallbacks(FixGrayHats)"
-            }
-        }
-
-        DisableNativeEngineerHints
-        {
-            NoFixup 1
-            logic_relay
-            {
-                "targetname" "disable_nests"
-                "OnTrigger" "sentrynest*,disable,0,0,-1"
-            }
-        }
-
-        NewEngineerHints
-        {
-            NoFixup 1
-            // -- these cause gray bot issues with getting stuck in spawn trying
-            // -- to path to the nest
-            // bot_hint_engineer_nest //hatch 1
-            // {
-            //     "targetname" "engi_nest_1"
-            //     "origin" "158 473 704"
-            //     "angles" "0 90 0"
-            // }
-            // bot_hint_sentrygun
-            // {
-            //     "targetname" "engi_nest_1"
-            //     "origin" "158 473 704"
-            //     "angles" "0 90 0"
-            // }
-            // //////////////////////////////////////
-            // bot_hint_engineer_nest //hatch 2
-            // {
-            //     "targetname" "engi_nest_2"
-            //     "origin" "-13 473 704"
-            //     "angles" "0 90 0"
-            // }
-            // bot_hint_sentrygun
-            // {
-            //     "targetname" "engi_nest_2"
-            //     "origin" "-13 473 704"
-            //     "angles" "0 90 0"
-            // }
-            //////////////////////////////////////
-            bot_hint_engineer_nest //overlooking choke
-            {
-                "targetname" "engi_nest_3"
-                "origin" "977 4292 896"
-                "angles" "0 90 0"
-            }
-            bot_hint_sentrygun
-            {
-                "targetname" "engi_nest_3"
-                "origin" "977 4292 896"
-                "angles" "0 90 0"
-            }
-            //////////////////////////////////////
-            bot_hint_engineer_nest //front ramp
-            {
-                "targetname" "engi_nest_4"
-                "origin" "143 6040 736"
-                "angles" "0 0 0"
-            }
-            bot_hint_sentrygun
-            {
-                "targetname" "engi_nest_4"
-                "origin" "143 6040 736"
-                "angles" "0 0 0"
-            }
-            //////////////////////////////////////
-            bot_hint_engineer_nest //front next to stairs
-            {
-                "targetname" "engi_nest_5"
-                "origin" "1358 5656 586"
-                "angles" "0 -180 0"
-            }
-            bot_hint_sentrygun
-            {
-                "targetname" "engi_nest_5"
-                "origin" "1358 5656 586"
-                "angles" "0 -180 0"
-            }
-            //////////////////////////////////////
-            bot_hint_engineer_nest //mid stairs overlook
-            {
-                "targetname" "engi_nest_6"
-                "origin" "521 3650 896"
-                "angles" "0 133 0"
-            }
-            bot_hint_sentrygun
-            {
-                "targetname" "engi_nest_6"
-                "origin" "521 3650 896"
-                "angles" "0 133 0"
-            }
-            //////////////////////////////////////
-            bot_hint_engineer_nest //other side (minecraft reference)
-            {
-                "targetname" "engi_nest_7"
-                "origin" "1188 3870 896"
-                "angles" "0 0 0"
-            }
-            bot_hint_sentrygun
-            {
-                "targetname" "engi_nest_7"
-                "origin" "1188 3870 896"
-                "angles" "0 0 0"
             }
         }
 

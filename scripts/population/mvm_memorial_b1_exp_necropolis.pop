@@ -788,7 +788,7 @@ WaveSchedule
 			TotalCount 12
 			MaxActive 4
 			SpawnCount 1
-			WaitBetweenSpawns 7
+			WaitBetweenSpawns 13
 			WaitBeforeStarting 30
 			TotalCurrency 50
 			Support 1
@@ -1148,7 +1148,7 @@ WaveSchedule
 		}
 	}
 	
-	Wave //WAVE 4 | $2450 STARTING 
+	Wave //WAVE 4
 	{
 		StartWaveOutput
 		{

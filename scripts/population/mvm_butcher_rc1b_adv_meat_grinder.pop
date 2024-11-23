@@ -1492,6 +1492,20 @@ WaveSchedule
 						`NoThrillerTaunt`: 1
 					}
 				)
+				local EventsID = UniqueString()
+				getroottable()[EventsID] <- 
+				{
+					OnGameEvent_scorestats_accumulated_update = function(params) { delete getroottable()[EventsID] }
+
+					function OnScriptHook_OnTakeDamage(params)
+					{
+						if (params.const_entity.GetClassname() == `tank_boss` && params.attacker && params.attacker.IsPlayer() && params.attacker.InCond(90)) // TF_COND_RUNE_STRENGTH
+							params.damage *= 2
+					}
+				}
+				local EventsTable = getroottable()[EventsID]
+				foreach (name, callback in EventsTable) EventsTable[name] = callback.bindenv(this)
+				__CollectGameEventCallbacks(EventsTable)
 			"
 		}
 		
@@ -1536,7 +1550,7 @@ WaveSchedule
 			{
 				Health 22000
 				Speed 75
-				Name "tankboss"
+				Name "tank_boss"
 				StartingPathTrackNode "tank_path_b_1"
 
 				OnKilledOutput                                  
@@ -2015,6 +2029,20 @@ WaveSchedule
 						`NoThrillerTaunt`: 1
 					}
 				)
+				local EventsID = UniqueString()
+				getroottable()[EventsID] <- 
+				{
+					OnGameEvent_scorestats_accumulated_update = function(params) { delete getroottable()[EventsID] }
+
+					function OnScriptHook_OnTakeDamage(params)
+					{
+						if (params.const_entity.GetClassname() == `tank_boss` && params.attacker && params.attacker.IsPlayer() && params.attacker.InCond(90)) // TF_COND_RUNE_STRENGTH
+							params.damage *= 2
+					}
+				}
+				local EventsTable = getroottable()[EventsID]
+				foreach (name, callback in EventsTable) EventsTable[name] = callback.bindenv(this)
+				__CollectGameEventCallbacks(EventsTable)
 			"
 		}
 		
@@ -2228,7 +2256,7 @@ WaveSchedule
 			{
 				Health 32000
 				Speed 75
-				Name "tankboss"
+				Name "tank_boss"
 				StartingPathTrackNode "tank_path_b_1"
 
 				OnKilledOutput                                  
@@ -2730,7 +2758,7 @@ WaveSchedule
 				Health 34666
 				Skin 1
 				Speed 75
-				Name "tankboss"
+				Name "tank_boss"
 				StartingPathTrackNode "tank_path_b_1"
 
 				OnKilledOutput                                  
