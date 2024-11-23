@@ -10,6 +10,10 @@ WaveSchedule
 			"set damagetype ignite" 1
 			"minicrit vs burning player" 1
 			"damage penalty" 0.85
+			"clip size penalty" 0.75
+			"special item description" "Rocket can ignite enemies."
+			"special item description 2" "Do minicrit damage to buring enemies."
+			"special item description 3" "-15% Damage and -1 clip size"
 			"paintkit_proto_def_index" 256
 			"set_item_texture_wear" 0
 			//"blast dmg to self increased" 1.25
@@ -22,6 +26,7 @@ WaveSchedule
 			"dmg penalty vs players" 0.925
 			"maxammo primary reduced" 0.75
 			"special item description" "[INFO] Defeat any robot will gain a 20% move speed and damage in 4 seconds."
+			"special item description 2" "-7.5% damage, -25% max Ammo, +25% airblast cost"
 			//"special item description 2" "[INFO] เมื่อฆ่าหุ่นยนต์ได้: ความเร็วในการวิ่งและความเสียหายจะเพิ่ม 20% ภายใน 4 วินาที"
 			"airblast cost increased" 1.25
 			"paintkit_proto_def_index" 226
@@ -36,6 +41,8 @@ WaveSchedule
 			"health from packs decreased" 0.7
 			"health from healers reduced" 0.7
 			"dmg taken from bullets reduced" 0.75
+			"special item description" "+20% move speed, +3 health regen and +25% bullet resistance."
+			"special item description 2" "-30% healing from pack, healer and dispenser"
 			"custom item model" "models/workshop/player/items/soldier/mantreads/mantreads.mdl"
 			"cannot be upgraded" 1
 		}
@@ -48,6 +55,9 @@ WaveSchedule
 			"health from healers reduced" 0.5
 			"patient overheal penalty" 0.5
 			"maxammo primary reduced" 0.8
+			"special item description" "+3 health on hit, 20% faster spinup"
+			"special item description 2" "-50% healing from pack, healer, dispenser and overheal"
+			"special item description 3" "-20% Max Ammo"
 			"paintkit_proto_def_index" 242
 			"set_item_texture_wear" 0
 		}
@@ -57,6 +67,7 @@ WaveSchedule
 			"heal rate bonus" 1.25
 			"ubercharge rate bonus" 5
 			"effect cond override" 16
+			"special item description" "Minicrit when ubercharge"
 		}
 		"The Strength Medigun"
 		{
@@ -66,6 +77,7 @@ WaveSchedule
 			"heal rate bonus" 1.1
 			"ubercharge rate bonus" 3
 			"effect cond override" 90
+			"special item description" "Strength powerup when ubercharge"
 		}
 		"The Agility Medigun"
 		{
@@ -75,6 +87,7 @@ WaveSchedule
 			"set_item_texture_wear"	0
 			"ubercharge rate bonus" 5
 			"effect cond override" 97
+			"special item description" "Agility powerup when ubercharge"
 		}
 	}
 	
@@ -124,7 +137,7 @@ WaveSchedule
 			}
 		}
 	}
-
+	
 	ExtendedUpgrades
 	{
 		UberchargeRate
