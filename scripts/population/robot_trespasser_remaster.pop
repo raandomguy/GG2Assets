@@ -6,7 +6,7 @@ WaveSchedule
 		{
 			Name "Survivor"
 			Class Soldier
-			Classicon red2_lite
+			ClassIcon red2_lite
 			Health 250
 			MaxVisionRange 250
 			KeepAwayRadius 128
@@ -14,8 +14,8 @@ WaveSchedule
 			Skill Expert
 			Item "Slug Rifle"
 			Item "EOTL_Coldfront Curbstompers"
-			Item "The Lone Survivor"	
-			Item "Flakcatcher"	
+			Item "The Lone Survivor"
+			Item "Flakcatcher"
 			Item "Beaten and Bruised"
 			//NoPushAway 1
 			Attributes DisableDodge
@@ -23,7 +23,7 @@ WaveSchedule
 			Attributes HoldFireUntilFullReload
 			WeaponRestrictions SecondaryOnly
 			UseMeleeThreatPrioritization 1
-			NoCrouchButtonRelease 1 
+			NoCrouchButtonRelease 1
 			Action Idle
 			AimAt Head
 			SpawnTemplate class_undead_1
@@ -40,9 +40,9 @@ WaveSchedule
 				Delay 120
 				Cooldown 40
 				Duration 8
-				Type "Crouch"	
+				Type "Crouch"
 			}
-			VoiceCommand 
+			VoiceCommand
 			{
 				Delay 8
 				Cooldown 16
@@ -69,19 +69,20 @@ WaveSchedule
 				//"dmg taken increased" 0.05 //debug
 			}
 			EventChangeAttributes
-            {
-                Shop
-                {
+			{
+				Shop
+				{
+					Item "Slug Rifle"
 					MaxVisionRange -1
 					FireInput 	//remove fort buff
 					{
 						Target !self
-						Action $removecond
+						Action $RemoveCond
 						Param 51
 						Delay -1
 						Repeats 1
 					}
-                    InterruptAction
+					InterruptAction
 					{
 						Target "ai_shop_1"
 						Delay 1
@@ -89,19 +90,20 @@ WaveSchedule
 						Duration 1
 						WaitUntilDone 1
 					}
-                }
+				}
 				Defense
-                {
+				{
+					Item "Slug Rifle"
 					MaxVisionRange -1
 					FireInput	//remove fort buff
 					{
 						Target !self
-						Action $removecond
+						Action $RemoveCond
 						Param 51
 						Delay -1
 						Repeats 1
 					}
-                    InterruptAction
+					InterruptAction
 					{
 						Target "ai_go_table"
 						Delay 1
@@ -112,9 +114,10 @@ WaveSchedule
 						Distance 24
 						StopCurrentInterruptAction 1
 					}
-                }
+				}
 				Fort
-                {
+				{
+					Item "Slug Rifle"
 					NoPushaway 1
 					MaxVisionRange -1
 					CharacterAttributes
@@ -127,25 +130,26 @@ WaveSchedule
 					FireInput
 					{
 						Target !self
-						Action $playsound
+						Action $PlaySound
 						Param "vo/soldier_paincrticialdeath02.mp3"
 						Delay 0.5
 						Repeats 1
 					}
 					AddCond {Name TF_COND_INVULNERABLE_HIDE_UNLESS_DAMAGED}
-                    InterruptAction
+					InterruptAction
 					{
 						Target "ai_go_fort"
 						Delay 1
-						Repeats 1 
+						Repeats 1
 						Duration 1
 						WaitUntilDone 1
 						Distance 24
 						StopCurrentInterruptAction 1
 					}
-                }
+				}
 				Panic
-                {
+				{
+					Item "Slug Rifle"
 					MaxVisionRange -1
 					CharacterAttributes
 					{
@@ -155,41 +159,43 @@ WaveSchedule
 					FireInput
 					{
 						Target !self
-						Action $playsound
+						Action $PlaySound
 						Param "vo/soldier_paincrticialdeath01.mp3"
 						Delay 0.5
 						Repeats 1
 					}
-                    InterruptAction
+					InterruptAction
 					{
 						Target "ai_go_fort"
 						Delay 1
-						Repeats 1 
+						Repeats 1
 						Duration 1
 						WaitUntilDone 1
 						Distance 24
 						StopCurrentInterruptAction 1
 					}
-                }
+				}
 				Happy
-                {
+				{
+					Item "Slug Rifle"
 					MaxVisionRange -1
 					FireInput
 					{
 						Target !self
-						Action $taunt
+						Action $Taunt
 						Delay 2
 						Repeats 1
 					}
-                }
+				}
 				Exit
-                {
+				{
+					Item "Slug Rifle"
 					MaxVisionRange -1
 					CharacterAttributes
 					{
 						"not solid to players" 1
 					}
-                    InterruptAction
+					InterruptAction
 					{
 						Target "ai_go_point"
 						Delay 1
@@ -200,19 +206,20 @@ WaveSchedule
 						Distance 24
 						StopCurrentInterruptAction 1
 					}
-                }
+				}
 				Wake
-                {
+				{
+					Item "Slug Rifle"
 					MaxVisionRange -1
-                }
-            }
+				}
+			}
 		}
 
 		Survivor_2
 		{
 			Name "Survivor"
 			Class Pyro
-			Classicon red2_lite
+			ClassIcon red2_lite
 			Health 250
 			MaxVisionRange 250
 			KeepAwayRadius 128
@@ -229,7 +236,7 @@ WaveSchedule
 			Attributes HoldFireUntilFullReload
 			WeaponRestrictions SecondaryOnly
 			UseMeleeThreatPrioritization 1
-			NoCrouchButtonRelease 1 
+			NoCrouchButtonRelease 1
 			Action Idle
 			//AimAt Head
 			SpawnTemplate class_undead_2
@@ -246,9 +253,9 @@ WaveSchedule
 				Delay 130
 				Cooldown 50
 				Duration 8
-				Type "Crouch"	
+				Type "Crouch"
 			}
-			VoiceCommand 
+			VoiceCommand
 			{
 				Delay 8
 				Cooldown 16
@@ -275,39 +282,41 @@ WaveSchedule
 				//"dmg taken increased" 0.05 //debug
 			}
 			EventChangeAttributes
-            {
-                Shop
-                {
+			{
+				Shop
+				{
+					Item "Incendiary Rifle"
 					MaxVisionRange -1
 					FireInput	//remove fort buff
 					{
 						Target !self
-						Action $removecond
+						Action $RemoveCond
 						Param 51
 						Delay -1
 						Repeats 1
 					}
-                    InterruptAction
+					InterruptAction
 					{
 						Target "ai_shop_2"
 						Delay 1
-						Repeats 1 
+						Repeats 1
 						Duration 1
 						WaitUntilDone 1
 					}
-                }
+				}
 				Defense
-                {
+				{
+					Item "Incendiary Rifle"
 					MaxVisionRange -1
 					FireInput	//remove fort buff
 					{
 						Target !self
-						Action $removecond
+						Action $RemoveCond
 						Param 51
 						Delay -1
 						Repeats 1
 					}
-                    InterruptAction
+					InterruptAction
 					{
 						Target "ai_go_table"
 						Delay 1
@@ -318,9 +327,10 @@ WaveSchedule
 						Distance 24
 						StopCurrentInterruptAction 1
 					}
-                }
+				}
 				Fort
-                {
+				{
+					Item "Incendiary Rifle"
 					NoPushaway 1
 					MaxVisionRange -1
 					CharacterAttributes
@@ -333,25 +343,26 @@ WaveSchedule
 					FireInput
 					{
 						Target !self
-						Action $playsound
+						Action $PlaySound
 						Param "vo/pyro_paincrticialdeath01.mp3"
 						Delay 1
 						Repeats 1
 					}
 					AddCond {Name TF_COND_INVULNERABLE_HIDE_UNLESS_DAMAGED}
-                    InterruptAction
+					InterruptAction
 					{
 						Target "ai_go_fort"
 						Delay 1
-						Repeats 1 
+						Repeats 1
 						Duration 1
 						WaitUntilDone 1
 						Distance 24
 						StopCurrentInterruptAction 1
 					}
-                }
+				}
 				Panic
-                {
+				{
+					Item "Incendiary Rifle"
 					MaxVisionRange -1
 					CharacterAttributes
 					{
@@ -361,29 +372,30 @@ WaveSchedule
 					FireInput
 					{
 						Target !self
-						Action $playsound
+						Action $PlaySound
 						Param "vo/pyro_paincrticialdeath03.mp3"
 						Delay 1
 						Repeats 1
 					}
-                    InterruptAction
+					InterruptAction
 					{
 						Target "ai_go_fort"
 						Delay 1
-						Repeats 1 
+						Repeats 1
 						Duration 1
 						WaitUntilDone 1
 						Distance 24
 						StopCurrentInterruptAction 1
 					}
-                }
+				}
 				Happy
-                {
+				{
+					Item "Incendiary Rifle"
 					MaxVisionRange -1
 					FireInput
 					{
 						Target !self
-						Action $tauntfromitem
+						Action $Tauntfromitem
 						Param "Taunt: Mannrobics"
 						Delay 3.5
 						Repeats 1
@@ -391,20 +403,21 @@ WaveSchedule
 					FireInput
 					{
 						Target !self
-						Action $removecond
+						Action $RemoveCond
 						Param 7
 						Delay 7
 						Repeats 1
 					}
-                }
+				}
 				Exit
-                {
+				{
+					Item "Incendiary Rifle"
 					MaxVisionRange -1
 					CharacterAttributes
 					{
 						"not solid to players" 1
 					}
-                    InterruptAction
+					InterruptAction
 					{
 						Target "ai_go_point"
 						Delay 1
@@ -415,25 +428,25 @@ WaveSchedule
 						Distance 24
 						StopCurrentInterruptAction 1
 					}
-                }
+				}
 				Wake
-                {
+				{
+					Item "Incendiary Rifle"
 					MaxVisionRange -1
-                }
-            }
+				}
+			}
 		}
 
 		Survivor_3
 		{
 			Name "Survivor"
 			Class Sniper
-			Classicon red2_lite
+			ClassIcon red2_lite
 			Health 250
 			MaxVisionRange 250
 			KeepAwayRadius 128
 			KeepAway Enemies
 			Skill Expert
-			WeaponRestrictions SecondaryOnly
 			Item "Heavy Machine Gun"
 			Item "Crocodile Dandy"
 			Item "Holy Hunter"
@@ -446,7 +459,7 @@ WaveSchedule
 			//Attributes HoldFireUntilFullReload
 			WeaponRestrictions SecondaryOnly
 			UseMeleeThreatPrioritization 1
-			NoCrouchButtonRelease 1 
+			NoCrouchButtonRelease 1
 			Action Idle
 			AimAt Head
 			SpawnTemplate class_undead_3
@@ -463,9 +476,9 @@ WaveSchedule
 				Delay 140
 				Cooldown 60
 				Duration 8
-				Type "Crouch"	
+				Type "Crouch"
 			}
-			VoiceCommand 
+			VoiceCommand
 			{
 				Delay 8
 				Cooldown 16
@@ -492,39 +505,41 @@ WaveSchedule
 				//"dmg taken increased" 0.05 //debug
 			}
 			EventChangeAttributes
-            {
-                Shop
-                {
+			{
+				Shop
+				{
+					Item "Heavy Machine Gun"
 					MaxVisionRange -1
 					FireInput	//remove fort buff
 					{
 						Target !self
-						Action $removecond
+						Action $RemoveCond
 						Param 51
 						Delay -1
 						Repeats 1
 					}
-                    InterruptAction
+					InterruptAction
 					{
 						Target "ai_shop_3"
 						Delay 1
-						Repeats 1 
+						Repeats 1
 						Duration 1
 						WaitUntilDone 1
 					}
-                }
+				}
 				Defense
-                {
+				{
+					Item "Heavy Machine Gun"
 					MaxVisionRange -1
 					FireInput	//remove fort buff
 					{
 						Target !self
-						Action $removecond
+						Action $RemoveCond
 						Param 51
 						Delay -1
 						Repeats 1
 					}
-                    InterruptAction
+					InterruptAction
 					{
 						Target "ai_go_table"
 						Delay 1
@@ -535,9 +550,10 @@ WaveSchedule
 						Distance 24
 						StopCurrentInterruptAction 1
 					}
-                }
+				}
 				Fort
-                {
+				{
+					Item "Heavy Machine Gun"
 					NoPushaway 1
 					MaxVisionRange -1
 					CharacterAttributes
@@ -550,25 +566,26 @@ WaveSchedule
 					FireInput
 					{
 						Target !self
-						Action $playsound
+						Action $PlaySound
 						Param "vo/sniper_sf13_scared01.mp3"
 						Delay -1
 						Repeats 1
 					}
 					AddCond {Name TF_COND_INVULNERABLE_HIDE_UNLESS_DAMAGED}
-                    InterruptAction
+					InterruptAction
 					{
 						Target "ai_go_fort"
 						Delay 1
-						Repeats 1 
+						Repeats 1
 						Duration 1
 						WaitUntilDone 1
 						Distance 16
 						StopCurrentInterruptAction 1
 					}
-                }
+				}
 				Panic
-                {
+				{
+					Item "Heavy Machine Gun"
 					MaxVisionRange -1
 					CharacterAttributes
 					{
@@ -578,41 +595,43 @@ WaveSchedule
 					FireInput
 					{
 						Target !self
-						Action $playsound
+						Action $PlaySound
 						Param "vo/sniper_sf13_scared02.mp3"
 						Delay -1
 						Repeats 1
 					}
-                    InterruptAction
+					InterruptAction
 					{
 						Target "ai_go_fort"
 						Delay 1
-						Repeats 1 
+						Repeats 1
 						Duration 1
 						WaitUntilDone 1
 						Distance 24
 						StopCurrentInterruptAction 1
 					}
-                }
+				}
 				Happy
-                {
+				{
+					Item "Heavy Machine Gun"
 					MaxVisionRange -1
 					FireInput
 					{
 						Target !self
-						Action $taunt
+						Action $Taunt
 						Delay 4
 						Repeats 1
 					}
-                }
+				}
 				Exit
-                {
+				{
+					Item "Heavy Machine Gun"
 					MaxVisionRange -1
 					CharacterAttributes
 					{
 						"not solid to players" 1
 					}
-                    InterruptAction
+					InterruptAction
 					{
 						Target "ai_go_point"
 						Delay 1
@@ -623,19 +642,20 @@ WaveSchedule
 						Distance 24
 						StopCurrentInterruptAction 1
 					}
-                }
+				}
 				Wake
-                {
+				{
+					Item "Heavy Machine Gun"
 					MaxVisionRange -1
-                }
-            }
+				}
+			}
 		}
 
 		Survivor_4
 		{
 			Name "The Shopkeeper"
 			Class Engineer
-			Classicon red2_lite
+			ClassIcon red2_lite
 			Health 250
 			Skill Expert
 			Item "Dustbowl Eagle"
@@ -656,7 +676,7 @@ WaveSchedule
 			AimAt Head
 			SpawnTemplate class_undead_4
 			AddCond {Name TF_COND_REPROGRAMMED}
-			VoiceCommand 
+			VoiceCommand
 			{
 				Delay 8
 				Cooldown 16
@@ -687,10 +707,11 @@ WaveSchedule
 				//"dmg taken increased" 0.05 //debug
 			}
 			EventChangeAttributes
-            {
+			{
 				Defense
-                {
-                    InterruptAction
+				{
+					Item "Dustbowl Eagle"
+					InterruptAction
 					{
 						Target "ai_go_boxes"
 						Delay 1
@@ -700,14 +721,71 @@ WaveSchedule
 						Distance 12
 						WaitUntilDone 1
 					}
-                }
+				}
+				PlaceSentry
+				{
+					Item "Dustbowl Eagle"
+					CharacterAttributes
+					{
+						"no_jump" 1
+						"no_duck" 1
+					}
+					InterruptAction
+					{
+						Target "ai_go_sentry"
+						AimTarget "ai_look_sentry"
+						Delay 0.033
+						Repeats -1
+						Cooldown 1
+						Duration 1
+						Distance 6
+						WaitUntilDone 1
+						StopCurrentInterruptAction 1
+					}
+					FireInput
+					{
+						Target ai_look_sentry
+						Action RunScriptCode
+						Param
+						"SpawnEntityFromTable(`prop_dynamic`, {
+							origin = self.GetOrigin()
+							model = `models/props_mvm/indicator/indicator_circle_long.mdl`
+							disableshadows = 1
+							`OnAnimationBegun#1` : `!self,SetAnimation,end,6,-1`
+							`OnAnimationBegun#2` : `!self,Kill,,7,-1`
+						}).AcceptInput(`SetAnimation`, `start`, null, null)
+						"
+						Delay -1
+						Repeats 1
+					}
+					ClientCommand
+					{
+						Name "build 2 0"
+						Delay 5
+						Repeats 1
+					}
+					FireWeapon
+					{
+						Delay 5.75
+						Repeats 1
+						Duration 0.4
+						Type "Primary"
+					}
+					WeaponSwitch
+					{
+						Type "Secondary"
+						Delay 8
+						Repeats 1
+					}
+				}
 				Exit
-                {
+				{
+					Item "Dustbowl Eagle"
 					CharacterAttributes
 					{
 						"not solid to players" 1
 					}
-                    InterruptAction
+					InterruptAction
 					{
 						Target "ai_go_point"
 						Delay 1
@@ -718,19 +796,20 @@ WaveSchedule
 						Distance 24
 						StopCurrentInterruptAction 1
 					}
-                }
+				}
 				Happy
-                {
+				{
+					Item "Dustbowl Eagle"
 					FireInput
 					{
 						Target !self
-						Action $tauntfromitem
+						Action $Tauntfromitem
 						Param "Taunt: Texas Twirl 'Em"
 						Delay -1
 						Repeats 1
 					}
-                }
-            }
+				}
+			}
 		}
 
 		Survivor_Army
@@ -769,22 +848,22 @@ WaveSchedule
 				"attribute immunity" "stun on hit|stun on hit type|stun on hit slow"
 			}
 			FireInput
-            {
-                Target !activator
-                Action RunScriptCode
-                Param "self.SetAbsVelocity(Vector(0, 0, 350)); EntFireByHandle(self, `RunScriptCode`, `self.SetAbsVelocity(Vector())`, 0.1, null, null)"
-                Delay -1
-                Repeats 1
-            }
+			{
+				Target !activator
+				Action RunScriptCode
+				Param "self.SetAbsVelocity(Vector(0, 0, 350)); EntFireByHandle(self, `RunScriptCode`, `self.SetAbsVelocity(Vector())`, 0.1, null, null)"
+				Delay -1
+				Repeats 1
+			}
 			FireInput
-            {
-                Target !activator
-                Action RunScriptCode
-                Param "self.DropRune(true,2)"
-                Delay -1
+			{
+				Target !activator
+				Action RunScriptCode
+				Param "self.DropRune(true,2)"
+				Delay -1
 				Cooldown 5
-                Repeats -1
-            }
+				Repeats -1
+			}
 			CharacterAttributes
 			{
 				"no resupply" 1
@@ -857,8 +936,8 @@ WaveSchedule
 			AdditionalStepSound "Zombie.Step"
 			DeathSound "@physics/flesh/flesh_bloody_break.wav"
 			Item "Slug Rifle"
-			Item "EOTL_Coldfront Curbstompers"	
-			Item "Flakcatcher"	
+			Item "EOTL_Coldfront Curbstompers"
+			Item "Flakcatcher"
 			Item "Zombie Soldier"
 			Item "Ritzy Rick's Hair Fixative"
 			CharacterAttributes
@@ -1005,7 +1084,7 @@ WaveSchedule
 		Zombie_Generic_1-1
 		{
 			Class Scout
-			Classicon heavy_zombie_lite
+			ClassIcon heavy_zombie_lite
 			Name "Zombie"
 			Scale 1
 			Tag blood_death
@@ -1038,7 +1117,7 @@ WaveSchedule
 				"fire rate penalty" 1.5
 			}
 			CharacterAttributes //shared for generics
-			{ 
+			{
 				"always gib" 1
 				"weapon always gib" 1
 				"can breathe under water" 1
@@ -1056,7 +1135,7 @@ WaveSchedule
 		Zombie_Generic_1-2 //fast
 		{
 			Class Scout
-			Classicon heavy_zombie_lite
+			ClassIcon heavy_zombie_lite
 			Name "Undead"
 			Scale 1
 			Tag blood_death
@@ -1096,7 +1175,7 @@ WaveSchedule
 				"SPELL: set item tint RGB" 5
 			}
 			CharacterAttributes //shared for generics
-			{ 
+			{
 				"always gib" 1
 				"weapon always gib" 1
 				"can breathe under water" 1
@@ -1115,7 +1194,7 @@ WaveSchedule
 		Zombie_Generic_2-1
 		{
 			Class Soldier
-			Classicon heavy_zombie_lite
+			ClassIcon heavy_zombie_lite
 			Name "Zombie"
 			Scale 1
 			Tag blood_death
@@ -1148,7 +1227,7 @@ WaveSchedule
 				"fire rate penalty" 1.5
 			}
 			CharacterAttributes //shared for generics
-			{ 
+			{
 				"always gib" 1
 				"weapon always gib" 1
 				"can breathe under water" 1
@@ -1166,7 +1245,7 @@ WaveSchedule
 		Zombie_Generic_2-2 //explode
 		{
 			Class Soldier
-			Classicon heavy_zombie_lite
+			ClassIcon heavy_zombie_lite
 			Name "Undead"
 			Scale 1
 			Tag blood_death
@@ -1189,7 +1268,7 @@ WaveSchedule
 			Item "Upgradeable TF_WEAPON_SHOVEL"
 			//Item "Baseball Bill's Sports Shine"
 			SpawnTemplate item_zombie_slap //double hit
-			ChangeAttributes 
+			ChangeAttributes
 			{
 				Delay -1
 				Repeats 1
@@ -1228,7 +1307,7 @@ WaveSchedule
 				"fire rate penalty" 1.5
 			}
 			CharacterAttributes //shared for generics
-			{ 
+			{
 				"always gib" 1
 				"weapon always gib" 1
 				"can breathe under water" 1
@@ -1247,7 +1326,7 @@ WaveSchedule
 		Zombie_Generic_3-1
 		{
 			Class Pyro
-			Classicon heavy_zombie_lite
+			ClassIcon heavy_zombie_lite
 			Name "Zombie"
 			Scale 1
 			Tag blood_death
@@ -1286,7 +1365,7 @@ WaveSchedule
 				"fire rate penalty" 1.5
 			}
 			CharacterAttributes //shared for generics
-			{ 
+			{
 				"always gib" 1
 				"weapon always gib" 1
 				"can breathe under water" 1
@@ -1304,7 +1383,7 @@ WaveSchedule
 		Zombie_Generic_3-2 //reflect
 		{
 			Class Pyro
-			Classicon heavy_zombie_lite
+			ClassIcon heavy_zombie_lite
 			Name "Undead"
 			Scale 1
 			Tag blood_death
@@ -1354,7 +1433,7 @@ WaveSchedule
 				"fire rate penalty" 1.5
 			}
 			CharacterAttributes //shared for generics
-			{ 
+			{
 				"always gib" 1
 				"weapon always gib" 1
 				"can breathe under water" 1
@@ -1373,7 +1452,7 @@ WaveSchedule
 		Zombie_Generic_4-1
 		{
 			Class Demoman
-			Classicon heavy_zombie_lite
+			ClassIcon heavy_zombie_lite
 			Name "Zombie"
 			Scale 1
 			Tag blood_death
@@ -1405,7 +1484,7 @@ WaveSchedule
 				"fire rate penalty" 1.5
 			}
 			CharacterAttributes //shared for generics
-			{ 
+			{
 				"always gib" 1
 				"weapon always gib" 1
 				"can breathe under water" 1
@@ -1423,7 +1502,7 @@ WaveSchedule
 		Zombie_Generic_4-2 //charge
 		{
 			Class Demoman
-			Classicon heavy_zombie_lite
+			ClassIcon heavy_zombie_lite
 			Name "Undead"
 			Scale 1
 			Tag blood_death
@@ -1446,7 +1525,7 @@ WaveSchedule
 			Item "Upgradeable TF_WEAPON_SHOVEL"
 			Item "Demonic Dome"
 			SpawnTemplate item_zombie_slap //double hit
-			ChangeAttributes 
+			ChangeAttributes
 			{
 				Delay -1
 				Repeats 1
@@ -1477,7 +1556,7 @@ WaveSchedule
 				"fire rate penalty" 1.5
 			}
 			CharacterAttributes //shared for generics
-			{ 
+			{
 				"always gib" 1
 				"weapon always gib" 1
 				"can breathe under water" 1
@@ -1496,7 +1575,7 @@ WaveSchedule
 		Zombie_Generic_5-1
 		{
 			Class HeavyWeapons
-			Classicon heavy_zombie_lite
+			ClassIcon heavy_zombie_lite
 			Name "Zombie"
 			Scale 1
 			Tag blood_death
@@ -1528,7 +1607,7 @@ WaveSchedule
 				"fire rate penalty" 1.5
 			}
 			CharacterAttributes //shared for generics
-			{ 
+			{
 				"always gib" 1
 				"weapon always gib" 1
 				"can breathe under water" 1
@@ -1547,7 +1626,7 @@ WaveSchedule
 		Zombie_Generic_5-2 //double hp
 		{
 			Class HeavyWeapons
-			Classicon heavy_zombie_lite
+			ClassIcon heavy_zombie_lite
 			Name "Undead"
 			Scale 1
 			Tag blood_death
@@ -1580,7 +1659,7 @@ WaveSchedule
 				"fire rate penalty" 1.5
 			}
 			CharacterAttributes //shared for generics
-			{ 
+			{
 				"always gib" 1
 				"weapon always gib" 1
 				"can breathe under water" 1
@@ -1599,7 +1678,7 @@ WaveSchedule
 		Zombie_Generic_6-1
 		{
 			Class Engineer
-			Classicon heavy_zombie_lite
+			ClassIcon heavy_zombie_lite
 			Name "Zombie"
 			Scale 1
 			Tag blood_death
@@ -1645,7 +1724,7 @@ WaveSchedule
 				"fire rate penalty" 1.5
 			}
 			CharacterAttributes //shared for generics
-			{ 
+			{
 				"always gib" 1
 				"weapon always gib" 1
 				"can breathe under water" 1
@@ -1664,7 +1743,7 @@ WaveSchedule
 		Zombie_Generic_6-2 //dominate buildings
 		{
 			Class Engineer
-			Classicon heavy_zombie_lite
+			ClassIcon heavy_zombie_lite
 			Name "Undead"
 			Scale 1
 			Tag blood_death
@@ -1705,7 +1784,7 @@ WaveSchedule
 				"dmg bonus vs buildings" 2 //25 per slap
 			}
 			CharacterAttributes //shared for generics
-			{ 
+			{
 				"always gib" 1
 				"weapon always gib" 1
 				"can breathe under water" 1
@@ -1724,7 +1803,7 @@ WaveSchedule
 		Zombie_Generic_7-1
 		{
 			Class Medic
-			Classicon heavy_zombie_lite
+			ClassIcon heavy_zombie_lite
 			Name "Zombie"
 			Scale 1
 			Tag blood_death
@@ -1763,7 +1842,7 @@ WaveSchedule
 				"damage all connected" 1
 			}
 			CharacterAttributes //shared for generics
-			{ 
+			{
 				"always gib" 1
 				"weapon always gib" 1
 				"can breathe under water" 1
@@ -1782,7 +1861,7 @@ WaveSchedule
 		Zombie_Generic_7-2 //amp heal
 		{
 			Class Medic
-			Classicon heavy_zombie_lite
+			ClassIcon heavy_zombie_lite
 			Name "Undead"
 			Scale 1
 			Tag blood_death
@@ -1821,7 +1900,7 @@ WaveSchedule
 				"enables aoe heal" 1
 			}
 			CharacterAttributes //shared for generics
-			{ 	
+			{
 				"always gib" 1
 				"weapon always gib" 1
 				"can breathe under water" 1
@@ -1840,7 +1919,7 @@ WaveSchedule
 		Zombie_Generic_8-1
 		{
 			Class Sniper
-			Classicon heavy_zombie_lite
+			ClassIcon heavy_zombie_lite
 			Name "Zombie"
 			Scale 1
 			Tag blood_death
@@ -1876,7 +1955,7 @@ WaveSchedule
 				"mark for death" 1
 			}
 			CharacterAttributes //shared for generics
-			{ 
+			{
 				"always gib" 1
 				"weapon always gib" 1
 				"can breathe under water" 1
@@ -1895,7 +1974,7 @@ WaveSchedule
 		Zombie_Generic_8-2 //crit
 		{
 			Class Sniper
-			Classicon heavy_zombie_lite
+			ClassIcon heavy_zombie_lite
 			Name "Undead"
 			Scale 1
 			Tag blood_death
@@ -1931,7 +2010,7 @@ WaveSchedule
 				"crit vs non burning players" 1
 			}
 			CharacterAttributes //shared for generics
-			{ 
+			{
 				"always gib" 1
 				"weapon always gib" 1
 				"can breathe under water" 1
@@ -1950,7 +2029,7 @@ WaveSchedule
 		Zombie_Generic_9-1
 		{
 			Class Civilian
-			Classicon heavy_zombie_lite
+			ClassIcon heavy_zombie_lite
 			Name "Zombie"
 			Scale 1
 			Tag blood_death
@@ -1987,7 +2066,7 @@ WaveSchedule
 				"stun on hit slow" 0.66
 			}
 			CharacterAttributes //shared for generics
-			{ 
+			{
 				"always gib" 1
 				"weapon always gib" 1
 				"can breathe under water" 1
@@ -2007,7 +2086,7 @@ WaveSchedule
 		Zombie_Generic_9-2 //cloak
 		{
 			Class Civilian
-			Classicon heavy_zombie_lite
+			ClassIcon heavy_zombie_lite
 			Name "Undead"
 			Scale 1
 			Tag blood_death
@@ -2044,7 +2123,7 @@ WaveSchedule
 				"crit from behind" 1
 			}
 			CharacterAttributes //shared for generics
-			{ 
+			{
 				"ignored by bots" 1
 				"ignored by enemy sentries" 1
 
@@ -2076,17 +2155,17 @@ WaveSchedule
 				ItemName "Creepy Crawlers"
 				"SPELL: set item tint RGB" 5
 			}
-			CharacterAttributes 
-			{ 
+			CharacterAttributes
+			{
 				"no_attack" 1
 				"no_jump" 1
 				"move speed bonus" 1
 				"voice pitch scale" 0.65
 			}
 			EventChangeAttributes
-            {
+			{
 				Wake
-                {
+				{
 					MaxVisionRange -1
 					CharacterAttributes
 					{
@@ -2095,9 +2174,9 @@ WaveSchedule
 						"move speed bonus" 0.85
 					}
 					ActionOverride Mobber
-                }
+				}
 				Solo
-                {
+				{
 					MaxVisionRange -1
 					CharacterAttributes
 					{
@@ -2106,8 +2185,8 @@ WaveSchedule
 						"move speed bonus" 0.65
 					}
 					ActionOverride Mobber
-                }
-            }
+				}
+			}
 		}
 
 		Zombie_Shambler_2 //cinematic zombies
@@ -2122,17 +2201,17 @@ WaveSchedule
 				ItemName "Creepy Crawlers"
 				"SPELL: set item tint RGB" 5
 			}
-			CharacterAttributes 
-			{ 
+			CharacterAttributes
+			{
 				"no_attack" 1
 				"no_jump" 1
 				"move speed bonus" 1
 				"voice pitch scale" 0.65
 			}
 			EventChangeAttributes
-            {
+			{
 				Wake
-                {
+				{
 					MaxVisionRange -1
 					CharacterAttributes
 					{
@@ -2141,9 +2220,9 @@ WaveSchedule
 						"move speed bonus" 0.85
 					}
 					ActionOverride Mobber
-                }
+				}
 				Solo
-                {
+				{
 					MaxVisionRange -1
 					CharacterAttributes
 					{
@@ -2152,8 +2231,8 @@ WaveSchedule
 						"move speed bonus" 0.65
 					}
 					ActionOverride Mobber
-                }
-            }
+				}
+			}
 		}
 
 		Zombie_Shambler_3 //cinematic zombies
@@ -2168,17 +2247,17 @@ WaveSchedule
 				ItemName "Creepy Crawlers"
 				"SPELL: set item tint RGB" 5
 			}
-			CharacterAttributes 
-			{ 
+			CharacterAttributes
+			{
 				"no_attack" 1
 				"no_jump" 1
 				"move speed bonus" 1
 				"voice pitch scale" 0.65
 			}
 			EventChangeAttributes
-            {
+			{
 				Wake
-                {
+				{
 					MaxVisionRange -1
 					CharacterAttributes
 					{
@@ -2187,9 +2266,9 @@ WaveSchedule
 						"move speed bonus" 0.85
 					}
 					ActionOverride Mobber
-                }
+				}
 				Solo
-                {
+				{
 					MaxVisionRange -1
 					CharacterAttributes
 					{
@@ -2198,8 +2277,8 @@ WaveSchedule
 						"move speed bonus" 0.65
 					}
 					ActionOverride Mobber
-                }
-            }
+				}
+			}
 		}
 
 		Zombie_Shambler_4 //cinematic zombies
@@ -2214,17 +2293,17 @@ WaveSchedule
 				ItemName "Creepy Crawlers"
 				"SPELL: set item tint RGB" 5
 			}
-			CharacterAttributes 
-			{ 
+			CharacterAttributes
+			{
 				"no_attack" 1
 				"no_jump" 1
 				"move speed bonus" 1
 				"voice pitch scale" 0.65
 			}
 			EventChangeAttributes
-            {
+			{
 				Wake
-                {
+				{
 					MaxVisionRange -1
 					CharacterAttributes
 					{
@@ -2233,9 +2312,9 @@ WaveSchedule
 						"move speed bonus" 0.85
 					}
 					ActionOverride Mobber
-                }
+				}
 				Solo
-                {
+				{
 					MaxVisionRange -1
 					CharacterAttributes
 					{
@@ -2244,8 +2323,8 @@ WaveSchedule
 						"move speed bonus" 0.65
 					}
 					ActionOverride Mobber
-                }
-            }
+				}
+			}
 		}
 
 		Zombie_Shambler_5 //cinematic zombies
@@ -2260,17 +2339,17 @@ WaveSchedule
 				ItemName "Creepy Crawlers"
 				"SPELL: set item tint RGB" 5
 			}
-			CharacterAttributes 
-			{ 
+			CharacterAttributes
+			{
 				"no_attack" 1
 				"no_jump" 1
 				"move speed bonus" 1
 				"voice pitch scale" 0.65
 			}
 			EventChangeAttributes
-            {
+			{
 				Wake
-                {
+				{
 					MaxVisionRange -1
 					CharacterAttributes
 					{
@@ -2279,9 +2358,9 @@ WaveSchedule
 						"move speed bonus" 0.85
 					}
 					ActionOverride Mobber
-                }
+				}
 				Solo
-                {
+				{
 					MaxVisionRange -1
 					CharacterAttributes
 					{
@@ -2290,8 +2369,8 @@ WaveSchedule
 						"move speed bonus" 0.65
 					}
 					ActionOverride Mobber
-                }
-            }
+				}
+			}
 		}
 
 		Zombie_Shambler_6 //cinematic zombies
@@ -2306,17 +2385,17 @@ WaveSchedule
 				ItemName "Creepy Crawlers"
 				"SPELL: set item tint RGB" 5
 			}
-			CharacterAttributes 
-			{ 
+			CharacterAttributes
+			{
 				"no_attack" 1
 				"no_jump" 1
 				"move speed bonus" 1
 				"voice pitch scale" 0.65
 			}
 			EventChangeAttributes
-            {
+			{
 				Wake
-                {
+				{
 					MaxVisionRange -1
 					CharacterAttributes
 					{
@@ -2325,9 +2404,9 @@ WaveSchedule
 						"move speed bonus" 0.85
 					}
 					ActionOverride Mobber
-                }
+				}
 				Solo
-                {
+				{
 					MaxVisionRange -1
 					CharacterAttributes
 					{
@@ -2336,8 +2415,8 @@ WaveSchedule
 						"move speed bonus" 0.65
 					}
 					ActionOverride Mobber
-                }
-            }
+				}
+			}
 		}
 
 		Zombie_Shambler_7 //cinematic zombies
@@ -2352,17 +2431,17 @@ WaveSchedule
 				ItemName "Creepy Crawlers"
 				"SPELL: set item tint RGB" 5
 			}
-			CharacterAttributes 
-			{ 
+			CharacterAttributes
+			{
 				"no_attack" 1
 				"no_jump" 1
 				"move speed bonus" 1
 				"voice pitch scale" 0.65
 			}
 			EventChangeAttributes
-            {
+			{
 				Wake
-                {
+				{
 					MaxVisionRange -1
 					CharacterAttributes
 					{
@@ -2371,9 +2450,9 @@ WaveSchedule
 						"move speed bonus" 0.85
 					}
 					ActionOverride Mobber
-                }
+				}
 				Solo
-                {
+				{
 					MaxVisionRange -1
 					CharacterAttributes
 					{
@@ -2382,8 +2461,8 @@ WaveSchedule
 						"move speed bonus" 0.65
 					}
 					ActionOverride Mobber
-                }
-            }
+				}
+			}
 		}
 
 		Zombie_Shambler_8 //cinematic zombies
@@ -2398,17 +2477,17 @@ WaveSchedule
 				ItemName "Creepy Crawlers"
 				"SPELL: set item tint RGB" 5
 			}
-			CharacterAttributes 
-			{ 
+			CharacterAttributes
+			{
 				"no_attack" 1
 				"no_jump" 1
 				"move speed bonus" 1
 				"voice pitch scale" 0.65
 			}
 			EventChangeAttributes
-            {
+			{
 				Wake
-                {
+				{
 					MaxVisionRange -1
 					CharacterAttributes
 					{
@@ -2417,9 +2496,9 @@ WaveSchedule
 						"move speed bonus" 0.85
 					}
 					ActionOverride Mobber
-                }
+				}
 				Solo
-                {
+				{
 					MaxVisionRange -1
 					CharacterAttributes
 					{
@@ -2428,8 +2507,8 @@ WaveSchedule
 						"move speed bonus" 0.65
 					}
 					ActionOverride Mobber
-                }
-            }
+				}
+			}
 		}
 
 		Zombie_Shambler_9 //cinematic zombies
@@ -2440,7 +2519,7 @@ WaveSchedule
 		Zombie_Riot_1
 		{
 			Class Scout
-			Classicon heavy_zombie_breach_lite
+			ClassIcon heavy_zombie_breach_lite
 			Name "Riot Zombie"
 			Scale 1
 			Tag metal_hit
@@ -2474,7 +2553,7 @@ WaveSchedule
 				"fire rate penalty" 1.5
 			}
 			CharacterAttributes //shared for generics
-			{ 
+			{
 				"dmg taken from crit reduced" 0.5
 				"dmg taken from blast reduced" 0.5
 				"dmg taken from bullets reduced" 0.5
@@ -2496,7 +2575,7 @@ WaveSchedule
 		Zombie_Riot_2
 		{
 			Class Soldier
-			Classicon heavy_zombie_breach_lite
+			ClassIcon heavy_zombie_breach_lite
 			Name "Riot Zombie"
 			Scale 1
 			Tag metal_hit
@@ -2530,7 +2609,7 @@ WaveSchedule
 				"fire rate penalty" 1.5
 			}
 			CharacterAttributes //shared for generics
-			{ 
+			{
 				"dmg taken from crit reduced" 0.5
 				"dmg taken from blast reduced" 0.5
 				"dmg taken from bullets reduced" 0.5
@@ -2552,7 +2631,7 @@ WaveSchedule
 		Zombie_Riot_3
 		{
 			Class Pyro
-			Classicon heavy_zombie_breach_lite
+			ClassIcon heavy_zombie_breach_lite
 			Name "Riot Zombie"
 			Scale 1
 			Tag metal_hit
@@ -2593,7 +2672,7 @@ WaveSchedule
 				"fire rate penalty" 1.5
 			}
 			CharacterAttributes //shared for generics
-			{ 
+			{
 				"dmg taken from crit reduced" 0.5
 				"dmg taken from blast reduced" 0.5
 				"dmg taken from bullets reduced" 0.5
@@ -2615,7 +2694,7 @@ WaveSchedule
 		Zombie_Riot_4
 		{
 			Class Demoman
-			Classicon heavy_zombie_breach_lite
+			ClassIcon heavy_zombie_breach_lite
 			Name "Riot Zombie"
 			Scale 1
 			Tag metal_hit
@@ -2645,7 +2724,7 @@ WaveSchedule
 			Item "EOTL_Coldfront Curbstompers"
 			Item "Riot Gun"
 			CharacterAttributes //shared for generics
-			{ 
+			{
 				//"allow friendly fire" 1
 				"dmg taken from crit reduced" 0.5
 				"dmg taken from blast reduced" 0.5
@@ -2671,7 +2750,7 @@ WaveSchedule
 		Zombie_Riot_5
 		{
 			Class HeavyWeapons
-			Classicon heavy_zombie_breach_lite
+			ClassIcon heavy_zombie_breach_lite
 			Name "Riot Zombie"
 			Scale 1
 			Tag metal_hit
@@ -2705,7 +2784,7 @@ WaveSchedule
 				"fire rate penalty" 1.5
 			}
 			CharacterAttributes //shared for generics
-			{ 
+			{
 				"dmg taken from crit reduced" 0.5
 				"dmg taken from blast reduced" 0.5
 				"dmg taken from bullets reduced" 0.5
@@ -2727,7 +2806,7 @@ WaveSchedule
 		Zombie_Riot_6
 		{
 			Class Engineer
-			Classicon heavy_zombie_breach_lite
+			ClassIcon heavy_zombie_breach_lite
 			Name "Riot Zombie"
 			Scale 1
 			Tag metal_hit
@@ -2767,7 +2846,7 @@ WaveSchedule
 				"fire rate penalty" 1.5
 			}
 			CharacterAttributes //shared for generics
-			{ 
+			{
 				"dmg taken from crit reduced" 0.5
 				"dmg taken from blast reduced" 0.5
 				"dmg taken from bullets reduced" 0.5
@@ -2789,7 +2868,7 @@ WaveSchedule
 		Zombie_Riot_7
 		{
 			Class Medic
-			Classicon heavy_zombie_breach_lite
+			ClassIcon heavy_zombie_breach_lite
 			Name "Riot Zombie"
 			Scale 1
 			Tag metal_hit
@@ -2823,7 +2902,7 @@ WaveSchedule
 				"fire rate penalty" 1.5
 			}
 			CharacterAttributes //shared for generics
-			{ 
+			{
 				"health regen" 5
 				"dmg taken from crit reduced" 0.5
 				"dmg taken from blast reduced" 0.5
@@ -2846,7 +2925,7 @@ WaveSchedule
 		Zombie_Riot_8
 		{
 			Class Sniper
-			Classicon heavy_zombie_breach_lite
+			ClassIcon heavy_zombie_breach_lite
 			Name "Riot Zombie"
 			Scale 1
 			Tag metal_hit
@@ -2880,7 +2959,7 @@ WaveSchedule
 				"fire rate penalty" 1.5
 			}
 			CharacterAttributes //shared for generics
-			{ 
+			{
 				"dmg taken from crit reduced" 0.5
 				"dmg taken from blast reduced" 0.5
 				"dmg taken from bullets reduced" 0.5
@@ -2902,7 +2981,7 @@ WaveSchedule
 		Zombie_Riot_9
 		{
 			Class Civilian
-			Classicon heavy_zombie_breach_lite
+			ClassIcon heavy_zombie_breach_lite
 			Name "Riot Zombie"
 			Scale 1
 			Tag metal_hit
@@ -2940,7 +3019,7 @@ WaveSchedule
 				"fire rate penalty" 1.5
 			}
 			CharacterAttributes //shared for generics
-			{ 
+			{
 				"always gib" 1 //prevent human ragdoll
 
 				"dmg taken from crit reduced" 0.5
@@ -2965,7 +3044,7 @@ WaveSchedule
 		Zombie_Headless_1-1
 		{
 			Class Scout
-			Classicon pyro_scout_fireaxe_bat
+			ClassIcon pyro_scout_fireaxe_bat
 			Name "Headless Zombie"
 			Scale 1
 			Tag blood_death
@@ -2984,7 +3063,7 @@ WaveSchedule
 			DeathSound "@physics/flesh/flesh_bloody_break.wav"
 			Item "Zombie Scout"
 			Item "The Bat Outta Hell"
-			FireInput 
+			FireInput
 			{
 				Target !self
 				Action runscriptcode
@@ -3001,7 +3080,7 @@ WaveSchedule
 				"custom item model" "models/workshop/weapons/c_models/c_boston_basher/c_boston_basher.mdl"
 			}
 			CharacterAttributes //shared for generics
-			{ 
+			{
 				"head scale" 0
 				"cannot be headshot" 1
 
@@ -3025,7 +3104,7 @@ WaveSchedule
 		Zombie_Headless_1-2
 		{
 			Class Scout
-			Classicon pyro_scout_fireaxe_bat
+			ClassIcon pyro_scout_fireaxe_bat
 			Name "Headless Zombie"
 			Scale 1
 			Tag blood_death
@@ -3044,7 +3123,7 @@ WaveSchedule
 			DeathSound "@physics/flesh/flesh_bloody_break.wav"
 			Item "Zombie Scout"
 			Item "The Bat Outta Hell"
-			FireInput 
+			FireInput
 			{
 				Target !self
 				Action runscriptcode
@@ -3062,7 +3141,7 @@ WaveSchedule
 				"custom item model" "models/weapons/c_models/c_axtinguisher/c_axtinguisher_pyro.mdl"
 			}
 			CharacterAttributes //shared for generics
-			{ 
+			{
 				"head scale" 0
 				"cannot be headshot" 1
 
@@ -3086,7 +3165,7 @@ WaveSchedule
 		Zombie_Headless_2-1
 		{
 			Class Soldier
-			Classicon pyro_scout_fireaxe_bat
+			ClassIcon pyro_scout_fireaxe_bat
 			Name "Headless Zombie"
 			Scale 1
 			Tag blood_death
@@ -3105,7 +3184,7 @@ WaveSchedule
 			DeathSound "@physics/flesh/flesh_bloody_break.wav"
 			Item "Zombie Soldier"
 			Item "The Bat Outta Hell"
-			FireInput 
+			FireInput
 			{
 				Target !self
 				Action runscriptcode
@@ -3121,7 +3200,7 @@ WaveSchedule
 				"custom item model" "models/workshop/weapons/c_models/c_boston_basher/c_boston_basher.mdl"
 			}
 			CharacterAttributes //shared for generics
-			{ 
+			{
 				"head scale" 0
 				"cannot be headshot" 1
 
@@ -3145,7 +3224,7 @@ WaveSchedule
 		Zombie_Headless_2-2
 		{
 			Class Soldier
-			Classicon pyro_scout_fireaxe_bat
+			ClassIcon pyro_scout_fireaxe_bat
 			Name "Headless Zombie"
 			Scale 1
 			Tag blood_death
@@ -3164,7 +3243,7 @@ WaveSchedule
 			DeathSound "@physics/flesh/flesh_bloody_break.wav"
 			Item "Zombie Soldier"
 			Item "The Bat Outta Hell"
-			FireInput 
+			FireInput
 			{
 				Target !self
 				Action runscriptcode
@@ -3181,7 +3260,7 @@ WaveSchedule
 				"custom item model" "models/weapons/c_models/c_axtinguisher/c_axtinguisher_pyro.mdl"
 			}
 			CharacterAttributes //shared for generics
-			{ 
+			{
 				"head scale" 0
 				"cannot be headshot" 1
 
@@ -3205,7 +3284,7 @@ WaveSchedule
 		Zombie_Headless_3-1
 		{
 			Class Pyro
-			Classicon pyro_scout_fireaxe_bat
+			ClassIcon pyro_scout_fireaxe_bat
 			Name "Headless Zombie"
 			Scale 1
 			Tag blood_death
@@ -3225,7 +3304,7 @@ WaveSchedule
 			Item "Zombie Pyro"
 			Item "Backpack Remover"
 			Item "The Bat Outta Hell"
-			FireInput 
+			FireInput
 			{
 				Target !self
 				Action runscriptcode
@@ -3241,7 +3320,7 @@ WaveSchedule
 				"custom item model" "models/workshop/weapons/c_models/c_boston_basher/c_boston_basher.mdl"
 			}
 			CharacterAttributes //shared for generics
-			{ 
+			{
 				"head scale" 0
 				"cannot be headshot" 1
 
@@ -3265,7 +3344,7 @@ WaveSchedule
 		Zombie_Headless_3-2
 		{
 			Class Pyro
-			Classicon pyro_scout_fireaxe_bat
+			ClassIcon pyro_scout_fireaxe_bat
 			Name "Headless Zombie"
 			Scale 1
 			Tag blood_death
@@ -3285,7 +3364,7 @@ WaveSchedule
 			Item "Zombie Pyro"
 			Item "Backpack Remover"
 			Item "Upgradeable TF_WEAPON_FIREAXE"
-			FireInput 
+			FireInput
 			{
 				Target !self
 				Action runscriptcode
@@ -3301,7 +3380,7 @@ WaveSchedule
 				"custom item model" "models/weapons/c_models/c_axtinguisher/c_axtinguisher_pyro.mdl"
 			}
 			CharacterAttributes //shared for generics
-			{ 
+			{
 				"head scale" 0
 				"cannot be headshot" 1
 
@@ -3325,7 +3404,7 @@ WaveSchedule
 		Zombie_Headless_4-1
 		{
 			Class Demoman
-			Classicon pyro_scout_fireaxe_bat
+			ClassIcon pyro_scout_fireaxe_bat
 			Name "Headless Zombie"
 			Scale 1
 			Tag blood_death
@@ -3344,7 +3423,7 @@ WaveSchedule
 			DeathSound "@physics/flesh/flesh_bloody_break.wav"
 			Item "Zombie Demo"
 			Item "The Bat Outta Hell"
-			FireInput 
+			FireInput
 			{
 				Target !self
 				Action runscriptcode
@@ -3360,7 +3439,7 @@ WaveSchedule
 				"custom item model" "models/workshop/weapons/c_models/c_boston_basher/c_boston_basher.mdl"
 			}
 			CharacterAttributes //shared for generics
-			{ 
+			{
 				"head scale" 0
 				"cannot be headshot" 1
 
@@ -3384,7 +3463,7 @@ WaveSchedule
 		Zombie_Headless_4-2
 		{
 			Class Demoman
-			Classicon pyro_scout_fireaxe_bat
+			ClassIcon pyro_scout_fireaxe_bat
 			Name "Headless Zombie"
 			Scale 1
 			Tag blood_death
@@ -3403,7 +3482,7 @@ WaveSchedule
 			DeathSound "@physics/flesh/flesh_bloody_break.wav"
 			Item "Zombie Demo"
 			Item "The Bat Outta Hell"
-			FireInput 
+			FireInput
 			{
 				Target !self
 				Action runscriptcode
@@ -3420,7 +3499,7 @@ WaveSchedule
 				"custom item model" "models/weapons/c_models/c_axtinguisher/c_axtinguisher_pyro.mdl"
 			}
 			CharacterAttributes //shared for generics
-			{ 
+			{
 				"head scale" 0
 				"cannot be headshot" 1
 
@@ -3444,7 +3523,7 @@ WaveSchedule
 		Zombie_Headless_5-1
 		{
 			Class HeavyWeapons
-			Classicon pyro_scout_fireaxe_bat
+			ClassIcon pyro_scout_fireaxe_bat
 			Name "Headless Zombie"
 			Scale 1
 			Tag blood_death
@@ -3463,7 +3542,7 @@ WaveSchedule
 			DeathSound "@physics/flesh/flesh_bloody_break.wav"
 			Item "Zombie Heavy"
 			Item "The Bat Outta Hell"
-			FireInput 
+			FireInput
 			{
 				Target !self
 				Action runscriptcode
@@ -3479,7 +3558,7 @@ WaveSchedule
 				"custom item model" "models/workshop/weapons/c_models/c_boston_basher/c_boston_basher.mdl"
 			}
 			CharacterAttributes //shared for generics
-			{ 
+			{
 				"head scale" 0
 				"cannot be headshot" 1
 
@@ -3503,7 +3582,7 @@ WaveSchedule
 		Zombie_Headless_5-2
 		{
 			Class HeavyWeapons
-			Classicon pyro_scout_fireaxe_bat
+			ClassIcon pyro_scout_fireaxe_bat
 			Name "Headless Zombie"
 			Scale 1
 			Tag blood_death
@@ -3522,7 +3601,7 @@ WaveSchedule
 			DeathSound "@physics/flesh/flesh_bloody_break.wav"
 			Item "Zombie Heavy"
 			Item "The Bat Outta Hell"
-			FireInput 
+			FireInput
 			{
 				Target !self
 				Action runscriptcode
@@ -3539,7 +3618,7 @@ WaveSchedule
 				"custom item model" "models/weapons/c_models/c_axtinguisher/c_axtinguisher_pyro.mdl"
 			}
 			CharacterAttributes //shared for generics
-			{ 
+			{
 				"head scale" 0
 				"cannot be headshot" 1
 
@@ -3563,7 +3642,7 @@ WaveSchedule
 		Zombie_Headless_6-1
 		{
 			Class Engineer
-			Classicon pyro_scout_fireaxe_bat
+			ClassIcon pyro_scout_fireaxe_bat
 			Name "Headless Zombie"
 			Scale 1
 			Tag blood_death
@@ -3588,7 +3667,7 @@ WaveSchedule
 			DeathSound "@physics/flesh/flesh_bloody_break.wav"
 			Item "Zombie Engineer"
 			Item "The Bat Outta Hell"
-			FireInput 
+			FireInput
 			{
 				Target !self
 				Action runscriptcode
@@ -3604,7 +3683,7 @@ WaveSchedule
 				"custom item model" "models/workshop/weapons/c_models/c_boston_basher/c_boston_basher.mdl"
 			}
 			CharacterAttributes //shared for generics
-			{ 
+			{
 				"head scale" 0
 				"cannot be headshot" 1
 
@@ -3628,7 +3707,7 @@ WaveSchedule
 		Zombie_Headless_6-2
 		{
 			Class Engineer
-			Classicon pyro_scout_fireaxe_bat
+			ClassIcon pyro_scout_fireaxe_bat
 			Name "Headless Zombie"
 			Scale 1
 			Tag blood_death
@@ -3653,7 +3732,7 @@ WaveSchedule
 			DeathSound "@physics/flesh/flesh_bloody_break.wav"
 			Item "Zombie Engineer"
 			Item "The Bat Outta Hell"
-			FireInput 
+			FireInput
 			{
 				Target !self
 				Action runscriptcode
@@ -3670,7 +3749,7 @@ WaveSchedule
 				"custom item model" "models/weapons/c_models/c_axtinguisher/c_axtinguisher_pyro.mdl"
 			}
 			CharacterAttributes //shared for generics
-			{ 
+			{
 				"head scale" 0
 				"cannot be headshot" 1
 
@@ -3694,7 +3773,7 @@ WaveSchedule
 		Zombie_Headless_7-1
 		{
 			Class Medic
-			Classicon pyro_scout_fireaxe_bat
+			ClassIcon pyro_scout_fireaxe_bat
 			Name "Headless Zombie"
 			Scale 1
 			Tag blood_death
@@ -3713,7 +3792,7 @@ WaveSchedule
 			DeathSound "@physics/flesh/flesh_bloody_break.wav"
 			Item "Zombie Medic"
 			Item "The Bat Outta Hell"
-			FireInput 
+			FireInput
 			{
 				Target !self
 				Action runscriptcode
@@ -3729,7 +3808,7 @@ WaveSchedule
 				"custom item model" "models/workshop/weapons/c_models/c_boston_basher/c_boston_basher.mdl"
 			}
 			CharacterAttributes //shared for generics
-			{ 
+			{
 				"head scale" 0
 				"cannot be headshot" 1
 				"health regen" 5
@@ -3754,7 +3833,7 @@ WaveSchedule
 		Zombie_Headless_7-2
 		{
 			Class Medic
-			Classicon pyro_scout_fireaxe_bat
+			ClassIcon pyro_scout_fireaxe_bat
 			Name "Headless Zombie"
 			Scale 1
 			Tag blood_death
@@ -3773,7 +3852,7 @@ WaveSchedule
 			DeathSound "@physics/flesh/flesh_bloody_break.wav"
 			Item "Zombie Medic"
 			Item "The Bat Outta Hell"
-			FireInput 
+			FireInput
 			{
 				Target !self
 				Action runscriptcode
@@ -3790,7 +3869,7 @@ WaveSchedule
 				"custom item model" "models/weapons/c_models/c_axtinguisher/c_axtinguisher_pyro.mdl"
 			}
 			CharacterAttributes //shared for generics
-			{ 
+			{
 				"head scale" 0
 				"cannot be headshot" 1
 				"health regen" 5
@@ -3815,7 +3894,7 @@ WaveSchedule
 		Zombie_Headless_8-1
 		{
 			Class Sniper
-			Classicon pyro_scout_fireaxe_bat
+			ClassIcon pyro_scout_fireaxe_bat
 			Name "Headless Zombie"
 			Scale 1
 			Tag blood_death
@@ -3834,7 +3913,7 @@ WaveSchedule
 			DeathSound "@physics/flesh/flesh_bloody_break.wav"
 			Item "Zombie Sniper"
 			Item "The Bat Outta Hell"
-			FireInput 
+			FireInput
 			{
 				Target !self
 				Action runscriptcode
@@ -3850,7 +3929,7 @@ WaveSchedule
 				"custom item model" "models/workshop/weapons/c_models/c_boston_basher/c_boston_basher.mdl"
 			}
 			CharacterAttributes //shared for generics
-			{ 
+			{
 				"head scale" 0
 				"cannot be headshot" 1
 
@@ -3874,7 +3953,7 @@ WaveSchedule
 		Zombie_Headless_8-2
 		{
 			Class Sniper
-			Classicon pyro_scout_fireaxe_bat
+			ClassIcon pyro_scout_fireaxe_bat
 			Name "Headless Zombie"
 			Scale 1
 			Tag blood_death
@@ -3893,7 +3972,7 @@ WaveSchedule
 			DeathSound "@physics/flesh/flesh_bloody_break.wav"
 			Item "Zombie Sniper"
 			Item "The Bat Outta Hell"
-			FireInput 
+			FireInput
 			{
 				Target !self
 				Action runscriptcode
@@ -3910,7 +3989,7 @@ WaveSchedule
 				"custom item model" "models/weapons/c_models/c_axtinguisher/c_axtinguisher_pyro.mdl"
 			}
 			CharacterAttributes //shared for generics
-			{ 
+			{
 				"head scale" 0
 				"cannot be headshot" 1
 
@@ -3934,7 +4013,7 @@ WaveSchedule
 		Zombie_Headless_9-1
 		{
 			Class Civilian
-			Classicon pyro_scout_fireaxe_bat
+			ClassIcon pyro_scout_fireaxe_bat
 			Name "Headless Zombie"
 			Scale 1
 			Tag blood_death
@@ -3958,7 +4037,7 @@ WaveSchedule
 			Item "Potato of Labor"
 			ItemModel {ItemName "Potato of Labor" Model "models/player/items/spy/spy_zombie.mdl"}
 			Item "The Bat Outta Hell"
-			FireInput 
+			FireInput
 			{
 				Target !self
 				Action runscriptcode
@@ -3974,7 +4053,7 @@ WaveSchedule
 				"custom item model" "models/workshop/weapons/c_models/c_boston_basher/c_boston_basher.mdl"
 			}
 			CharacterAttributes //shared for generics
-			{ 
+			{
 				"head scale" 0
 				"cannot be headshot" 1
 
@@ -3999,7 +4078,7 @@ WaveSchedule
 		Zombie_Headless_9-2
 		{
 			Class Civilian
-			Classicon pyro_scout_fireaxe_bat
+			ClassIcon pyro_scout_fireaxe_bat
 			Name "Headless Zombie"
 			Scale 1
 			Tag blood_death
@@ -4023,7 +4102,7 @@ WaveSchedule
 			Item "Potato of Labor"
 			ItemModel {ItemName "Potato of Labor" Model "models/player/items/spy/spy_zombie.mdl"}
 			Item "The Bat Outta Hell"
-			FireInput 
+			FireInput
 			{
 				Target !self
 				Action runscriptcode
@@ -4040,7 +4119,7 @@ WaveSchedule
 				"custom item model" "models/weapons/c_models/c_axtinguisher/c_axtinguisher_pyro.mdl"
 			}
 			CharacterAttributes //shared for generics
-			{ 
+			{
 				"head scale" 0
 				"cannot be headshot" 1
 
@@ -4065,7 +4144,7 @@ WaveSchedule
 		Skeleton_Easy_1
 		{
 			Class Pyro
-			Classicon dead_multi_lite
+			ClassIcon dead_multi_lite
 			Name "Skeleton"
 			Scale 1
 			Skill Expert
@@ -4132,7 +4211,7 @@ WaveSchedule
 		Skeleton_Easy_2
 		{
 			Class Pyro
-			Classicon dead_multi_lite
+			ClassIcon dead_multi_lite
 			Name "Skeleton"
 			Scale 1
 			Skill Expert
@@ -4192,7 +4271,7 @@ WaveSchedule
 		Skeleton_Easy_3
 		{
 			Class Pyro
-			Classicon dead_multi_lite
+			ClassIcon dead_multi_lite
 			Name "Skeleton"
 			Scale 1
 			Skill Expert
@@ -4260,7 +4339,7 @@ WaveSchedule
 		Skeleton_Medium_1
 		{
 			Class Pyro
-			Classicon dead_multi_lite
+			ClassIcon dead_multi_lite
 			Name "Atomic Skeleton"
 			Scale 1
 			Skin 2
@@ -4329,7 +4408,7 @@ WaveSchedule
 		Skeleton_Medium_2
 		{
 			Class Pyro
-			Classicon dead_multi_lite
+			ClassIcon dead_multi_lite
 			Name "Atomic Skeleton"
 			Scale 1
 			Skin 2
@@ -4391,7 +4470,7 @@ WaveSchedule
 		Skeleton_Medium_3
 		{
 			Class Pyro
-			Classicon dead_multi_lite
+			ClassIcon dead_multi_lite
 			Name "Atomic Skeleton"
 			Scale 1
 			Skin 2
@@ -4461,7 +4540,7 @@ WaveSchedule
 		Skeleton_Hard_1
 		{
 			Class Pyro
-			Classicon dead_multi_lite
+			ClassIcon dead_multi_lite
 			Name "Nuclear Skeleton"
 			Scale 1
 			Skin 4
@@ -4532,7 +4611,7 @@ WaveSchedule
 		Skeleton_Hard_2
 		{
 			Class Pyro
-			Classicon dead_multi_lite
+			ClassIcon dead_multi_lite
 			Name "Nuclear Skeleton"
 			Scale 1
 			Skin 4
@@ -4596,7 +4675,7 @@ WaveSchedule
 		Skeleton_Hard_3
 		{
 			Class Pyro
-			Classicon dead_multi_lite
+			ClassIcon dead_multi_lite
 			Name "Nuclear Skeleton"
 			Scale 1
 			Skin 4
@@ -4668,7 +4747,7 @@ WaveSchedule
 		Zombie_Poison_1
 		{
 			Class Sniper
-			Classicon pyro_membrain_lite
+			ClassIcon pyro_membrain_lite
 			Name "Poison Zombie"
 			Scale 1
 			Tag blood_hit_green
@@ -4701,7 +4780,7 @@ WaveSchedule
 				ItemName "The Bat Outta Hell"
 				"custom kill icon" "infection_acid_puddle"
 				"custom hit sound" "trespasser_v2/claw_hit.wav"
-                "fire input on hit" "!caller^$displaytexthint^Administering Antidote..."
+				"fire input on hit" "!caller^$displaytexthint^Administering Antidote..."
 				"is invisible" 1
 			}
 			DamageAppliesCond
@@ -4720,9 +4799,9 @@ WaveSchedule
 				Duration 5
 			}
 			CharacterAttributes
-			{	
+			{
 				"hand scale" 1.35
-				"move speed bonus" 0.8
+				"move speed bonus" 0.7
 				"critboost on kill" 1337
 				"heal on kill" 1337
 				"gesture speed increase" 2
@@ -4745,9 +4824,9 @@ WaveSchedule
 		Zombie_Poison_2
 		{
 			Class Sniper
-			Classicon pyro_membrain_lite
+			ClassIcon pyro_membrain_lite
 			Name "Plague Zombie"
-			Scale 1
+			Scale 1.2
 			Skin 4
 			Tag blood_death_big
 			Skill Expert
@@ -4769,7 +4848,7 @@ WaveSchedule
 			Item "The Bat Outta Hell"
 			Item "The Mucous Membrain"
 			Item "The Biomech Backpack"
-			Item "Barnacle Hand" 
+			Item "Barnacle Hand"
 			Item "The Arachno-Arsonist"
 			ItemAttributes
 			{
@@ -4782,12 +4861,12 @@ WaveSchedule
 				"mark for death" 1
 				"custom kill icon" "infection_acid_puddle"
 				"custom hit sound" "trespasser_v2/claw_hit.wav"
-                "fire input on hit" "!self^RunScriptCode^if(self.GetPlayerClass() != TF_CLASS_CIVILIAN && !self.IsBotOfType(TF_BOT_TYPE)) EntFire(`transform_relay`, `Trigger`, null, -1, self)"
-				"fire input on attack" "!self^$playsound^Zombie.Poison_Swing"
+				"fire input on hit" "!self^RunScriptCode^if(self.GetPlayerClass() != TF_CLASS_CIVILIAN && !self.IsBotOfType(TF_BOT_TYPE)) EntFire(`transform_relay`, `Trigger`, null, -1, self)"
+				"fire input on attack" "!self^$PlaySound^Zombie.Poison_Swing"
 				"fire input on hit name restrict" "player"
 				"is invisible" 1
 			}
-			FireInput 
+			FireInput
 			{
 				Target !self
 				Action runscriptcode
@@ -4810,7 +4889,7 @@ WaveSchedule
 				Blue  255
 			}
 			CharacterAttributes
-			{	
+			{
 				"move speed bonus" 0.5
 				"gesture speed increase" 2
 				"dmg bonus vs buildings" 9999
@@ -4835,7 +4914,7 @@ WaveSchedule
 		Zombie_Burning
 		{
 			Class Pyro
-			Classicon dead_flame_lite
+			ClassIcon dead_flame_lite
 			Name "Burning Zombie"
 			Scale 1
 			Tag explosive_death
@@ -4881,7 +4960,7 @@ WaveSchedule
 				"attach particle effect" 2
 			}
 			CharacterAttributes
-			{		
+			{
 				"gesture speed increase" 0.5
 				"move speed penalty" 0.5
 				"hand scale" 0.01
@@ -4909,7 +4988,7 @@ WaveSchedule
 		Zombie_Chainsaw
 		{
 			Class HeavyWeapons
-			Classicon heavy_chainsaw
+			ClassIcon heavy_chainsaw
 			Name "Maniac"
 			Health 325
 			Scale 1
@@ -4932,7 +5011,7 @@ WaveSchedule
 			Item "Road Block"
 			Item "Chainsaw"
 			SpawnTemplate item_chainsaw
-			FireInput 
+			FireInput
 			{
 				Target !self
 				Action runscriptcode
@@ -4941,7 +5020,7 @@ WaveSchedule
 				Repeats 1
 			}
 			CharacterAttributes //shared for generics
-			{ 
+			{
 				"damage penalty" 0.35 //dropped won't have this
 
 				"weapon always gib" 1
@@ -4961,7 +5040,7 @@ WaveSchedule
 		Zombie_Brute
 		{
 			Class HeavyWeapons
-			Classicon heavy_zombie_arm2_lite
+			ClassIcon heavy_zombie_arm2_lite
 			Name "Brute"
 			Scale 1.5
 			Skin 5
@@ -4980,7 +5059,7 @@ WaveSchedule
 			ItemModel {ItemName "Potato of Labor" Model "models/player/items/heavy/heavy_zombie.mdl"}
 			Item "Medi-Mask"
 			ItemModel {ItemName "Medi-Mask" Model "models/workshop/player/items/heavy/hwn2022_road_rage/hwn2022_road_rage.mdl"}
-			Item "Forgotten King's Pauldrons" 
+			Item "Forgotten King's Pauldrons"
 			Item "Brute Armor"
 			Item "Steel-Toed Stompers"
 			Item "The Persian Persuader"
@@ -4994,7 +5073,7 @@ WaveSchedule
 				Cooldown 30
 				IfHealthBelow 2999
 			}
-			FireInput 
+			FireInput
 			{
 				Target !self
 				Action runscriptcode
@@ -5002,7 +5081,7 @@ WaveSchedule
 				Delay -1
 				Repeats 1
 			}
-			FireInput 
+			FireInput
 			{
 				Target !self
 				Action runscriptcode
@@ -5025,7 +5104,7 @@ WaveSchedule
 				"damage causes airblast" 1
 				"hand scale" 1.25
 				"fire input on hit" "!self^RunScriptCode^EntFire(`wound_relay`, `Trigger`, null, -1, self)"
-				"fire input on attack" "!self^$playsound^Zombie.Knife"
+				"fire input on attack" "!self^$PlaySound^Zombie.Knife"
 				"fire input on hit name restrict" "player"
 				"custom kill icon" "guillotine"
 				"custom hit sound" "Zombie.Break"
@@ -5045,7 +5124,7 @@ WaveSchedule
 				//"mult stun resistance" 0
 				"gesture speed increase" 1.5
 				"airblast vulnerability multiplier" 0.25
-				"override footstep sound set" 7 
+				"override footstep sound set" 7
 				"increased air control" 4
 
 				"can breathe under water" 1
@@ -5061,7 +5140,7 @@ WaveSchedule
 		Zombie_Brute_Intro //no charge
 		{
 			Class HeavyWeapons
-			Classicon heavy_zombie_arm1_lite
+			ClassIcon heavy_zombie_arm1_lite
 			Name "Brute"
 			Scale 1.5
 			Skin 5
@@ -5080,7 +5159,7 @@ WaveSchedule
 			ItemModel {ItemName "Potato of Labor" Model "models/player/items/heavy/heavy_zombie.mdl"}
 			Item "Medi-Mask"
 			ItemModel {ItemName "Medi-Mask" Model "models/workshop/player/items/heavy/hwn2022_road_rage/hwn2022_road_rage.mdl"}
-			Item "Forgotten King's Pauldrons" 
+			Item "Forgotten King's Pauldrons"
 			Item "Brute Armor"
 			Item "Steel-Toed Stompers"
 			Item "The Persian Persuader"
@@ -5102,7 +5181,7 @@ WaveSchedule
 			//	Delay -1
 			//	Repeats 1
 			//}
-			FireInput 
+			FireInput
 			{
 				Target !self
 				Action runscriptcode
@@ -5125,7 +5204,7 @@ WaveSchedule
 				"damage causes airblast" 1
 				"hand scale" 1.25
 				"fire input on hit" "!self^RunScriptCode^EntFire(`wound_relay`, `Trigger`, null, -1, self)"
-				"fire input on attack" "!self^$playsound^Zombie.Knife"
+				"fire input on attack" "!self^$PlaySound^Zombie.Knife"
 				"fire input on hit name restrict" "player"
 				"custom kill icon" "guillotine"
 				"custom hit sound" "Zombie.Break"
@@ -5145,7 +5224,7 @@ WaveSchedule
 				//"mult stun resistance" 0
 				"gesture speed increase" 1.5
 				"airblast vulnerability multiplier" 0.25
-				"override footstep sound set" 7 
+				"override footstep sound set" 7
 				"increased air control" 4
 
 				"can breathe under water" 1
@@ -5161,7 +5240,7 @@ WaveSchedule
 		Zombie_Brute_Solo //solo bugfix
 		{
 			Class HeavyWeapons
-			Classicon heavy_zombie_arm2_lite
+			ClassIcon heavy_zombie_arm2_lite
 			Name "Brute"
 			Scale 1.5
 			Skin 5
@@ -5180,7 +5259,7 @@ WaveSchedule
 			ItemModel {ItemName "Potato of Labor" Model "models/player/items/heavy/heavy_zombie.mdl"}
 			Item "Medi-Mask"
 			ItemModel {ItemName "Medi-Mask" Model "models/workshop/player/items/heavy/hwn2022_road_rage/hwn2022_road_rage.mdl"}
-			Item "Forgotten King's Pauldrons" 
+			Item "Forgotten King's Pauldrons"
 			Item "Brute Armor"
 			Item "Steel-Toed Stompers"
 			Item "The Persian Persuader"
@@ -5194,7 +5273,7 @@ WaveSchedule
 				Cooldown 30
 				IfHealthBelow 2999
 			}
-			FireInput 
+			FireInput
 			{
 				Target !self
 				Action runscriptcode
@@ -5217,7 +5296,7 @@ WaveSchedule
 				"damage causes airblast" 1
 				"hand scale" 1.25
 				"fire input on hit" "!self^RunScriptCode^EntFire(`wound_relay`, `Trigger`, null, -1, self)"
-				"fire input on attack" "!self^$playsound^Zombie.Knife"
+				"fire input on attack" "!self^$PlaySound^Zombie.Knife"
 				"fire input on hit name restrict" "player"
 				"custom kill icon" "guillotine"
 				"custom hit sound" "Zombie.Break"
@@ -5237,7 +5316,7 @@ WaveSchedule
 				//"mult stun resistance" 0
 				"gesture speed increase" 1.5
 				"airblast vulnerability multiplier" 0.25
-				"override footstep sound set" 7 
+				"override footstep sound set" 7
 				"increased air control" 4
 
 				"can breathe under water" 1
@@ -5254,7 +5333,7 @@ WaveSchedule
 		Zombie_Leaper
 		{
 			Class Scout
-			Classicon spy_facepeel_lite
+			ClassIcon spy_facepeel_lite
 			Name "Leaper"
 			Tag bot_leaper
 			Tag blood_death_big
@@ -5282,7 +5361,7 @@ WaveSchedule
 			Item "Facepeeler"
 			Item "Forest Footwear"
 			Item "Leaper Hat"
-			Item "Leaper Back" 
+			Item "Leaper Back"
 			Item "The Imp's Imprint"
 			Item "Basic Spellbook"
 			Item "The Hot Hand"
@@ -5305,7 +5384,7 @@ WaveSchedule
 				Cooldown 20
 				Type "Teleport"
 			}
-			FireInput 
+			FireInput
 			{
 				Target bignet
 				Action RunScriptCode
@@ -5313,7 +5392,7 @@ WaveSchedule
 				Delay -1
 				Repeats 1
 			}
-			FireInput 
+			FireInput
 			{
 				Delay 22
 				Cooldown 20
@@ -5321,7 +5400,7 @@ WaveSchedule
 				Action runscriptcode
 				param "if(self.IsAlive()) Trespasser.UnstuckEntity(self)"
 			}
-			FireInput 
+			FireInput
 			{
 				Target "leaper_relay"
 				Action "trigger"
@@ -5330,7 +5409,7 @@ WaveSchedule
 				Cooldown 8
 				Repeats -1
 			}
-			FireInput 
+			FireInput
 			{
 				Target !self
 				Action runscriptcode
@@ -5391,7 +5470,7 @@ WaveSchedule
 		Zombie_Leaper_Solo //solo bugfix
 		{
 			Class Scout
-			Classicon spy_facepeel_lite
+			ClassIcon spy_facepeel_lite
 			Name "Leaper"
 			Tag bot_leaper
 			Tag blood_death_big
@@ -5419,7 +5498,7 @@ WaveSchedule
 			Item "Facepeeler"
 			Item "Forest Footwear"
 			Item "Leaper Hat"
-			Item "Leaper Back" 
+			Item "Leaper Back"
 			Item "The Imp's Imprint"
 			Item "Basic Spellbook"
 			Item "The Hot Hand"
@@ -5442,7 +5521,7 @@ WaveSchedule
 				Cooldown 20
 				Type "Teleport"
 			}
-			FireInput 
+			FireInput
 			{
 				Target bignet
 				Action RunScriptCode
@@ -5450,7 +5529,7 @@ WaveSchedule
 				Delay -1
 				Repeats 1
 			}
-			FireInput 
+			FireInput
 			{
 				Delay 22
 				Cooldown 20
@@ -5458,7 +5537,7 @@ WaveSchedule
 				Action runscriptcode
 				param "if(self.IsAlive()) Trespasser.UnstuckEntity(self)"
 			}
-			FireInput 
+			FireInput
 			{
 				Target "leaper_relay"
 				Action "trigger"
@@ -5521,7 +5600,7 @@ WaveSchedule
 		Zombie_Doppelganger
 		{
 			Class Scout
-			Classicon spy_d
+			ClassIcon spy_d
 			Tag blood_death_big
 			Skill Expert
 			Scale 1
@@ -5531,12 +5610,12 @@ WaveSchedule
 			Attributes MiniBoss
 			Attributes HoldFireUntilFullReload
 			Attributes UseBossHealthBar
-			
+
 			Attributes AutoJump
 			AutoJumpMin 1
 			AutoJumpMax 4
 			DropWeapon 1
-			
+
 			PainSound "Zombie.Break"
 			AdditionalStepSound "Zombie.Step"
 			DeathSound "@physics/flesh/flesh_bloody_break.wav"
@@ -5544,14 +5623,14 @@ WaveSchedule
 			FireWeapon
 			{
 				Delay -1
-                Cooldown 0
-                Repeats 0
+				Cooldown 0
+				Repeats 0
 				IfSeeTarget 1
-                Duration 0
+				Duration 0
 				Type "Primary"
-			}			
+			}
 			CharacterAttributes
-			{ 
+			{
 				"allow friendly fire" 1
 				"collect currency on kill" 1
 				"stickybomb charge rate" -1.3	//SL fix
@@ -5568,7 +5647,7 @@ WaveSchedule
 		Zombie_Machine_Behemoth
 		{
 			Class HeavyWeapons
-			Classicon heavy_head_nys
+			ClassIcon heavy_head_nys
 			Name "RoBrute"
 			Scale 2
 			Skin 1
@@ -5600,7 +5679,7 @@ WaveSchedule
 			Item "Potato of Labor"
 			ItemModel {ItemName "Potato of Labor" Model "models/player/items/heavy/heavy_zombie.mdl"}
 			Item "Replica Titanium Tank 2020"
-            ItemModel {ItemName "Replica Titanium Tank 2020" Model "models/bots/heavy/bot_heavy_gibby.mdl"}
+			ItemModel {ItemName "Replica Titanium Tank 2020" Model "models/bots/heavy/bot_heavy_gibby.mdl"}
 			StripItemSlot 0
 			StripItemSlot 1
 			PreferClass Soldier	//prefer army
@@ -5636,7 +5715,7 @@ WaveSchedule
 				"weapon always gib" 1
 				"provide on active" 1
 				"hand scale" "0.75"
-				"fire input on attack" "!self^$playsound^Zombie.Boss.Swing"
+				"fire input on attack" "!self^$PlaySound^Zombie.Boss.Swing"
 				"fire input on hit" "!caller^bleedplayer^111"
 				"fire input on hit name restrict" "player"
 				"disable buildings on hit" 1
@@ -5690,7 +5769,7 @@ WaveSchedule
 		Zombie_Virophage
 		{
 			Class Soldier
-			Classicon random_lite
+			ClassIcon random_lite
 			Name "Virophage"
 			Scale 2.3
 			FastUpdate 1
@@ -5724,7 +5803,7 @@ WaveSchedule
 			SpawnTemplate p_viro_base
 			UseCustomModel "models/player/heavy.mdl"
 			NoCrouchButtonRelease 1
-			FireInput 
+			FireInput
 			{
 				Target !self
 				Action runscriptcode
@@ -5735,7 +5814,7 @@ WaveSchedule
 			FireInput
 			{
 				Target "!self"
-				Action "$playsound"
+				Action "$PlaySound"
 				Param "npc/zombie_poison/pz_pain2.wav"
 				Delay 19
 				Cooldown 20
@@ -5745,7 +5824,7 @@ WaveSchedule
 				Delay 20
 				Cooldown 20
 				//IfSeeTarget 1
-				Type "Ball O' Bats"
+				Type "Summon Skeletons"
 			}
 			ItemAttributes
 			{
@@ -5771,12 +5850,12 @@ WaveSchedule
 				"crit vs non burning players" 1
 				"crit vs burning players" 1
 				"sticky arm time penalty" 1.6
-				"max pipebombs increased" 12 
+				"max pipebombs increased" 12
 				"ignores other projectiles" 1
 				"centerfire projectile" 1
 				"add attributes on hit" "hud overlay|effects/jarate_overlay|5"
 				"projectile trail particle" "~eb_spit_goop"
-				"fire input on hit" "!self^$playsound^Halloween.PlayerScream"
+				"fire input on hit" "!self^$PlaySound^Halloween.PlayerScream"
 				"fire input on hit name restrict" "player"
 				"custom hit sound" "npc/barnacle/barnacle_digesting2.wav"
 				"custom weapon fire sound" "Virophage.Spit"
@@ -5792,7 +5871,7 @@ WaveSchedule
 				"melee bounds multiplier" 0.25
 				//"fire rate penalty" 1.5
 				"custom hit sound" "ambient/halloween/male_scream_09.wav"
-				"fire input on hit" "!activator^$playsound^Virophage.Eat"
+				"fire input on hit" "!activator^$PlaySound^Virophage.Eat"
 				"fire input on hit name restrict" "player"
 				"fire input on attack" "!self^RunScriptCode^EntFire(`nom_relay`, `Trigger`, null, -1, self)"
 				"crit vs non burning players" 1
@@ -5800,7 +5879,7 @@ WaveSchedule
 				"custom item model" "models/empty.mdl" //"models/trespasser/burnacle.mdl"
 			}
 			CharacterAttributes
-			{		
+			{
 				"mult projectile count" 3
 				"projectile spread angle penalty" 12
 
@@ -5814,7 +5893,7 @@ WaveSchedule
 				"no_duck" 1
 				"no self effect" 1
 				"mult step height" 3.4
-				"ignore player clip" 1
+				// "ignore player clip" 1
 				"no damage falloff" 1
 				"custom kill icon" "purgatory"
 				"not solid to players" 1
@@ -5839,22 +5918,22 @@ WaveSchedule
 				"override footstep sound set" 0
 			}
 			EventChangeAttributes
-            {
-                //Solo
-                //{
+			{
+				//Solo
+				//{
 				//CharacterAttributes
-                //    {
-                //        "mult projectile count" 1
+				//    {
+				//        "mult projectile count" 1
 				//		"projectile spread angle penalty" 0
-                //    }
-                //}
-            }
+				//    }
+				//}
+			}
 		}
 
 		Zombie_Virophage_Snail
 		{
 			Class Soldier
-			Classicon random_lite
+			ClassIcon random_lite
 			Name "Virophage"
 			Scale 2.3
 			FastUpdate 1
@@ -5893,8 +5972,8 @@ WaveSchedule
 				"melee range multiplier" 0.25
 				"melee bounds multiplier" 0.25
 				//"fire rate penalty" 1.5
-				"custom hit sound" "ambient/halloween/male_scream_09.wav"	
-				"fire input on hit" "!activator^$playsound^Virophage.Eat"
+				"custom hit sound" "ambient/halloween/male_scream_09.wav"
+				"fire input on hit" "!activator^$PlaySound^Virophage.Eat"
 				"fire input on hit name restrict" "player"
 				"fire input on attack" "!self^RunScriptCode^EntFire(`eat_relay`, `Trigger`, null, -1, self)"
 				"crit vs non burning players" 1
@@ -5902,7 +5981,7 @@ WaveSchedule
 				"custom item model" "models/empty.mdl" //"models/trespasser/burnacle.mdl"
 			}
 			CharacterAttributes
-			{		
+			{
 				"move speed penalty" 0.35
 				"dmg taken increased" 0.0025
 				"ignored by enemy sentries" 1
@@ -5942,11 +6021,11 @@ WaveSchedule
 				"override footstep sound set" 0
 			}
 		}
-		
+
 		Machine_Unarmed
 		{
 			Class Soldier
-			Classicon soldier_gib_lite
+			ClassIcon soldier_gib_lite
 			Name "Corrupted"
 			Health 200
 			Tag metal_death
@@ -5970,7 +6049,7 @@ WaveSchedule
 				"fire rate penalty" 1.5
 			}
 			CharacterAttributes
-			{		
+			{
 				"use robot voice" 1			//for gray
 				"crit mod disabled" 0		//for gray
 				"ammo regen" 1				//for gray
@@ -5983,7 +6062,7 @@ WaveSchedule
 		Machine_Emissary
 		{
 			Class Soldier
-			Classicon soldier_gib_lite
+			ClassIcon soldier_gib_lite
 			Name "Corrupted Emissary"
 			Health 650
 
@@ -6007,7 +6086,7 @@ WaveSchedule
 			UseCustomModel models/bots/soldier/bot_soldier_gibby.mdl
 			Item "Emissary Bison"
 			CharacterAttributes
-			{		
+			{
 				"always allow taunt" 1
 				"use robot voice" 1			//for gray
 				"crit mod disabled" 0		//for gray
@@ -6032,9 +6111,9 @@ WaveSchedule
 				Repeats 1
 			}
 			EventChangeAttributes
-            {
-                Proposal
-                {
+			{
+				Proposal
+				{
 					FireInput
 					{
 						Target "corrupted_chatter_1"
@@ -6046,19 +6125,19 @@ WaveSchedule
 					FireInput
 					{
 						Target !self
-						Action $tauntfromitem
+						Action $Tauntfromitem
 						Param "RPS Taunt"
 						Delay 3
 						Cooldown 1.5
 						Repeats 666
 					}
-                }
+				}
 				Scared
 				{
 					FireInput
 					{
 						Target !self
-						Action $removecond 
+						Action $RemoveCond
 						Param 7
 						Delay -1
 						Repeats 1
@@ -6066,7 +6145,7 @@ WaveSchedule
 					FireInput
 					{
 						Target !self
-						Action $tauntfromitem
+						Action $Tauntfromitem
 						Param "Taunt: The Scaredy-cat!"
 						Delay -1
 						Repeats 1
@@ -6076,23 +6155,23 @@ WaveSchedule
 						target scene_emissary
 						action cancelpending
 						Delay -1
-						Repeat 1
+						Repeats 1
 					}
 					FireInput
 					{
 						target scene_emissary_early
 						action trigger
 						Delay 0.5
-						Repeat 1
+						Repeats 1
 					}
 				}
-            }
+			}
 		}
 
 		Machine_Bodyguard
 		{
 			Class Soldier
-			Classicon soldier_gib_lite
+			ClassIcon soldier_gib_lite
 			Name "Corrupted Security"
 			Health 200
 
@@ -6120,7 +6199,7 @@ WaveSchedule
 				"hold fire until full reload" 1
 			}
 			CharacterAttributes
-			{		
+			{
 				"cancel falling damage" 1
 				"use robot voice" 1			//for gray
 				"crit mod disabled" 0		//for gray
@@ -6138,7 +6217,7 @@ WaveSchedule
 				Repeats 1
 			}
 			EventChangeAttributes
-            {
+			{
 				Default
 				{
 					Attributes SuppressFire
@@ -6151,7 +6230,7 @@ WaveSchedule
 						target corrupted_chatter_1
 						action cancelpending
 						Delay -1
-						Repeat 1
+						Repeats 1
 					}
 					WeaponSwitch
 					{
@@ -6175,13 +6254,13 @@ WaveSchedule
 					ActionOverride Mobber
 					UseCustomModel models/bots/soldier/bot_soldier_gibby.mdl
 				}
-            }
+			}
 		}
 
 		Machine_Bomber
 		{
 			Class Soldier
-			Classicon scout_bombrunner
+			ClassIcon scout_bombrunner
 			Name "Corrupted"
 			Health 65
 			Skill Expert
@@ -6200,7 +6279,7 @@ WaveSchedule
 			Item "Bomb Hat"
 			Item "The Scrap Sack"
 			Item "The Hot Hand"
-			FireInput 
+			FireInput
 			{
 				Target !self
 				Action runscriptcode
@@ -6214,7 +6293,7 @@ WaveSchedule
 				"custom item model" "models/workshop/player/items/soldier/taunt_rocket_jockey/taunt_rocket_jockey.mdl"
 			}
 			CharacterAttributes
-			{		
+			{
 				//"bombinomicon effect on death" 1
 				"mult step height" 3.4
 				"never gib" 1
@@ -6227,22 +6306,22 @@ WaveSchedule
 				"not solid to players" 1	//go through reds
 			}
 			EventChangeAttributes
-            {
-                Solo
-                {	
+			{
+				Solo
+				{
 					ItemAttributes
 					{
 						ItemName "The Hot Hand"
 						"custom item model" "models/empty.mdl"
 					}
-                }
-            }
+				}
+			}
 		}
 
 		Machine_Shotgun
 		{
 			Class Soldier
-			Classicon shotgun_lite
+			ClassIcon shotgun_lite
 			Name "Corrupted"
 			Skill Normal
 			MaxVisionRange 500
@@ -6267,7 +6346,7 @@ WaveSchedule
 				"SPELL: set item tint RGB" 5
 			}
 			CharacterAttributes
-			{		
+			{
 				"hidden secondary max ammo penalty" 0.5	//drop fix
 				"use robot voice" 1						//for gray
 				"crit mod disabled" 0					//for gray
@@ -6280,7 +6359,7 @@ WaveSchedule
 		Machine_Shotgun_Charger
 		{
 			Class Soldier
-			Classicon shotgun_lite
+			ClassIcon shotgun_lite
 			Name "Corrupted"
 			Skill Expert
 			//MaxVisionRange 500
@@ -6299,7 +6378,7 @@ WaveSchedule
 			UseMeleeThreatPrioritization 1
 			WeaponRestrictions SecondaryOnly
 			UseCustomModel models/bots/soldier/bot_soldier_gibby.mdl
-			//FireInput 
+			//FireInput
 			//{
 			//	Target !self
 			//	Action runscriptcode
@@ -6314,7 +6393,7 @@ WaveSchedule
 				Duration -1
 			}
 			CharacterAttributes
-			{		
+			{
 				"hidden secondary max ammo penalty" 0.5	//drop fix
 				"use robot voice" 1						//for gray
 				"crit mod disabled" 0					//for gray
@@ -6331,7 +6410,7 @@ WaveSchedule
 		Machine_Battalion
 		{
 			Class Soldier
-			Classicon shotgun_lite
+			ClassIcon shotgun_lite
 			Name "Corrupted Squad Leader"
 			Skill Expert
 			MaxVisionRange 500
@@ -6357,7 +6436,7 @@ WaveSchedule
 				"SPELL: set item tint RGB" 5
 			}
 			CharacterAttributes
-			{		
+			{
 				"use robot voice" 1						//for gray
 				"crit mod disabled" 0					//for gray
 				"ammo regen" 1							//for gray
@@ -6371,7 +6450,7 @@ WaveSchedule
 		Machine_Chainsaw
 		{
 			Class HeavyWeapons
-			Classicon heavy_chainsaw
+			ClassIcon heavy_chainsaw
 			Name "Manic"
 			Health 325
 			Scale 1
@@ -6399,7 +6478,7 @@ WaveSchedule
 				ItemName "Mad Lad"
 				"item style override" 1
 			}
-			FireInput 
+			FireInput
 			{
 				Target !self
 				Action runscriptcode
@@ -6408,7 +6487,7 @@ WaveSchedule
 				Repeats 1
 			}
 			CharacterAttributes //shared for generics
-			{ 
+			{
 				"damage penalty" 0.35 //dropped won't have this
 
 				"always gib" 1
@@ -6424,7 +6503,7 @@ WaveSchedule
 		Machine_Steel
 		{
 			Class Heavyweapons
-			Classicon heavy_steelfist_nys
+			ClassIcon heavy_steelfist_nys
 			Name "Steel Corrupted"
 			Skill Hard
 			Health 900
@@ -6442,7 +6521,7 @@ WaveSchedule
 			CustomEyeGlowColor "255 0 0"
 			UseCustomModel models/bots/heavy/bot_heavy_gibby.mdl
 			CharacterAttributes
-			{		
+			{
 				"use robot voice" 1			//for gray
 				"crit mod disabled" 0		//for gray
 				"ammo regen" 1				//for gray
@@ -6457,7 +6536,7 @@ WaveSchedule
 		Machine_Steel_Money
 		{
 			Class Heavyweapons
-			Classicon heavy_steelfist_cash
+			ClassIcon heavy_steelfist_cash
 			Name "Definitely Corrupted"
 			Skill Hard
 			Health 900
@@ -6484,7 +6563,7 @@ WaveSchedule
 				Delay 1 //important
 				Repeats 1
 			}
-			FireInput 
+			FireInput
 			{
 				Target !self
 				Action runscriptcode
@@ -6492,7 +6571,7 @@ WaveSchedule
 				Delay -1
 				Repeats 1
 			}
-			FireInput 
+			FireInput
 			{
 				Target !self
 				Action runscriptcode
@@ -6539,7 +6618,7 @@ WaveSchedule
 				"set item tint rgb" 7511618
 			}
 			CharacterAttributes
-			{		
+			{
 				"use robot voice" 1			//for gray
 				"crit mod disabled" 0		//for gray
 				"ammo regen" 1				//for gray
@@ -6550,19 +6629,19 @@ WaveSchedule
 				"increased jump height" 1.3
 			}
 			EventChangeAttributes
-            {
+			{
 				Solo
-                {
+				{
 					ActionOverride Mobber
-                }
-            }
+				}
+			}
 		}
 
 		Machine_Uber
 		{
 			Class Medic
 			Name "Uber Corrupted"
-			Classicon medic_uber
+			ClassIcon medic_uber
 			Health 150
 			Tag metal_death
 			Tag metal_hit
@@ -6583,10 +6662,10 @@ WaveSchedule
 			FireWeapon
 			{
 				Delay -1
-                Cooldown 0
-                Repeats 0
+				Cooldown 0
+				Repeats 0
 				IfSeeTarget 1
-                Duration 0
+				Duration 0
 				Type "Primary"
 			}
 			ItemAttributes
@@ -6642,7 +6721,7 @@ WaveSchedule
 			Item "UPGRADEABLE TF_WEAPON_ROCKETLAUNCHER"
 			UseCustomModel models/bots/soldier_boss/bot_soldier_boss_gibby.mdl
 			Attributes MiniBoss
-			FireInput 
+			FireInput
 			{
 				Target !self
 				Action runscriptcode
@@ -6650,7 +6729,7 @@ WaveSchedule
 				Delay -1
 				Repeats 1
 			}
-			FireInput 
+			FireInput
 			{
 				Target !self
 				Action runscriptcode
@@ -6671,7 +6750,7 @@ WaveSchedule
 				"use robot voice" 1			//for gray
 				"crit mod disabled" 0		//for gray
 				"ammo regen" 1				//for gray
-				"voice pitch scale" 0	
+				"voice pitch scale" 0
 				"move speed bonus" 0.5
 				//"mult stun resistance" 0
 				"damage force reduction" 0
@@ -6685,7 +6764,7 @@ WaveSchedule
 		Machine_Giant_Rapid
 		{
 			Class Soldier
-			Classicon "soldier_spammer"
+			ClassIcon "soldier_spammer"
 			Name "Giant Rapid Corrupted"
 			Skill Expert
 			Health 2500
@@ -6705,7 +6784,7 @@ WaveSchedule
 			Item "UPGRADEABLE TF_WEAPON_ROCKETLAUNCHER"
 			UseCustomModel models/bots/soldier_boss/bot_soldier_boss_gibby.mdl
 			Attributes MiniBoss
-			FireInput 
+			FireInput
 			{
 				Target !self
 				Action runscriptcode
@@ -6713,7 +6792,7 @@ WaveSchedule
 				Delay -1
 				Repeats 1
 			}
-			//FireInput 
+			//FireInput
 			//{
 			//	Target !self
 			//	Action runscriptcode
@@ -6738,7 +6817,7 @@ WaveSchedule
 				"use robot voice" 1			//for gray
 				"crit mod disabled" 0		//for gray
 				"ammo regen" 1				//for gray
-				"voice pitch scale" 0	
+				"voice pitch scale" 0
 				"move speed bonus" 0.5
 				//"mult stun resistance" 0
 				"damage force reduction" 0
@@ -6804,10 +6883,18 @@ WaveSchedule
 				"increased jump height" 1.3
 				"override footstep sound set" 0
 			}
+			FireInput
+			{
+				Target !self
+				Action "RunScriptCode"
+				Param "self.AddCustomAttribute(`no_attack`, 1, 13)"
+				Delay -1
+				Repeats 1
+			}
 			EventChangeAttributes
-            {
-                Solo
-                {
+			{
+				Solo
+				{
 					FireInput
 					{
 						Target !self
@@ -6821,9 +6908,9 @@ WaveSchedule
 						ItemName "UPGRADEABLE TF_WEAPON_ROCKETLAUNCHER"
 						"damage bonus" 2
 					}
-                }
+				}
 				Gray
-                {
+				{
 					FireInput
 					{
 						Target !activator
@@ -6869,13 +6956,13 @@ WaveSchedule
 						"custom weapon fire sound" "MVM.GiantSoldierRocketShootCrit"
 						"projectile trail particle" "eyeboss_projectile"
 					}
-                }
+				}
 				RevertGray
-                {
+				{
 					FireInput
 					{
 						Target !activator
-						Action $removecond
+						Action $RemoveCond
 						Param 159
 						Delay 0
 						Repeats 1
@@ -6883,7 +6970,7 @@ WaveSchedule
 					FireInput
 					{
 						Target !activator
-						Action $removecond
+						Action $RemoveCond
 						Param 36
 						Delay 0
 						Repeats 1
@@ -6909,8 +6996,8 @@ WaveSchedule
 						ItemName "UPGRADEABLE TF_WEAPON_ROCKETLAUNCHER"
 						"always crit" 1
 					}
-                }
-            }
+				}
+			}
 		}
 	}
 }
