@@ -504,7 +504,7 @@ Real?
 		// doesn't work. this fucking sucks actually
 		"custom item model"			"models/workshop/weapons/c_models/c_switchblade/c_switchblade.mdl"
 		"custom projectile model"	"models/workshop/weapons/c_models/c_switchblade/c_switchblade.mdl"
-		"damage bonus"	2
+		"damage bonus"	1.5
 		"effect bar recharge rate increased"	0
 	}
 	CustomWeapon	// actually I have no idea why I'm putting this here
@@ -514,7 +514,7 @@ Real?
 		"use original class weapon animations" 1
 		"custom item model" "models/empty.mdl"
 		"crit from behind"	1
-		"damage bonus"		2
+		"damage bonus"		1.5
 		"mult smack time"	0.1
 		"damage causes airblast"	1
 	}
@@ -3041,6 +3041,9 @@ Real?
 
 				// stop fucking taunting during the cutscene
 				"OnTrigger"		"@f@filter_redteam@player,$RemoveCond,7,0,-1"
+				"OnTrigger"		"@f@filter_redteam@player,$WeaponSwitchSlot,0,7,-1"
+				"OnTrigger"		"@f@filter_redteam@player,$WeaponSwitchSlot,1,7.5,-1"
+				"OnTrigger"		"@f@filter_redteam@player,$WeaponSwitchSlot,2,8,-1"
 				"OnTrigger"		"@f@filter_redteam@player,$RemoveCond,7,1,-1"
 				"OnTrigger"		"@f@filter_redteam@player,$RemoveCond,7,2,-1"
 				"OnTrigger"		"@f@filter_redteam@player,$RemoveCond,7,3,-1"
@@ -9256,6 +9259,18 @@ Real?
 		}
 		WaveSpawn
 		{
+			Name	ezclear
+			WaitForAllSpawned	wave5b
+			Support		Limited
+			TotalCount	0
+			MaxActive	0
+			SpawnCount	0
+			WaitBeforeStarting	25
+			FirstSpawnMessage	"{yellow}[NOTICE] Typing '!hiderank' in chat will disable the rank from your hud. Use this if you have a missing texture on your screen!"
+			FirstSpawnWarningSound	"ui/cyoa_ping_available.wav"
+		}
+		WaveSpawn
+		{
 			Name	wave1_aw
 			TotalCurrency	50
 			TotalCount	8
@@ -9382,7 +9397,7 @@ Real?
 			WaitForAllDead	wave1a
 			TotalCurrency	50
 			TotalCount	30
-			MaxActive	12
+			MaxActive	10
 			SpawnCount	3
 			WaitBetweenSpawns	3
 			Where	flankers
@@ -10367,8 +10382,8 @@ Real?
 			TotalCount	0
 			MaxActive	0
 			SpawnCount	0
-			WaitBeforeStarting	5
-			FirstSpawnMessage	"{yellow}Combat Tanks DO NOT deploy and will instead idle at hatch to pave the way for bots."
+			WaitBeforeStarting	25
+			FirstSpawnMessage	"{yellow}[WARNING] Combat Tanks DO NOT deploy and will instead idle at hatch to pave the way for bots."
 			FirstSpawnWarningSound	"ui/cyoa_ping_available.wav"
 		}
 		WaveSpawn
@@ -10767,7 +10782,7 @@ Real?
 				TFBot
 				{
 					Class		Heavyweapons
-					Skill		Normal
+					Skill		Easy
 					Item		"Tomislav"
 					Item		"Capone's Capper"
 					Name		"Tomislav Heavy"
@@ -10880,7 +10895,7 @@ Real?
 		WaveSpawn
 		{
 			Name	wave6c
-			WaitForAllSpawned	wave6b_g
+			WaitForAllDead	wave6b_g
 			TotalCurrency	100
 			Support		1
 			TotalCount	100	// trolling
