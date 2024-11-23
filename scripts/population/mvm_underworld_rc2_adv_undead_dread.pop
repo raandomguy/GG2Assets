@@ -27,54 +27,7 @@ WaveSchedule
 	
 	PrecacheSound "sfx_supermove.wav"
 	
-	UpgradeStationKeepWeapons 1  
-	
-	// judging v
-	
-	// ItemBlacklist  
-	// {
-		// SimilarToItem "The Phlogistinator"
-		// SimilarToItem "The Ubersaw"
-	// }
-	
-	// DisallowUpgrade	"applies snare effect"  
-	// DisallowUpgrade	"ubercharge"  
-	// DisallowUpgrade	"critboost"  
-	// DisallowUpgrade	"mad milk syringes"  
-	// DisallowUpgrade	"generate rage on heal"  
-	// DisallowUpgrade	"uber duration bonus" 
-	// DisallowUpgrade  
-	// {
-		// Upgrade "effect bar recharge rate increased"
-		// ClassName "tf_weapon_jar"
-		// ClassName "tf_weapon_jar_milk"
-	// }
-	// DisallowUpgrade	  
-	// {
-		// Upgrade "explosive sniper shot"
-		// ClassName "tf_weapon_sniperrifle"
-		// ClassName "tf_weapon_sniperrifle_decap"
-	// }
-	// DisallowUpgrade	  
-	// {
-		// Upgrade "rocket specialist"
-		// SimilarToItem "The Beggar's Bazooka"
-	// }
-	
-	// judging ^
-	
-	// extra unofficial restrictions v
-	
-	// MaxRedPlayers 5
-	
-	// ClassLimit
-	// {
-		// Spy 0
-	// }
-	
-	// DisallowUpgrade "airblast pushback scale"
-	
-	// extra unofficial restrictions ^
+	UpgradeStationKeepWeapons 1 [$SIGSEGV]
 	
 	Mission
 	{
@@ -618,7 +571,7 @@ WaveSchedule
 			TotalCount 16
 			WaitForAllSpawned "W1D-2"
 			WaitBeforeStarting 10
-			WaitBetweenSpawns 2.5
+			WaitBetweenSpawns 2.25
 			TotalCurrency 50
 			Support 1
 			TFBot
@@ -1017,11 +970,6 @@ WaveSchedule
 				}
 			}
 		}
-		WaveSpawn
-		{
-			Support 1
-			TFBot { ClassIcon dead_blu_lite }
-		}
 	}
 	Wave // WAVE 3
 	{
@@ -1130,7 +1078,7 @@ WaveSchedule
 			TotalCount 24
 			WaitForAllDead "W3B-2"
 			WaitBeforeStarting 0
-			WaitBetweenSpawns 8
+			WaitBetweenSpawns 7
 			Support 1
 			TotalCurrency 50
 			FirstSpawnOutput
@@ -1190,12 +1138,12 @@ WaveSchedule
 				TFBot
 				{
 					Class Heavyweapons
-					Skill Normal
+					Skill Hard
 				}
 				TFBot
 				{
 					Class Heavyweapons
-					Skill Normal
+					Skill Hard
 				}
 			}
 		}
@@ -1209,7 +1157,7 @@ WaveSchedule
 			TotalCount 21
 			WaitForAllDead "W3B-2"
 			WaitBeforeStarting 35
-			WaitBetweenSpawns 10
+			WaitBetweenSpawns 9
 			Support 1
 			TotalCurrency 50
 			FirstSpawnOutput
@@ -1464,11 +1412,6 @@ WaveSchedule
 					Template T_TFBot_Giant_Medic_Shotgun
 				}
 			}
-		}
-		WaveSpawn
-		{
-			Support 1
-			TFBot { ClassIcon dead_blu_lite }
 		}
 	}
 	Wave // WAVE 4
@@ -1741,7 +1684,7 @@ WaveSchedule
 			MaxActive 2
 			TotalCount 2
 			WaitForAllSpawned "W4C-2"
-			WaitBeforeStarting 40
+			WaitBeforeStarting 30
 			WaitBetweenSpawns 0
 			TotalCurrency 50
 			DoneOutput
@@ -1885,11 +1828,6 @@ WaveSchedule
 				Attributes AlwaysCrit
 			}
 		}
-		WaveSpawn
-		{
-			Support 1
-			TFBot { ClassIcon dead_blu_lite }
-		}
 	}
 	Wave // BONUS SECRET WAVE
 	{
@@ -1943,6 +1881,7 @@ WaveSchedule
 					"override footstep sound set" 2
 					"airblast vertical vulnerability multiplier" 0.1
 					"rage giving scale" 0.1
+					"cannot be sapped" 1
 				}
 				
 				Tag hatch_snatcher
@@ -2292,6 +2231,7 @@ WaveSchedule
 			WaitForAllDead "W5B-2"
 			WaitBeforeStarting 45
 			WaitBetweenSpawns 10
+			Support Limited
 			TotalCurrency 100
 			TFBot
 			{
@@ -2426,17 +2366,79 @@ WaveSchedule
 		// Checkpoint Yes
 		// WaveSpawn
 		// {
+			// Name "W4F"
 			// Where spawnbot
-			// SpawnCount 1
-			// MaxActive 1
+			// SpawnCount 5
+			// MaxActive 5
 			// TotalCount 300
+			// WaitBeforeStarting 1
+			// WaitBetweenSpawns 0
+			// TotalCurrency 0
+			// Squad
+			// {
+				// TFBot
+				// {
+					// Class Scout
+					// Tag test
+				// }
+				// TFBot
+				// {
+					// Class Soldier
+					// Tag test
+				// }
+				// TFBot
+				// {
+					// Class Pyro
+					// Tag test
+				// }
+				// TFBot
+				// {
+					// Class Demoman
+					// Tag test
+				// }
+				// TFBot
+				// {
+					// Class Heavyweapons
+					// Tag test
+				// }
+			// }
+		// }
+		// WaveSpawn
+		// {
+			// Name "W4-Support"
+			// Where spawnbot_samurai
+			// SpawnCount 3
+			// MaxActive 21
+			// TotalCount 21
 			// WaitBeforeStarting 0
-			// WaitBetweenSpawns 3600
+			// WaitBetweenSpawns 0.5
+			// Support 1
 			// TotalCurrency 0
 			// TFBot
 			// {
-				// Template T_TFBot_Sniper_Huntsman_Stun
-				// Tag test
+				// Template T_TFBot_Soldier_Samurai
+				// Tag samurai_minion
+				// ClassIcon noicon
+				// Attributes AlwaysCrit
+			// }
+		// }
+		// WaveSpawn
+		// {
+			// Name "W4-Support"
+			// Where spawnbot_samurai_2
+			// SpawnCount 2
+			// MaxActive 20
+			// TotalCount 20
+			// WaitBeforeStarting 0
+			// WaitBetweenSpawns 0.5
+			// Support 1
+			// TotalCurrency 0
+			// TFBot
+			// {
+				// Template T_TFBot_Soldier_Samurai
+				// Tag samurai_minion
+				// ClassIcon noicon
+				// Attributes AlwaysCrit
 			// }
 		// }
 	// }
