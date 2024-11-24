@@ -561,7 +561,7 @@ Bread
                 "TeamNum"    "2"
             }
             filter_multi 
-            { // is red
+            {
                 "targetname" "filter_is_red_player"
                 "Negated"    "0"
                 "FilterType" "0" //and                
@@ -593,7 +593,7 @@ Bread
                 "condition"  "57" //WoF uber
             }
             filter_multi 
-            { // is red, AND is NOT ubered
+            { // is red player, AND is NOT ubered
                 "targetname" "filter_is_red_not_ubered"
                 "Negated"    "0"
                 "FilterType" "0" //and                
@@ -1246,6 +1246,20 @@ Bread
             // }
             OnSpawnOutput
             {
+                Target "!parent"
+                Action "AddOutput"
+                Param  "targetname breadtank"
+                Delay  0.1
+            }
+            // OnSpawnOutput
+            // {
+            //     Target "!parent"
+            //     Action "RunScriptCode"
+            //     Param  "ClientPrint(null,3,self.tostring())"
+            //     Delay  0.2
+            // }
+            OnSpawnOutput
+            {
                 Target "!activator"
                 Action "AddOutput"
                 Param  "OnUser1 erupt_relay:Trigger:0:0:-1,0,-1" 
@@ -1355,6 +1369,8 @@ Bread
             logic_relay
             {
                 "targetname" "breadintro"
+                "OnTrigger"  "tf_gamerules,RunScriptCode,SwitchMedsOffMedigun(),1.9,-1"
+                //"OnTrigger"  "!activatorRunScriptCodeSwitchMedsOffMedigun()0.2-1"
                 "OnTrigger"  "fadeforcutscene,trigger,,1.3"
                 "OnTrigger"  "digtimer,Enable,,1.7,-1"
                 "OnTrigger"  "camera*,$EnableAll,,2"
@@ -6286,138 +6302,6 @@ Bread
         Z 120
         TeamNum 3
     }
-    // Wave // Wave 0
-    // {
-    //     StartWaveOutput
-    //     {
-    //         Target wave_start_relay_ironman 
-    //         Action Trigger
-    //     }
-
-    //     DoneOutput
-    //     {
-    //         Target wave_finished_relay
-    //         Action Trigger
-    //     }
-
-    //     InitWaveOutput
-    //     {
-    //         Target gamerules
-    //         Action RunScriptCode
-    //         Param "
-    //             EntFire(`bombpath_choose_relay`, `Disable`, null, 0)
-    //             EntFire(`bombpath_choose_relay`, `Disable`, null, 0.1)
-    //             EntFire(`bombpath_choose_relay`, `Disable`, null, 0.2)
-
-
-    //             EntFire(`bombpath_clearall_relay`, `Trigger`, null, 0.9)
-    //             EntFire(`bombpath_arrows_clear_relay`, `Trigger`, null, 0.9)
-    //             EntFire(`bombpath_left`, `Trigger`, null, 1.0)
-    //             ClientPrint(null,3,`\x078ff347 The yeast has risen and it is hungry...`)
-    //             ClientPrint(null,3,`\x078ff347 Beware the digestive Acid: it makes you bleed and coats you in Jarate`)
-    //             ClientPrint(null,3,`\x078ff347 However, it also makes you and zombies move faster!`)  
-    //             TextualTimer.SetParams({
-    //                 automatic = false 
-    //             })              
-    //         "
-    //     }
-    //     WaveSpawn
-    //     {
-    //         Name "w1es"
-    //         //WaitForAllSpawned "w1b2"
-    //         Where spawnbot_void1
-    //         Where spawnbot_void2
-    //         Where spawnbot_void3
-    //         Where spawnbot_void4
-    //         TotalCount 21
-    //         MaxActive 1
-    //         SpawnCount 1
-    //         WaitBeforeStarting 0
-    //         WaitBetweenSpawns 8
-    //         TotalCurrency 0
-    //         Support 1
-    //         TFBot
-    //         {
-    //             Item "Bread Biter"
-    //             Item "Pop-eyes"
-    //             //Attributes AlwaysFireWeapon
-
-    //             Class Pyro
-    //             Name "ok wise guy"
-    //             Skill Expert
-    //             Health 2000
-    //             UseBestWeapon 1
-    //             Scale 1.5
-    //             //WeaponRestrictions PrimaryOnly
-    //             //WeaponRestrictions SecondaryOnly
-    //             Attributes MiniBoss
-    //             Action Mobber
-    //             Item "Festive Flare Gun"
-    //             ExtAttr AlwaysFireWeaponAlt
-    //             //Attributes DisableDodge
-    //             CharacterAttributes
-    //             {
-    //                 "move speed bonus"	0.8
-    //                 "damage force reduction" 0.6
-    //                 "airblast vulnerability multiplier" 0.6
-    //                 //"override footstep sound set" 6
-    //                 "damage causes airblast" 1
-    //             }
-    //             ItemAttributes
-    //             {
-    //                 ItemName "Festive Flare Gun"
-    //                 "Is_Passive_Weapon" 1
-    //                 "fire rate bonus" 0.75
-    //                 "faster reload rate" 0.75
-    //             }
-    //             InterruptAction [$SIGSEGV] // Stop current bot ai and force the bot to move to a location
-	// 			{
-	// 				Target "-4293 -8498 -5129" //"tent_spot_void1" // Move target location
-	// 				// Target "targetent" // Entity / bot / class name as an alternative. Also: RandomEnemy, ClosestPlayer
-	// 				AimTarget "ClosestPlayer" // Where the bot should look at
-	// 				KillAimTarget 1 // Attack aim target (Default: 0)
-	// 				Delay 0 // Time before the first task starts. Must be above 0, or it will not execute (Default: 10)
-    //                 Repeats 0 // How many times should bot do the task in total (Default: 0 - Infinite)
-    //                 Cooldown 1 //Time between each task (Default: 10)
-	// 				Duration 10 // How long should the ai be interrupted
-	// 				WaitUntilDone 1 // If set, duration timer only starts when the bot moves to the target location or the aim target is killed (Default: 0)
-	// 				Distance 100 // How close should bot move to the target (Default: 0)
-	// 				AddToQueue 1 // If there is already another interrupt action active, start this action after previous interrupt action ends (Default: 0)
-	// 				// StopCurrentInterruptAction 1 // If there is already another interrupt action active, completely stop previous action instead of suspending it (Default: 0)
-	// 			}
-    //         }
-    //     }
-    //     WaveSpawn // Dummy
-    //     {
-    //         WaitForAllDead ""
-    //         TotalCount 0
-    //         SpawnCount 0
-    //         WaitBeforeStarting 200
-        
-    //         StartWaveWarningSound ""
-    //         FirstSpawnWarningSound ""
-        
-    //     }
-    //     //         WaveSpawn
-    //     // {
-    //     //     Name "w1d1"
-    //     //     WaitForAllSpawned "w1b1"
-    //     //     Where spawnbot
-    //     //     TotalCount 4
-    //     //     MaxActive 2
-    //     //     SpawnCount 1
-    //     //     WaitBeforeStarting 0
-    //     //     WaitBetweenSpawns 0
-    //     //     TotalCurrency 1000        
-
-    //     //     TFBot
-    //     //     {
-    //     //         Template T_TFBot_Sniper_Giant_Acid_Huntsman_Burst
-    //     //         Item "Bread Biter"
-    //     //     }
-
-    //     // }
-    // }
 
     // Wave 1 - 1700 Currency
     Wave
@@ -6444,7 +6328,6 @@ Bread
                 EntFire(`bombpath_choose_relay`, `Disable`, null, 0)
                 EntFire(`bombpath_choose_relay`, `Disable`, null, 0.1)
                 EntFire(`bombpath_choose_relay`, `Disable`, null, 0.2)
-
 
                 EntFire(`bombpath_clearall_relay`, `Trigger`, null, 0.9)
                 EntFire(`bombpath_arrows_clear_relay`, `Trigger`, null, 0.9)
@@ -8101,7 +7984,7 @@ Bread
             TotalCount 1
             MaxActive 1
             SpawnCount 1
-            WaitBeforeStarting 60 //60
+            WaitBeforeStarting 60
             WaitBetweenSpawns 0
         
             TotalCurrency 0
@@ -8130,7 +8013,7 @@ Bread
             TotalCount 1
             MaxActive 1
             SpawnCount 1
-            WaitBeforeStarting 66 //66
+            WaitBeforeStarting 66
             WaitBetweenSpawns 0
         
             TotalCurrency 0

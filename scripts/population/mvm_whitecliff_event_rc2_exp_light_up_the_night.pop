@@ -9260,12 +9260,10 @@ Real?
 		WaveSpawn
 		{
 			Name	ezclear
-			WaitForAllSpawned	wave5b
 			Support		Limited
 			TotalCount	0
 			MaxActive	0
 			SpawnCount	0
-			WaitBeforeStarting	25
 			FirstSpawnMessage	"{yellow}[NOTICE] Typing '!hiderank' in chat will disable the rank from your hud. Use this if you have a missing texture on your screen!"
 			FirstSpawnWarningSound	"ui/cyoa_ping_available.wav"
 		}

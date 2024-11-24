@@ -2,6 +2,7 @@
 #base robot_standard.pop
 #base robot_giant.pop
 #base robot_stardust_vscript.pop
+//#base judge_restricts_v2.pop
 //#base overclocks_stardust.pop
 
 WaveSchedule
@@ -592,7 +593,7 @@ WaveSchedule
     //             {
     //                 try IncludeScript(format(`conjuring_scripts/%s`, path), _root) catch(e) printl(e)
     //             }
-    //             IncludeCustom(`mvm_creepside_b2_adv_catastrophic_conjuring_tags.nut`)
+    //             
     //             IncludeCustom(`creepside_adv.nut`)
     //             ClientPrint(null,3,`\x0799CCFMWARNING! The bomb will STOP RESETTING when the wave nears the end!`)
 
@@ -677,6 +678,7 @@ WaveSchedule
                 {
                     try IncludeScript(format(`conjuring_scripts/%s`, path), _root) catch(e) printl(e)
                 }
+                
                 IncludeCustom(`creepside_adv.nut`)
                 ClientPrint(null,3,`\x0799CCFMWARNING! The bomb will STOP RESETTING when the wave nears the end!`)
 
@@ -1062,6 +1064,7 @@ WaveSchedule
                 {
                     try IncludeScript(format(`conjuring_scripts/%s`, path), _root) catch(e) printl(e)
                 }
+                
                 IncludeCustom(`creepside_adv.nut`)
 
                 MissionAttrs
@@ -1437,6 +1440,7 @@ WaveSchedule
                 {
                     try IncludeScript(format(`conjuring_scripts/%s`, path), _root) catch(e) printl(e)
                 }
+                
                 IncludeCustom(`creepside_adv.nut`)
 
                 MissionAttrs
@@ -2045,6 +2049,7 @@ WaveSchedule
                 {
                     try IncludeScript(format(`conjuring_scripts/%s`, path), _root) catch(e) printl(e)
                 }
+                
                 IncludeCustom(`merasmus_boss.nut`)
                 IncludeCustom(`creepside_adv.nut`)
 
@@ -2116,15 +2121,16 @@ WaveSchedule
                 Attributes UseBossHealthBar
                 ClassIcon timer_lite	
                 Health 300
+                Health 600 [$SIGSEGV] 
                 Name "Timer"
                 WeaponRestrictions MeleeOnly
                 Tag "bot_timer"
-                Tag "bot_dummy"
                 // Tag "popext_spawnhere|-1214.1 3923.5 554.7"
                 // Tag "popext_usecustommodel|models/empty.mdl"
                 CharacterAttributes
                 {
                     "active health degen" -1
+                    "is suicide counter" 1 [$SIGSEGV] 
                     "dmg taken from bullets increased" 0
                     "dmg taken from fire increased" 0
                     "dmg taken from crit increased" 0
@@ -2137,7 +2143,6 @@ WaveSchedule
                     "airblast vertical vulnerability multiplier" 0
                     "rage giving scale" 0
                     "cannot be backstabbed" 1
-                    "dmg from melee increased" 0
 
                     "voice pitch scale" 0
                     "no_attack" 1

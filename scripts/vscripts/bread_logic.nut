@@ -640,6 +640,23 @@ for (local i = 1, player; i <= MaxClients().tointeger(); i++)
         // PopExtUtil.AddThinkToEnt(player, "BreadPlayerThink")
     }
 }
+
+::SwitchMedsOffMedigun <- function() {
+    for (local i = 1, player; i <= MaxClients().tointeger(); i++)
+    {
+        if (player = PlayerInstanceFromIndex(i), player && player.GetTeam() == 2 && player.GetPlayerClass() == Constants.ETFClass.TF_CLASS_MEDIC)
+        {
+            for (local i = 0; i < 8; i++)
+            {
+                local weapon = NetProps.GetPropEntityArray(player, "m_hMyWeapons", i)
+                if (weapon == null || !weapon.IsMeleeWeapon())
+                    continue
+                player.Weapon_Switch(weapon)
+                break
+            }
+        }
+    }
+}
 ::BreadPlayerThink <- function() {
     //if(!ClaudzUtil.IsPlayerAlive(self)) return
 
