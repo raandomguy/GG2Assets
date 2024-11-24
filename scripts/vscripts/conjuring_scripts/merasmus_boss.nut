@@ -7,6 +7,8 @@
 // all by stardustspy with some help
 //Night Fight Arena - Clash Royale OST Soundtrack Theme (Season 63)
 
+::MASK_SOLID <- 33570827
+
 PrecacheModel("models/props_mvm/robot_spawnpoint_warning.mdl")
 PrecacheModel("models/empty.mdl")
 PrecacheModel("models/bots/skeleton_sniper/skeleton_sniper_fixed.mdl")
@@ -105,7 +107,7 @@ function TimerTag()
             local origin = bot.GetOrigin()
             local nav_delete = {}
 
-            bot.Teleport(true, Vector(-355, 2233, 673), false, QAngle(), false, Vector())
+            bot.Teleport(true, Vector(-1139, 3988, 544), false, QAngle(), false, Vector())
             bot.DisableDraw()
             bot.SetMoveType(MOVETYPE_NOCLIP + MOVETYPE_FLY, MOVECOLLIDE_DEFAULT) // completely stops a player in place
             bot.SetCollisionGroup(13)
@@ -279,6 +281,7 @@ function RespawnBombCarrier()
         "obj_sentrygun" : 1
         "obj_dispenser": 1
         "obj_teleporter" : 1
+        "entity_medigun_shield" : 1
     }
 
     SetPropBool(self, "m_bForcedSkin", true)
@@ -535,7 +538,7 @@ function RespawnBombCarrier()
         end    = eyepos_end
         hullmin = Vector(-10, -10, -10)
         hullmax = Vector(10, 10, 10)
-        //mask = -1 
+        mask = 33636363
         ignore = self
     }
     TraceHull(eyetrace)
@@ -543,7 +546,6 @@ function RespawnBombCarrier()
     function SpawnLaser(ent, rand_intmin, rand_intmax) 
     {
         local sound_range = (40 + (20 * log10(300 / 36.0))).tointeger();
-        
         
         local target = SpawnEntityFromTable("info_target", 
         {
@@ -638,6 +640,27 @@ function RespawnBombCarrier()
             {
                 local enemy = eyetrace.enthit
 
+                if (enemy.GetClassname() == "entity_medigun_shield")
+                {
+                    printl(enemy)
+                    local shield_owner = enemy.GetOwner()
+                    printl(shield_owner)
+                    local rage = shield_owner.GetRageMeter()
+
+                    if (laser_mode == 1)
+                    {
+                        shield_owner.AddCustomAttribute("increase buff duration HIDDEN", 0.17, 0.09)
+                    }
+                    else 
+                    { 
+                        shield_owner.AddCustomAttribute("increase buff duration HIDDEN", 0.39, 0.3)
+                    }
+
+                    // NetProps.SetPropBool(shield_owner, "m_bRageDraining", false)
+                    // shield_owner.SetRageMeter(33)
+                    // NetProps.SetPropFloat(shield_owner, "m_flRageMeter", 0)
+                }
+                
                 if (enemy.GetTeam() != self.GetTeam() && enemy.GetTeam() != TEAM_SPECTATOR)
                 {
                     if (laser_mode == 0)
@@ -1166,6 +1189,7 @@ function RespawnBombCarrier()
         "obj_sentrygun" : 1
         "obj_dispenser": 1
         "obj_teleporter" : 1
+        "entity_medigun_shield" : 1
     }
     for (local ent; ent = FindInSphere(ent, origin, 150);)
     {
@@ -1224,6 +1248,7 @@ function RespawnBombCarrier()
         "obj_sentrygun" : 1
         "obj_dispenser": 1
         "obj_teleporter" : 1
+        "entity_medigun_shield" : 1
     }
 
     if (touched == true)
@@ -1367,6 +1392,7 @@ function ApplyThunderThink(player, caster)
             "obj_sentrygun" : 1
             "obj_dispenser": 1
             "obj_teleporter" : 1
+            "entity_medigun_shield" : 1
         }
         //ambient\energy\electric_loop.wav
         local sound_range = (40 + (20 * log10(3000 / 36.0))).tointeger();
@@ -1383,7 +1409,7 @@ function ApplyThunderThink(player, caster)
             end    = thunder_cloud.GetOrigin() + Vector(0, 0, -380)
             hullmin = Vector(-10, -10, -10)
             hullmax = Vector(10, 10, 10)
-            //mask = -1 
+            mask = -1 
             ignore = self
         }
 
@@ -1918,6 +1944,7 @@ function ApplyThunderThink(player, caster)
         "obj_sentrygun" : 1
         "obj_dispenser": 1
         "obj_teleporter" : 1
+        "entity_medigun_shield" : 1
     }
 
     function BossSetup() 
