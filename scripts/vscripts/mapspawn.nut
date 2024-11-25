@@ -165,7 +165,7 @@ EntFireByHandle(::__potato.hWorldspawn, "RunScriptCode",
 // They should probably become more integrated with this script eventually.
 try IncludeScript("stringtofile.nut") catch (_) {}
 try IncludeScript("contracts.nut") catch (_) {}
-try IncludeScript("vpi/vpi.nut") catch (_) {}
+// try IncludeScript("vpi/vpi.nut") catch (_) {}
 // The modules here can be found in the "vscripts/potato" folder.
 // They are not dependent on each other.
 
