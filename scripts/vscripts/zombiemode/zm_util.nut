@@ -78,6 +78,7 @@ const POWERUP_TIME = 30;
 		self.SetCustomModelWithClassAnimations(PlayerModels[playerclass])
 		scope.Preserved.activeweapon = wep
 		SetPropInt(self,"m_nRenderMode",0)
+		SetPropInt(self,"Alpha",255)
 		return
 	}
 	if (!(wep in AnimationTable)) return
@@ -636,6 +637,7 @@ const POWERUP_TIME = 30;
 
 ::SpawnPowerup <- function(player)
 {
+	if (player.GetScriptScope().Preserved.isenteringlevel == 1) return
 	EmitSoundEx
 	({
 		sound_name = "misc/halloween/merasmus_spell.wav",
@@ -768,6 +770,7 @@ const POWERUP_TIME = 30;
 	local spots = []
 	local target = null
 	local targetnav = {}
+	local filternav = {}
 	local minareasize = 300
 	foreach (player in PopExtUtil.HumanArray)
 	{
@@ -784,14 +787,22 @@ const POWERUP_TIME = 30;
 	self.Taunt(0,11)
 	self.Taunt(0,11)
 	self.AddCustomAttribute("no_attack", 1, 3)
-	self.AddCustomAttribute("mult_player_movespeed_active", 0.0001, 3)
+//	self.AddCustomAttribute("mult_player_movespeed_active", 0.0001, 3)
 	
 	GetNavAreasInRadius(target.GetOrigin(),500,targetnav)	// now rewritten with some of Stardustspy's code
+	GetNavAreasInRadius(target.GetOrigin(),150,filternav)
 	foreach(id, nav in targetnav)
 	{
 		if (nav.GetSizeX() * nav.GetSizeY() > minareasize)
 		{
 			spots.append(nav)
+		}
+	}
+	foreach(id, nav in filternav)
+	{
+		if (id, nav in targetnav)
+		{
+			spots.remove(nav)
 		}
 	}
 	local nav = spots[RandomInt(0, spots.len() - 1)]

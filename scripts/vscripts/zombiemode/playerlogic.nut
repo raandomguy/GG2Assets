@@ -1005,9 +1005,9 @@ local ImportantItems =
 				return
 			}
 			owner.ForceRespawn();
-			owner.SetAbsOrigin(self.GetCenter());
+		//	owner.SetAbsOrigin(self.GetCenter()); // old
 			owner.Teleport(true,self.GetCenter(),true,self.GetAbsAngles(),true,self.GetAbsVelocity());
-			UnstuckEntity(owner)
+		//	UnstuckEntity(owner) // kinda redundant and brings its own funk that don't mix
 			GetPlayerLoadout(owner)
 			owner.AcceptInput("speakresponseconcept", "TLK_RESURRECTED", owner, owner);
 			owner.AddCondEx(51,2,self);
