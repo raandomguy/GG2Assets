@@ -287,7 +287,8 @@ if(hObjectiveResource && hObjectiveResource.IsValid()) hObjectiveResource.Accept
 
 			//test database read
 			VPI.AsyncCall({func="VPI_DB_Trespasser_ReadWrite", kwargs={query_mode="read", network_id=sNetworkIDSlice}, callback=function(response) {
-				printl(response)
+				foreach (r in response)
+					printl(r)
 				if (typeof(response) != "array" || !response.len())
 				{
 					printl("empty");
@@ -321,7 +322,8 @@ if(hObjectiveResource && hObjectiveResource.IsValid()) hObjectiveResource.Accept
 			local sNetworkIDSlice = sNetworkID.slice(5, sNetworkID.find("]"))
 			//test database write
 			VPI.AsyncCall({func="VPI_DB_Trespasser_ReadWrite", kwargs={query_mode="write", network_id=sNetworkIDSlice, wins=Array[0], solo_win=Array[1], all_survivors_alive_win=Array[2]}, callback=function(response) {
-				printl(response)
+				foreach (r in response)
+					printl(r)
 			}})
 		}
 	}
