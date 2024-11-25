@@ -244,7 +244,7 @@
 		if (self.HasBotTag("ballman"))
 		{
 			self.AddCustomAttribute("head scale", 0.1, -1.0)
-			self.GetWearable("models/weapons/w_models/w_baseball.mdl", false, "head", [Vector(0, 0, 0.5), QAngle(0, 0, 0)])
+			self.GetWearable("models/weapons/w_models/w_baseball.mdl", false, "head")
 			AddThinkToEnt(self.GetActiveWeapon(), "Ballman_Think")
 		}
 		
@@ -1531,7 +1531,7 @@
 			{
 				coffins_active = false
 				
-				HideIcon("dead_blu_lite")
+				if (!NetProps.GetPropBool(objective_resource_entity, "m_bMannVsMachineBetweenWaves")) HideIcon("dead_blu_lite")
 				
 				EmitGlobalSound("ui/halloween_loot_found.wav")
 				
