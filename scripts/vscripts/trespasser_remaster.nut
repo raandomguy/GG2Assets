@@ -318,8 +318,9 @@ if(hObjectiveResource && hObjectiveResource.IsValid()) hObjectiveResource.Accept
 				sName = PlayerNames[sNetworkID]
 			StringToFile(format("trespasser_remaster_wins/updated/player_%s.txt", sNetworkID.slice(5, sNetworkID.find("]"))), format("[%i, %s, %s] // %s\n", Array[0], Array[1].tostring(), Array[2].tostring(), sName))
 
+			local sNetworkIDSlice = sNetworkID.slice(5, sNetworkID.find("]"))
 			//test database write
-			VPI.AsyncCall({func="VPI_DB_Trespasser_ReadWrite", kwargs={query_mode="write", network_id=sNetworkID, wins=Array[0], solo_win=Array[1], all_survivors_alive_win=Array[2]}, callback=function(response) {
+			VPI.AsyncCall({func="VPI_DB_Trespasser_ReadWrite", kwargs={query_mode="write", network_id=sNetworkIDSlice, wins=Array[0], solo_win=Array[1], all_survivors_alive_win=Array[2]}, callback=function(response) {
 				printl(response)
 			}})
 		}
