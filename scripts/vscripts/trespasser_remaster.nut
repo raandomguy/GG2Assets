@@ -284,12 +284,12 @@ if(hObjectiveResource && hObjectiveResource.IsValid()) hObjectiveResource.Accept
 				compilestring(format("Trespasser.Wins[\"%s\"] <- %s", sNetworkID, sScriptData))()
 
 			//test database read
-			VPI.AsyncCall({func="VPI_DB_Trespasser_ReadWrite", kwargs={network_id=sNetworkID, query_mode="read"}, callback=function(response) {
-				Trespasser.WinsDB[sNetworkID] <- response[0]
-				printl(response[0])
-				printl("test")
-				ClientPrint(null, 3, format("test"))
-			}})
+			// VPI.AsyncCall({func="VPI_DB_Trespasser_ReadWrite", kwargs={network_id=sNetworkID, query_mode="read"}, callback=function(response) {
+			// 	Trespasser.WinsDB[sNetworkID] <- response[0]
+			// 	printl(response[0])
+			// 	printl("test")
+			// 	ClientPrint(null, 3, format("test"))
+			// }})
 		}
 	}
 	function SavePlayerWins()
@@ -310,7 +310,7 @@ if(hObjectiveResource && hObjectiveResource.IsValid()) hObjectiveResource.Accept
 			StringToFile(format("trespasser_remaster_wins/updated/player_%s.txt", sNetworkID.slice(5, sNetworkID.find("]"))), format("[%i, %s, %s] // %s\n", Array[0], Array[1].tostring(), Array[2].tostring(), sName))
 
 			//test database write
-			VPI.AsyncCall({func="VPI_DB_Trespasser_ReadWrite", kwargs={network_id=sNetworkID, wins=Array[0], solo_win=Array[1], all_survivors_alive_win=Array[2], query_mode="write"}})
+			// VPI.AsyncCall({func="VPI_DB_Trespasser_ReadWrite", kwargs={network_id=sNetworkID, wins=Array[0], solo_win=Array[1], all_survivors_alive_win=Array[2], query_mode="write"}})
 		}
 	}
 	bAllSurvivorsAlive = true
