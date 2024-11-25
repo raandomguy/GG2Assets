@@ -1180,7 +1180,25 @@ WaveSchedule
 			AllowedWeapons
 			{
 				ItemName "The Mantreads"
-				ItemName "The Thermal Thruster"
+//				ItemName "The Thermal Thruster"
+			}
+		}
+		Thermal
+		{
+			Name "Stable Mod: Titanium Soles"
+			Attribute "mult credit collect range" 
+			Cap 3
+			Increment 2
+			Cost 0
+			SecondaryAttributes 
+			{
+				"maxammo primary increased" 0.5
+			}
+			Description "+increased cash collection range +50% Primary Ammo" 
+			Tier 1
+			AllowedWeapons
+			{
+				ItemName "The Gunboats"
 			}
 		}
 		BaseJumper

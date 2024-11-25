@@ -13,7 +13,8 @@ NoRomevisionCosmetics 1 //THEY FIXED IT NOW SO I'VE TO REMOVE THE RETARDED UPGRA
 			"move speed bonus"	1.1
 			"maxammo secondary increased" 3.195
 			"weapon spread bonus" 0.31
-			"clip size bonus upgrade" 1.5
+			"clip size bonus upgrade" 1.2
+			"clip size penalty" 1
 			"accuracy scales damage" 2.20
 			"cannot be upgraded" 1
 			"fire rate bonus"	0.75
@@ -44,10 +45,25 @@ NoRomevisionCosmetics 1 //THEY FIXED IT NOW SO I'VE TO REMOVE THE RETARDED UPGRA
 		"provide on active" 1
 		"mult crit dmg" 0.75
 		"damage bonus" 1.93
-		"no crit boost" 1
 		"mult dmg vs tanks"	0.692
 		"hand scale" 2.69
 		"special item description 2"		"ayo dog can I get some ice cream?"
+//	} 
+//	ItemAttributes  //FRAGMENT PLAYTEST FOR LATER, HOLDING OFF FOR NOW
+//	{
+//		ItemName "Sharpened Volcano Fragment"
+//		"crit mod disabled" 0
+//		"crit mod disabled hidden" 0
+//		"hidden primary max ammo bonus" -2
+//		"maxammo secondary increased" 0.25
+//		"attack_minicrits_and_consumes_burning" 1
+//		"attach particle effect" 3042
+//		"fire rate penalty" 1.4
+//		"damage penalty" 1
+//		"mult crit dmg" 0.5
+//		"max health additive bonus" 25
+//		"dmg taken from blast reduced" 0.8
+//		"dmg taken from fire reduced" 0.5
 	}
 	ItemAttributes
 	{
@@ -156,7 +172,22 @@ NoRomevisionCosmetics 1 //THEY FIXED IT NOW SO I'VE TO REMOVE THE RETARDED UPGRA
 				ItemName "The Buffalo Steak Sandvich"
 				ItemName "The Sandvich"
 				ItemName "The Second Banana"
-			}
+			} //FRAGMENT PLAYTEST FOR LATER, HOLDING THIS OFF FOR NOW
+//		}
+//		Melee_Dmg_Generic
+//		{
+//			Name "Damage Bonus"
+//			Attribute "damage bonus"
+//			Cap 2
+//			Increment 0.25
+//			Cost 400
+//			Description "25% damage bonus" 
+//			AllowPlayerClass Pyro
+//			AllowedWeapons
+//			{
+//				ItemName	"Sharpened Volcano Fragment"
+//				SimilarToItem "Sharpened Volcano Fragment"
+//			}
 		}
 		MiniCritSniper
 		{
@@ -242,6 +273,7 @@ NoRomevisionCosmetics 1 //THEY FIXED IT NOW SO I'VE TO REMOVE THE RETARDED UPGRA
 				"mult dmg vs tanks" -0.65
 				"no primary ammo from dispensers while active" 1
 				"crits_become_minicrits"		1
+				"mult dmg vs giants" -0.66
 			}
 			Description "A version of the Laser Wall Rocket Launcher that won't blow your arms off. Can't rocket jump. Rocket Specialist and Damage also do not work" 
 			Tier 1
@@ -582,7 +614,7 @@ NoRomevisionCosmetics 1 //THEY FIXED IT NOW SO I'VE TO REMOVE THE RETARDED UPGRA
 			Cost 0
 			SecondaryAttributes
 			{
-				"special item description" "I AM F%$#Â£NG BALLIN!"
+				"special item description" "I AM F%$#£NG BALLIN!"
 				"fuse bonus"	0.8
 				"grenade bounce speed" 0.89
 				"grenade bounce damage" 0.28
