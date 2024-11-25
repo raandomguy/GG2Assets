@@ -94,14 +94,14 @@ const TIMER_INTERVAL = 0.2352941176470588; // ((1/60) / 255).
 			Zombie_GetHealth(self)
 		}
 	}
-	if (round_number > 2 && round_number <= 4)
+	if ((round_number > 2 && round_number <= 4) && playerclass != 2)
 	{
 		PopExtUtil.AddAttributeToLoadout(self, "move speed penalty",0.75,-1)
 		scope.Preserved.zombie_type = 2;
 		SetFakeClientConVarValue(self, "name", "Zombie");
 		Zombie_GetHealth(self)
 	}
-	if (round_number > 4 && round_number <= 6)
+	if ((round_number > 4 && round_number <= 6) && playerclass != 2)
 	{
 		if (speedrandomizer <= 6)
 		{
@@ -117,7 +117,7 @@ const TIMER_INTERVAL = 0.2352941176470588; // ((1/60) / 255).
 		SetFakeClientConVarValue(self, "name", "Zombie");
 		Zombie_GetHealth(self)
 		}
-		if (speedrandomizer == 10 && playerclass != 2)
+		if (speedrandomizer == 10)
 		{
 			PopExtUtil.AddAttributeToLoadout(self, "move speed penalty",1,-1)
 			PopExtUtil.AddAttributeToLoadout(self, "damage bonus HIDDEN",1.16,-1)
@@ -131,7 +131,7 @@ const TIMER_INTERVAL = 0.2352941176470588; // ((1/60) / 255).
 			Zombie_GetHealth(self)
 		}
 	}
-	if (round_number > 6 && round_number <= 8)
+	if ((round_number > 6 && round_number <= 8) && playerclass != 2)
 	{
 		if (speedrandomizer <= 9)
 		{
@@ -140,7 +140,7 @@ const TIMER_INTERVAL = 0.2352941176470588; // ((1/60) / 255).
 		SetFakeClientConVarValue(self, "name", "Zombie");
 		Zombie_GetHealth(self)
 		}
-		if (speedrandomizer == 10 && playerclass != 2)
+		if (speedrandomizer == 10)
 		{
 			PopExtUtil.AddAttributeToLoadout(self, "move speed penalty",1,-1)
 			PopExtUtil.AddAttributeToLoadout(self, "damage bonus HIDDEN",1.16,-1)
@@ -154,13 +154,13 @@ const TIMER_INTERVAL = 0.2352941176470588; // ((1/60) / 255).
 			Zombie_GetHealth(self)
 		}
 	}
-	if (round_number > 8 && round_number <= 11)
+	if ((round_number > 8 && round_number <= 11) && playerclass != 2)
 	{
 		PopExtUtil.AddAttributeToLoadout(self, "move speed penalty",1.25,-1)
 		scope.Preserved.zombie_type = 3;
 		SetFakeClientConVarValue(self, "name", "Zombie");
 		Zombie_GetHealth(self)
-		if (speedrandomizer == 9 && playerclass != 2)
+		if (speedrandomizer == 9)
 		{
 			PopExtUtil.AddAttributeToLoadout(self, "move speed penalty",0.85,-1)
 			scope.Preserved.zombie_type = 7;
@@ -176,7 +176,7 @@ const TIMER_INTERVAL = 0.2352941176470588; // ((1/60) / 255).
 			SetFakeClientConVarValue(self, "name", "Dead of Knight");
 			Zombie_GetHealth(self)
 		}
-		if (speedrandomizer == 10 && playerclass != 2)
+		if (speedrandomizer == 10)
 		{
 			PopExtUtil.AddAttributeToLoadout(self, "move speed penalty",1,-1)
 			PopExtUtil.AddAttributeToLoadout(self, "damage bonus HIDDEN",1.16,-1)
@@ -190,7 +190,7 @@ const TIMER_INTERVAL = 0.2352941176470588; // ((1/60) / 255).
 			Zombie_GetHealth(self)
 		}
 	}
-	if (round_number > 11 && round_number <= 13)
+	if ((round_number > 11 && round_number <= 13) && playerclass != 2)
 	{
 		PopExtUtil.AddAttributeToLoadout(self, "move speed penalty",1.25,-1)
 		scope.Preserved.zombie_type = 3;
@@ -208,7 +208,7 @@ const TIMER_INTERVAL = 0.2352941176470588; // ((1/60) / 255).
 			SetFakeClientConVarValue(self, "name", "Deadeye");
 			Zombie_GetHealth(self)
 		}
-		if (speedrandomizer == 9 && playerclass != 2)
+		if (speedrandomizer == 9)
 		{
 			PopExtUtil.AddAttributeToLoadout(self, "move speed penalty",0.85,-1)
 			scope.Preserved.zombie_type = 7;
@@ -224,7 +224,7 @@ const TIMER_INTERVAL = 0.2352941176470588; // ((1/60) / 255).
 			SetFakeClientConVarValue(self, "name", "Dead of Knight");
 			Zombie_GetHealth(self)
 		}
-		if (speedrandomizer == 10 && playerclass != 2)
+		if (speedrandomizer == 10)
 		{
 			PopExtUtil.AddAttributeToLoadout(self, "move speed penalty",1,-1)
 			PopExtUtil.AddAttributeToLoadout(self, "damage bonus HIDDEN",1.16,-1)
@@ -238,13 +238,13 @@ const TIMER_INTERVAL = 0.2352941176470588; // ((1/60) / 255).
 			Zombie_GetHealth(self)
 		}
 	}
-	if (round_number > 13 && round_number <= 15)
+	if ((round_number > 13 && round_number <= 15) && playerclass != 2)
 	{
 		PopExtUtil.AddAttributeToLoadout(self, "move speed penalty",1.25,-1)
 		scope.Preserved.zombie_type = 3;
 		SetFakeClientConVarValue(self, "name", "Zombie");
 		Zombie_GetHealth(self)
-		if (speedrandomizer == 7 && playerclass != 2)
+		if (speedrandomizer == 7)
 		{
 			scope.Preserved.zombie_type = 9;
 			self.SetCustomModelWithClassAnimations("models/lazy_zombies_v2/engineer.mdl")
@@ -257,7 +257,7 @@ const TIMER_INTERVAL = 0.2352941176470588; // ((1/60) / 255).
 			SetFakeClientConVarValue(self, "name", "Deconstructor");
 			Zombie_GetHealth(self)
 		}
-		if (speedrandomizer == 8 && playerclass != 2)
+		if (speedrandomizer == 8)
 		{
 			self.SetPlayerClass(3)	// don't use sniper, tied to doe hopper
 			scope.Preserved.zombie_type = 8;
@@ -269,7 +269,7 @@ const TIMER_INTERVAL = 0.2352941176470588; // ((1/60) / 255).
 			SetFakeClientConVarValue(self, "name", "Deadeye");
 			Zombie_GetHealth(self)
 		}
-		if (speedrandomizer == 9 && playerclass != 2)
+		if (speedrandomizer == 9)
 		{
 			PopExtUtil.AddAttributeToLoadout(self, "move speed penalty",0.85,-1)
 			scope.Preserved.zombie_type = 7;
@@ -285,7 +285,7 @@ const TIMER_INTERVAL = 0.2352941176470588; // ((1/60) / 255).
 			SetFakeClientConVarValue(self, "name", "Dead of Knight");
 			Zombie_GetHealth(self)
 		}
-		if (speedrandomizer == 10 && playerclass != 2)
+		if (speedrandomizer == 10)
 		{
 			PopExtUtil.AddAttributeToLoadout(self, "move speed penalty",1,-1)
 			PopExtUtil.AddAttributeToLoadout(self, "damage bonus HIDDEN",1.16,-1)
@@ -299,13 +299,13 @@ const TIMER_INTERVAL = 0.2352941176470588; // ((1/60) / 255).
 			Zombie_GetHealth(self)
 		}
 	}
-	if (round_number > 15 && round_number <= 20)
+	if ((round_number > 15 && round_number <= 19) && playerclass != 2)
 	{
 		PopExtUtil.AddAttributeToLoadout(self, "move speed penalty",1.25,-1)
 		scope.Preserved.zombie_type = 3;
 		SetFakeClientConVarValue(self, "name", "Zombie");
 		Zombie_GetHealth(self)
-		if (speedrandomizer == 6 && playerclass != 2)
+		if (speedrandomizer == 6)
 		{
 			scope.Preserved.zombie_type = 9;
 			self.SetCustomModelWithClassAnimations("models/lazy_zombies_v2/engineer.mdl")
@@ -318,7 +318,7 @@ const TIMER_INTERVAL = 0.2352941176470588; // ((1/60) / 255).
 			SetFakeClientConVarValue(self, "name", "Deconstructor");
 			Zombie_GetHealth(self)
 		}
-		if (speedrandomizer == 7 && playerclass != 2)
+		if (speedrandomizer == 7)
 		{
 			self.SetPlayerClass(3)	// don't use sniper, tied to doe hopper
 			scope.Preserved.zombie_type = 8;
@@ -330,7 +330,7 @@ const TIMER_INTERVAL = 0.2352941176470588; // ((1/60) / 255).
 			SetFakeClientConVarValue(self, "name", "Deadeye");
 			Zombie_GetHealth(self)
 		}
-		if ((speedrandomizer == 8 && speedrandomizer_2 > 6) && playerclass != 2)
+		if ((speedrandomizer == 8 && speedrandomizer_2 > 6))
 		{
 			self.SetPlayerClass(7)
 			self.SetModelScale(1.1,0)
@@ -353,7 +353,7 @@ const TIMER_INTERVAL = 0.2352941176470588; // ((1/60) / 255).
 			Zombie_GetHealth(self)
 			TeleportToTarget(self)
 		}
-		if (speedrandomizer == 9 && playerclass != 2)
+		if (speedrandomizer == 9)
 		{
 			PopExtUtil.AddAttributeToLoadout(self, "move speed penalty",0.85,-1)
 			scope.Preserved.zombie_type = 7;
@@ -369,7 +369,7 @@ const TIMER_INTERVAL = 0.2352941176470588; // ((1/60) / 255).
 			SetFakeClientConVarValue(self, "name", "Dead of Knight");
 			Zombie_GetHealth(self)
 		}
-		if (speedrandomizer == 10 && playerclass != 2)
+		if (speedrandomizer == 10)
 		{
 			PopExtUtil.AddAttributeToLoadout(self, "move speed penalty",1,-1)
 			PopExtUtil.AddAttributeToLoadout(self, "damage bonus HIDDEN",1.16,-1)
@@ -383,7 +383,7 @@ const TIMER_INTERVAL = 0.2352941176470588; // ((1/60) / 255).
 			Zombie_GetHealth(self)
 		}
 	}
-	if (round_number > 18 && round_number <= 19)
+	if ((round_number > 18 && round_number <= 19) && playerclass != 2)
 	{
 		PopExtUtil.AddAttributeToLoadout(self, "move speed penalty",1.25,-1)
 		scope.Preserved.zombie_type = 3;
@@ -409,7 +409,7 @@ const TIMER_INTERVAL = 0.2352941176470588; // ((1/60) / 255).
 			SetFakeClientConVarValue(self, "name", "Doe Hopper");
 			Zombie_GetHealth(self)
 		}
-		if (speedrandomizer == 5 && playerclass != 2)
+		if (speedrandomizer == 5)
 		{
 			scope.Preserved.zombie_type = 10;
 			self.SetCustomModelWithClassAnimations("models/lazy_zombies_v2/medic.mdl")
@@ -424,7 +424,7 @@ const TIMER_INTERVAL = 0.2352941176470588; // ((1/60) / 255).
 			SetFakeClientConVarValue(self, "name", "Atomic Researcher");
 			Zombie_GetHealth(self)
 		}
-		if (speedrandomizer == 6 && playerclass != 2)
+		if (speedrandomizer == 6)
 		{
 			scope.Preserved.zombie_type = 9;
 			self.SetCustomModelWithClassAnimations("models/lazy_zombies_v2/engineer.mdl")
@@ -437,7 +437,7 @@ const TIMER_INTERVAL = 0.2352941176470588; // ((1/60) / 255).
 			SetFakeClientConVarValue(self, "name", "Deconstructor");
 			Zombie_GetHealth(self)
 		}
-		if (speedrandomizer == 7 && playerclass != 2)
+		if (speedrandomizer == 7)
 		{
 			self.SetPlayerClass(3)	// don't use sniper, tied to doe hopper
 			scope.Preserved.zombie_type = 8;
@@ -449,7 +449,7 @@ const TIMER_INTERVAL = 0.2352941176470588; // ((1/60) / 255).
 			SetFakeClientConVarValue(self, "name", "Deadeye");
 			Zombie_GetHealth(self)
 		}
-		if ((speedrandomizer == 8 && speedrandomizer_2 > 6) && playerclass != 2)
+		if ((speedrandomizer == 8 && speedrandomizer_2 > 6))
 		{
 			self.SetPlayerClass(7)
 			self.SetModelScale(1.1,0)
@@ -472,7 +472,7 @@ const TIMER_INTERVAL = 0.2352941176470588; // ((1/60) / 255).
 			Zombie_GetHealth(self)
 			TeleportToTarget(self)
 		}
-		if (speedrandomizer == 9 && playerclass != 2)
+		if (speedrandomizer == 9)
 		{
 			PopExtUtil.AddAttributeToLoadout(self, "move speed penalty",0.85,-1)
 			scope.Preserved.zombie_type = 7;
@@ -488,7 +488,7 @@ const TIMER_INTERVAL = 0.2352941176470588; // ((1/60) / 255).
 			SetFakeClientConVarValue(self, "name", "Dead of Knight");
 			Zombie_GetHealth(self)
 		}
-		if (speedrandomizer == 10 && playerclass != 2)
+		if (speedrandomizer == 10)
 		{
 			PopExtUtil.AddAttributeToLoadout(self, "move speed penalty",1,-1)
 			PopExtUtil.AddAttributeToLoadout(self, "damage bonus HIDDEN",1.16,-1)
@@ -502,13 +502,13 @@ const TIMER_INTERVAL = 0.2352941176470588; // ((1/60) / 255).
 			Zombie_GetHealth(self)
 		}
 	}
-	if (round_number > 19)
+	if (round_number > 19 && playerclass != 2)
 	{
 		PopExtUtil.AddAttributeToLoadout(self, "move speed penalty",1.25,-1)
 		scope.Preserved.zombie_type = 3;
 		SetFakeClientConVarValue(self, "name", "Zombie");
 		Zombie_GetHealth(self)
-		if (speedrandomizer == 3 && playerclass != 2)
+		if (speedrandomizer == 3)
 		{
 			scope.Preserved.zombie_type = 10;
 			self.SetCustomModelWithClassAnimations("models/lazy_zombies_v2/medic.mdl")
@@ -523,7 +523,7 @@ const TIMER_INTERVAL = 0.2352941176470588; // ((1/60) / 255).
 			SetFakeClientConVarValue(self, "name", "Atomic Researcher");
 			Zombie_GetHealth(self)
 		}
-		if (speedrandomizer == 4 && playerclass != 2)
+		if (speedrandomizer == 4)
 		{
 			scope.Preserved.zombie_type = 9;
 			self.SetCustomModelWithClassAnimations("models/lazy_zombies_v2/engineer.mdl")
@@ -535,7 +535,7 @@ const TIMER_INTERVAL = 0.2352941176470588; // ((1/60) / 255).
 			SetFakeClientConVarValue(self, "name", "Deconstructor");
 			Zombie_GetHealth(self)
 		}
-		if (speedrandomizer == 6 && playerclass != 2)
+		if (speedrandomizer == 6)
 		{
 			self.SetPlayerClass(3)	// don't use sniper, tied to doe hopper
 			scope.Preserved.zombie_type = 8;
@@ -547,7 +547,7 @@ const TIMER_INTERVAL = 0.2352941176470588; // ((1/60) / 255).
 			SetFakeClientConVarValue(self, "name", "Deadeye");
 			Zombie_GetHealth(self)
 		}
-		if ((speedrandomizer == 7 && speedrandomizer_2 <= 6) && playerclass != 2)
+		if ((speedrandomizer == 7 && speedrandomizer_2 <= 6))
 		{
 			self.SetPlayerClass(7)
 			self.SetModelScale(1.1,0)
@@ -570,7 +570,7 @@ const TIMER_INTERVAL = 0.2352941176470588; // ((1/60) / 255).
 			Zombie_GetHealth(self)
 			TeleportToTarget(self)
 		}
-		if ((speedrandomizer == 7 && speedrandomizer_2 > 6) && playerclass != 2)
+		if ((speedrandomizer == 7 && speedrandomizer_2 > 6))
 		{
 			scope.Preserved.zombie_type = 11;
 			self.SetPlayerClass(6)
@@ -605,7 +605,7 @@ const TIMER_INTERVAL = 0.2352941176470588; // ((1/60) / 255).
 			SetFakeClientConVarValue(self, "name", "Doe Hopper");
 			Zombie_GetHealth(self)
 		}
-		if (speedrandomizer == 9 && playerclass != 2)
+		if (speedrandomizer == 9)
 		{
 			PopExtUtil.AddAttributeToLoadout(self, "move speed penalty",0.85,-1)
 			scope.Preserved.zombie_type = 7;
@@ -621,7 +621,7 @@ const TIMER_INTERVAL = 0.2352941176470588; // ((1/60) / 255).
 			SetFakeClientConVarValue(self, "name", "Dead of Knight");
 			Zombie_GetHealth(self)
 		}
-		if (speedrandomizer == 10 && playerclass != 2)
+		if (speedrandomizer == 10)
 		{
 			PopExtUtil.AddAttributeToLoadout(self, "move speed penalty",1,-1)
 			PopExtUtil.AddAttributeToLoadout(self, "damage bonus HIDDEN",1.16,-1)

@@ -65,6 +65,7 @@ local sfx_roundstart_boss = Entities.FindByName(null, "snd_start_boss")
 		})
 		NetProps.SetPropString(generator, "m_className", "heavyweapons") // class is a reserved kv so we have to do this workaround to appease squirrel god
 		EntFireByHandle(sfx_roundstart_normal,"playsound","",0,null,null);
+		EntFireByHandle(Entities.FindByName(null, "bot_spawner"),"setdisabledodge","1",0,null,null);
 	}
 	if (boss_timer == 0)
 	{
@@ -89,6 +90,7 @@ local sfx_roundstart_boss = Entities.FindByName(null, "snd_start_boss")
 			"OnExpended#1" : "roundend_check_boss,Trigger,,0,-1"
 		})
 		NetProps.SetPropString(generator, "m_className", "sniper") // class is a reserved kv so we have to do this workaround to appease squirrel god
+		EntFireByHandle(Entities.FindByName(null, "bot_spawner_boss"),"setdisabledodge","1",0,null,null);
 		boss_timer = RandomInt(5,6)
 	}
 }
