@@ -1344,7 +1344,10 @@ CTFPlayer.GetWearable <- function(model, bonemerge = true, attachment = null, of
 		EntFireByHandle(wearable, "RunScriptCode", "self.SetLocalAngles(QAngle(0, 0, 0))", 0.1, null, null)
 	}
 	
-	NetProps.SetPropInt(wearable, "m_nModelIndex", modelIndex)
+	EntFireByHandle(wearable, "RunScriptCode", "NetProps.SetPropIntArray(self, `m_nModelIndexOverrides`, " + modelIndex + ", 0)", 1.0, null, null) 
+	EntFireByHandle(wearable, "RunScriptCode", "NetProps.SetPropIntArray(self, `m_nModelIndexOverrides`, " + modelIndex + ", 1)", 1.0, null, null) 
+	EntFireByHandle(wearable, "RunScriptCode", "NetProps.SetPropIntArray(self, `m_nModelIndexOverrides`, " + modelIndex + ", 2)", 1.0, null, null) 
+	EntFireByHandle(wearable, "RunScriptCode", "NetProps.SetPropIntArray(self, `m_nModelIndexOverrides`, " + modelIndex + ", 3)", 1.0, null, null) 
 	
 	wearable.ValidateScriptScope()
 	wearable.GetScriptScope().custom_wearable <- true
