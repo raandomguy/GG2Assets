@@ -244,7 +244,7 @@
 		if (self.HasBotTag("ballman"))
 		{
 			self.AddCustomAttribute("head scale", 0.1, -1.0)
-			self.GetWearable("models/weapons/w_models/w_baseball.mdl", false, "head")
+			self.GetWearable("models/weapons/w_models/w_baseball.mdl", false, "head", [Vector(0, 0, 0.5), QAngle(0, 0, 0)])
 			AddThinkToEnt(self.GetActiveWeapon(), "Ballman_Think")
 		}
 		
