@@ -71,7 +71,7 @@ WaveSchedule
 			Skill Hard
 		}
 	}
-
+	
 	PointTemplates    [$SIGSEGV]    //    this piece of code is to remove the powerup from the game if its dropped, hence making it only be used by the designated class
 	{
 		powerup_fix
@@ -84,7 +84,7 @@ WaveSchedule
             }
         }
     }
-
+	
     SpawnTemplate powerup_fix    [$SIGSEGV]
 
 	Templates
@@ -1492,20 +1492,6 @@ WaveSchedule
 						`NoThrillerTaunt`: 1
 					}
 				)
-				local EventsID = UniqueString()
-				getroottable()[EventsID] <- 
-				{
-					OnGameEvent_scorestats_accumulated_update = function(params) { delete getroottable()[EventsID] }
-
-					function OnScriptHook_OnTakeDamage(params)
-					{
-						if (params.const_entity.GetClassname() == `tank_boss` && params.attacker && params.attacker.IsPlayer() && params.attacker.InCond(90)) // TF_COND_RUNE_STRENGTH
-							params.damage *= 2
-					}
-				}
-				local EventsTable = getroottable()[EventsID]
-				foreach (name, callback in EventsTable) EventsTable[name] = callback.bindenv(this)
-				__CollectGameEventCallbacks(EventsTable)
 			"
 		}
 		
@@ -2029,20 +2015,6 @@ WaveSchedule
 						`NoThrillerTaunt`: 1
 					}
 				)
-				local EventsID = UniqueString()
-				getroottable()[EventsID] <- 
-				{
-					OnGameEvent_scorestats_accumulated_update = function(params) { delete getroottable()[EventsID] }
-
-					function OnScriptHook_OnTakeDamage(params)
-					{
-						if (params.const_entity.GetClassname() == `tank_boss` && params.attacker && params.attacker.IsPlayer() && params.attacker.InCond(90)) // TF_COND_RUNE_STRENGTH
-							params.damage *= 2
-					}
-				}
-				local EventsTable = getroottable()[EventsID]
-				foreach (name, callback in EventsTable) EventsTable[name] = callback.bindenv(this)
-				__CollectGameEventCallbacks(EventsTable)
 			"
 		}
 		
