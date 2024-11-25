@@ -1316,9 +1316,6 @@ CTFPlayer.GetWearable <- function(model, bonemerge = true, attachment = null, of
 	wearable.SetTeam(this.GetTeam())
 	wearable.SetSolidFlags(4)
 	wearable.SetCollisionGroup(11)
-	
-	NetProps.SetPropBool(wearable, "m_bValidatedAttachedEntity", true)
-	NetProps.SetPropBool(wearable, "m_AttributeManager.m_Item.m_bInitialized", true)
 
 	wearable.SetOwner(this)
 	Entities.DispatchSpawn(wearable)
