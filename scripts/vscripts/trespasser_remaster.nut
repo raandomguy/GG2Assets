@@ -279,17 +279,26 @@ if(hObjectiveResource && hObjectiveResource.IsValid()) hObjectiveResource.Accept
 			if(!hPlayer || hPlayer.IsFakeClient()) continue
 			local sNetworkID = GetPropString(hPlayer, "m_szNetworkIDString")
 			if(sNetworkID == "" || sNetworkID == "BOT") continue
-			local sScriptData = FileToString(format("trespasser_remaster_wins/updated/player_%s.txt", sNetworkID.slice(5, sNetworkID.find("]"))))
+
+			local sNetworkIDSlice = sNetworkID.slice(5, sNetworkID.find("]"))
+			local sScriptData = FileToString(format("trespasser_remaster_wins/updated/player_%s.txt", sNetworkIDSlice))
 			if(sScriptData != null)
 				compilestring(format("Trespasser.Wins[\"%s\"] <- %s", sNetworkID, sScriptData))()
 
 			//test database read
-			// VPI.AsyncCall({func="VPI_DB_Trespasser_ReadWrite", kwargs={network_id=sNetworkID, query_mode="read"}, callback=function(response) {
-			// 	Trespasser.WinsDB[sNetworkID] <- response[0]
-			// 	printl(response[0])
-			// 	printl("test")
-			// 	ClientPrint(null, 3, format("test"))
-			// }})
+			VPI.AsyncCall({func="VPI_DB_Trespasser_ReadWrite", kwargs={query_mode="read", network_id=sNetworkIDSlice}, callback=function(response) {
+				printl(response)
+				if (typeof(response) != "array" || !response.len())
+				{
+					printl("empty");
+					return;
+				}
+
+				local s = ""
+				foreach (col in response)
+					s += format("%s%s", col.tostring(), ",");
+				printl(s)
+			}})
 		}
 	}
 	function SavePlayerWins()
@@ -310,7 +319,9 @@ if(hObjectiveResource && hObjectiveResource.IsValid()) hObjectiveResource.Accept
 			StringToFile(format("trespasser_remaster_wins/updated/player_%s.txt", sNetworkID.slice(5, sNetworkID.find("]"))), format("[%i, %s, %s] // %s\n", Array[0], Array[1].tostring(), Array[2].tostring(), sName))
 
 			//test database write
-			// VPI.AsyncCall({func="VPI_DB_Trespasser_ReadWrite", kwargs={network_id=sNetworkID, wins=Array[0], solo_win=Array[1], all_survivors_alive_win=Array[2], query_mode="write"}})
+			VPI.AsyncCall({func="VPI_DB_Trespasser_ReadWrite", kwargs={query_mode="write", network_id=sNetworkID, wins=Array[0], solo_win=Array[1], all_survivors_alive_win=Array[2]}, callback=function(response) {
+				printl(response)
+			}})
 		}
 	}
 	bAllSurvivorsAlive = true
