@@ -957,7 +957,7 @@ Oh_Dios_Mio_Es_Eso_Una_Pizza_Tower_Referencia
             logic_relay
             {
                 "targetname" "deez"
-                "OnTrigger"  "player,$playsoundtoself,=40|#war_timer_idle_loop.mp3,0,-1"
+                "OnTrigger"  "player,$playsoundtoself,=35|#war_timer_idle_loop.mp3,0,-1"
             }
             info_target
             {
