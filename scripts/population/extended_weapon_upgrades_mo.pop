@@ -171,6 +171,9 @@ NoRomevisionCosmetics 1 //THEY FIXED IT NOW SO I'VE TO REMOVE THE RETARDED UPGRA
 				ItemName "The Dalokohs Bar"
 				ItemName "The Buffalo Steak Sandvich"
 				ItemName "The Sandvich"
+				ItemName "Fishcake"
+				ItemName "The Robo-Sandvich"
+				ItemName "Festive Sandvich"
 				ItemName "The Second Banana"
 			} //FRAGMENT PLAYTEST FOR LATER, HOLDING THIS OFF FOR NOW
 //		}

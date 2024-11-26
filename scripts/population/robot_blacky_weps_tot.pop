@@ -162,8 +162,9 @@ WaveSchedule
 		"effect cond override"			51		//	Uber effect
 		"mod soldier buff range"		0.05
 		"max health additive penalty"	-20
+		"rage receive scale"			0.33
 		"cannot taunt" 					1		//	Taunting causes a glitch with a pickaxe taunt triggering infinite uber, thus disabled
-		"special item description"		"Personal Uber effect; no passive HP buff"
+		"special item description"		"Personal Uber effect; takes x3 damage threshold to be filled; no passive HP buff"
 		//	WORKS PERFECTLY!
 	}
 	CustomWeapon [$SIGSEGV]	
@@ -204,14 +205,13 @@ WaveSchedule
 	}
 	CustomWeapon [$SIGSEGV]	
 	{
-		Name				"Friendly Fleet"
+		Name				"Draconic Dash"
 		OriginalItemName	"The Dragon's Fury"
-		"set_item_texture_wear"					0		//	FN
-		"paintkit_proto_def_index"				390		//	Dragon Slayer
-		"mult_item_meter_charge_rate"			1.15
-		"airblast_give_teammate_speed_boost"	1
-	//	"fire input on taunt"					"!activator^$TakeDamage^30"
-		"special item description"				"Airblasting players give a short speed boost to both; -15% fire rate"
+		"set_item_texture_wear"			0		//	FN
+		"paintkit_proto_def_index"		390		//	Dragon Slayer
+		"airblast dashes"				1
+		"airblast cost increased"		3
+		"special item description"		"Stronger airblast force when crouching; x3 airblast ammo cost"
 		//	WORKS PERFECTLY!
 	}
 	CustomWeapon [$SIGSEGV]	
@@ -567,9 +567,9 @@ WaveSchedule
 	{
 		Name				"Passive Powerlifter"
 		OriginalItemName	"The Kritzkrieg"
-		"medigun passive attributes"	"minicritboost on kill|2|effect cond override|16|"
+		"medigun passive attributes"	"minicritboost on kill|2|effect cond override|16|mult dmg vs tanks|1.15"
 		"effect cond override"			90	//	'Strenght' powerup
-		"special item description"		"While healing players, they will recieve 2s minicrit on kill; Kritz Ubercharge is replaced with double damage"
+		"special item description"		"While healing players, they will recieve 2s minicrit on kill and +15% damage to tanks; Kritz Ubercharge is replaced with double damage (doesnt work on tanks)"
 		//	WORKS PERFECTLY!
 	}
 	CustomWeapon [$SIGSEGV]
@@ -585,11 +585,16 @@ WaveSchedule
 	//	"custom kill icon"					"merasmus_zap"
 		"custom kill icon"					"passtime_pass"
 		"medigun particle spark"			"~unusual_breaker_purple_spark"	//	probably broken since it disabled nozzle spark entirely (its buggy otherwise)
-		"special item description"			"Damages enemies with medigun; cant use shield"
+		"special item description"			"Damages enemies with medigun; cant use shield or share canteens"
 	}
 		DisallowUpgrade
 		{
 			Upgrade	"generate rage on heal"
+			ItemName "Soul Split"
+		}
+		DisallowUpgrade
+		{
+			Upgrade	"canteen specialist"	//	apparently its possible to share canteens with enemies you heal, making it a top kek moment, yet somewhat broken
 			ItemName "Soul Split"
 		}
 	CustomWeapon [$SIGSEGV]
@@ -740,7 +745,7 @@ WaveSchedule
 		{	
 			Primary		"Pressurized Phosphorus"
 			Primary		"Adren Rush"
-			Primary		"Friendly Fleet"
+			Primary		"Draconic Dash"
 			Secondary	"Hot Shot"
 			Melee		"TankScratcher"
 			Melee		"Torching Transmission"

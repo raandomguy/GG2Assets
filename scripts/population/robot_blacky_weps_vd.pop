@@ -5,7 +5,7 @@ WaveSchedule
 PrecacheModel "models/weapons/c_models/c_sd_cleaver/c_sd_cleaver.mdl"
 PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 
-	PointTemplates	 	//	this piece of code is to remove the powerup from the game if its dropped, hence making it only be used by the designated class
+	PointTemplates	[$SIGSEGV]	//	this piece of code is to remove the powerup from the game if its dropped, hence making it only be used by the designated class
 	{
 		powerup_fix
 		{
@@ -17,11 +17,11 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 			}
 		}
 	}
-	SpawnTemplate powerup_fix	 
+	SpawnTemplate powerup_fix	[$SIGSEGV]
 	
 		//	SCOUT
 		
-	//CustomWeapon  	
+	//CustomWeapon [$SIGSEGV]	
 	//{
 	//	Name								"T.K's Tsunami"
 	//	OriginalItemName					"TF_WEAPON_SCATTERGUN"
@@ -41,7 +41,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 	//	"special item description"			"Shoots a short burst of penetrating bison projectiles"
 	//	//	WORKS PERFECTLY!
 	//}
-	CustomWeapon  	
+	CustomWeapon [$SIGSEGV]	
 	{
 		Name								"T.K's Tsunami"
 		OriginalItemName					"TF_WEAPON_SCATTERGUN"
@@ -66,7 +66,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 			Upgrade		"projectile penetration"
 			ItemName	"T.K's Tsunami"
 		}
-	CustomWeapon  	
+	CustomWeapon [$SIGSEGV]	
 	{
 		Name				"Cracked Scatter"
 		OriginalItemName	"The Back Scatter"
@@ -75,7 +75,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		"special item description"	"Applies crits from behind; loads and holds shots before firing (similar to Bazooka)"
 		//	WORKS PERFECTLY!
 	}
-	CustomWeapon  	
+	CustomWeapon [$SIGSEGV]	
 	{
 		Name				"Sacrificial lamb"
 		OriginalItemName	"The Soda Popper"
@@ -85,7 +85,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		"special item description"		"On hype: Deals minicrits, but cant be healed by any source"
 		//	WORKS PERFECTLY!
 	}
-	CustomWeapon  	
+	CustomWeapon [$SIGSEGV]	
 	{
 		Name				"MilkBoy"
 		OriginalItemName	"Pretty Boy's Pocket Pistol"
@@ -97,7 +97,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		
 		//	WORKS PERFECTLY
 	}
-	//CustomWeapon  	
+	//CustomWeapon [$SIGSEGV]	
 	//{
 	//	Name				"Chop Suey!"
 	//	OriginalItemName	"The Flying Guillotine"
@@ -112,7 +112,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 	//	"special item description"				"Deals x3 impact damage; Only bleeds once on impact"
 	//	//	WORKS PERFECTLY!
 	//}
-	CustomWeapon  	
+	CustomWeapon [$SIGSEGV]	
 	{
 		Name				"Chop Suey!"
 		OriginalItemName	"The Flying Guillotine"
@@ -135,7 +135,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 	
 		//	SOLDIER
 		
-	CustomWeapon  	
+	CustomWeapon [$SIGSEGV]	
 	{
 		Name				"Mortartillery Cannon"
 		OriginalItemName	"TF_WEAPON_ROCKETLAUNCHER"
@@ -155,7 +155,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 			MaxLevel 2	//	can only buy up to 2 ticks of that upgrade
 			ItemName	"Mortartillery Cannon"
 		}
-	//CustomWeapon  	
+	//CustomWeapon [$SIGSEGV]	
 	//{
 	//	Name				"Bozon Bazooka"
 	//	OriginalItemName	"The Cow Mangler 5000"
@@ -181,7 +181,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 	//		Upgrade		"clip size bonus upgrade"
 	//		ItemName	"Bozon Bazooka"
 	//	}
-	CustomWeapon  	
+	CustomWeapon [$SIGSEGV]	
 	{
 		Name				"Topneaa Torchlight"
 		OriginalItemName	"The Cow Mangler 5000"
@@ -196,7 +196,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 			Upgrade		"rocket specialist"
 			ItemName	"Topneaa Torchlight"
 		}
-	CustomWeapon  	
+	CustomWeapon [$SIGSEGV]	
 	{
 		Name				"S.H.I.E.L.D Agent"
 		OriginalItemName	"Blast Blocker"
@@ -204,7 +204,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		"special item description"		"Enables 'Resistance' powerup on user - Blocks 50% of incoming damage"
 		//	WORKS PERFECTLY!
 	}
-	CustomWeapon  	
+	CustomWeapon [$SIGSEGV]	
 	{
 		Name				"Ghost Wyrm"
 		OriginalItemName	"The Righteous Bison"
@@ -227,7 +227,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 	//	"special item description"				"A guided crit projectile"	//	this weapon has all the info you need to know built in
 		//	WORKS PERFECTLY!
 	}
-	CustomWeapon  	
+	CustomWeapon [$SIGSEGV]	
 	{
 		Name				"Selfish Soldier (long buff)"
 		OriginalItemName	"The Buff Banner"
@@ -236,7 +236,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		"special item description"	"+75% buff duration"
 		//	WORKS PERFECTLY!
 	}
-	//CustomWeapon  	
+	//CustomWeapon [$SIGSEGV]	
 	//{
 	//	Name				"Selfish Soldier (Haste)"
 	//	OriginalItemName	"The Concheror"
@@ -248,21 +248,22 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 	//	"special item description"	"personal Haste powerup; marked for death when banner is active; no passive HP regen"
 	//	//	WORKS PERFECTLY!
 	//}
-	CustomWeapon  	
+	CustomWeapon [$SIGSEGV]	
 	{
 		Name				"Selfish Soldier (Uber)"
 		OriginalItemName	"The Battalion's Backup"
 		"effect cond override"			51		//	Uber effect
 		"mod soldier buff range"		0.05
 		"max health additive penalty"	-20
+		"rage receive scale"			0.33
 		"cannot taunt" 					1		//	Taunting causes a glitch with a pickaxe taunt triggering infinite uber, thus disabled
-		"special item description"		"Personal Uber effect; no passive HP buff"
+		"special item description"		"Personal Uber effect; takes x3 damage threshold to be filled; no passive HP buff"
 		//	WORKS PERFECTLY!
 	}
 	
 		//	PYRO
 		
-	CustomWeapon  	
+	CustomWeapon [$SIGSEGV]	
 	{
 		Name				"Pressurized Phosphorus"
 		OriginalItemName	"The Backburner"
@@ -274,30 +275,30 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		"special item description"		"Longer flame reach; double afterburn damage; double ammo consumption (no extra damage)"
 		//	WORKS PERFECTLY!
 	}
-	CustomWeapon  	
+	CustomWeapon [$SIGSEGV]	
 	{
 		Name				"Adren Rush"
 		OriginalItemName	"The Phlogistinator"
 		"gesture speed increase"		9
-		"mult dmg vs tanks"				0.66
-		"dmg taken from fire increased"	0.85
+		"damage penalty"				0.85
+	//	"mult dmg vs tanks"				0.66
+	//	"dmg taken from fire increased"	0.85
 		"provide on active"				1
-		"special item description"		"Near instant 'mmmph' taunt; +15% fire vulnerability when equipped"
+		"special item description"		"Near instant 'mmmph' taunt; -15% damage"
 		//	WORKS PERFECTLY!
 	}
-	CustomWeapon  	
+	CustomWeapon [$SIGSEGV]	
 	{
-		Name				"Airdash"
-		OriginalItemName	"TF_WEAPON_FLAMETHROWER"
-		"set_item_texture_wear"				0		//	FN
-		"paintkit_proto_def_index"			427		//	Piranha Mania
-		"airblast dashes"					1		//	airblast pushes self 
-		"mult airblast refire time"			0.25
-		"airblast cost increased"			1.5		//	30 ammo per airblast
-		"special item description"			"x4 faster airblast cooldown time; +50% airblast ammo cost"
-		//	
+		Name				"Draconic Dash"
+		OriginalItemName	"The Dragon's Fury"
+		"set_item_texture_wear"			0		//	FN
+		"paintkit_proto_def_index"		390		//	Dragon Slayer
+		"airblast dashes"				1
+		"airblast cost increased"		3
+		"special item description"		"Stronger airblast force when crouching; x3 airblast ammo cost"
+		//	WORKS PERFECTLY!
 	}
-	CustomWeapon  	
+	CustomWeapon [$SIGSEGV]	
 	{
 		Name				"Kinetic Bhop"
 		OriginalItemName	"The Detonator"
@@ -309,7 +310,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		"special item description"		"Self push force is 50% stronger; Self blast damage is 100% stronger"
 		//	WORKS PERFECTLY!
 	}
-	CustomWeapon  	
+	CustomWeapon [$SIGSEGV]	
 	{
 		Name				"Torching Transmission"
 		OriginalItemName	"The Third Degree"
@@ -323,7 +324,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 	
 		//	DEMOMAN
 		
-	CustomWeapon  	
+	CustomWeapon [$SIGSEGV]	
 	{
 		Name				"Calcium Cannon"
 		OriginalItemName	"TF_WEAPON_GRENADELAUNCHER"
@@ -344,7 +345,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 			Upgrade	"heal on kill"
 			ItemName "Calcium Cannon"
 		}
-	CustomWeapon  	
+	CustomWeapon [$SIGSEGV]	
 	{
 		Name				"De_Nuke"
 		OriginalItemName	"The Loose Cannon"
@@ -378,10 +379,11 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		"single wep holster time increased"	1.5
 		"no primary ammo from dispensers while active"	1
 		"self dmg push force increased"		3		//	Mann Co. Space Program is under way!
+		"custom kill icon"				"megaton"
 		"special item description"			"Releases a single nuke-sized projectile near self; +25hp on kill; low fire rate and reload; 85% less ammo"
 		//	WORKS PERFECTLY!
 	}
-	CustomWeapon  	
+	CustomWeapon [$SIGSEGV]	
 	{
 		Name				"King Tavish the dying"
 		OriginalItemName	"The King of Scotland Cape"
@@ -391,7 +393,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		"special item description"			"'King' Powerup - Constant fire rate and reload speed boost for you and every player around you ; +100 HP; 5 HP drain per second"
 		//	
 	}
-	CustomWeapon  	
+	CustomWeapon [$SIGSEGV]	
 	{
 		Name				"Sticky Squirter"
 		OriginalItemName	"TF_WEAPON_PIPEBOMBLAUNCHER"
@@ -417,7 +419,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 			Upgrade		"clip size upgrade atomic"
 			ItemName	"Sticky Squirter"
 		}
-	CustomWeapon  	
+	CustomWeapon [$SIGSEGV]	
 	{
 		Name				"Sluggish Silo"
 		OriginalItemName	"The Chargin' Targe"
@@ -428,7 +430,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		"special item description"			"x2 max ammo on primary weapon; -20% move speed; cannot charge"
 		//	
 	}
-	CustomWeapon  	
+	CustomWeapon [$SIGSEGV]	
 	{
 		Name				"Supercharger"
 		OriginalItemName	"The Splendid Screen"
@@ -443,7 +445,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 	
 		//	HEAVY
 	
-	CustomWeapon  
+	CustomWeapon [$SIGSEGV]
 	{
 		Name				"DShK"
 		OriginalItemName	"Tomislav"
@@ -473,7 +475,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 			Upgrade		"generate rage on damage"
 			ItemName	"DShK"
 		}
-	CustomWeapon  
+	CustomWeapon [$SIGSEGV]
 	{
 		Name				"Neutrino Pellets"
 		OriginalItemName	"Tomislav"
@@ -512,7 +514,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 			Upgrade		"generate rage on damage"
 			ItemName	"Neutrino Pellets"
 		}
-	CustomWeapon  
+	CustomWeapon [$SIGSEGV]
 	{
 		Name				"Fast food"
 		OriginalItemName	"The Second Banana"
@@ -522,7 +524,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		"special item description"				"Shortens Second Banana's feed animation by half; +67% faster deploy time; -50% health given when eaten; cant be dropped"
 		//	WORKS PERFECTLY
 	}
-	CustomWeapon  
+	CustomWeapon [$SIGSEGV]
 	{
 		Name				"Terminal Tumor"
 		OriginalItemName	"The Bread Bite"
@@ -534,7 +536,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		
 		//	ENGINEER
 		
-	//CustomWeapon  
+	//CustomWeapon [$SIGSEGV]
 	//{
 	//	Name				"High Voltage"
 	//	OriginalItemName	"The Pomson 6000"
@@ -551,7 +553,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 	//	"special item description"				"Shoots a long stream of particles that penetrate enemies; no sentry usage"
 	//	//	WORKS PERFECTLY!
 	//}
-	CustomWeapon  
+	CustomWeapon [$SIGSEGV]
 	{
 		Name				"Express Dellivery"
 		OriginalItemName	"The Rescue Ranger"
@@ -565,7 +567,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		"special item description"				"No mark for death when picking up buildings; +50% clip size; +50% fire rate; 1 metal cost on building-teleport pickup; cant heal buildings with RR bolts"
 		//	WORKS PERFECTLY!
 	}
-	CustomWeapon  
+	CustomWeapon [$SIGSEGV]
 	{
 		Name				"EMP Casings"
 		OriginalItemName	"The C.A.P.P.E.R"
@@ -577,7 +579,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		"special item description"		"Removes sappers on hit; +80% accuracy; giants and armored enemies cant be stunned; a lot less reserve ammo"
 		//	WORKS PERFECTLY!
 	}
-	CustomWeapon  
+	CustomWeapon [$SIGSEGV]
 	{
 		Name				"Immovable Object"
 		OriginalItemName	"TF_WEAPON_WRENCH"
@@ -595,7 +597,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		
 		//	MEDIC
 		
-	CustomWeapon  
+	CustomWeapon [$SIGSEGV]
 	{
 		Name				"Milk of the Sloppy"
 		OriginalItemName	"The Crusader's Crossbow"
@@ -608,7 +610,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		"special item description"			"Milks enemies on hit for 8s; fires entire clip at once; slight spread; -90% damage"
 		//	WORKS PERFECTLY!
 	}
-	CustomWeapon  
+	CustomWeapon [$SIGSEGV]
 	{
 		Name				"Flash Protocol"
 		OriginalItemName	"gentlemanne_medigun_highrollers"
@@ -623,16 +625,16 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 			Upgrade	"generate rage on heal"
 			ItemName "Flash Protocol"
 		}
-	CustomWeapon  
+	CustomWeapon [$SIGSEGV]
 	{
 		Name				"Passive Powerlifter"
 		OriginalItemName	"The Kritzkrieg"
-		"medigun passive attributes"	"minicritboost on kill|2|effect cond override|16|"
+		"medigun passive attributes"	"minicritboost on kill|2|effect cond override|16|mult dmg vs tanks|1.15"
 		"effect cond override"			90	//	'Strenght' powerup
-		"special item description"		"While healing players, they will recieve 2s minicrit on kill; Kritz Ubercharge is replaced with double damage"
+		"special item description"		"While healing players, they will recieve 2s minicrit on kill and +15% damage to tanks; Kritz Ubercharge is replaced with the 'Strenght' powerup - double damage (doesnt work on tanks)"
 		//	WORKS PERFECTLY!
 	}
-	CustomWeapon  
+	CustomWeapon [$SIGSEGV]
 	{
 		Name				"Soul Split"
 		OriginalItemName	"The Quick-Fix"
@@ -645,14 +647,19 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 	//	"custom kill icon"					"merasmus_zap"
 		"custom kill icon"					"passtime_pass"
 		"medigun particle spark"			"~unusual_breaker_purple_spark"	//	probably broken since it disabled nozzle spark entirely (its buggy otherwise)
-		"special item description"			"Damages enemies with medigun; cant use shield"
+		"special item description"			"Damages enemies with medigun; cant use shield or share canteens"
 	}
 		DisallowUpgrade
 		{
 			Upgrade	"generate rage on heal"
 			ItemName "Soul Split"
 		}
-	CustomWeapon  
+		DisallowUpgrade
+		{
+			Upgrade	"canteen specialist"	//	apparently its possible to share canteens with enemies you heal, making it a top kek moment, yet somewhat broken
+			ItemName "Soul Split"
+		}
+	CustomWeapon [$SIGSEGV]
 	{
 		Name				"Uberweisen Saw"
 		OriginalItemName	"The Ubersaw"
@@ -663,7 +670,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		"special item description"				"+25% uber gain per hit; when hitting enemies, hit yourself for 50hp"
 		//	WORKS PERFECTLY!
 	}
-	CustomWeapon  
+	CustomWeapon [$SIGSEGV]
 	{
 		Name				"Uber Container"
 		OriginalItemName	"The Vita-Saw"
@@ -675,7 +682,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		
 	//	SNIPER
 		
-	CustomWeapon  
+	CustomWeapon [$SIGSEGV]
 	{
 		Name				"Black King"
 		OriginalItemName	"The Machina"
@@ -701,7 +708,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 			Upgrade		"explosive sniper shot"
 			ItemName	"Black King"
 		}
-	CustomWeapon  
+	CustomWeapon [$SIGSEGV]
 	{
 		Name				"Brushfire"
 		OriginalItemName	"The Huntsman"
@@ -718,7 +725,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 			Upgrade	"projectile penetration"
 			ItemName "Brushfire"
 		}
-	CustomWeapon  
+	CustomWeapon [$SIGSEGV]
 	{
 		Name				"Bushman's Boon"
 		OriginalItemName	"Das Feelinbeterbager"
@@ -727,7 +734,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		"uber on damage taken"			0.05	//	when hit, gain 5% of becoming ubercharged for 3 seconds
 		//	WORKS PERFECTLY!
 	}
-	CustomWeapon  
+	CustomWeapon [$SIGSEGV]
 	{
 		Name				"Titanium plank"
 		OriginalItemName	"The Razorback"
@@ -736,7 +743,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		"special item description"		"permanent backstab immunity; -10hp on wearer"
 		//	WORKS PERFECTLY!
 	}
-	CustomWeapon  
+	CustomWeapon [$SIGSEGV]
 	{
 		Name				"Croky Assassin"
 		OriginalItemName	"The Cleaner's Carbine"
@@ -745,7 +752,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		"special item description"		"Crikey minicrits become invisibility spell for 8s"
 		//	WORKS PERFECTLY!
 	}
-	CustomWeapon  
+	CustomWeapon [$SIGSEGV]
 	{
 		Name				"Maniacal Mercenary"
 		OriginalItemName	"The Bushwacka"
@@ -758,7 +765,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 	
 		//	SPY
 		
-	CustomWeapon  
+	CustomWeapon [$SIGSEGV]
 	{
 		Name				"Cloak Leak"
 		OriginalItemName	"L'Etranger"
@@ -767,7 +774,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		"special item description"		"+50% cloak gain on hit; x3 cloak drain rate"
 		//	WORKS PERFECTLY!
 	}
-	CustomWeapon  
+	CustomWeapon [$SIGSEGV]
 	{
 		Name				"Magnum Opus"
 		OriginalItemName	"The Enforcer"
@@ -778,7 +785,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		"special item description"	"66% slower movement speed while deployed; +250% reload time"
 		//	WORKS PERFECTLY!
 	}
-	//CustomWeapon  	//	original idea
+	//CustomWeapon [$SIGSEGV]	//	original idea
 	//{
 	//	Name				"AB+"
 	//	OriginalItemName	"TF_WEAPON_REVOLVER"
@@ -799,7 +806,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 	//	"special item description"		"Enemies bleed for 10s on hit; Automatically cloaks when dealing bleed damage; -90% damage; cant disguise nor manually cloak via watches"
 	//	//
 	//}
-	CustomWeapon  
+	CustomWeapon [$SIGSEGV]
 	{
 		Name				"AB+"
 		OriginalItemName	"TF_WEAPON_REVOLVER"
@@ -807,13 +814,13 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		"paintkit_proto_def_index"		263		//	Death Deluxe
 		"bleeding duration"				10
 		"mult bleeding delay"			0.5
-		"mult bleeding dmg"				2
+		"mult bleeding dmg"				3
 		"damage penalty"				0.5
 		"self add attributes on hit"	"move speed penalty|0.85|0.5"
 		"special item description"		"Enemies bleed for 10s on hit; Bleed damage causes 15% slow movement to self; -50% damage"
 		//
 	}
-	CustomWeapon  
+	CustomWeapon [$SIGSEGV]
 	{
 		Name				"Eternal Earner"
 		OriginalItemName	"The Big Earner"
@@ -826,7 +833,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		"special item description"		"Big Earner + YER properties combined"
 		//	WORKS PERFECTLY!
 	}
-	CustomWeapon  
+	CustomWeapon [$SIGSEGV]
 	{
 		Name				"Joker"
 		OriginalItemName	"The Black Rose"
@@ -841,7 +848,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 	
 	
 	
-	ExtraLoadoutItems  
+	ExtraLoadoutItems [$SIGSEGV]
 	{
 		Scout
 		{
@@ -864,7 +871,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		{
 			Primary		"Pressurized Phosphorus"
 			Primary		"Adren Rush"
-			Primary		"Airdash"
+			Primary		"Draconic Dash"
 			Secondary	"Kinetic Bhop"
 			Melee		"Torching Transmission"
 		}
