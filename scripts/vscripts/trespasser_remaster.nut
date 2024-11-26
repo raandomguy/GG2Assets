@@ -281,32 +281,31 @@ if(hObjectiveResource && hObjectiveResource.IsValid()) hObjectiveResource.Accept
 			if(sNetworkID == "" || sNetworkID == "BOT") continue
 
 			local sNetworkIDSlice = sNetworkID.slice(5, sNetworkID.find("]"))
-			local sScriptData = FileToString(format("trespasser_remaster_wins/updated/player_%s.txt", sNetworkIDSlice))
-			if(sScriptData != null)
-				compilestring(format("Trespasser.Wins[\"%s\"] <- %s", sNetworkID, sScriptData))()
+			// local sScriptData = FileToString(format("trespasser_remaster_wins/updated/player_%s.txt", sNetworkIDSlice))
+			// if(sScriptData != null)
+			// 	compilestring(format("Trespasser.Wins[\"%s\"] <- %s", sNetworkID, sScriptData))()
 
 			//test database read
-			VPI.AsyncCall({func="VPI_DB_Trespasser_ReadWrite", kwargs= {
-				query_mode="read",
-				network_id=sNetworkIDSlice
-			},
-			callback=function(response) {
+			VPI.AsyncCall({
+				func="VPI_DB_Trespasser_ReadWrite",
+				kwargs= {
+					query_mode="read",
+					network_id=sNetworkIDSlice
+				},
+				callback=function(response) {
 
-				if (typeof(response) != "array" || !response.len())
-				{
-					printl("empty");
-					return;
+					if (typeof(response) != "array" || !response.len())
+					{
+						Trespasser.Wins[sNetworkID] <- [0, false, false]
+						printl("empty win data for " + sNetworkID + ": " + response)
+						return;
+					}
+					local r = response[0]
+					printl("READ: Win data for " + sNetworkID + ": "+r[0]+"|"+r[1]+"|"+r[2])
+
+					Trespasser.Wins[sNetworkID] <- [r[0], r[1], r[2]]
 				}
-
-				// local s = ""
-				// foreach (col in response)
-				// 	if (typeof col == "array")
-				// 		foreach (c in col)
-				// 			s += format("%s%s", c.tostring(), ",");
-				// 	else
-				// 		s += format("%s%s", col.tostring(), ",");
-				// printl(s)
-			}})
+			})
 		}
 	}
 	function SavePlayerWins()
@@ -328,26 +327,28 @@ if(hObjectiveResource && hObjectiveResource.IsValid()) hObjectiveResource.Accept
 
 			local sNetworkIDSlice = sNetworkID.slice(5, sNetworkID.find("]"))
 			//test database write
-			VPI.AsyncCall({func="VPI_DB_Trespasser_ReadWrite", kwargs= {
-				query_mode="write",
-				network_id=sNetworkIDSlice,
-				wins=Array[0],
-				solo_win=Array[1],
-				all_survivors_alive_win=Array[2]
-			},
-			callback=function(response) {
+			VPI.AsyncCall({
+				func="VPI_DB_Trespasser_ReadWrite",
+				kwargs= {
+					query_mode="write",
+					network_id=sNetworkIDSlice,
+					wins=Array[0],
+					solo_win=Array[1],
+					all_survivors_alive_win=Array[2]
+				}
+				// callback=function(response) {
 
-				printl("write response")
-				printl("write response")
-				printl("write response")
+				// 	foreach (a in Array)
+				// 		printl("write input: " + a)
 
-				foreach (r in response)
-					if (typeof r == "array")
-						foreach (col in r)
-							printl(col)
-					else
-						printl(r)
-			}})
+				// 	foreach (r in response)
+				// 		if (typeof r == "array")
+				// 			foreach (col in r)
+				// 				printl(col)
+				// 		else
+				// 			printl(r)
+				// }
+			})
 		}
 	}
 	bAllSurvivorsAlive = true
