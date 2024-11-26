@@ -560,6 +560,12 @@ Oh_Dios_Mio_Es_Eso_Una_Pizza_Tower_Referencia
                 "target" "!parent"
 				"targetname" "tower_glow"
             }
+            OnParentKilledOutput
+            {
+                Target "add30seconds"
+                Action Trigger
+                Delay 0
+            }
         }
         time_add_3
         {
