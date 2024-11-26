@@ -297,7 +297,11 @@ if(hObjectiveResource && hObjectiveResource.IsValid()) hObjectiveResource.Accept
 
 				local s = ""
 				foreach (col in response)
-					s += format("%s%s", col.tostring(), ",");
+					if (typeof col == "array")
+						foreach (c in col)
+							s += format("%s%s", c.tostring(), ",");
+					else
+						s += format("%s%s", col.tostring(), ",");
 				printl(s)
 			}})
 		}
