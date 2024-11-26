@@ -286,23 +286,26 @@ if(hObjectiveResource && hObjectiveResource.IsValid()) hObjectiveResource.Accept
 				compilestring(format("Trespasser.Wins[\"%s\"] <- %s", sNetworkID, sScriptData))()
 
 			//test database read
-			VPI.AsyncCall({func="VPI_DB_Trespasser_ReadWrite", kwargs={query_mode="read", network_id=sNetworkIDSlice}, callback=function(response) {
-				foreach (r in response)
-					printl(r)
+			VPI.AsyncCall({func="VPI_DB_Trespasser_ReadWrite", kwargs= {
+				query_mode="read",
+				network_id=sNetworkIDSlice
+			},
+			callback=function(response) {
+
 				if (typeof(response) != "array" || !response.len())
 				{
 					printl("empty");
 					return;
 				}
 
-				local s = ""
-				foreach (col in response)
-					if (typeof col == "array")
-						foreach (c in col)
-							s += format("%s%s", c.tostring(), ",");
-					else
-						s += format("%s%s", col.tostring(), ",");
-				printl(s)
+				// local s = ""
+				// foreach (col in response)
+				// 	if (typeof col == "array")
+				// 		foreach (c in col)
+				// 			s += format("%s%s", c.tostring(), ",");
+				// 	else
+				// 		s += format("%s%s", col.tostring(), ",");
+				// printl(s)
 			}})
 		}
 	}
@@ -325,7 +328,19 @@ if(hObjectiveResource && hObjectiveResource.IsValid()) hObjectiveResource.Accept
 
 			local sNetworkIDSlice = sNetworkID.slice(5, sNetworkID.find("]"))
 			//test database write
-			VPI.AsyncCall({func="VPI_DB_Trespasser_ReadWrite", kwargs={query_mode="write", network_id=sNetworkIDSlice, wins=Array[0], solo_win=Array[1], all_survivors_alive_win=Array[2]}, callback=function(response) {
+			VPI.AsyncCall({func="VPI_DB_Trespasser_ReadWrite", kwargs= {
+				query_mode="write",
+				network_id=sNetworkIDSlice,
+				wins=Array[0],
+				solo_win=Array[1],
+				all_survivors_alive_win=Array[2]
+			},
+			callback=function(response) {
+
+				printl("write response")
+				printl("write response")
+				printl("write response")
+
 				foreach (r in response)
 					if (typeof r == "array")
 						foreach (col in r)
