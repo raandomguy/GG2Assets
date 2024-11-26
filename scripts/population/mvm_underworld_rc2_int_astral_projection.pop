@@ -1905,7 +1905,7 @@ WaveSchedule
 		{
 			Name				stage2
 			WaitForAllSpawned	stage1
-			Where			spawnbot_side	// spawnbot
+			Where				spawnbot_side	// spawnbot
 			TotalCount			16	// 32
 			MaxActive			6	// 12
 			SpawnCount			2	// 4
@@ -2288,13 +2288,13 @@ WaveSchedule
 			Action	RunScriptCode
 			Param	"
 			EntFire(`boss_changeattributes_relay`, `cancelpending`,null,-1); //stop the changeattrbs relay so it doesn't spit errors.
-			ClientPrint(null,3,`\x07FF0000AN ERROR HAS OCCURRED [the index 'SINS' does not exist]. Check console for details`)
-			ClientPrint(null,3,`\x07FFFF00AN ERROR HAS OCCURRED [the index 'SINS' does not exist]. Check console for details`)
-			ClientPrint(null,3,`\x07FFFFFFAN ERROR HAS OCCURRED [the index 'SINS' does not exist]. Check console for details`)
-			ClientPrint(null,3,`\x070000FFAN ERROR HAS OCCURRED [the index 'SINS' does not exist]. Check console for details`)
-			ClientPrint(null,3,`\x0700FFFFAN ERROR HAS OCCURRED [the index 'SINS' does not exist]. Check console for details`)
-			ClientPrint(null,3,`\x0700FF00AN ERROR HAS OCCURRED [the index 'SINS' does not exist]. Check console for details`)
-			ClientPrint(null,3,`\x07123456AN ERROR HAS OCCURRED [the index 'SINS' does not exist]. Check console for details`)
+			// ClientPrint(null,3,`\x07FF0000AN ERROR HAS OCCURRED [the index 'SINS' does not exist]. Check console for details`)
+			// ClientPrint(null,3,`\x07FFFF00AN ERROR HAS OCCURRED [the index 'SINS' does not exist]. Check console for details`)
+			// ClientPrint(null,3,`\x07FFFFFFAN ERROR HAS OCCURRED [the index 'SINS' does not exist]. Check console for details`)
+			// ClientPrint(null,3,`\x070000FFAN ERROR HAS OCCURRED [the index 'SINS' does not exist]. Check console for details`)
+			// ClientPrint(null,3,`\x0700FFFFAN ERROR HAS OCCURRED [the index 'SINS' does not exist]. Check console for details`)
+			// ClientPrint(null,3,`\x0700FF00AN ERROR HAS OCCURRED [the index 'SINS' does not exist]. Check console for details`)
+			// ClientPrint(null,3,`\x07123456AN ERROR HAS OCCURRED [the index 'SINS' does not exist]. Check console for details`)
 			"
 		}
 
