@@ -3794,7 +3794,7 @@ Oh_Dios_Mio_Es_Eso_Una_Pizza_Tower_Referencia
         {
             Name "part3_3"
             WaitForAllDead "part3_2"
-            Where spawnbot
+            Where spawnbot_scattered
             TotalCount 8
             MaxActive 4
             SpawnCount 1
