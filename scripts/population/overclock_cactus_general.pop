@@ -6,7 +6,7 @@ WaveSchedule
 	LuaScriptFile "scripts/holdfireuntilfullupgrade.lua"
 	LuaScriptFile "scripts/lua_knockback_rage_cactus.lua"
 	LuaScriptFile "scripts/cowmangler_charge_shot_attribute.lua"
-//	CustomUpgradesFile	"mvm_upgrades_cactus_z1.txt" 
+	CustomUpgradesFile	"mvm_upgrades_cactus_gg2a1.txt" 
 
 	DisallowUpgrade	  //RPG
 	{
@@ -1368,10 +1368,9 @@ WaveSchedule
 			Allowplayerclass Soldier
 			SecondaryAttributes //Secondary attributes applied when upgrade is applied, for each upgrade level
 			{
-				"add cond on kill" 16
+				"minicritboost on kill" 2.5
 				"move speed bonus" 0.1
 				"fire rate bonus" -0.2
-				"add cond on kill duration" 2
 				"maxammo secondary reduced" -0.35
 				"maxammo primary reduced" -0.35
 			}
@@ -1394,8 +1393,37 @@ WaveSchedule
 				//"bleeding duration" 3
 				"airblast_pushback_disabled" 1
 				"slow enemy on hit" 1
+				"flame_speed" 5400
+				"flame_drag" 4.75				
 			}
-			Description "+Ignite non-ignitable targets +100% chance to slow target -airblast no longer pushes back robots" 
+			Description "+Ignite non-ignitable targets +100% chance to slow target +35% flamethrower range -airblast no longer pushes back robots" 
+			Tier 1
+            AllowedWeapons
+			{
+				ClassName TF_WEAPON_FLAMETHROWER 
+				ItemName "Festive Flamethrower 2011"
+			}
+			DisallowedWeapons // Disallow those weapons
+			{
+				ItemName "The Phlogistinator"
+				ItemName "The Backburner"
+				ItemName "The Dragon's Fury"
+				ItemName "The Degreaser"
+			}
+		}
+		Flamer_b
+		{
+			Name "Unstable Mod: Face Melter"
+			Attribute "CARD: damage bonus"
+			Cap 1.5
+			Increment 0.5
+			Cost 0
+			SecondaryAttributes
+			{
+				"move speed penalty" -0.1
+				"maxammo primary reduced" -0.5
+			}
+			Description "+50% damage bonus -10% move speed -50% ammo penalty" 
 			Tier 1
             AllowedWeapons
 			{
@@ -1412,15 +1440,33 @@ WaveSchedule
 		}
 		Backburner
 		{
-			Name "Unstable Mod: Acidic Compound"
+			Name "Stable Mod: Acidic Compound"
+			Attribute "dmg pierces resists absorbs"
+			Cap 1
+			Increment 1
+			SecondaryAttributes
+			{
+				"mult dmg vs tanks" 0.2
+			}
+			Description "+20% extra damage to tanks +Attacks Pierce Resistances" 
+			Tier 1
+            AllowedWeapons
+			{
+				ItemName "The Backburner"
+				ItemName "Festive Backburner 2014"
+			}
+		}
+		Backburner_b
+		{
+			Name "Unstable Mod: Prototype Module"
 			Attribute "airblast disabled"
 			Cap 1
 			Increment 1
 			SecondaryAttributes
 			{
-				"mult dmg vs tanks" 0.15
+				"max health additive bonus" 25
 			}
-			Description "+20% extra damage to tanks -No Airblast" 
+			Description "+25 max health -No Airblast" 
 			Tier 1
             AllowedWeapons
 			{
@@ -1435,6 +1481,7 @@ WaveSchedule
 			Cap 15
 			Increment 15
 			Cost 0
+			Tier 1
 			SecondaryAttributes
 			{
 				"damage penalty" -0.2
@@ -1457,6 +1504,7 @@ WaveSchedule
 			Cap 1
 			Increment 1
 			Cost 0
+			Tier 1
 			SecondaryAttributes
 			{
 				"mult_item_meter_charge_rate" -0.2
@@ -1474,7 +1522,7 @@ WaveSchedule
 			Name "Unstable Mod: Gas Jockey"
 			Attribute "move speed bonus"
 			Cap 1.15
-			Increment 0.1
+			Increment 0.15
 			Cost 0
 			SecondaryAttributes
 			{
@@ -2306,7 +2354,7 @@ WaveSchedule
 				"hidden primary max ammo bonus" -0.5
 				"tool needs giftwrap" 1
 			}
-			Description "+no movement penalty when spun-up +Rage now pierces resistances -50% max ammo" 
+			Description "+no movement penalty when spun-up +Rage now pierces resistances and increases accuracy -50% max ammo" 
 			Tier 1
 			AllowedWeapons
 			{
