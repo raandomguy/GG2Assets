@@ -4729,7 +4729,7 @@ Real?
 			math_counter
 			{
 				"targetname"	"tcs_enrage_counters"
-				"max"			"40"
+				"max"			"35"
 				"OnHitMax"		"player,$DisplayTextChat,{blue}Time-Constraint Soul {reset}: Oh I see. You know who else likes to spam canteens?,0.5,1"
 
 				"OnHitMax"		"@f@filter_tcs@player,$AddCond,52 8,3,-1"
@@ -8168,7 +8168,7 @@ Real?
 			ClassIcon	heavy_head_nys
 			Scale	2
 			Skill	Expert
-			Health	160000
+			Health	170000
 			Attributes	MiniBoss
 			Attributes	UseBossHealthBar
 			Action		Mobber
@@ -8291,7 +8291,7 @@ Real?
 				Delay 		0
 				Cooldown	0
 				Repeats		1
-				IfHealthBelow	80001
+				IfHealthBelow	87501
 			}
 			FireInput   
 			{
@@ -8300,7 +8300,7 @@ Real?
 				Param		"960 -5936 704"
 				Delay 		5
 				Repeats		1
-				IfHealthBelow	80001
+				IfHealthBelow	87501
 			}
 			FireInput   
 			{
@@ -8308,7 +8308,7 @@ Real?
 				Action		"Disable"
 				Delay 		0.01
 				Repeats		1
-				IfHealthBelow	80001
+				IfHealthBelow	87501
 			}
 			FireInput   
 			{
@@ -8316,7 +8316,7 @@ Real?
 				Action		"CancelPending"
 				Delay 		0.01
 				Repeats		1
-				IfHealthBelow	80001
+				IfHealthBelow	87501
 			}
 
 			InterruptAction
@@ -8341,7 +8341,7 @@ Real?
 				"dmg taken from self reduced"	0.00001
 				"gesture speed increase"		0.75
 				"move speed bonus"				0.65
-				"dmg taken increased"	0.5
+				"dmg taken increased"	0.45
 				"dmg from melee increased"	2
 				"dmg from ranged reduced"	2
 				"dmg taken mult from special damage type 2"	1.5	// so that the nail minigun isn't abysmal dogshit against specifically this guy

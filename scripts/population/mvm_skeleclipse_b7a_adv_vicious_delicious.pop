@@ -450,7 +450,7 @@ population
 				"set_item_texture_wear"				0				//	FN
 				"paintkit_proto_def_index"			"4.24593e-43n"	//	303 - Macaw Masked
 			//	The above 2 lines enable warpaints in a listen server
-				"damage penalty" 					0.75
+			//	"damage penalty" 					0.75
 				"clip size penalty"					1.5
 				"faster reload rate" 				0.5
 				"fire rate bonus"    				0.33
@@ -459,7 +459,7 @@ population
 			{
 				"SPELL: set Halloween footstep type"			2452877	//	TVoT (BLU)
 				"override footstep sound set" 					5
-				"move speed bonus"								0.4
+				"move speed bonus"								0.5
 				"airblast vertical vulnerability multiplier"	0.3
 				"airblast vulnerability multiplier"				0.1
 				"damage force reduction" 						0.2
@@ -505,7 +505,6 @@ population
 			Skill		Expert
 			Health		3000
 			Attributes	MiniBoss
-			Attributes	AlwaysCrit
 			WeaponRestrictions MeleeOnly
 			Item		"The Third Degree"
 			Item		"Wiki Cap"
@@ -534,7 +533,6 @@ population
 			Skill		Expert
 			Health		3000
 			Attributes	MiniBoss
-			Attributes	AlwaysCrit
 			WeaponRestrictions MeleeOnly
 			Item		"The Homewrecker"
 			Item		"The Vicious Visage"
@@ -996,6 +994,7 @@ population
 				Attributes	HoldFireUntilFullReload
 				ClassIcon	soldier_bison_spammer
 				Tag nav_prefer_flank_mid
+				Item		"Demonic Dome"
 				ItemAttributes
 				{
 					ItemName	"The Righteous Bison"
@@ -1300,7 +1299,7 @@ population
 			WaitBetweenSpawns	15
 			TFBot
 			{
-				Template	T_TFBot_Giant_Fast_Degree_pyro
+				Template	T_TFBot_Giant_Fast_homewrecker_pyro
 				Tag nav_prefer_flank_left
 			}
 		}
@@ -1417,17 +1416,24 @@ population
 			Name	2c2
 			WaitForAllSpawned	2b
 			TotalCurrency	75
-			TotalCount	7
-			MaxActive	3
-			SpawnCount	1
+			TotalCount	14
+			MaxActive	6
+			SpawnCount	2
 			Where	spawnbot_left
 			WaitBeforeStarting	8
 			WaitBetweenSpawns	8
 			TFBot
 			{
-				Template	T_TFBot_Sniper_Huntsman_Spammer
-				ClassIcon	sniper_bow_multi
+				Template	T_TFBot_Sniper_Huntsman
+				Name		"Fire Huntsman Sniper"
+				Classicon	sniper_bow_fire_yoovy
 				Tag nav_prefer_flank_left
+				ItemAttributes
+				{
+					Itemname "The Huntsman"
+					"Set DamageType Ignite"		1
+					"attach particle effect"	13
+				}
 			}
 		}
 		WaveSpawn
@@ -1444,6 +1450,7 @@ population
 			TFBot
 			{
 				Template	T_TFBot_Giant_Fast_Degree_pyro
+				Attributes	AlwaysCrit
 				Tag nav_prefer_flank_left
 			}
 		}
@@ -1460,7 +1467,8 @@ population
 			WaitBetweenSpawns	20
 			TFBot
 			{
-				Template	T_TFBot_Giant_Fast_homewrecker_pyro
+				Template	T_TFBot_Giant_Fast_Degree_pyro
+				Attributes	AlwaysCrit
 				Tag nav_prefer_flank_left
 			}
 		}
@@ -1712,33 +1720,37 @@ population
 		{
 			Name	3a
 			TotalCurrency	100
-			TotalCount	4
-			MaxActive	4
-			SpawnCount	2
+			TotalCount	6
+			MaxActive	6
+			SpawnCount	3
 			Where	spawnbot_right
 			WaitBeforeStarting	1
-			WaitBetweenSpawns	15
+			WaitBetweenSpawns	12
 			Squad
 			{
 				TFBot
 				{
-					Template	T_TFBot_Giant_Soldier
-					Attributes	AlwaysCrit
+					Template	T_TFBot_Giant_Soldier_RocketPush
+					Name		"Giant Conch Blast Soldier"
+					Item		"The Concheror"
 					Tag nav_prefer_flank_right
-					Item	"Upgradeable TF_WEAPON_ROCKETLAUNCHER"	
-					Tag	"popext_warpaint{ idx = 295, slot = 0}"	//	Polter-Guised
-					//	The above line makes warpaints work in Potato testing servers with popext. slot 0 = primary weapon slot
-					ItemAttributes
+					Attributes  SpawnWithFullCharge
+					ClassIcon	soldier_blast_conch_yoovy
+					Item		"Wanderer's Wool"
+					CharacterAttributes
 					{
-						ItemName "Upgradeable TF_WEAPON_ROCKETLAUNCHER"	
-						"set_item_texture_wear"				0				//	FN
-						"paintkit_proto_def_index"			"4.13383e-43n"	//	295 - Polter-Guised
-					//	The above 2 lines enable warpaints in a listen server
+						"increase buff duration"	9.0
 					}
 				}
 				TFBot
 				{
 					Template	T_TFBot_Medic
+					Tag nav_prefer_flank_right
+				}
+				TFBot
+				{
+					Template	T_TFBot_Medic
+					Tag nav_prefer_flank_right
 				}
 			}
 		}
@@ -1840,9 +1852,9 @@ population
 			Name	3e
 			WaitForAllSpawned	3c
 			TotalCurrency	100
-			TotalCount	8
-			MaxActive	4
-			SpawnCount	2
+			TotalCount	12
+			MaxActive	6
+			SpawnCount	3
 			Where	spawnbot
 			WaitBeforeStarting	10
 			WaitBetweenSpawns	15
@@ -1877,7 +1889,30 @@ population
 						ItemName	"The Quick-Fix"
 						"uber duration bonus"			100
 						"heal rate bonus"				5
-						"reduced_healing_from_medics"	0.2
+						"reduced_healing_from_medics"	0.4
+					}
+					CharacterAttributes
+					{
+						"airblast vulnerability multiplier" 0.6
+						"bot medic uber health threshold" 	1000
+						"cannot pick up intelligence"		1
+					}
+				}
+				TFBot
+				{
+					Template	T_TFBot_Medic_QuickFix
+					Health		500
+					Scale		1.5
+					Name		"Armored Pop Quick-Fix Medic"
+					Classicon	medic_quickfix_armored_spammer
+					Attributes	SpawnWithFullCharge
+					WeaponRestrictions	SecondaryOnly
+					ItemAttributes
+					{
+						ItemName	"The Quick-Fix"
+						"uber duration bonus"			100
+						"heal rate bonus"				5
+						"reduced_healing_from_medics"	0.4
 					}
 					CharacterAttributes
 					{
@@ -1893,12 +1928,12 @@ population
 			Name	3f
 			WaitForAllSpawned	3d
 			TotalCurrency	100
-			TotalCount	18
-			MaxActive	8
+			TotalCount	14
+			MaxActive	10
 			SpawnCount	2
 			Where	spawnbot
 			WaitBeforeStarting	5
-			WaitBetweenSpawns	8
+			WaitBetweenSpawns	5
 			TFBot
 			{
 				Class	Heavy
@@ -2005,7 +2040,7 @@ population
 		{
 			Name	neckrid_boss_death_3.1
 			WaitForAllDead	3h
-			DoneWarningSound	"vo\halloween_boss\knight_dying.mp3"
+			DoneWarningSound	"vo\halloween_boss\knight_death02.mp3"
 		}
 	}
 	Wave
@@ -2354,7 +2389,7 @@ population
 				Speed	80
 				Name	"combattank|rocketpod|rocketpod"	//	tank's characteristics (type|weapon1|weapon2)
 				StartingPathTrackNode "tank_loop_mid_1"		//	for modded tanks, you place the *modded* path's name here
-				ClassIcon	tank_combat_rocket   	//	A rocketpod tank icon for modded servers
+				ClassIcon	tank_combat_rocket [$SIGSEGV] 	//	A rocketpod tank icon for modded servers
 			}
 			FirstSpawnOutPut	//	A Vscript for showing tank's HP in game, as text
 			{
@@ -2893,7 +2928,7 @@ population
 				Skin	1
 				Name	"combattank|minigun|minigun"		//	tank's characteristics (type|weapon1|weapon2)
 				StartingPathTrackNode "tank_loop_left_1"	//	for modded tanks, you place the *modded* path's name here
-				ClassIcon	tank_combat_minigun   	//	A minigun tank icon for modded servers
+				ClassIcon	tank_combat_minigun [$SIGSEGV] 	//	A minigun tank icon for modded servers
 			}
 			FirstSpawnOutPut	//	A Vscript for showing tank's HP in game, as text
 			{
@@ -2992,7 +3027,7 @@ population
 			SpawnCount	2
 			Where	spawnbot_right
 			WaitBeforeStarting	25
-			WaitBetweenSpawns	15
+			WaitBetweenSpawns	12
 			Squad
 			{
 				TFBot
@@ -3039,7 +3074,7 @@ population
 			Where	spawnbot_left
 			Where	spawnbot_right
 			WaitBeforeStarting	5
-			WaitBetweenSpawns	7
+			WaitBetweenSpawns	6
 			Support	1
 			TFBot
 			{
