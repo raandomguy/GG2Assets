@@ -66,6 +66,7 @@ WaveSchedule
 		// "reload time increased"		1.2
 		// "fire rate bonus"			1	// remove FaN's fire rate bonus.
 		// "hand scale"				1.5	// hear me out...
+		"damage bonus"					1.25
 		"add attributes when active"	"hand scale|1.5"	// Now shouldn't be passive.
 	}
 
