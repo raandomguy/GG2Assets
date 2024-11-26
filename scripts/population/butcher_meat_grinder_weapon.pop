@@ -77,7 +77,7 @@ WaveSchedule
 			"heal rate bonus" 1.1
 			"ubercharge rate bonus" 3
 			"effect cond override" 90
-			"special item description" "Strength powerup when ubercharge"
+			"special item description" "Strength powerup when ubercharge (Doesn't work on Tank)"
 		}
 		"The Agility Medigun"
 		{

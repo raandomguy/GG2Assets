@@ -1,6 +1,6 @@
 
 // THE ATHAZAR WEAPON PACK (red variant)
-// (or for a more fancy and alliterative name, Athazar's Arsenalâ„¢)
+// (or for a more fancy and alliterative name, Athazar's Arsenal™)
 
 // A pack of weapons and rebalances specifically made for my next set of NORMAL missions because I feel like it.
 // Originally made on a reverse mission that is now scrapped and considered a demo for the various things showcased in that mission.
@@ -266,15 +266,15 @@ athazar's_bar_and_bazaar	// subtle sneed's seed and feed reference
 		Name	"The Solar Carbonizer"
 		OriginalItemName	"The Phlogistinator"
 		//"custom item model"	"models/weapons/c_models/c_solar_carbonizer/c_solar_carbonizer.mdl"
-		"damage penalty"	0.9
+		"damage penalty"	0.85
 		"weapon burn time reduced"	0.0001
 		"afterburn duration penalty"	0.0001
-		"mult dmg vs tanks"			1.15
+		"weapon burn dmg reduced"	0.5
 		"rage receive scale"		1.2
 		
-		"special item description"		"Alternative Phlog; MMMPH is replaced with Conch + Battalion's backup effect"
-		"special item description 2"	"-10% damage penalty and zero afterburn; Afterburn upgrades are disabled on this weapon"
-		"effect cond override"	7450	// i swear to god if this doesn't work // ok good news it works and I'm retarded
+		"special item description"		"Alternative Phlog; MMMPH is replaced with triple banner effect (Battalion's Backup + Buff Banner + Concheror)"
+		"special item description 2"	"-15% damage penalty and significantly reduced afterburn; Afterburn upgrades are disabled on this weapon"
+		"effect cond override"	1056026
 		
 		//"spread offset pattern"		"10 -15 100"	// oh custom flamethrower models, why do you have to be like this
 
@@ -294,10 +294,11 @@ athazar's_bar_and_bazaar	// subtle sneed's seed and feed reference
 		"damage penalty"	0.8
 		"fire rate penalty"	1.2
 		"crit vs burning players"	1
+		"minicritboost on kill"		7
 		"special damage type"		1	// used exclusively for mvm_whitecliff_event_rc2_exp_light_up_the_night.pop's normal mode final boss
 		
 		"alt fire attack" 3
-		"alt fire attributes" "override projectile type|2|Set DamageType Ignite|1|projectile trail particle|spell_fireball_small_red|fire rate penalty|3|projectile gravity|600|custom projectile model|models/empty.mdl|damage bonus|5|projectile speed increased|2|self dmg push force increased|2|blast dmg to self increased|1.5"
+		"alt fire attributes" "override projectile type|2|Set DamageType Ignite|1|projectile trail particle|spell_fireball_small_red|fire rate penalty|3|projectile gravity|600|custom projectile model|models/empty.mdl|damage bonus|5|projectile speed increased|2|self dmg push force increased|2|blast dmg to self increased|1.5|blast radius increased|1.5"
 
 	}
 
@@ -432,7 +433,7 @@ athazar's_bar_and_bazaar	// subtle sneed's seed and feed reference
 		"special item description"	"Fires a high speed, high damage projectile with zero gravity that drills into targets on impact, dealing damage over time"
 		"set_item_texture_wear"	0
         "paintkit_proto_def_index"	414	// Bomb Carrier
-		"damage bonus"		2
+		"damage bonus"		1.75
 		"mult bleeding delay"	0.2
 		"mult bleeding dmg"		0.5
 		"mult dmg vs tanks"			2
@@ -582,7 +583,7 @@ athazar's_bar_and_bazaar	// subtle sneed's seed and feed reference
 		"grenade explode on impact" 1
 		"maxammo primary reduced"	0.75
 		"clip size bonus"	1.5
-		"damage penalty"	0.4
+		"damage penalty"	0.25
 		"dmg penalty vs buildings"	0
 		"self dmg push force decreased"	0.6
 		"fire input on hit"	"!self^RunScriptCode^AthazarWeaponPack.PillPopper.call(this)"
@@ -620,7 +621,7 @@ athazar's_bar_and_bazaar	// subtle sneed's seed and feed reference
 	// What the actual fuck. Disregard all prior comments.
 	// 9/4/24 nevermind fuck this medigun entirely holy shit
 
-	CustomWeapon	// originally from malpractice but now Differentâ„¢
+	CustomWeapon	// originally from malpractice but now Different™
 	{
 		Name	"The Cauterizer"
 		OriginalItemName	"Upgradeable TF_WEAPON_MEDIGUN"
@@ -646,13 +647,13 @@ athazar's_bar_and_bazaar	// subtle sneed's seed and feed reference
 		"damage penalty"				0.05
 		"add uber charge on hit"		0
 		"special item description"		"Extremely low damage but inflicts a very powerful yet slow bleed that lowers enemy healing by 50%"	// I am definitely not beating the Grouch allegations at this point
-		"special item description 2"	"Grants +50% revive rate + medigun range and a speed boost for 1.5 seconds per tick of damage"
+		"special item description 2"	"On hit, grants +50% revive rate, +50% medigun range, and Backup + Conch effect for 1.5 seconds per tick of damage"
 		"mult bleeding delay"			3
 		"mult bleeding dmg"				7.5
 		"bleeding duration"				5
 		"add attributes on hit"			"healing received penalty|0.5|1.5"
 		
-		"self add cond on hit"			32
+		"self add cond on hit"			7450
 		"self add cond on hit duration"	1.5	// effectively same duration as bleed- every tick of bleed counts as a hit and resets the timer
 		"self add attributes on hit"	"mult medigun range|1.5|1.5|revive rate|1.5|1.5"	// oops it's all 1.5
 	}
@@ -796,7 +797,7 @@ athazar's_bar_and_bazaar	// subtle sneed's seed and feed reference
 	// Dev Notes: Returning weapon, but this MIGHT be my most favorite weapon of the whole pack because it's something nobody's ever actually really done with rafmod before.
 	// People really haven't tried messing around with custom sappers from what I've seen, so that opened the opportunity to try my own spin with a bit of crackhead pointtemplate design.
 
-	CustomWeapon	 	// Used in Timely Demise PointTemplate
+	CustomWeapon	[$SIGSEGV]	// Used in Timely Demise PointTemplate
 	{
 		Name	"ooooh pipebomb"
 		OriginalItemName	"TF_WEAPON_GRENADELAUNCHER"
@@ -815,7 +816,7 @@ athazar's_bar_and_bazaar	// subtle sneed's seed and feed reference
 		"projectile gravity"		0.02
 	}
 
-	//CustomWeapon	 
+	//CustomWeapon	[$SIGSEGV]
 	//{
 	//	Name							"Vampire Module"
 	//	OriginalItemName				"TTG Watch"
@@ -840,7 +841,7 @@ athazar's_bar_and_bazaar	// subtle sneed's seed and feed reference
 
 	// the, uh, rebalances.
 	
-	ItemAttributes	 	// Probably the only actual rebalance I'll be doing?
+	ItemAttributes	[$SIGSEGV]	// Probably the only actual rebalance I'll be doing?
 	{
 		ItemName	"The Gunslinger"
 		"special item description"			"Grants a free disposable mini-sentry, x2 dispenser heal/ammo rate, +25% sentry damage"
@@ -850,7 +851,7 @@ athazar's_bar_and_bazaar	// subtle sneed's seed and feed reference
 		"engy sentry damage bonus"			1.25
 	}
 
-	//ItemAttributes	 	// Not a real rebalance- just fixes the fact this crashes if you have homing attributes from the Infrared Transmitter
+	//ItemAttributes	[$SIGSEGV]	// Not a real rebalance- just fixes the fact this crashes if you have homing attributes from the Infrared Transmitter
 	//{
 	//	ItemName	"The Sandman"
 	//	"attribute immunity"	"mod projectile heat seek power|mod projectile heat aim error|projectile trail particle"
@@ -1031,6 +1032,38 @@ for(local i = 0; i <= 8; i++)
                 Action RunScriptCode
                 Param "AthazarWeaponPack.MiniPDA.call(this)"
             }
+
+			OnSpawnOutput	// fix from fellen
+			{
+				Target !parent
+				Action RunScriptCode
+				Param "
+					for (local tele; tele = Entities.FindByClassname(tele, `obj_teleporter`);) {
+						if (NetProps.GetPropBool(tele, `m_bPlacing`)) continue
+
+						local builder = NetProps.GetPropEntity(tele, `m_hBuilder`)
+						if (builder != self) continue
+
+						NetProps.SetPropInt(tele, `m_iHighestUpgradeLevel`, 1)
+						NetProps.SetPropInt(tele, `m_iUpgradeLevel`, 1)
+
+						local pda
+						for (local i = 0; i < 7; ++i) {
+							local wep = GetPropEntityArray(builder, `m_hMyWeapons`, i)
+							if (wep == null || wep.GetSlot() != 3) continue
+							pda = wep
+							break
+						}
+
+						local maxhp = 150.0 * pda.GetAttribute(`engy building health bonus`, 1.0)
+						tele.SetMaxHealth(maxhp)
+						if (tele.GetHealth() > maxhp)
+							tele.SetHealth(maxhp)
+
+					}
+				"
+			}
+
 		}
 		SharpshooterTemplate
 		{
@@ -1081,6 +1114,8 @@ for(local i = 0; i <= 8; i++)
 				Param "IncludeScript(`athazarweaponpack`, getroottable())"
 			}
 		}
+		
+		
 	}
 
 	SpawnTemplate	includescript_awp
@@ -1128,7 +1163,7 @@ for(local i = 0; i <= 8; i++)
 		Name	canned_conserva
 		ItemName	"The Canned Conserva"
 	}
-	ExtraLoadoutItems  
+	ExtraLoadoutItems [$SIGSEGV]
 	{
 		Scout
 		{
@@ -1191,7 +1226,7 @@ for(local i = 0; i <= 8; i++)
 
 	/////////////////////////
 
-	ExtendedUpgrades	 
+	ExtendedUpgrades	[$SIGSEGV]
 	{
 		universal_killstreak
 		{
@@ -1350,31 +1385,6 @@ for(local i = 0; i <= 8; i++)
 			}
 		}
 
-		gunslinger_flamemodule
-		{
-			Name			"Gunslinger Module: Dragon's Fury"
-			Attribute		"never craftable"
-			Cap				1
-			Increment		1
-			Cost			0
-			Description		"Your sentries shoot fireballs instead of bullets. +100% health and build rate to compensate for lack of range."
-			SecondaryAttributes
-			{
-				"sentry bullet weapon"	"Flame Module"
-				"engy sentry fire rate increased"	5
-				"engy building health bonus"		1
-				"engy sentry radius increased"		-0.5
-				"engineer sentry build rate multiplier"	2
-			}
-			AllowedWeapons
-			{
-				ItemName	"The Gunslinger"
-			}
-			DisallowedUpgrade
-			{
-				Upgrade	gunslinger_rocketmodule
-			}
-		}
 		gunslinger_rocketmodule
 		{
 			Name			"Gunslinger Module: Rocket"

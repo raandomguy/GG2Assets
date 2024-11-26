@@ -1531,7 +1531,7 @@
 			{
 				coffins_active = false
 				
-				HideIcon("dead_blu_lite")
+				if (!NetProps.GetPropBool(objective_resource_entity, "m_bMannVsMachineBetweenWaves")) HideIcon("dead_blu_lite")
 				
 				EmitGlobalSound("ui/halloween_loot_found.wav")
 				

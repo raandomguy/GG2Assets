@@ -1303,22 +1303,19 @@ CTFPlayer.GetWeapon <- function(className, itemID)
 CTFBot.GetWeapon <- CTFPlayer.GetWeapon
 
 CTFPlayer.GetWearable <- function(model, bonemerge = true, attachment = null, offsets = null)
-{
+{	
 	local modelIndex = GetModelIndex(model)
 
 	if (modelIndex == -1) modelIndex = ::PrecacheModel(model)
 
 	local wearable = Entities.CreateByClassname("tf_wearable")
 	
-	NetProps.SetPropInt(wearable, "m_nModelIndex", modelIndex)
+	NetProps.SetPropInt(wearable, "m_nModelIndex", dummywearableindex)
 	
 	wearable.SetSkin(this.GetTeam())
 	wearable.SetTeam(this.GetTeam())
 	wearable.SetSolidFlags(4)
 	wearable.SetCollisionGroup(11)
-	
-	NetProps.SetPropBool(wearable, "m_bValidatedAttachedEntity", true)
-	NetProps.SetPropBool(wearable, "m_AttributeManager.m_Item.m_bInitialized", true)
 
 	wearable.SetOwner(this)
 	Entities.DispatchSpawn(wearable)
@@ -1346,6 +1343,11 @@ CTFPlayer.GetWearable <- function(model, bonemerge = true, attachment = null, of
 		EntFireByHandle(wearable, "RunScriptCode", "self.SetLocalOrigin(Vector(0, 0, 0))", 0.1, null, null)
 		EntFireByHandle(wearable, "RunScriptCode", "self.SetLocalAngles(QAngle(0, 0, 0))", 0.1, null, null)
 	}
+	
+	EntFireByHandle(wearable, "RunScriptCode", "NetProps.SetPropIntArray(self, `m_nModelIndexOverrides`, " + modelIndex + ", 0)", 1.0, null, null) 
+	EntFireByHandle(wearable, "RunScriptCode", "NetProps.SetPropIntArray(self, `m_nModelIndexOverrides`, " + modelIndex + ", 1)", 1.0, null, null) 
+	EntFireByHandle(wearable, "RunScriptCode", "NetProps.SetPropIntArray(self, `m_nModelIndexOverrides`, " + modelIndex + ", 2)", 1.0, null, null) 
+	EntFireByHandle(wearable, "RunScriptCode", "NetProps.SetPropIntArray(self, `m_nModelIndexOverrides`, " + modelIndex + ", 3)", 1.0, null, null) 
 	
 	wearable.ValidateScriptScope()
 	wearable.GetScriptScope().custom_wearable <- true
@@ -1402,11 +1404,14 @@ if (!("PEA_GLOBAL_ONETIME" in getroottable())) // declare these variables only o
 		objective_resource_entity = Entities.FindByClassname(null, "tf_objective_resource")
 		debugger = null
 		wavewon = false
+		
+		dummywearableindex = ::PrecacheModel("models/weapons/w_models/w_shotgun.mdl")
+
 		firstload = ("custom_spawns" in PEA) ? true : false
 	}
 	
 	foreach (thing, var in PEA_GLOBAL_ONETIME) getroottable()[thing] <- getroottable()["PEA_GLOBAL_ONETIME"][thing]
-	
+
 	for (local i = 1; i <= Constants.Server.MAX_PLAYERS; i++) // run this for when the first player connects to the server and the callback hasn't loaded yet
 	{
 		local player = PlayerInstanceFromIndex(i)

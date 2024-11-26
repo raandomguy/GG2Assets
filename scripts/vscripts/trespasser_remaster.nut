@@ -279,9 +279,33 @@ if(hObjectiveResource && hObjectiveResource.IsValid()) hObjectiveResource.Accept
 			if(!hPlayer || hPlayer.IsFakeClient()) continue
 			local sNetworkID = GetPropString(hPlayer, "m_szNetworkIDString")
 			if(sNetworkID == "" || sNetworkID == "BOT") continue
-			local sScriptData = FileToString(format("trespasser_remaster_wins/updated/player_%s.txt", sNetworkID.slice(5, sNetworkID.find("]"))))
-			if(sScriptData != null)
-				compilestring(format("Trespasser.Wins[\"%s\"] <- %s", sNetworkID, sScriptData))()
+
+			local sNetworkIDSlice = sNetworkID.slice(5, sNetworkID.find("]"))
+			// local sScriptData = FileToString(format("trespasser_remaster_wins/updated/player_%s.txt", sNetworkIDSlice))
+			// if(sScriptData != null)
+			// 	compilestring(format("Trespasser.Wins[\"%s\"] <- %s", sNetworkID, sScriptData))()
+
+			//test database read
+			VPI.AsyncCall({
+				func="VPI_DB_Trespasser_ReadWrite",
+				kwargs= {
+					query_mode="read",
+					network_id=sNetworkIDSlice
+				},
+				callback=function(response) {
+
+					if (typeof(response) != "array" || !response.len())
+					{
+						Trespasser.Wins[sNetworkID] <- [0, false, false]
+						printl("empty win data for " + sNetworkID + ": " + response)
+						return;
+					}
+					local r = response[0]
+					printl("READ: Win data for " + sNetworkID + ": "+r[0]+"|"+r[1]+"|"+r[2])
+
+					Trespasser.Wins[sNetworkID] <- [r[0], r[1], r[2]]
+				}
+			})
 		}
 	}
 	function SavePlayerWins()
@@ -300,6 +324,31 @@ if(hObjectiveResource && hObjectiveResource.IsValid()) hObjectiveResource.Accept
 			if(sNetworkID in PlayerNames)
 				sName = PlayerNames[sNetworkID]
 			StringToFile(format("trespasser_remaster_wins/updated/player_%s.txt", sNetworkID.slice(5, sNetworkID.find("]"))), format("[%i, %s, %s] // %s\n", Array[0], Array[1].tostring(), Array[2].tostring(), sName))
+
+			local sNetworkIDSlice = sNetworkID.slice(5, sNetworkID.find("]"))
+			//test database write
+			VPI.AsyncCall({
+				func="VPI_DB_Trespasser_ReadWrite",
+				kwargs= {
+					query_mode="write",
+					network_id=sNetworkIDSlice,
+					wins=Array[0],
+					solo_win=Array[1],
+					all_survivors_alive_win=Array[2]
+				}
+				// callback=function(response) {
+
+				// 	foreach (a in Array)
+				// 		printl("write input: " + a)
+
+				// 	foreach (r in response)
+				// 		if (typeof r == "array")
+				// 			foreach (col in r)
+				// 				printl(col)
+				// 		else
+				// 			printl(r)
+				// }
+			})
 		}
 	}
 	bAllSurvivorsAlive = true
