@@ -2317,7 +2317,6 @@ Oh_Dios_Mio_Es_Eso_Una_Pizza_Tower_Referencia
                 IncludeScript(`tankextensions/paratank`, getroottable())
                 IncludeScript(`tankextensions/ubertank`, getroottable())
                 IncludeScript(`tankextensions/combattank`, getroottable())
-                IncludeScript(`popextensions_main.nut`)
                 IncludeScript(`tankextensions/combattank_weapons/rocketpod`, getroottable())
                 IncludeScript(`tankextensions/combattank_weapons/railgun`, getroottable())
                 IncludeScript(`claudz_logic`)
@@ -2343,11 +2342,6 @@ Oh_Dios_Mio_Es_Eso_Una_Pizza_Tower_Referencia
                                 Vector(-80, 64, -96)
 
                         ]
-                })
-                PopExt.AddRobotTag(`add_30_sec`, {
-                    OnDeath = function(bot, params) {
-                        EntFire(`add30seconds`, `trigger`)
-                    },
                 })
                 // TankExt.CreatePaths({
                 //     tank_para = [
@@ -3036,7 +3030,7 @@ Oh_Dios_Mio_Es_Eso_Una_Pizza_Tower_Referencia
             Squad
             {
                 TFBot
-                { Template T_TFBot_Giant_Soldier_SlowBarrage SpawnTemplate time_add_2 Tag add_30_sec ClassIcon soldier_and_demo_giant Action Mobber CharacterAttributes { "attach particle effect" "3043" } }
+                { Template T_TFBot_Giant_Soldier_SlowBarrage SpawnTemplate time_add_2 ClassIcon soldier_and_demo_giant Action Mobber CharacterAttributes { "attach particle effect" "3043" } }
                 TFBot
                 { Template T_TFBot_Giant_Medic_Regen ClassIcon medic Action Mobber }
                 TFBot
@@ -3905,7 +3899,6 @@ Oh_Dios_Mio_Es_Eso_Una_Pizza_Tower_Referencia
                     Health 4200
                     Skill Expert
                     SpawnTemplate time_add_2
-                    Tag add_30_sec
                     WeaponRestrictions PrimaryOnly
                     Attributes MiniBoss
                     Attributes HoldFireUntilFullReload
