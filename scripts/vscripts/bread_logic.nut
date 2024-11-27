@@ -187,13 +187,13 @@ if(!("breadeventslol" in getroottable())){
                         //params.damage = params.damage * (0.9 + 0.1*params.weapon.GetAttribute("projectile penetration heavy",0))
                         params.damage = params.damage * 0.85
 
-                    } else if (params.weapon.GetClassname().find("flamethrower")!=null || params.weapon.GetClassname().find("tf_weapon_rocketlauncher_fireball")!=null) {
+                    } else if (params.weapon.GetClassname().find("flamethrower")!=null || params.weapon.GetClassname().find("tf_weapon_rocketlauncher_fireball")!=null ) {
                         params.damage = params.damage * 0.65
                     }
                                     // bow with penetration is way too strong, need to nerf
-                    else if(params.weapon.GetClassname().find("bow")!=null && params.weapon.GetAttribute("projectile penetration",0) > 0){
+                    else if((params.weapon.GetClassname().find("bow")!=null && params.weapon.GetAttribute("projectile penetration",0) > 0) || params.weapon.GetClassname().find("tf_weapon_raygun")!=null){
                         //ClientPrint(null, 3, "pls nerf")
-                        params.damage = params.damage * 0.75
+                        params.damage = params.damage * 0.7
                     }
                     // Explosive damage needs to be nerfed slightly, because of the multiple hitbox mechanic
                     else if(params.attacker.GetClassname() == "player" && (params.damage_type & Constants.FDmgType.DMG_BLAST) && params.attacker.GetPlayerClass() == Constants.ETFClass.TF_CLASS_DEMOMAN){
@@ -209,7 +209,7 @@ if(!("breadeventslol" in getroottable())){
                     }
                     // For Cactus Overclocks
                     if(params.weapon.GetAttribute("mult dmg vs tanks", -99) > -99) {
-                        params.damage = params.damage * params.weapon.GetAttribute("mult dmg vs tanks", 0)
+                        params.damage = params.damage * params.weapon.GetAttribute("mult dmg vs tanks", 1)
                     }
                     if(params.attacker.GetPlayerClass() != Constants.ETFClass.TF_CLASS_SPY && (params.damage_type & Constants.FDmgType.DMG_CLUB)) {
                         params.damage = params.damage * 1.2
