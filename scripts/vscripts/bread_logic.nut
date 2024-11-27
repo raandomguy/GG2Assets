@@ -102,7 +102,7 @@ if(!("breadeventslol" in getroottable())){
                     if(dbug) PopExtUtil.PrintTable(params)
                     local hits = Bread.GetSentryTrace(params.inflictor, params.damage_position)
                     local owner = params.attacker
-                    if(ent.GetName().find("crate")!= null || ent == Bread.breadboss) {ent.TakeDamageEx(owner, owner, params.weapon, params.damage_force, params.damage_position, params.damage*0.3, 2)}
+                    if(ent.GetName().find("crate")!= null || ent == Bread.breadboss) {ent.TakeDamageEx(owner, owner, params.weapon, params.damage_force, params.damage_position, params.damage*0.45, 2)}
 
                     if(hits != null) {
                         //local dmgBonus = self.GetAttribute("damage bonus",1)
@@ -161,15 +161,6 @@ if(!("breadeventslol" in getroottable())){
                 }
 
             }
-            if( ent.GetClassname() == "obj_sentry") { //ent.GetClassname() == "prop_dynamic" ||
-                if(dbug) PopExtUtil.PrintTable(params)
-                if(params.attacker.GetTeam()!=2) {
-                    params.damage = 0
-                    return
-                }
-
-
-            }
             if(ent.GetClassname() == "base_boss") {
                 //PopExtUtil.PrintTable(params)
                 if(params.attacker.GetTeam()!=2) {
@@ -189,14 +180,39 @@ if(!("breadeventslol" in getroottable())){
                 // if(dbug) ClientPrint(null, 3, "backfire " + backfire.tostring())
                 if(dbug) ClientPrint(null, 3, "pene " + params.weapon.GetAttribute("projectile penetration",0).tostring())
 
-                if(ent.GetName().find("tentacleboss")== null) {
+                // non-tentacles
+                if(ent.GetName().find("tentacleboss") == null) {
                     if( params.weapon.GetClassname().find("minigun")!=null ){
                         //ClientPrint(null, 3, "pls nerf")
-                        params.damage = params.damage * (0.9 + 0.1*params.weapon.GetAttribute("projectile penetration heavy",0))
-                        //ClientPrint(null, 3, "pene " + params.weapon.GetAttribute("projectile penetration heavy",0).tostring())
+                        //params.damage = params.damage * (0.9 + 0.1*params.weapon.GetAttribute("projectile penetration heavy",0))
+                        params.damage = params.damage * 0.85
 
                     } else if (params.weapon.GetClassname().find("flamethrower")!=null || params.weapon.GetClassname().find("tf_weapon_rocketlauncher_fireball")!=null) {
-                        params.damage = params.damage * 0.69
+                        params.damage = params.damage * 0.65
+                    }
+                                    // bow with penetration is way too strong, need to nerf
+                    else if(params.weapon.GetClassname().find("bow")!=null && params.weapon.GetAttribute("projectile penetration",0) > 0){
+                        //ClientPrint(null, 3, "pls nerf")
+                        params.damage = params.damage * 0.75
+                    }
+                    // Explosive damage needs to be nerfed slightly, because of the multiple hitbox mechanic
+                    else if(params.attacker.GetClassname() == "player" && (params.damage_type & Constants.FDmgType.DMG_BLAST) && params.attacker.GetPlayerClass() == Constants.ETFClass.TF_CLASS_DEMOMAN){
+                        //ClientPrint(null, 3, "pls nerf")
+                        params.damage = params.damage * 0.70
+                    }
+                    else if(params.attacker.GetClassname() == "player" && (params.damage_type & Constants.FDmgType.DMG_BLAST) && params.attacker.GetPlayerClass() == Constants.ETFClass.TF_CLASS_SOLDIER){
+                        //ClientPrint(null, 3, "pls nerf")
+                        if(params.weapon.GetAttribute("can overload", -1) > 0)
+                            params.damage = params.damage * 0.70
+                        else
+                            params.damage = params.damage * 0.85
+                    }
+                    // For Cactus Overclocks
+                    if(params.weapon.GetAttribute("mult dmg vs tanks", -99) > -99) {
+                        params.damage = params.damage * params.weapon.GetAttribute("mult dmg vs tanks", 0)
+                    }
+                    if(params.attacker.GetPlayerClass() != Constants.ETFClass.TF_CLASS_SPY && (params.damage_type & Constants.FDmgType.DMG_CLUB)) {
+                        params.damage = params.damage * 1.2
                     }
                 }
 
@@ -234,7 +250,7 @@ if(!("breadeventslol" in getroottable())){
                             isCrit = true
                             params.crit_type = 0
                         } else if(params.weapon.GetClassname().find("bow")!=null){
-                            params.damage = params.damage * 0.75
+                            params.damage = params.damage * 0.9
                             if(!(params.damage_type & Constants.FDmgType.DMG_ACID)) params.damage_type += Constants.FDmgType.DMG_ACID
                             params.damage_stats = Constants.ETFDmgCustom.TF_DMG_CUSTOM_HEADSHOT
                             NetProps.SetPropInt(ent, "m_LastHitGroup",1)
@@ -352,23 +368,7 @@ if(!("breadeventslol" in getroottable())){
                     }
                 }
 
-                // bow with penetration is way too strong, need to nerf
-                if(params.weapon.GetClassname().find("bow")!=null && params.weapon.GetAttribute("projectile penetration",0) > 0){
-                    //ClientPrint(null, 3, "pls nerf")
-                    params.damage = params.damage * 0.75
-                }
-                // Explosive damage needs to be nerfed slightly, because of the multiple hitbox mechanic
-                else if(params.attacker.GetClassname() == "player" && (params.damage_type & Constants.FDmgType.DMG_BLAST) && params.attacker.GetPlayerClass() == Constants.ETFClass.TF_CLASS_DEMOMAN){
-                    //ClientPrint(null, 3, "pls nerf")
-                    params.damage = params.damage * 0.70
-                }
-                else if(params.attacker.GetClassname() == "player" && (params.damage_type & Constants.FDmgType.DMG_BLAST) && params.attacker.GetPlayerClass() == Constants.ETFClass.TF_CLASS_SOLDIER){
-                    //ClientPrint(null, 3, "pls nerf")
-                    if(params.weapon.GetAttribute("can overload", -1) > 0)
-                        params.damage = params.damage * 0.70
-                    else
-                        params.damage = params.damage * 0.85
-                }
+
 
                 dmg = params.damage
                 if ((params.damage_type & Constants.FDmgType.DMG_ACID) || ClaudzUtil.IsPlayerCritBoosted(params.attacker)) {
@@ -393,7 +393,7 @@ if(!("breadeventslol" in getroottable())){
                     {
 
                         if(params.attacker.GetClassname() == "player" && params.attacker.GetPlayerClass() == Constants.ETFClass.TF_CLASS_SNIPER ) {
-                            if(params.attacker.InCond(Constants.ETFCond.TF_COND_ZOOMED) && (params.damage_type & Constants.FDmgType.DMG_BULLET)) {
+                            if((params.attacker.InCond(Constants.ETFCond.TF_COND_ZOOMED) || params.weapon.GetAttribute("revolver use hit locations", 0) == 1) && (params.damage_type & Constants.FDmgType.DMG_BULLET)) {
                                 params.damage = params.damage * 0.5
                                 if(!(params.damage_type & Constants.FDmgType.DMG_ACID)) params.damage_type += Constants.FDmgType.DMG_ACID
                                 params.damage_stats = Constants.ETFDmgCustom.TF_DMG_CUSTOM_HEADSHOT
@@ -407,24 +407,23 @@ if(!("breadeventslol" in getroottable())){
                                 params.inflictor.GetScriptScope().penetrations <- params.inflictor.GetScriptScope().rawin("penetrations") ? params.inflictor.GetScriptScope().penetrations + 1.0 : 1.0
                                 if(dbug) ClientPrint(null, 3, "penetrations " + params.inflictor.GetScriptScope().penetrations.tostring())
                                 params.damage = params.damage * 1.0 * (1.0/(params.inflictor.GetScriptScope().penetrations))
-                                if(!(params.damage_type & Constants.FDmgType.DMG_ACID)) params.damage_type += Constants.FDmgType.DMG_ACID
-                                params.damage_stats = Constants.ETFDmgCustom.TF_DMG_CUSTOM_HEADSHOT
-                                NetProps.SetPropInt(ent, "m_LastHitGroup",1)
-                                //ClientPrint(null, 3, params.inflictor.GetClassname())
 
-                                // if(params.inflictor.GetClassname() == "tf_projectile_arrow" && params.attacker.GetPlayerClass() == Constants.ETFClass.TF_CLASS_SNIPER) {
-                                //     params.inflictor.GetScriptScope().penetrations <- params.inflictor.GetScriptScope().rawin("penetrations") ? params.inflictor.GetScriptScope().penetrations +1 : 1
-                                //     EntFireByHandle(params.inflictor, "kill", null, -1, null, null)
-                                // }
-                                isCrit = true
-                                params.crit_type = 0
-                                dmg = params.damage*3
+                                if(params.weapon.GetAttribute("cannot headshot", 0) != 1) {
+                                    if(!(params.damage_type & Constants.FDmgType.DMG_ACID)) params.damage_type += Constants.FDmgType.DMG_ACID
+                                    params.damage_stats = Constants.ETFDmgCustom.TF_DMG_CUSTOM_HEADSHOT
+
+                                    NetProps.SetPropInt(ent, "m_LastHitGroup",1)
+                                    params.crit_type = 0
+                                    isCrit = true
+                                    dmg = params.damage*3
+                                }
+
                             }
                         }
 
                         else if(params.attacker.GetClassname() == "player" && params.attacker.GetPlayerClass() == Constants.ETFClass.TF_CLASS_SPY ) {
                             if(params.damage_type & Constants.FDmgType.DMG_BULLET) {
-                                params.damage = params.damage * 2.0
+                                params.damage = params.damage * 1.25
                                 if(!(params.damage_type & Constants.FDmgType.DMG_ACID)) params.damage_type += Constants.FDmgType.DMG_ACID
                                 params.damage_stats = Constants.ETFDmgCustom.TF_DMG_CUSTOM_HEADSHOT
                                 NetProps.SetPropInt(ent, "m_LastHitGroup",1)
@@ -463,7 +462,7 @@ if(!("breadeventslol" in getroottable())){
                     if(dis.Length() < 50 || disOrigin.Length() < 70)
                     {
                         if(params.attacker.GetClassname() == "player" && params.attacker.GetPlayerClass() == Constants.ETFClass.TF_CLASS_SNIPER ) {
-                            if(params.attacker.InCond(Constants.ETFCond.TF_COND_ZOOMED) && (params.damage_type & Constants.FDmgType.DMG_BULLET)) {
+                            if((params.attacker.InCond(Constants.ETFCond.TF_COND_ZOOMED) || params.weapon.GetAttribute("revolver use hit locations", 0) == 1) && (params.damage_type & Constants.FDmgType.DMG_BULLET)) {
                                 params.damage = params.damage * 0.5
                                 if(!(params.damage_type & Constants.FDmgType.DMG_ACID)) params.damage_type += Constants.FDmgType.DMG_ACID
                                 params.damage_stats = Constants.ETFDmgCustom.TF_DMG_CUSTOM_HEADSHOT
@@ -471,22 +470,28 @@ if(!("breadeventslol" in getroottable())){
                                 isCrit = true
                                 dmg = params.damage*3
                             }
-                            else if(params.weapon.GetClassname().find("bow")!=null){
+                            else if(params.weapon.GetClassname().find("bow")!=null ){
                                 params.inflictor.ValidateScriptScope()
                                 params.inflictor.GetScriptScope().penetrations <- params.inflictor.GetScriptScope().rawin("penetrations") ? params.inflictor.GetScriptScope().penetrations +1 : 1
                                 params.damage = params.damage * 1.0 * (1/(params.inflictor.GetScriptScope().penetrations))
-                                if(!(params.damage_type & Constants.FDmgType.DMG_ACID)) params.damage_type += Constants.FDmgType.DMG_ACID
-                                params.damage_stats = Constants.ETFDmgCustom.TF_DMG_CUSTOM_HEADSHOT
-                                EntFireByHandle(params.inflictor, "kill", null, -1, null, null)
-                                NetProps.SetPropInt(ent, "m_LastHitGroup",1)
-                                isCrit = true
-                                dmg = params.damage*3
+
+                                if(params.weapon.GetAttribute("cannot headshot", 0) != 1) {
+                                    if(!(params.damage_type & Constants.FDmgType.DMG_ACID)) params.damage_type += Constants.FDmgType.DMG_ACID
+                                    params.damage_stats = Constants.ETFDmgCustom.TF_DMG_CUSTOM_HEADSHOT
+                                    EntFireByHandle(params.inflictor, "kill", null, -1, null, null)
+
+                                    NetProps.SetPropInt(ent, "m_LastHitGroup",1)
+                                    isCrit = true
+                                    dmg = params.damage*3
+                                }
+
+
                             }
                         }
 
                         else if(params.attacker.GetClassname() == "player" && params.attacker.GetPlayerClass() == Constants.ETFClass.TF_CLASS_SPY ) {
                             if(params.damage_type & Constants.FDmgType.DMG_BULLET) {
-                                params.damage = params.damage * 2
+                                params.damage = params.damage * 1.25
                                 if(!(params.damage_type & Constants.FDmgType.DMG_ACID)) params.damage_type += Constants.FDmgType.DMG_ACID
                                 params.damage_stats = Constants.ETFDmgCustom.TF_DMG_CUSTOM_HEADSHOT
                                 NetProps.SetPropInt(ent, "m_LastHitGroup",1)
@@ -526,18 +531,20 @@ if(!("breadeventslol" in getroottable())){
                 if(params.damage_stats == Constants.ETFDmgCustom.TF_DMG_CUSTOM_HEADSHOT && params.weapon.GetAttribute("explosive sniper shot",-1) > -1) {
                     local flDmgRange = 125 + params.weapon.GetAttribute("explosive sniper shot",-1) * 25;
                     local flDmg = 100 + params.weapon.GetAttribute("explosive sniper shot",-1) * 20; //in game the dmg starts at 130, not 100
+                    local expMult = params.weapon.GetAttribute("mult bleeding dmg",1);
+                    flDmg *= expMult
                     local xEnt = null
                     while ( xEnt = Entities.FindByClassnameWithin(xEnt, "base_boss", params.damage_position, flDmgRange))
                     {
                         xEnt.TakeDamageEx(params.attacker, params.attacker, params.weapon, Vector(0,0,0), params.damage_position, flDmg*0.75, 64)
-                        Bread.EmitFx(xEnt,"Weapon_Upgrade.ExplosiveHeadshot",0.6)
+                        if(self.GetClassname().find("sniperrifle") != null) Bread.EmitFx(xEnt,"Weapon_Upgrade.ExplosiveHeadshot",0.6)
                     }
                     xEnt = null
                     while ( xEnt = Entities.FindByClassnameWithin(xEnt, "player", params.damage_position, flDmgRange))
                     {
                         if(xEnt.GetTeam()!=2) {
                             xEnt.TakeDamageEx(params.attacker, params.attacker, params.weapon, Vector(0,0,0), params.damage_position, flDmg, 64)
-                            Bread.EmitFx(xEnt,"Weapon_Upgrade.ExplosiveHeadshot",0.6)
+                            if(self.GetClassname().find("sniperrifle") != null) Bread.EmitFx(xEnt,"Weapon_Upgrade.ExplosiveHeadshot",0.6)
                         }
                     }
                 }
@@ -580,10 +587,23 @@ Bread.PlayerSetup <- function(player) {
         if (weapon == null || weapon.IsMeleeWeapon())
             continue
 
+        // need to exclude bow, crossbow, rescue ranger
+        if(!(weapon.GetAttribute("projectile penetration",0) > 0 || weapon.GetAttribute("projectile penetration heavy",0) > 0 ) || weapon.GetClassname().find("bow")!=null || weapon.GetClassname().find("building_rescue")!=null) {
+            continue
+        }
+
+        //ClientPrint(null,3,weapon.GetClassname())
+
+        local bDmg = weapon.GetClassname().find("shotgun") != null ? 30 : 3
+        if(weapon.GetClassname().find("pistol") != null || weapon.GetClassname().find("handgun_scout_secondary") != null) bDmg = 7
+        if(weapon.GetClassname().find("scattergun") != null || weapon.GetClassname().find("soda_popper") != null || weapon.GetClassname().find("brawler_blaster") != null) bDmg = 30
+        if(weapon.GetClassname().find("revolver") != null|| weapon.GetClassname().find("handgun_scout_primary") != null) bDmg = 15
+
         weapon.ValidateScriptScope()
         weapon.GetScriptScope().last_fire_time <- 0.0
         weapon.GetScriptScope().last_charge_amt <- 0.0
         weapon.GetScriptScope().charges <- [0]
+        weapon.GetScriptScope().baseDmg <- bDmg
 
         weapon.GetScriptScope().BreadCheckWeaponFire <- BreadCheckWeaponFire
         EntFireByHandle(weapon, "RunScriptCode", "PopExtUtil.AddThinkToEnt(self, `BreadCheckWeaponFire`)", 1, null, null)
@@ -601,9 +621,9 @@ Bread.PlayerSetup <- function(player) {
         if(owner.GetActiveWeapon()!=self) return
         else if(dbug) ClientPrint(null,4,"thinktest" + Time().tostring())
 
-        if(owner.GetPlayerClass() == Constants.ETFClass.TF_CLASS_SNIPER){
-            if(dbug) ClientPrint(null,3,"im here " + self.GetClassname()+ " " + self.GetAttribute("projectile penetration",0).tostring())
-            if(self.GetClassname().find("sniperrifle") != null && self.GetAttribute("projectile penetration",0) > 0){
+        if(owner.GetPlayerClass() == Constants.ETFClass.TF_CLASS_SNIPER && self.GetClassname().find("sniperrifle") != null){
+            //if(dbug) ClientPrint(null,3,"im here " + self.GetClassname()+ " " + self.GetAttribute("projectile penetration",0).tostring())
+            if(self.GetAttribute("projectile penetration",0) > 0){
                 local hits = Bread.GetPlayerTraceBoss(self)
                 if(hits != null) {
                     local dmgBonus = self.GetAttribute("damage bonus",1)
@@ -615,7 +635,40 @@ Bread.PlayerSetup <- function(player) {
                         //TakeDamageEx(handle hInflictor, handle hAttacker, handle hWeapon, Vector vecDamageForce, Vector vecDamagePosition, float flDamage, int nDamageType)
                     }
                 }
+            }
+        }
 
+        else if(self.GetAttribute("projectile penetration",0) > 0){
+            local hits = Bread.GetPlayerTraceBoss(self)
+
+            local bDmg = baseDmg
+            if(hits != null) {
+                local dmgBonus = self.GetAttribute("damage bonus",1)
+                foreach (i, hit in hits)
+                {
+                    local falloff = 1.0 - ((ClaudzUtil.Min((owner.GetOrigin()-hit.enthit.GetOrigin()).Length(), 1500.0))/1500.0)
+                    local rampup = bDmg * falloff
+                    hit.enthit.TakeDamageEx(owner, owner, owner.GetActiveWeapon(), Vector(0,0,0), hit.pos, (bDmg + rampup)*dmgBonus, 2)
+                    //TakeDamageEx(handle hInflictor, handle hAttacker, handle hWeapon, Vector vecDamageForce, Vector vecDamagePosition, float flDamage, int nDamageType)
+                }
+            }
+        }
+
+        else if (self.GetAttribute("projectile penetration heavy",0) > 0){
+            local hits = Bread.GetPlayerTraceBoss(self)
+            local max = self.GetAttribute("projectile penetration heavy",0)
+            if(hits != null) {
+                local dmgBonus = self.GetAttribute("damage bonus",1)
+                local bDmg = baseDmg
+                foreach (i, hit in hits)
+                {
+                    local falloff = 1.0 - ((ClaudzUtil.Min((owner.GetOrigin()-hit.enthit.GetOrigin()).Length(), 1500.0))/1500.0)
+                    //ClientPrint(null,3,"falloff" + falloff.tostring() + " len " + (owner.GetOrigin()-hit.enthit.GetOrigin()).Length().tostring())
+                    local rampup = bDmg * falloff
+                    hit.enthit.TakeDamageEx(owner, owner, owner.GetActiveWeapon(), Vector(0,0,0), hit.pos, (baseDmg + rampup)*dmgBonus, 2)
+                    if(i == max) break
+                    //TakeDamageEx(handle hInflictor, handle hAttacker, handle hWeapon, Vector vecDamageForce, Vector vecDamagePosition, float flDamage, int nDamageType)
+                }
             }
         }
 
@@ -947,7 +1000,7 @@ Bread.Hints <- function() {
         if (player = PlayerInstanceFromIndex(i), player && player.GetTeam() == 2)
         {
             if(player.GetPlayerClass() == Constants.ETFClass.TF_CLASS_SNIPER)
-                ClientPrint(player, 3, "\x078ff347 Hint: Try aiming for the tentacles or headshot the center of the boss' forehead")
+                ClientPrint(player, 3, "\x078ff347 Hint: While zoomed, try aiming for the tentacles or the center of the boss' forehead")
         }
     }
 }
