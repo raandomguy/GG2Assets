@@ -293,7 +293,7 @@ WaveSchedule
 		{
 			Class Soldier
 			Name "Giga Burst Fire Soldier"
-			ClassIcon soldier_burstfire_hyper_giant
+			ClassIcon soldier_burstfire_hyper_lite
 			Health 4200
 			Skill Expert
 			WeaponRestrictions PrimaryOnly
@@ -2315,7 +2315,7 @@ WaveSchedule
 					EntFire(`FrontUpgradeStationL`, `Enable`)
 					EntFire(`buring_fire_1_timer`, `Disable`)
 					ClientPrint(null,3,`\x08FF54F1FFThe bomb path has changed.`)
-					ClientPrint(null,3,`\x08FF54F1FFAnother bomb will entered the area!`)
+					ClientPrint(null,3,`\x08FF54F1FFAnother bomb will enter the area!`)
 					if(Entities.FindByName(null, `pathchange`) == null)
 					{
 						SpawnEntityFromTable(`training_annotation`, {
