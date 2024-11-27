@@ -292,7 +292,7 @@ if(hObjectiveResource && hObjectiveResource.IsValid()) hObjectiveResource.Accept
 					query_mode="read",
 					network_id=sNetworkIDSlice
 				},
-				callback=function(response) {
+				callback=function(response, error) {
 
 					if (typeof(response) != "array" || !response.len())
 					{
@@ -336,7 +336,7 @@ if(hObjectiveResource && hObjectiveResource.IsValid()) hObjectiveResource.Accept
 					solo_win=Array[1],
 					all_survivors_alive_win=Array[2]
 				}
-				// callback=function(response) {
+				// callback=function(response, error) {
 
 				// 	foreach (a in Array)
 				// 		printl("write input: " + a)
