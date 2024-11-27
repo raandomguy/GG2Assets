@@ -6,6 +6,7 @@ WaveSchedule
 	LuaScriptFile "scripts/holdfireuntilfullupgrade.lua"
 	LuaScriptFile "scripts/lua_knockback_rage_cactus.lua"
 	LuaScriptFile "scripts/cowmangler_charge_shot_attribute.lua"
+	LuaScriptFile "scripts/small_shield_overclock.lua"
 	CustomUpgradesFile	"mvm_upgrades_cactus_gg2a1.txt" 
 
 	DisallowUpgrade	  //RPG
@@ -2898,9 +2899,8 @@ WaveSchedule
 				"disable buildings on hit" 4
 				"subtract victim medigun charge on hit" 25
 				"clip size penalty HIDDEN" -0.35
-				"dmg penalty vs players" -0.35
 			}
-			Description "+Marks target for death +Drains 25% uber +Disables buildings -Fires a low damage syringe"
+			Description "+Marks target for death +Drains 25% uber +Disables buildings -Fires a syringe"
 			Tier 1
             AllowedWeapons
 			{
@@ -2922,17 +2922,116 @@ WaveSchedule
 			Cost 0
 			SecondaryAttributes //Secondary attributes applied when upgrade is applied, for each upgrade level
 			{
-				"crit_dmg_falloff" -1
 				"Reload time increased" 0.5
 				"clip size penalty HIDDEN" -0.5
 				"fire rate penalty HIDDEN" 0.2
 			}
-			Description "+headshot explode +No Crit falloff -50% slower reload -50% Mag size -20% slower firing speed"
+			Description "+headshots explode -50% slower reload -50% Mag size -20% slower firing speed"
 			Tier 1
             AllowedWeapons
 			{
 				ItemName "The Ambassador"
 				ItemName "Festive Ambassador"
+			}
+		}
+		Amby_B
+		{
+			Name "Stable Mod: Skullcracker"
+			Attribute "can headshot" 
+			Cap 1
+			Increment 1
+			Cost 0
+			SecondaryAttributes //Secondary attributes applied when upgrade is applied, for each upgrade level
+			{
+				"crit_dmg_falloff" -1
+				"headshot damage increase" 0.25
+			}
+			Description "+No Headshot cooldowwn +25% headshot damage"
+			Tier 1
+            AllowedWeapons
+			{
+				ItemName "The Ambassador"
+				ItemName "Festive Ambassador"
+			}
+		}
+		Knife_A
+		{
+			Name "Stable Mod: Direct Deposit"
+			Attribute "collect currency on kill" 
+			Cap 1
+			Increment 1
+			Cost 0
+			Description "+On kill: robot drops red money (automatically collected)"
+			Tier 1
+            Allowplayerclass Spy
+            AllowedWeapons
+			{
+				Slot "Melee"
+			}
+		}
+		Big_Earner
+		{
+			Name "Unstable Mod: Longer blade"
+			Attribute "collect currency on kill" 
+			Cap 1
+			Increment 1
+			Cost 0
+			SecondaryAttributes //Secondary attributes applied when upgrade is applied, for each upgrade level
+			{
+				"melee range multiplier"	1.0
+				"damage penalty" -0.15
+			}
+			Description "+50% melee range -15% damage penalty"
+			Tier 1
+            AllowedWeapons
+			{
+				ItemName "The Big Earner"
+
+			}
+		}
+		YER_A
+		{
+			Name "Stable Mod: Prototype Module"
+			Attribute "collect currency on kill" 
+			Cap 1
+			Increment 1
+			Cost 0
+			SecondaryAttributes //Secondary attributes applied when upgrade is applied, for each upgrade level
+			{
+				"melee range multiplier"	1.0
+				"mult cloak meter consume rate" -0.33
+				"cannot disguise" 1
+				"damage bonus" 0.25
+				"max health additive bonus" 50
+			}
+			Description "+50% melee range +25% damage bonus +33% melee range +50 max health -Cannot Disguise without backstab"
+			Tier 1
+            AllowedWeapons
+			{
+				ItemName "Your Eternal Reward"
+			}
+		}
+		Sapper
+		{
+			Name "Unstable Overclock: Malware payload"
+			Attribute "effect cond override" 
+			Cap 3283736
+			Increment 3283736
+			Cost 0
+			SecondaryAttributes
+			{
+				"robo sapper" 3
+				"effect bar recharge rate increased" -1.0
+				"effect add attributes" "damage penalty|0.5"
+			}
+			Description "+Sapper Applies Milk, Jarate and lowers damage by 50% +Sapper is not consumed on use -Cannot stun" 
+			Tier 1
+            AllowPlayerClass Spy
+            AllowedWeapons
+			{
+                ItemName "The Red-Tape Recorder"
+				SimilarToItem TF_WEAPON_BUILDER_SPY
+				ItemName "Festive Sapper"
 			}
 		}
 		XbowBalancedA
@@ -2944,11 +3043,10 @@ WaveSchedule
 			Cost 0
 			SecondaryAttributes //Secondary attributes applied when upgrade is applied, for each upgrade level
 			{
-				"add cond on hit duration" 4.0
-				"reload time increased hidden" 0.75
-				"damage penalty" -0.5
+				"add cond on hit duration" 3.0
+				"reload time increased hidden" 0.5
 			}
-			Description "+On hit: Apply 4 seconds of Mad Milk -75% slower reload speed -50% damage penalty" 
+			Description "+On hit: Apply 4 seconds of Mad Milk -50% slower reload speed" 
 			Tier 1
 			AllowedWeapons
 			{
@@ -2966,18 +3064,17 @@ WaveSchedule
 			SecondaryAttributes //Secondary attributes applied when upgrade is applied, for each upgrade level
 			{
 				"reload time increased hidden" 0.35
-				"damage penalty" -0.20
+				"damage penalty" -0.25
 				"grenade bounce speed" 1
-				"projectile lifetime" 2.5
-				"mult bleeding dmg" 3
+				"projectile lifetime" 1.75
 				"projectile no deflect" 1		
 				"reset arrow hits on bounce" 1
-				"clip size penalty HIDDEN" 2
-				"maxammo primary reduced" 0.35
-				"grenade bounce damage" -0.15
+				"grenade bounce damage" -0.35
 				"mult dmg vs tanks" -.20
+				"fire rate penalty" 1
+				"maxammo primary reduced" -0.15
 			}
-			Description "+Bouncy Syringes +Reload entire clip +2 clip size -20% damage -35% slower reload -15% damage per bounce" 
+			Description "+Bouncy Syringes -25% damage -50% ammo -35% slower reload -100% firing speed -35% damage per bounce" 
 			Tier 1
 			AllowedWeapons
 			{
@@ -3008,26 +3105,60 @@ WaveSchedule
 			}
 		}
 ///mediguns
-		MedigunC
+		MedigunA
 		{
 			Name "Unstable Mod: Broken Shield Lens"
 			Attribute "heal rate bonus"
 			Cap 1.20
 			Increment 0.20
 			Cost 0
-			Description "+Regenerate patient ammo/metal +Heal buildings +20% faster heal rate +No uber build penalty on overhealed patients -65% shield duration -100% shield damage" 
+			Description "+25 max hp +20% heal rate +15% uber build +Patients regen ammo +50% shield damage -Small shield size" 
 			Tier 1
 			SecondaryAttributes 
 			{
 				"ubercharge overheal rate penalty" 0.15
-				"increase buff duration" -0.65
-				"dmg penalty vs players" -1.0
-				"medic machinery beam" 4
 				"medigun passive attributes" "ammo regen|0.5|metal regen|125"
+				"max health additive bonus" 25
+				"generate rage on heal" 2
+				"dmg penalty vs players" 1.5 //50% damage bonus
+				"increase buff duration" 0.5
+			}
+			OnApply
+			{
+				Output "popscript,$PersonalProjectileShieldPurchase,,0"
+			}
+			OnDowngrade
+			{
+				Output "popscript,$PersonalProjectileShieldRefunded,,0"
 			}
             AllowedWeapons
 			{
 				ItemName "The Kritzkrieg"
+				ClassName TF_WEAPON_MEDIGUN
+				ItemName "Festive Medigun 2011"
+			}
+            DisallowedWeapons
+			{
+				ItemName "The Quick-Fix"
+				ItemName "The Vaccinator"
+			}
+		}
+		MedigunB
+		{
+			Name "Unstable Mod: Rüstung Chip"
+			Attribute "heal rate bonus"
+			Cap 1.20
+			Increment 0.20
+			Cost 0
+			Description "(i)Ubercharge: Increase move, weapon and reload speed" 
+			Tier 1
+			SecondaryAttributes 
+			{
+				"medigun keep charged effect" 1
+				"effect cond override" 2106481
+			}
+            AllowedWeapons
+			{
 				ClassName TF_WEAPON_MEDIGUN
 				ItemName "Festive Medigun 2011"
 			}
@@ -3255,6 +3386,7 @@ WaveSchedule
 				"mult bleeding dmg" -0.9
 				"explosive sniper shot" 1
 				"fire rate penalty HIDDEN" 0.5
+				"headshot damage increase" 0.25
 			}
 			Description "+Deals low damage explosive headshots -50% slower firing speed" 
 			Tier 1
@@ -3271,7 +3403,6 @@ WaveSchedule
 			{
 				"add cond on hit duration" 3.0
 				"reload time increased hidden" 0.25
-				"damage bonus" 0.20
 			}
 			Cap 24
 			Increment 24
