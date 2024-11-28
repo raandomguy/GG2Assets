@@ -53,6 +53,7 @@ elmarcianito
     PrecacheModel "models/projectiles/fos_hologram_projectile_blu_l_static.mdl"
     PrecacheModel "models/projectiles/fos_hologram_projectile_blu_l_spin.mdl" 
     PrecacheModel "models/projectiles/fos_hologram_projectile_blu_r_spin.mdl" 
+    PrecacheModel "models/props_gameplay/cap_circle_768.mdl"
     PrecacheModel "models/props_invasion/props_alien/walker.mdl" 
     PrecacheModel "models/props_invasion/props_alien/walker_explode_gib01.mdl" 
     PrecacheModel "models/props_invasion/props_alien/walker_explode_gib02.mdl" 

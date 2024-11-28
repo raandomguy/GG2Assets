@@ -33,6 +33,7 @@ Oh_Dios_Mio_Es_Eso_Una_Pizza_Tower_Referencia
     PrecacheGeneric "materials/models/bots/boss_bot/carrier_tracks.vmt"
     PrecacheGeneric "materials/models/bots/boss_bot/carrier_tracks_backwards.vmt"
     PrecacheGeneric "materials/models/bots/boss_bot/carrier_tracks_forwards.vmt"
+    PrecacheModel "models/props_halloween/fist_projectile_purple.mdl"
     PrecacheModel "models/props_frontline/zeppelin_skybox.mdl"
     PrecacheModel "models/bots/soldier/bot_soldier_gibby.mdl"
     PrecacheModel "models/bots/heavy_boss/bot_heavy_boss_gibby.mdl"  
