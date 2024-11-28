@@ -67,7 +67,6 @@ WaveSchedule
                 "medigun fire resist passive"    0.8 
                 "heal rate bonus" 69420
                 "mod weapon blocks healing" 1
-				"uber duration bonus" -1
             }
             CharacterAttributes
             {
@@ -85,8 +84,8 @@ WaveSchedule
             }
             FireWeapon
             {
-            	Delay 6.4
-                Cooldown 6.4
+            	Delay 6.6
+                Cooldown 6.6
                 Type Secondary
             }
 		}
@@ -686,7 +685,7 @@ WaveSchedule
         Where    spawnbot_void2
         BeginAtWave    3
         RunForThisManyWaves    1
-        InitialCooldown    60
+        InitialCooldown    70
         CooldownTime    30
         DesiredCount    3
         TFBot
@@ -755,36 +754,22 @@ WaveSchedule
 			Attributes AlwaysCrit
 		}
 	}
-	Mission //Wave 5 GTomislav in the Underworld
+	Mission //Wave 5 Snipers
     {
         Objective    Sniper
-        Where    spawnbot_void4
+        Where    spawnbot_void2
         BeginAtWave    5
         RunForThisManyWaves    1
-        InitialCooldown    10
+        InitialCooldown    120
         CooldownTime    30
-        DesiredCount    1
+        DesiredCount    3
         TFBot
         {
-			Class Heavy
-			ClassIcon heavy_d
-			Name "Gatekeeper of Hell"
-			Health 5000
-			Skill Expert
-			Attributes MiniBoss
-			Tag bot_giant
-			MaxVisionRange 1200
-			Item "Tomislav"
+        	Name "Gatekeeper of Hell"
+		   Template T_TFBot_Sniper_Sydney_Sleeper
+			Item "Darwin's Danger Shield"
 			Item "Spine-Chilling Skull"
 			Item "Big Steel Jaw of Summer Fun"
-			Attributes AlwaysCrit
-			CharacterAttributes
-			{
-				"move speed bonus"	0.5
-				"damage force reduction" 0.3
-				"airblast vulnerability multiplier" 0.3
-				"override footstep sound set" 2
-			}
 		}
 	}
 	Mission	//Wave 6 Spies
@@ -886,6 +871,14 @@ Wave
             Target    wave_finished_relay
             Action    Trigger
         }
+		InitWaveOutPut
+		{
+  			Target wave_start_relay
+  			Action RunScriptCode
+  			Param "
+   			IncludeScript(`boogge`)
+			"
+		}
         WaveSpawn
         {
 			Name	w1a-1
@@ -1070,6 +1063,14 @@ Wave
             Target    wave_finished_relay
             Action    Trigger
         }
+		InitWaveOutPut
+		{
+  			Target wave_start_relay
+  			Action RunScriptCode
+  			Param "
+   			IncludeScript(`boogge`)
+			"
+		}
 		WaveSpawn
 		{
 			Name	w2a-1
@@ -1338,30 +1339,23 @@ Wave
             Target    wave_finished_relay
             Action    Trigger
         }
-		WaveSpawn
+		InitWaveOutPut
 		{
-			Name w3a-T
-			TotalCount	1
-			SpawnCount	1
-			WaitBeforeStarting	0
-			TotalCurrency	150
-			Tank
-			{
-				Health	32000
-				Speed	75
-				Name tankboss_underworld
-				StartingPathTrackNode	"tank_path_bridge1"
-				OnKilledOutput
-				{
-					Target boss_dead_relay_underworld
-					Action Trigger
-				}
-				OnBombDroppedOutput
-				{
-					Target boss_deploy_relay
-					Action Trigger
-				}
-			}
+  			Target wave_start_relay
+  			Action RunScriptCode
+  			Param "
+   			IncludeScript(`boogge`)
+			ClientPrint(null,3,`\x084BF756FFThe tank on this wave will enter The Underworld. You are able to go in the Underworld yourself via portals scattered around the map once the wave begins.`)
+                SpawnEntityFromTable(`training_annotation` , {
+                    targetname = `tank_notice`
+                    display_text = `The Tank will enter The Underworld from here!`
+                    lifetime = `25`
+                    origin = `928 -1185 -180`
+                    }
+                )
+                EntFire(`tank_notice`, `show`)
+                EntFire(`tank_notice`, `kill`, ``, 25)
+			"
 		}
 		WaveSpawn
 		{
@@ -1369,7 +1363,7 @@ Wave
 			TotalCount	4
 			MaxActive	4
 			SpawnCount	2
-			WaitBeforeStarting	10
+			WaitBeforeStarting	0
 			WaitBetweenSpawns	26.5
 			Where spawnbot
 			TotalCurrency	150
@@ -1420,11 +1414,36 @@ Wave
 		}
 		WaveSpawn
 		{
+			Name w3a-T
+			TotalCount	1
+			SpawnCount	1
+			WaitBeforeStarting	10
+			TotalCurrency	150
+			Tank
+			{
+				Health	32000
+				Speed	75
+				Name tankboss_underworld
+				StartingPathTrackNode	"tank_path_bridge1"
+				OnKilledOutput
+				{
+					Target boss_dead_relay_underworld
+					Action Trigger
+				}
+				OnBombDroppedOutput
+				{
+					Target boss_deploy_relay
+					Action Trigger
+				}
+			}
+		}
+		WaveSpawn
+		{
 			Name	w3a-2
 			TotalCount	10
 			MaxActive	10
 			SpawnCount	1
-			WaitBeforeStarting	11
+			WaitBeforeStarting	1
 			WaitBetweenSpawns	3
 			Where spawnbot_invasion
 			TotalCurrency	50
@@ -1555,6 +1574,14 @@ Wave
             Target    wave_finished_relay
             Action    Trigger
         }
+		InitWaveOutPut
+		{
+  			Target wave_start_relay
+  			Action RunScriptCode
+  			Param "
+   			IncludeScript(`boogge`)
+			"
+		}
 		WaveSpawn
 		{
 			StartWaveWarningSound "vo/mvm/mght/soldier_mvm_m_dominationscout09.mp3"
@@ -1585,7 +1612,7 @@ Wave
 				Attributes UseBossHealthBar
 				Attributes HoldFireUntilFullReload
 				UseMeleeThreatPrioritization 1
-				Health 35000
+				Health 32000
 				Scale 1.8
 				Name "Blast Imperfect"
 				ItemAttributes
@@ -1595,7 +1622,7 @@ Wave
 					"dmg penalty vs players" 0.85
 					"fire rate bonus" 0.001
 					"clip size upgrade atomic" 2
-					"faster reload rate" 0.65
+					"faster reload rate" 0.70
 					"Blast radius decreased" 0.80
 					"projectile spread angle penalty" 2
 					"Projectile speed increased" 0.5
@@ -1699,9 +1726,9 @@ Wave
 		WaveSpawn
 		{
 			Name	w4a-3
-			TotalCount	8
-			MaxActive	8
-			SpawnCount	2
+			TotalCount	4
+			MaxActive	4
+			SpawnCount	1
 			WaitForAllDead	w4a-boss
 			WaitBeforeStarting	7
 			WaitBetweenSpawns	14
@@ -1853,6 +1880,24 @@ Wave
             Target    wave_finished_relay
             Action    Trigger
         }
+		InitWaveOutPut
+		{
+  			Target wave_start_relay
+  			Action RunScriptCode
+  			Param "
+   			IncludeScript(`boogge`)
+			ClientPrint(null,3,`\x084BF756FFThe second Tank on this wave will enter The Underworld.`)
+                SpawnEntityFromTable(`training_annotation` , {
+                    targetname = `tank_notice`
+                    display_text = `The second Tank will enter The Underworld from here!`
+                    lifetime = `25`
+                    origin = `928 -1185 -180`
+                    }
+                )
+                EntFire(`tank_notice`, `show`)
+                EntFire(`tank_notice`, `kill`, ``, 25)
+			"
+		}
 		WaveSpawn
 		{
 			Name w5a-1
@@ -1939,10 +1984,18 @@ Wave
 				TFBot
 				{
 					Template    T_TFBot_Medic_QuickUber
+					Item    "prussian pickelhaube"
+					Item	"Emerald Jarate"
+					Item	"The Surgeon's Sidearms"
+					Name 	"Quick-Uber Alchemist"
 				}
 				TFBot
 				{
 					Template    T_TFBot_Medic_QuickUber
+					Item    "prussian pickelhaube"
+					Item	"Emerald Jarate"
+					Item	"The Surgeon's Sidearms"
+					Name 	"Quick-Uber Alchemist"
 				}
 			}
 		}
@@ -2179,11 +2232,12 @@ Wave
             Target    wave_finished_relay
             Action    Trigger
         }
-		InitWaveOutput
+		InitWaveOutPut
 		{
 			Target wave_start_relay
 			Action runscriptcode
 			Param "
+IncludeScript(`boogge`)
 IncludeScript(`tankextensions_main`, getroottable())
 IncludeScript(`tankextensions/vactank`, getroottable())
 "
