@@ -5969,7 +5969,7 @@ Bread
                 //"blast radius increased" 1.15
                 "Projectile speed increased" 0.55
                 "projectile spread angle penalty" 3
-                "heal on hit for rapidfire" 444
+                "heal on hit for rapidfire" 222
                 "no self blast dmg" 1
                 "penetrate teammates" 1
                 "custom projectile model" "models\weapons\c_models\c_bread\c_bread_plainloaf.mdl"
