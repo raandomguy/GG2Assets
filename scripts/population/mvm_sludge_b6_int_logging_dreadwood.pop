@@ -297,6 +297,38 @@ population
 					Item "Medic Mask"
 					Item "prussian pickelhaube"
 		}
+		Warbird_Rapid_Soldier
+		{
+			Class Soldier
+			Name	"Giant Rapid Fire Soldier"
+			ClassIcon	soldier_spammer
+			Health 3800
+			Skill Expert
+			WeaponRestrictions PrimaryOnly
+			Scale	1.8
+			MaxVisionRange	1000
+			Attributes MiniBoss
+
+			Item	"warbird_rocketlauncher_warhawk"
+			Item	"Soldier's Stash"
+
+			ItemAttributes
+			{
+				ItemName	warbird_rocketlauncher_warhawk
+				"clip size bonus"	2.5
+				"fire rate bonus"	0.5
+				"faster reload rate"	-0.8
+			}
+
+			CharacterAttributes
+			{
+				"move speed bonus"	0.5
+				"damage force reduction" 0.4
+				"airblast vulnerability multiplier" 0.4
+				"override footstep sound set" 3
+				"Projectile speed increased" 0.65
+			}
+		}
 	}
 	CustomWeapon
         {
@@ -456,7 +488,7 @@ population
             }
 
             AllowPlayerClass Heavy
-            RequiredWeapons
+            AllowedWeapons
             {
                 ItemName "The Family Business"
             }
@@ -507,6 +539,18 @@ population
 	ItemAttributes
 	{
 	    ItemName "Gloves Of Running Urgently"
+		"self mark for death" 1
+		"mod_maxhealth_drain_rate" -5
+	}
+	ItemAttributes
+	{
+	    ItemName "Festive Gloves of Running Urgently"
+		"self mark for death" 1
+		"mod_maxhealth_drain_rate" -5
+	}
+	ItemAttributes
+	{
+	    ItemName "The Bread Bite"
 		"self mark for death" 1
 		"mod_maxhealth_drain_rate" -5
 	}
@@ -946,7 +990,7 @@ population
 					Skill	Normal
 					MaxVisionRange	1000
 					WeaponRestrictions	PrimaryOnly
-					Action	      FetchFlag  
+					Action	      FetchFlag [$SIGSEGV]
 					Attributes	"HoldFireUntilFullReload"
 					Attributes	"AlwaysCrit"
 					Item	"the frontier justice"
@@ -1044,7 +1088,7 @@ population
 					Skill	Easy
 					MaxVisionRange	500
 					WeaponRestrictions	PrimaryOnly
-					Action	      FetchFlag  
+					Action	      FetchFlag [$SIGSEGV]
 					ItemAttributes
 					{
 						ItemName	"the crusader's crossbow"
@@ -1064,7 +1108,7 @@ population
 					Skill	Normal
 					MaxVisionRange	500
 					WeaponRestrictions	PrimaryOnly
-					Action	      FetchFlag  
+					Action	      FetchFlag [$SIGSEGV]
 					ItemAttributes
 					{
 						ItemName	"the crusader's crossbow"
@@ -1084,7 +1128,7 @@ population
 					Skill	Hard
 					MaxVisionRange	500
 					WeaponRestrictions	PrimaryOnly
-					Action	      FetchFlag  
+					Action	      FetchFlag [$SIGSEGV]
 					ItemAttributes
 					{
 						ItemName	"the crusader's crossbow"
@@ -1278,24 +1322,10 @@ population
 			WaitBetweenSpawns	30
 			Where	spawnbot
 			
-			
-				TFBot
-				{
-				    ClassIcon    soldier_spammer
-					Name	"Giant Rapid Fire Soldier"
-					Scale	1.8
-					MaxVisionRange	1000
-					Template	T_TFBot_Giant_Soldier
-					ItemAttributes
-					{
-						ItemName	warbird_rocketlauncher_warhawk
-						"clip size bonus"	2.5
-						"fire rate bonus"	0.5
-						"faster reload rate"	0.7
-					}
-					Item	"warbird_rocketlauncher_warhawk"
-					Item	"soldier's stash"
-				}
+			TFBot
+			{
+				Template Warbird_Rapid_Soldier
+			}
 			
 		}
 		WaveSpawn
@@ -2406,7 +2436,7 @@ population
 					Skill	Normal
 					MaxVisionRange	1000
 					WeaponRestrictions	PrimaryOnly
-					Action	      FetchFlag  
+					Action	      FetchFlag [$SIGSEGV]
 					ItemAttributes
 					{
 						ItemName	"the crusader's crossbow"
@@ -2441,7 +2471,7 @@ population
 					Skill	Normal
 					MaxVisionRange	1000
 					WeaponRestrictions	PrimaryOnly
-					Action	      FetchFlag  
+					Action	      FetchFlag [$SIGSEGV]
 					ItemAttributes
 					{
 						ItemName	"the crusader's crossbow"
@@ -2502,20 +2532,7 @@ population
 			{
 				TFBot
 				{
-				    ClassIcon    soldier_spammer
-					Name	"Giant Rapid Fire Soldier"
-					Scale	1.8
-					MaxVisionRange	1000
-					Template	T_TFBot_Giant_Soldier
-					ItemAttributes
-					{
-						ItemName	warbird_rocketlauncher_warhawk
-						"clip size bonus"	2.5
-						"fire rate bonus"	0.5
-						"faster reload rate"	0.7
-					}
-					Item	"warbird_rocketlauncher_warhawk"
-					Item	"soldier's stash"
+				    Template Warbird_Rapid_Soldier
 				}
 				TFBot
 				{
@@ -2748,20 +2765,7 @@ population
 			
 				TFBot
 				{
-				    ClassIcon    soldier_spammer
-					Name	"Giant Rapid Fire Soldier"
-					Scale	1.8
-					MaxVisionRange	1000
-					Template	T_TFBot_Giant_Soldier
-					ItemAttributes
-					{
-						ItemName	warbird_rocketlauncher_warhawk
-						"clip size bonus"	2.5
-						"fire rate bonus"	0.5
-						"faster reload rate"	0.7
-					}
-					Item	"warbird_rocketlauncher_warhawk"
-					Item	"soldier's stash"
+				    Template Warbird_Rapid_Soldier
 				}
 			
 		}
@@ -2777,23 +2781,10 @@ population
 			Where	"spawnbot_right"
 			
 			
-				TFBot
-				{
-				    ClassIcon    soldier_spammer
-					Name	"Giant Rapid Fire Soldier"
-					Scale	1.8
-					MaxVisionRange	1000
-					Template	T_TFBot_Giant_Soldier
-					ItemAttributes
-					{
-						ItemName	warbird_rocketlauncher_warhawk
-						"clip size bonus"	2.5
-						"fire rate bonus"	0.5
-						"faster reload rate"	0.7
-					}
-					Item	"warbird_rocketlauncher_warhawk"
-					Item	"soldier's stash"
-				}
+			TFBot
+			{
+				Template Warbird_Rapid_Soldier
+			}
 			
 		}
 		WaveSpawn
@@ -3225,7 +3216,7 @@ population
 						    MaxVisionRange	1000
 							weaponRestrictions	SecondaryOnly
 							Attributes	"HoldFireUntilFullReload"
-							RingOfFire 15  
+							RingOfFire 15 [$SIGSEGV]
 							KeepAwayRadius 50 // Keep away distance from target
 							ItemAttributes
 					        {
@@ -3235,7 +3226,7 @@ population
 								"faster reload rate"	0.5
 								"clip size upgrade atomic"	4
 					        }
-							CustomWeaponModel   //Sets custom weapon model
+							CustomWeaponModel [$SIGSEGV] //Sets custom weapon model
 				            {
 			                    Slot 1 //Valid loadout positions:
 					            Model "models/weapons/c_models/c_wee_willy/c_wee_willy.mdl"
