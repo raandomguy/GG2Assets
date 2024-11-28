@@ -1501,7 +1501,7 @@ WaveSchedule
 		DragonB
 		{
 			Name "Unstable Mod: Unstable Pressure Valve"
-			Attribute "airblast disabled"
+			Attribute "alt-fire disabled"
 			Cap 1
 			Increment 1
 			Cost 0
@@ -3145,7 +3145,7 @@ WaveSchedule
 		}
 		MedigunB
 		{
-			Name "Unstable Mod: Rüstung Chip"
+			Name "Unstable Mod: Rüstung war"
 			Attribute "heal rate bonus"
 			Cap 1.20
 			Increment 0.20
