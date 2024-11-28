@@ -1219,7 +1219,14 @@ Bread
                 Target "!parent"
                 Action "AddOutput"
                 Param  "targetname breadtank"
-                Delay  0.1
+                Delay  0.5
+            }
+            OnSpawnOutput
+            {
+                Target "!parent"
+                Action "RunScriptCode"
+                Param  "NetProps.SetPropString(self, `m_iName`, `breadtank`)"
+                Delay  1
             }
             // OnSpawnOutput
             // {
