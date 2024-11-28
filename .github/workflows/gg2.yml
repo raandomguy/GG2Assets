@@ -82,7 +82,7 @@ jobs:
         run: |
 
           cd tf/download
-          for i in "22 pterodactyl@us.potato.tf" "22 pterodactyl@usw2.potato.tf" "22 pterodactyl@usw3.potato.tf" "22 pterodactyl@sgp.potato.tf" "22 pterodactyl@eu2.potato.tf" "22 pterodactyl@eu3.potato.tf" "22 pterodactyl@eu4.potato.tf" "27035 pterodactyl@eu.potato.tf" "22 pterodactyl@10.243.40.231" "22 pterodactyl@aus.potato.tf"; do a=( $i );
+          for i in "22 pterodactyl@us.potato.tf" "27040 pterodactyl@us.potato.tf" "3438 pterodactyl@us.potato.tf" "22 pterodactyl@usw2.potato.tf" "22 pterodactyl@usw3.potato.tf" "22 pterodactyl@sgp.potato.tf" "22 pterodactyl@eu2.potato.tf" "22 pterodactyl@eu3.potato.tf" "22 pterodactyl@eu4.potato.tf" "27035 pterodactyl@eu.potato.tf" "22 pterodactyl@10.243.40.231" "22 pterodactyl@aus.potato.tf"; do a=( $i );
           {
             ssh -o StrictHostKeyChecking=no -p ${a[0]} ${a[1]} "touch /var/tf2server/tf/occupiedservers/wake; exit 0"
 
