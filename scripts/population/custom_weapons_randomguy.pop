@@ -62,6 +62,7 @@ WaveSchedule
 		// "mod ammo per shot"			2
 		"maxammo primary reduced"		0.5
 		"clip size penalty"				0.17
+		"reload time decreased"			0.85
 		// fixed_shot_pattern			1
 		// "reload time increased"		1.2
 		// "fire rate bonus"			1	// remove FaN's fire rate bonus.
@@ -141,15 +142,17 @@ WaveSchedule
 
 	CustomWeapon [$SIGSEGV]	// Smoll shield medigun.
 	{
-		Name						"The Battering Ram"
-		OriginalItemName			"Upgradeable TF_WEAPON_MEDIGUN"
-		"special item description"	"[INFO] Ubercharge provides minicrits. Free mini-shield with double duration."
-		set_item_texture_wear		0	// Factory New
-		paintkit_proto_def_index	232	// Alien Tech. Looks cool.
-		"effect cond override"		16	// this cond is buffbanner minicrits.
-		"generate rage on heal"		2	// shield.
-		"increase buff duration"	2	// 2x shield duration.
-		"cannot giftwrap"			2	// Lua magic.
+		Name							"The Battering Ram"
+		OriginalItemName				"Upgradeable TF_WEAPON_MEDIGUN"
+		"special item description"		"[INFO] Ubercharge provides minicrits. Free mini-shield with double duration and 1/3 faster charge rate."
+		"special item description 2"	"[TIP] Look downward or upwards to bring your shield closer, allowing you to bodyblock!"
+		set_item_texture_wear			0	// Factory New
+		paintkit_proto_def_index		232	// Alien Tech. Looks cool.
+		"effect cond override"			16	// this cond is buffbanner minicrits.
+		"generate rage on heal"			2	// shield.
+		"increase buff duration"		2	// 2x shield duration.
+		"rage receive scale"			1.33	// 33% faster shield charge rate.
+		"cannot giftwrap"				2	// Lua magic.
 	}
 	PrecacheModel	models/props_mvm/mvm_comically_small_player_shield.mdl [$SIGSEGV]	// for smol shield medigun. Model by Lite.
 	LuaScriptFile	scripts/small_shield_overclock.lua [$SIGSEGV]	// for smol shield medigun. by Royal.
@@ -327,7 +330,7 @@ WaveSchedule
 		crits_become_minicrits			1
 		"mult crit dmg"					1.25
 		"hidden primary max ammo bonus"	0.8
-		"mult dmg vs tanks"				0.5	// kinda does shred tanks a BIT more than i'd like tbh
+		"mult dmg vs tanks"				0.8	// 0.5	// kinda does shred tanks a BIT more than i'd like tbh
 	}
 
 	CustomWeapon [$SIGSEGV]
@@ -481,7 +484,7 @@ WaveSchedule
 
 		BatteringRam_Damage	// dmg vs p's increases shield damage.
 		{
-			Name		"+15% Shield Damage Vs Bots"
+			Name		"+15% Shield Damage Vs Bots and Tanks"
 			Attribute	"dmg penalty vs players"
 			Cap			1.6
 			Increment	0.15
