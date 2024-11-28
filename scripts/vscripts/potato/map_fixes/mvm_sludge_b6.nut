@@ -4,6 +4,9 @@ Events <- {
 	function OnGameEvent_recalculate_holidays(_) {
 		if (GetRoundState() != Constants.ERoundState.GR_STATE_PREROUND) return
 
+		RegisterFix("Block an out-of-bounds access spot.")
+		MakeForcefield(Vector(-38, -2993, 3584), Vector(242, -890, 1178))
+
 		RegisterFix("Fixed skeletons getting stuck in the forward upgrades station.")
 		// Make a trigger that kills skeletons or skeleton skulls that touch it.
 		local skelekill = SpawnEntityFromTable("trigger_multiple", {
