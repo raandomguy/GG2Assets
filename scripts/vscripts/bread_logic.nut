@@ -14,18 +14,12 @@ if(!("breadeventslol" in getroottable())){
     getroottable()[EventsID] <-
     {
         // Cleanup events on round restart. Do not remove this event.
-        OnGameEvent_scorestats_accumulated_update = function(params) {
-            delete getroottable()[EventsID]
-            delete ::Bread
-        }
+
         OnGameEvent_recalculate_holidays = function(_) { if (GetRoundState() == 3) {
             delete getroottable()[EventsID]
             delete ::Bread
         } }
-        OnGameEvent_mvm_wave_complete = function(_) {
-            delete getroottable()[EventsID]
-            delete ::Bread
-        }
+
         // OnGameEvent_teamplay_round_start = function(_) {
         //     //PopExtUtil.PrintTable(PopExtUtil.BotArray)
         //     Cleanup()
@@ -973,7 +967,9 @@ Bread.BreadBossSetup <- function(breadboss) {
 
     Bread.breadorigin <- Entities.FindByName(null, "breadorigin")
 
-    EntFire("breadtank", "SetSpeed", "200", 2, null)
+    //EntFire("breadtank", "SetSpeed", "200", 2, null)
+    EntFire("tf_gamerules", "RunScriptCode", "Bread.SetBreadTankSpeed(`200`)", 2, null)
+
     Bread.breadboss <- breadboss
     Bread.SEQ_IDLE <- Bread.breadboss.LookupSequence("idle")
     Bread.SEQ_BITE <- Bread.breadboss.LookupSequence("bite")
@@ -1908,6 +1904,19 @@ Bread.CreateStrikeMarker <- function(projectile) {
     scope.oldpos <- GetLocationBelow(projectile)
     AddThinkToEnt(projectile, "StrikeMarkerThink")
 }
+
+Bread.breadtank <- null
+Bread.SetBreadTank <- function(tank) {
+    Bread.breadtank <- tank
+}
+Bread.SetBreadTankSpeed <- function(spd) {
+    if(Bread.breadtank == null) {if(dbug)ClientPrint(null,3,"something fucked up")}
+    EntFireByHandle(Bread.breadtank, "SetSpeed", spd, 0, null, null)
+}
+Bread.KillBreadTank <- function() {
+    EntFireByHandle(Bread.breadtank, "kill", null, 0, null, null)
+}
+
 // ///////////////////// Debug ///////////////////
 // Setting a error handler allows us to view vscript error messages, even if we are not testing locally i.e. on potato testing server
 // Bread.DebugSteamIds <- {}
