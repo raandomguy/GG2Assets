@@ -22,7 +22,7 @@ population
 	NoSkeletonSplit 1
 	FastNPCUpdate 1
 	
-	SpellBookNormalRoll [$SIGSEGV] // Override spell roll. The value specifies how many spell charges to give. You can duplicate spells to increase their roll chance
+	SpellBookNormalRoll   // Override spell roll. The value specifies how many spell charges to give. You can duplicate spells to increase their roll chance
 	{
 		"Fireball" 2
 		"Fireball" 2
@@ -39,7 +39,7 @@ population
 		"Teleport" 1
 		"Healing Aura" 1
 	}
-	SpellBookRareRoll [$SIGSEGV] // Override spell roll. The value specifies how many spell charges to give. You can duplicate spells to increase their roll chance
+	SpellBookRareRoll   // Override spell roll. The value specifies how many spell charges to give. You can duplicate spells to increase their roll chance
 	{
 		"Summon Skeletons" 1
 	}
@@ -310,7 +310,7 @@ population
 				FireBulletsPrep
 				{
 					Item	"the huo long heatmaker"
-					Taunt [$SIGSEGV]  //Taunt periodically
+					Taunt    //Taunt periodically
 					{
 						Delay 0 //Time before the first taunt starts (Default: 10)
 						Cooldown 0 //Time between each taunt (Default: 10)
@@ -413,7 +413,7 @@ population
 						Delay	3
 						Duration	20
 					}
-					Taunt [$SIGSEGV]  //Taunt periodically
+					Taunt    //Taunt periodically
 					{
 						Delay 0 //Time before the first taunt starts (Default: 10)
 						Cooldown 0 //Time between each taunt (Default: 10)
@@ -1635,6 +1635,7 @@ population
 			{
 				Class	Scout
 				WeaponRestrictions	SecondaryOnly
+				ClassIcon	scout_pistol_nys
 				Skill	Easy
 				Name	"Scout"
 				Attributes	"AlwaysCrit"
