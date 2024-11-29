@@ -3525,10 +3525,6 @@ Real?
 				"OnTrigger"		"wave7_music_relay_3,Disable,,0,-1"
 				"OnTrigger"		"wave7_music_relay_3,CancelPending,,0,-1"
 				"OnTrigger"		"wave7_music_relay_4,Trigger,,0,-1"
-
-
-				"OnTrigger"		"player,$DisplayTextChat,{green}The bomb has been reset- regain your ground as soon as possible!,0,-1"
-				"OnTrigger"		"intel,ForceReset,,0,-1"
 			}
 
 
@@ -3560,8 +3556,6 @@ Real?
 			logic_relay
 			{
 				"targetname"	"skybreaker_phase6_relay"
-				"OnTrigger"		"player,$DisplayTextChat,{green}The bomb has been reset- regain your ground as soon as possible!,0,-1"
-				"OnTrigger"		"intel,ForceReset,,0,-1"
 				"OnTrigger"		"point_populator_interface,$PauseWavespawn,wave7_inf_scout_support,5,-1"
 				"OnTrigger"		"@f@filter_skybreaker@player,$AddPlayerAttribute,no_attack|1,0,-1"
 				"OnTrigger"		"!activator,$AddCond,71 5,0.0,-1"
@@ -7641,7 +7635,7 @@ Real?
 			Class	Soldier
 			Name	"Chief Sawblade Vortex Soldier"
 			ClassIcon	soldier_sawcon_burst
-			Health	17500
+			Health	15000
 			Skill	Expert
 			WeaponRestrictions	PrimaryOnly
 			Attributes		MiniBoss
@@ -9464,7 +9458,6 @@ Real?
 			TFBot
 			{
 				Template	T_TFBot_Scout_Sandman
-				Attributes	AlwaysCrit
 				Tag	bot_nopoints
 			}
 		}
@@ -9496,9 +9489,9 @@ Real?
 		{
 			Name	wave2a1
 			TotalCurrency	100
-			TotalCount	15
-			MaxActive	6
-			SpawnCount	5
+			TotalCount	12
+			MaxActive	5
+			SpawnCount	4
 			WaitBetweenSpawns	10
 			Where	spawnbot
 			Squad
@@ -9507,11 +9500,6 @@ Real?
 				{
 					Template	T_TFBot_Giant_Scout_Baseball_Armored
 					Name		"bodyblock check"
-				}
-				TFBot	
-				{
-					Template	T_TFBot_Medic_QuickUber
-					Name		"Quick Uber Medic"
 				}
 				TFBot	
 				{
@@ -9666,8 +9654,8 @@ Real?
 			Support			1
 			TotalCurrency	50
 			TotalCount	48
-			MaxActive	10
-			SpawnCount	3
+			MaxActive	8
+			SpawnCount	2
 			WaitBeforeStarting	5
 			WaitBetweenSpawns	5
 			Where	spawnbot
@@ -9675,7 +9663,7 @@ Real?
 			TFBot
 			{
 				Class	Pyro
-				Skill	Expert
+				Skill	Normal
 				Attributes	AlwaysFireWeapon
 				Item	"Fire Marshal"
 				Item	"Invisible Flame"
@@ -9995,7 +9983,7 @@ Real?
 					WeaponRestrictions	SecondaryOnly
 					Scale	1.5
 					Health	350
-					Skill	Normal
+					Skill	Hard
 					Name	"Armored Pistol Scout"
 					Item	"Fortunate Son"
 					Item	"Flak Jack"
