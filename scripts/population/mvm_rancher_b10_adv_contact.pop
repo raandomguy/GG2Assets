@@ -83,6 +83,7 @@ elmarcianito
 	PrecacheModel "models\props_invasion\props_alien\arch.mdl"
     PrecacheModel "models/props_mvm/gatebot_hologram.mdl"
     PrecacheModel "models/props_gameplay/cap_square_512.mdl"
+    PrecacheModel "models/props_frontline/tank_turret.mdl"
     PrecacheSound "lastlegs_alt_cmprsd.mp3"
     PrecacheSound "drg_run_stais_remix.mp3"
     PrecacheSound "ui/cyoa_musicmoregun.mp3"
