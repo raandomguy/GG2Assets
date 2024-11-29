@@ -111,6 +111,11 @@ elmarcianito
 	PrecacheSound "ambient\levels\labs\electric_explosion1.wav"
 
     PrecacheGeneric "materials/colorcorrection/greencurvesonly.raw"
+    PrecacheGeneric "materials/hud/leaderboard_class_heavy_deflector_hyper.vmt"
+    PrecacheGeneric "materials/hud/leaderboard_class_heavy_deflector_hyper.vtf"
+    PrecacheGeneric "materials/hud/leaderboard_class_heavy_atomic_v2.vmt"
+    PrecacheGeneric "materials/hud/leaderboard_class_heavy_atomic_v2.vtf"
+
     PrecacheParticle "hammer_bell_ring_shockwave"
     PrecacheParticle "merasmus_object_spawn"
     PrecacheParticle "merasmus_tp"
