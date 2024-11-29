@@ -1217,16 +1217,9 @@ Bread
             OnSpawnOutput
             {
                 Target "!parent"
-                Action "AddOutput"
-                Param  "targetname breadtank"
-                Delay  0.5
-            }
-            OnSpawnOutput
-            {
-                Target "!parent"
                 Action "RunScriptCode"
-                Param  "NetProps.SetPropString(self, `m_iName`, `breadtank`)"
-                Delay  1
+                Param  "Bread.SetBreadTank(self)"
+                Delay  0.2
             }
             // OnSpawnOutput
             // {
@@ -2947,7 +2940,8 @@ Bread
                 "targetname" "erupt_relay"
                 "OnTrigger"  "digtimer,Enable,,0,-1"
                 "OnTrigger"  "backoff_indicator,Enable,,0,-1"
-                "OnTrigger"  "breadtank,SetSpeed,70,0,-1"
+                //"OnTrigger"  "breadtank,SetSpeed,70,0,-1"
+                "OnTrigger" "tf_gamerulesRunScriptCodeBread.SetBreadTankSpeed(`70`)0-1"
                 "Ontrigger"  "BreadSoundRoar,ForceSpawnAtEntityOrigin,bread_core,0,-1"
                 "OnTrigger"  "BreadSoundExplode,ForceSpawnAtEntityOrigin,bread_core,1.5,-1"
                 "OnTrigger"	"tf_gamerules,PlayVO,ambient\explosions\explode_5.wav,1.45,1"
@@ -2968,7 +2962,8 @@ Bread
                 "OnTrigger"  "dustimpact,stop,,9,-1"
                 "OnTrigger"  "erupt_relayRunScriptCodeBread.EruptAttack()1.5-1"
                 "OnTrigger"  "backoff_indicator,Disable,,6,-1"
-                "OnTrigger"  "breadtank,SetSpeed,110,4,-1"
+                //"OnTrigger"  "breadtank,SetSpeed,110,4,-1"
+                "OnTrigger" "tf_gamerulesRunScriptCodeBread.SetBreadTankSpeed(`110`)4-1"
                 "OnTrigger"  "moreTentacleBurstRelay,RunScriptCode,Bread.SummonMeleeTentacles(),3,-1"
 
                 "OnTrigger"  "weakrelay*,trigger,,0,-1"
@@ -2980,7 +2975,8 @@ Bread
                 "OnTrigger"  "disable_bite,trigger,,0,-1"
                 // "OnTrigger"  "breadboss,Disable,,0,-1"
                 // "OnTrigger"  "breadboss,$SetSolidFlags,4,0,-1"
-                "OnTrigger"  "breadtank,SetSpeed,0,0,-1"
+                //"OnTrigger"  "breadtank,SetSpeed,0,0,-1"
+                "OnTrigger" "tf_gamerulesRunScriptCodeBread.SetBreadTankSpeed(`0`)0-1"
                 "OnTrigger"  "makeNonsolid,trigger,,0,-1"
                 "OnTrigger"  "killbreadtent*,trigger,,0,-1"
                 "Ontrigger"  "BreadSoundConcrete,ForceSpawnAtEntityOrigin,bread_core,2,-1"
@@ -2988,7 +2984,8 @@ Bread
                 //"OnTrigger"  "bread_rotate_relay,Disable,,0,-1"
                 //"OnTrigger"  "bread_core,$StopRotateTowards,,0.2,-1"
                 "OnTrigger"  "breadboss,$SetKey$renderfx,6,2.7,-1"
-                "OnTrigger"  "breadtank,SetSpeed,150,2.0,-1"
+                //"OnTrigger"  "breadtank,SetSpeed,150,2.0,-1"
+                "OnTrigger" "tf_gamerulesRunScriptCodeBread.SetBreadTankSpeed(`150`)2.0-1"
                 "OnTrigger"  "digdown_relayRunScriptCodeBread.EruptReverse()0.0-1"
                 //"OnTrigger"  "digdown_relayRunScriptCodeBread.DigDown()4-1"
                 "OnTrigger"  "digtimer,Enable,,0,-1"
@@ -3034,7 +3031,8 @@ Bread
             {
                 "targetname" "phase_2_start_relay"
                 "OnTrigger" "digdown_relay,trigger,,0.0,-1"
-                "OnTrigger"  "breadtank,SetSpeed,150,2,-1"
+                //"OnTrigger"  "breadtank,SetSpeed,150,2,-1"
+                "OnTrigger" "tf_gamerulesRunScriptCodeBread.SetBreadTankSpeed(`150`)2-1"
 
                 "OnTrigger" "bread_phase_1_timer,Disable,,0.0,-1"
                 "OnTrigger" "erupt_relay,Disable,,0,-1"
@@ -3049,7 +3047,8 @@ Bread
                 "OnTrigger" "bite_relay,Enable,,5,-1"
 
                 "OnTrigger" "erupt_relay,trigger,,3.5,-1"
-                "OnTrigger"  "breadtank,kill,,3,-1"
+                //"OnTrigger"  "breadtank,kill,,3,-1"
+                "OnTrigger" "tf_gamerulesRunScriptCodeBread.KillBreadTank()3-1"
                 "OnTrigger"  "cap_hatch_destroy_animated_prop,Enable,,4.5,-1"
                 "OnTrigger"  "cap_hatch_destroy_animated_prop,SetAnimation,explode,4.6,-1"
                 "OnTrigger"  "cap_hatch_destroy_animated_prop,SetAnimation,idle,6,-1"
@@ -8007,7 +8006,7 @@ Bread
                 SpawnTemplate DummyTankCues
                 ClassIcon 	heavy_breadbite_nys_giant
 				Health 999999
-				Name breadtank
+				Name "breadtank"
 				Speed 0
 				StartingPathTrackNode tank_path_1
                 Scale 0.1
