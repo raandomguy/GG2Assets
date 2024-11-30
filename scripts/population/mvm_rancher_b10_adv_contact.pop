@@ -779,7 +779,7 @@ elmarcianito
                 "origin" "0 0 150"
                 "mins" "-300 -300 -300"
                 "maxs" "300 300 300"
-                "damage" "300"
+                "damage" "400"
                 "spawnflags" "64"
                 "damagetype" "64"
 				"onhurtplayer" "!activator,$igniteplayerduration,10,0,-1"
@@ -11278,7 +11278,7 @@ elmarcianito
                 {
                     Template T_TFBot_Giant_Soldier_SlowBarrage
                     ClassIcon soldier_barrage_mangler
-                    Health 22000
+                    Health 18000
                     Attributes UseBossHealthBar
                     Name "Otherworldly Barrage"
                         AddCond
@@ -11341,7 +11341,7 @@ elmarcianito
             {
                 Template T_TFBot_Giant_Demoman
                 ClassIcon 	demo_sticky_nuke_giant
-                Health 22000
+                Health 17000
                 Attributes UseBossHealthBar
                 Name "Otherworldly Annihilator"
                 Item "The Loch-n-Load"
@@ -12488,7 +12488,7 @@ elmarcianito
                 Class Spy
                 ClassIcon 	spy_revolver_lite //temporary
                 Scale 1.8
-                Health 21000
+                Health 23000
                 Attributes MiniBoss
                 Attributes UseBossHealthBar
                 Attributes HoldFireUntilFullReload		
@@ -13484,7 +13484,7 @@ elmarcianito
                 Class Medic
                 ClassIcon medic_crossbow_bleed_giant //temporary or maybe 	heavy_bread_bleed
                 Scale 1.8
-                Health 18000
+                Health 22000
                 Attributes MiniBoss
                 Attributes UseBossHealthBar
                 Attributes HoldFireUntilFullReload		
@@ -13952,7 +13952,7 @@ elmarcianito
                 ClassIcon demo_bicorne_lite
                 AlwaysGlow 1
                 Skill Expert
-                Health 27000
+                Health 30000
                 WeaponRestrictions PrimaryOnly
                 Attributes UseBossHealthBar
                 Attributes HoldFireUntilFullReload
@@ -13990,7 +13990,7 @@ elmarcianito
                     Action "disable"
                     Delay 0
                     Repeats 1
-                    IfHealthBelow 20000
+                    IfHealthBelow 23000
                 }
                 FireInput  
                 {
@@ -13999,7 +13999,7 @@ elmarcianito
                     Delay 3
                     Repeats 99
                     Cooldown 13
-                    IfHealthBelow 17000
+                    IfHealthBelow 20000
                 }
                 FireInput  
                 {
@@ -14007,13 +14007,13 @@ elmarcianito
                     Action "trigger"
                     Delay 0
                     Repeats 1
-                    IfHealthBelow 20000
+                    IfHealthBelow 23000
                 }
                 addcond
                 {
                     Index 5
                     Duration 3
-                    IfHealthBelow 20000
+                    IfHealthBelow 23000
                 }
                 FireInput  
                 {
