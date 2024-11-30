@@ -82,6 +82,12 @@ function __potato::OnEntitiesSpawned() {
 		}
 	}
 	delete ScriptsBuffer
+
+	// Suppress CVar change notifications for these which are always set by the game for MvM.
+	if (NetProps.GetPropBool(hGamerules, "m_bPlayingMannVsMachine")) {
+		Convars.SetValue("mp_tournament", 1)
+		Convars.SetValue("mp_tournament_stopwatch", 0)
+	}
 }
 
 /**
