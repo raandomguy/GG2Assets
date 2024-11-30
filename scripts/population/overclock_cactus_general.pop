@@ -699,42 +699,9 @@ WaveSchedule
 				ItemName "The Direct Hit"
 				ItemName "The Liberty Launcher"
 				ItemName "The Black Box"
+				ItemName "Festive Black Box"
 				ItemName "The Beggar's Bazooka"
-			}
-		}
-		RocketA_clean
-		{
-			Name "Unstable Mod: RPG Module"
-			Attribute "projectile gravity"
-			Cap 600
-			Increment 600
-			Cost 0
-			SecondaryAttributes 
-			{
-				"damage bonus HIDDEN" 0.25
-				"clip size penalty" -0.75
-				"Blast radius increased" 0.35
-				"reload time increased hidden" 0.75
-//				"fire rate penalty HIDDEN" 0.2
-				"projectile no deflect" 1
-			}
-			Description "(i)Rockets now arc +25% damage bonus +35% blast radius -75% clip size -75% reload speed" 
-			Tier 1
-			AllowedWeapons
-			{
-				ClassName TF_WEAPON_ROCKETLAUNCHER 
-				ItemName "Festive Rocket Launcher 2011"
-				ItemName "The Original"
-			}
-			DisallowedWeapons // Disallow those weapons
-			{
-				ItemName "Rocket Jumper"
-				ItemName "The Cow Mangler 5000"
-				ItemName "The Air Strike"
-				ItemName "The Direct Hit"
-				ItemName "The Liberty Launcher"
-				ItemName "The Black Box"
-				ItemName "The Beggar's Bazooka"
+				
 			}
 		}
 		MoneyJumper
@@ -1501,7 +1468,7 @@ WaveSchedule
 		DragonB
 		{
 			Name "Unstable Mod: Unstable Pressure Valve"
-			Attribute "airblast disabled"
+			Attribute "alt-fire disabled"
 			Cap 1
 			Increment 1
 			Cost 0
@@ -2273,6 +2240,7 @@ WaveSchedule
 				ItemName "The Eyelander"
 				ItemName "Festive Eyelander"
 				ItemName "The Persian Persuader"
+				ItemName "The Horseless Headless Horseman's Headtaker"
 			}
 		}
 		Persian
@@ -3145,7 +3113,7 @@ WaveSchedule
 		}
 		MedigunB
 		{
-			Name "Unstable Mod: Rüstung Chip"
+			Name "Unstable Mod: Rüstung war"
 			Attribute "heal rate bonus"
 			Cap 1.20
 			Increment 0.20
