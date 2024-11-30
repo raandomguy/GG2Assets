@@ -1627,7 +1627,7 @@ function ApplyThunderThink(player, caster)
                 }
                 if (spell_type == 2) // SPELL: WEAL. SUMMON MONOCULUS: Summon monoculus spell.
                 {
-                    local eye_spell = SpawnEntityFromTable("tf_projectile_spellspawnboss", 
+                    local eye_spell = SpawnEntityFromTable("tf_projectile_spellmeteorshower", 
                     {
                         basevelocity = Vector(0, 0, 0),
                         teamnum      = self.GetTeam(),
