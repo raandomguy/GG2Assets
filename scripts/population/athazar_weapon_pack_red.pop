@@ -170,7 +170,7 @@ athazar's_bar_and_bazaar	// subtle sneed's seed and feed reference
 		
 		"mod_mark_attacker_for_death"	0	// so you can actually use the benefit of the milk on hit. there's no opportunity to use the milk on hit when you're fucking dead from eating a mini-crit rocket or pipe
 
-		"effect add attributes"	"add cond on hit|27|add cond on hit duration|1.5|add cond when active|36"	// Oh, you want to support your teammates? Work for it by attacking to keep milk applied
+		"effect add attributes"	"add cond on hit|27|add cond on hit duration|3|add cond when active|36"
 		"effect cond override"	65
 		"mult effect duration"	1.25
 
@@ -349,7 +349,7 @@ athazar's_bar_and_bazaar	// subtle sneed's seed and feed reference
 		"damage penalty"			0.8
 		"grenade no spin"			1
 		"blast radius decreased"	0.8
-		"grenade bounce damage"		0.55
+		"grenade bounce damage"		0.56
 		"grenade bounce speed"		1.1
 		"fuse bonus"				0.5
 	}
@@ -665,15 +665,15 @@ athazar's_bar_and_bazaar	// subtle sneed's seed and feed reference
 		"custom item model"	"models/ctf2w/weapons/c_models/c_atgun/c_atgun.mdl"
 		"special item description"	"Anti-Materiel rifle; Inherent explosive bullets, explosive headshot upgrade disabled"
 		"no damage falloff"	1	// I think this fixes the chicanery with the way explosive bullets seems to work // no it does not
-		"explosive bullets"	150
+		"explosive bullets"	200
 		"dmg pierces resists absorbs"	1
-		"CARD: damage bonus"	1.15
-		"move speed penalty"	0.85
+		"CARD: damage bonus"	1.20
+		//"move speed penalty"	0.85
 		"SRifle Charge rate decreased"	0.8
 		"self dmg push force decreased"	0.5
 		"blast dmg to self increased"	1.5
-		"single wep holster time increased"	1.45
-		"single wep deploy time increased"	1.45
+		//"single wep holster time increased"	1.45
+		//"single wep deploy time increased"	1.45
 		"mult dmg vs tanks"	1.85	// It IS an anti-materiel rifle after all	
 		"dmg bonus vs buildings"	2
 	}

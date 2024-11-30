@@ -24,6 +24,7 @@ population
     PrecacheModel models/weapons/c_models/c_broken_steel/c_broken_steel.mdl
     PrecacheModel models/weapons/c_models/c_heavy_bot_arms.mdl
     PrecacheSound weapons/shotgun/shotgun_reload1.wav
+	UpgradeStationKeepWeapons 1	// Needed for nice upgrading of Medizinische Schrotflinte
 	ExtraSpawnPoint
     {
         Name "spawnbot_skele"
@@ -80,6 +81,40 @@ population
 	}
 	PointTemplates
 	{
+		OnEquipMedicShotgun
+		{
+			OnSpawnOutput
+			{
+				Target !parent
+				Action RunScriptCode
+				Param "
+					# Find and kill placeholder weapon.
+					for (local i = 0; i < 7; ++i) {
+						local placeholder = NetProps.GetPropEntityArray(self, `m_hMyWeapons`, i)
+						if (placeholder == null || placeholder.GetName() != `tf_weapon_syringegun_medic`) continue
+						placeholder.Kill()
+						break
+					}
+
+					# Make a TF_WEAPON_SHOTGUN_PRIMARY
+					local wep = Entities.CreateByClassname(`tf_weapon_shotgun_primary`)
+					NetProps.SetPropInt(wep, `m_AttributeManager.m_Item.m_iItemDefinitionIndex`, 9)
+					NetProps.SetPropBool(wep, `m_AttributeManager.m_Item.m_bInitialized`, true)
+					NetProps.SetPropBool(wep, `m_bValidatedAttachedEntity`, true)
+					wep.SetTeam(self.GetTeam())
+					wep.DispatchSpawn()
+
+					# Add custom attributes; original animations must be present before being granted to the player.
+					wep.AddAttribute(`use original class weapon animations`, 1, -1)
+					wep.AddAttribute(`max health additive penalty`, -25, -1)
+
+					self.Weapon_Equip(wep)
+					# VScript does not allow adding string attributes.
+					self.AcceptInput(`$AddItemAttribute`, `custom weapon name|Medizinische Schrotflinte|TF_WEAPON_SHOTGUN_PRIMARY`, null, null)
+					self.Weapon_Switch(wep)
+				"
+			}
+		}
 	    coolbosstext
         {
             game_text
@@ -376,13 +411,20 @@ population
 			"speed_boost_on_kill" 3
             "custom item model" "models\workshop\weapons\c_models\c_roughrider\c_pep_scattergun.mdl"
         }
+
 	CustomWeapon
-	    {
-		     Name "Medizinische Schrotflinte"
-			 OriginalItemName "tf_weapon_shotgun_primary"
-			"max health additive bonus" -25
-			"use original class weapon animations" 1
-		}
+	{
+		Name "Medizinische Schrotflinte"
+		OriginalItemName "tf_weapon_syringegun_medic"
+		// This is just a safe placeholder because giving TF_WEAPON_SHOTGUN_PRIMARY actually
+		//  gives TF_WEAPON_SHOTGUN_PYRO and eats the Medi-gun for some reason.
+	}
+	PlayerItemEquipSpawnTemplate
+	{
+		Name OnEquipMedicShotgun
+		ItemName "Medizinische Schrotflinte"
+	}
+
     CustomWeapon
         {
              Name "The Zwischenzug"
