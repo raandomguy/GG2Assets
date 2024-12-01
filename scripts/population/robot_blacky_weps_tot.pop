@@ -60,7 +60,8 @@ WaveSchedule
 		OriginalItemName	"The Flying Guillotine"
 		"Blast radius increased"				2
 		"always crit"							1
-		"damage bonus"							3
+		"damage bonus"							6
+		"mult dmg vs giants"					2
 		"no damage falloff"						1
 		"collect currency on kill"				1
 		"mod projectile heat seek power"		70		//	homing stuff
@@ -352,12 +353,13 @@ WaveSchedule
 		"set_item_texture_wear"			0	//	FN
 		"paintkit_proto_def_index"		217	//	Bomber Soul
 		"damage bonus"					3
+		"mult dmg vs giants"			1.5
 		"penetrate teammates"			1
 	//	"maxammo primary increased"		0.2	//	a scrapped idea to give the weapon 40 ammo
 	//	"fire rate bonus"				5	//	while the weapon fires slowly, you can tapfire to bypass this negative attribute, hence its fairly broken
 		"bullets per shot bonus"		0.25
 		"explosive bullets"				100
-		"special item description"		"Fires single heavy caliber rounds that explode with AoE damage on impact (weapon only deals blast damage)"
+		"special item description"		"Fires single heavy caliber rounds that explode with AoE damage on impact (weapon deals blast damage)"
 	//	WORKS PERFECTLY!
 	}
 		DisallowUpgrade	//	apparently i cant stack disallowing upgrades into one block so i need to write them individually. come on...
@@ -438,8 +440,8 @@ WaveSchedule
 		Name				"Terminal Tumor"
 		OriginalItemName	"The Bread Bite"
 		"mod_maxhealth_drain_rate"		0
-		"health from packs increased"	0.67
-		"special item description"		"No health drain; -33% health from health packs"
+		"reduced_healing_from_medics"	0.9
+		"special item description"		"No health drain; -10% heal rate from medics"
 		//	WORKS PERFECTLY!
 	}
 		
