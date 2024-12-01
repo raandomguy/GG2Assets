@@ -158,10 +158,9 @@ WaveSchedule
 			"set_item_texture_wear" 0
 			"fire rate bonus" 0.65
 			"damage penalty" 0.75
-			"add cloak on kill" 20
 			"add cond when active" 114
+			"max health additive penalty" -25
 			"special item description 2" "On kill by knife or spawned bot, victim explodes into an allied spy bot that will live for 25 seconds"
-			"special item description 3" "On kill by knife or spawned bot, gain 15% sapper charge and 10% cloak"
 			"special item description 4" "While active, see teammate outlines through walls. Useful for finding enemy spies and tracking your bots"
 		}
 	}
@@ -179,8 +178,8 @@ WaveSchedule
 		"The Parry Watch"
 		{
 			OriginalItemName "TF_WEAPON_INVIS"
-			"mult cloak meter consume rate" 10
-			"mod_cloak_no_regen_from_items" 1
+			"mult cloak meter consume rate" 6.5
+			//"mod_cloak_no_regen_from_items" 1
 			"mult cloak meter regen rate" 0.7
 			"effect cond override" "52"
 			"special item description 2" "Grants an extremely short uber duration on use. No longer functions as an invis watch"
@@ -188,7 +187,7 @@ WaveSchedule
 	}	
 	CustomWeapon
 	{
-			"L'Ã©galiseur"
+			"L'égaliseur"
 		{
 			OriginalItemName "Upgradeable TF_WEAPON_KNIFE"
 			"paintkit_proto_def_index" 411
@@ -1228,7 +1227,7 @@ WaveSchedule
 			machina_giga
 			{
 				Name "Maximum Penetration"
-				Description "Penetrates up to 3 targets regardless of charge, penetrates damage resistances, fully charged damage bonus is now 67%. Max ammo is halved and the rifle charges 35% slower"
+				Description "Penetrates up to 3 targets regardless of charge, penetrates damage resistances, fully charged damage bonus is now 67%. Max ammo is halved and the rifle charges 50% slower"
 				Cap 1
 				Increment 1
 				Attribute "dmg pierces resists absorbs"
@@ -1239,7 +1238,7 @@ WaveSchedule
 				"projectile penetration heavy" 3
 				"sniper penetrate players when charged" -1
 				"hidden primary max ammo bonus" -0.5
-				"sniper charge per sec" -0.35
+				"sniper charge per sec" -0.5
 				}				
 				AllowedWeapons
 				{
