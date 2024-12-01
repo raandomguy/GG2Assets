@@ -129,4 +129,5 @@ function IncrementWaveNumber()
 	NetProps.SetPropInt(PopExtUtil.ObjectiveResource, "m_nMannVsMachineWaveCount", round_number)
 	NetProps.SetPropString(text_gameover_2, "m_iszMessage", format("You survived %d waves", (round_number-1)))
 	boss_timer -= 1
+	ResetPowerupCount()
 }

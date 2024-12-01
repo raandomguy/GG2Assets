@@ -181,4 +181,9 @@ const BREAK_RADIUS = 120;
 			self.GetScriptScope().Preserved.timesrepaired = self.GetScriptScope().Preserved.timesrepaired + (BREAK_RADIUS - 119)
 		}
 	}
+	function ClearLevelCheck(self)
+	{
+		local scope = self.GetScriptScope().Preserved
+		scope.isenteringlevel = 0
+	}
 }

@@ -13,6 +13,9 @@ local escape_relay = Entities.FindByName(null, "escape_relay")
 local phone = Entities.FindByName(null, "phone_sfx")
 local ee_song = Entities.FindByName(null, "snd_eesong")
 local powerupindex = RandomInt(0,4)
+local powerupcount = 0
+local powerupcooldown = 0	// how many bots have to die before powerups can spawn again
+local powerupfail = 0 // how many times did a powerup not spawn
 const STRONGMANN_TIME = 30;
 const POWERUP_TIME = 30;
 
@@ -221,7 +224,7 @@ const POWERUP_TIME = 30;
 	}
 	local spawnlocation = spawns[RandomInt(0, spawns.len() - 1)]
 	self.Teleport(true,spawnlocation.GetCenter()+offset,true,spawnlocation.GetAbsAngles(),true,spawnlocation.GetAbsVelocity());
-	UnstuckEntity(self)
+//	UnstuckEntity(self)
 }
 
 ::UseBossSpawnLocation <- function(self)	// use above function 
@@ -492,6 +495,32 @@ const POWERUP_TIME = 30;
 	}
 }
 
+::ShowGasOnPlayer <- function(self)
+{
+	local scope = self.GetScriptScope().Preserved
+	local gastext = ""
+	local text_gas = FindByName(null, "__text_gas")
+	if (text_gas == null)
+	{
+		text_gas = SpawnEntityFromTable("game_text",
+		{
+			targetname = "__text_gas"
+			channel = 1
+			color = "255 255 255"
+		//	spawnflags = 1
+			fadein = 0
+			fadeout = 0.2
+			holdtime = 1
+			message = ""	// leave blank in case spawnflags makes this display for everyone??
+			x = 0.77
+			y = 0.77
+		})
+	}
+	gastext = format("Gas Cans: %i", scope.gasheld)
+	NetProps.SetPropString(text_gas, "m_iszMessage", format("%s", gastext))
+	text_gas.AcceptInput("Display","",self,null)
+	if (scope.gasheld > 0) EntFireByHandle(self,"runscriptcode","ShowGasOnPlayer(self)",1,null,self);
+}
 ::UpdatePowerupDurations <- function(self)
 {
 	local scope = self.GetScriptScope().Preserved
@@ -637,7 +666,31 @@ const POWERUP_TIME = 30;
 
 ::SpawnPowerup <- function(player)
 {
-	if (player.GetScriptScope().Preserved.isenteringlevel == 1) return
+	if (player.GetScriptScope().Preserved.isenteringlevel == 1 || powerupcount == 4) return
+	if (powerupcooldown > 0)
+	{
+		powerupcooldown -= 1
+		return
+	}
+	local diceroll = RandomInt(1,100)
+	local round_number = NetProps.GetPropInt(PopExtUtil.ObjectiveResource, "m_nMannVsMachineWaveCount")
+	local botcount = (NetProps.GetPropInt(PopExtUtil.ObjectiveResource, "m_nMannVsMachineWaveClassCounts"))
+	local dicecheck = 0
+	local round_threshold = 0
+	
+	// count our powerup odds
+	if (round_number <= 5) round_threshold = 2
+	if (round_number > 5 && round_number <= 10) round_threshold = 1
+	if (round_number > 10 && round_number <= 15) round_threshold = 0.5
+	if (round_number > 15) round_threshold = 0.33
+	
+	dicecheck = (botcount * round_threshold) + powerupfail
+	
+	if (diceroll > dicecheck)
+	{
+		powerupfail += 2
+		return
+	}
 	EmitSoundEx
 	({
 		sound_name = "misc/halloween/merasmus_spell.wav",
@@ -648,11 +701,18 @@ const POWERUP_TIME = 30;
 	powerup.SetAbsOrigin(player.GetCenter());
 	EntFireByHandle(powerup, "forcespawn", "", 0, player, player);
 	powerupindex += 1
+	powerupcount += 1
+	powerupfail = 0
+	powerupcooldown = 2
 	
 	if (powerupindex >= 6) 
 	{
 		powerupindex = 0
 	}
+}
+::ResetPowerupCount <- function()
+{
+	powerupcount = 0
 }
 ::ForceMaxAmmo <- function(player)
 {
@@ -673,11 +733,17 @@ const POWERUP_TIME = 30;
 }
 ::ActivateMaxammo <- function(self)
 {
-	PopExtUtil.PlaySoundOnClient(self,"deadlands/pickup_maxammo.mp3",1.0,100)
-	PopExtUtil.PlaySoundOnClient(self,"deadlands/powerup_maxammo.mp3",1.0,100)
-	SetPropIntArray(self, "m_iAmmo", ::CustomWeapons.GetMaxAmmo(self, 1), 1)
-	SetPropIntArray(self, "m_iAmmo", ::CustomWeapons.GetMaxAmmo(self, 2), 2) 
-	ClientPrint(self, HUD_PRINTCENTER, "Max Ammo!");
+	foreach (player in PopExtUtil.HumanArray)
+	{
+        if (player.IsAlive())
+		{
+			PopExtUtil.PlaySoundOnClient(player,"deadlands/pickup_maxammo.mp3",1.0,100)
+			PopExtUtil.PlaySoundOnClient(player,"deadlands/powerup_maxammo.mp3",1.0,100)
+			SetPropIntArray(player, "m_iAmmo", ::CustomWeapons.GetMaxAmmo(player, 1), 1)
+			SetPropIntArray(player, "m_iAmmo", ::CustomWeapons.GetMaxAmmo(player, 2), 2) 
+			ClientPrint(player, HUD_PRINTCENTER, "Max Ammo!");
+		}
+	}
 }
 ::ActivateBonuspoints <- function(self)
 {
@@ -704,20 +770,26 @@ const POWERUP_TIME = 30;
 }
 ::ActivateNuke <- function(self)
 {
-	PopExtUtil.PlaySoundOnAllClients("misc/doomsday_missile_explosion.wav")
-	foreach (player in PopExtUtil.HumanArray)
-	{
+    local killicon_dummy = CreateByClassname("info_teleport_destination")
+    SetPropString(killicon_dummy, "m_iClassname", "megaton")
+
+    PopExtUtil.PlaySoundOnAllClients("misc/doomsday_missile_explosion.wav")
+    foreach (player in PopExtUtil.HumanArray)
+    {
         ScreenFade(player,255,255,255,255,1.5,0,1)
-		ScreenShake(player.GetCenter(),16,144,3,48,0,true)
-	}
-	foreach (bot in PopExtUtil.BotArray)
-	{
+        ScreenShake(player.GetCenter(),16,144,3,48,0,true)
+		player.RemoveCurrency(-400)
+    }
+    foreach (bot in PopExtUtil.BotArray)
+    {
         if (PopExtUtil.IsAlive(bot) && !bot.HasBotTag("Cooldude"))
-		{
-            bot.TakeDamage(bot.GetHealth(),8256,self) // self credits player for kill
-		}
-	}
-	EntFireByHandle(notebook,"runscriptcode","PopExtUtil.PlaySoundOnAllClients(`deadlands/powerup_nuke.mp3`)",0,null,null);
+        {
+            // bot.TakeDamage(bot.GetHealth(),8256,self) // self credits player for kill
+            bot.TakeDamageEx(killicon_dummy, self, null, Vector(), Vector(), bot.GetHealth(), DMG_BLAST)
+        }
+    }
+    EntFireByHandle(killicon_dummy,"kill","",-1,null,null)
+    EntFireByHandle(notebook,"runscriptcode","PopExtUtil.PlaySoundOnAllClients(`deadlands/powerup_nuke.mp3`)",0,null,null);
 }
 ::ActivateMinigun <- function(self)
 {

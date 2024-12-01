@@ -84,24 +84,6 @@ if ("RedRidgeEvents" in getroottable()) delete ::RedRidgeEvents // this is done 
 		local inflictor = params.inflictor
 		local damage = params.damage
 		local weapon = params.weapon
-		if (inflictor.GetClassname() == "tf_generic_bomb")
-		{
-			if ((attacker.IsPlayer() && attacker == victim && !attacker.IsBotOfType(1337)) || victim.GetTeam() == attacker.GetTeam())
-			{
-				params.damage = 25;
-			}
-			else
-			{
-				params.damage = victim.GetHealth()
-			}
-			local owner = inflictor.GetOwner()
-			if (damage > victim.GetHealth() && owner != null)
-			{
-				local multiplier = owner.GetScriptScope().Preserved.multiplier
-				owner.RemoveCurrency(-25 * multiplier)
-		//		SetPropInt(FindByClassname(null, "tf_player_manager"),"m_iCurrencyCollected",owner.GetCurrency())
-			}
-		}
 		if (attacker.GetTeam() == 3)
 		{
 			if (attacker.GetScriptScope().Preserved.zombie_type <= 5) NetProps.SetPropString(params.weapon, "m_iClassname", "unarmed_combat")
@@ -320,7 +302,7 @@ if ("RedRidgeEvents" in getroottable()) delete ::RedRidgeEvents // this is done 
 		if (deadguy.GetTeam() == 3)
 		{
 			ExitStageLeft()
-			local diceroll = RandomInt(1,100)
+			SpawnPowerup(deadguy)
 			local payout = 0
 			local assist = 0
 			for (local wearable = deadguy.FirstMoveChild(); wearable != null; wearable = wearable.NextMovePeer())
@@ -328,10 +310,6 @@ if ("RedRidgeEvents" in getroottable()) delete ::RedRidgeEvents // this is done 
 				if (wearable.GetClassname() != "tf_wearable")
 				continue
 				SetPropInt(wearable,"m_nRenderMode",10)
-			}
-			if (deadguy.GetPlayerClass() != 2 && diceroll <= 3)
-			{
-				SpawnPowerup(deadguy)
 			}
 			if (deadguy.GetPlayerClass() == 2)
 			{

@@ -20,7 +20,7 @@ local Powerups = {
 	vnd_dtap_button = { powerup = "Double Tap", price = 2000 }
 	vnd_saxton_button = { powerup = "Saxton Ale", price = 2500 }
 	vnd_quickrev_button = { powerup = "Ostarion's Reserve", price = 1500 }
-	vnd_ammo_button = { powerup = "Max Ammo", price = 2000 }
+	vnd_ammo_button = { powerup = "Max Ammo", price = 1000 }
 }
 
 local WallGuns =
@@ -171,7 +171,7 @@ local ImportantItems =
 	if (playerclass == 9)
 	{
 		self.AddCustomAttribute("hidden maxhealth non buffed" ,25, -1);
-		self.AddCustomAttribute("metal regen" ,100, -1);
+		self.AddCustomAttribute("metal regen" ,50, -1);
 		self.AddCustomAttribute("upgrade rate decrease" ,0, -1);
 		self.AddCustomAttribute("engy dispenser radius increased" ,6, -1);
 		self.AddCustomAttribute("building cost reduction" ,1.5384, -1);
@@ -322,7 +322,7 @@ local ImportantItems =
 			
 			if (powerup == "Max Ammo")
 			{
-				price = price + (1000 * scope.Preserved.ammobuys)
+				price = price + (500 * scope.Preserved.ammobuys)
 			}
 			ClientPrint(self, HUD_PRINTCENTER, format("Hold Action key to purchase %s for $%d", powerup, price));
 			if (self.IsUsingActionSlot())
@@ -568,6 +568,7 @@ local ImportantItems =
 						self.GetScriptScope().Preserved[k] <- v
 					}
 					scope.Preserved.gasheld = scope.Preserved.gasheld + (BUTTON_COOLDOWN_TIME -2);
+					ShowGasOnPlayer(self)
 					scope.Preserved.cooldowntime = Time() + BUTTON_COOLDOWN_TIME - 2;
 					SetPropBool(self, "m_bUsingActionSlot", false)
 				}
