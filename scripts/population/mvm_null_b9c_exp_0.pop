@@ -3004,11 +3004,11 @@ WaveSchedule
 			Name 2cb
 			WaitForAllDead 2ba
 			Where spawnbot
-			Totalcount 10
+			Totalcount 8
 			Spawncount 2
 			MaxActive 4
 			WaitBeforeStarting	0
-			WaitBetweenSpawns	15
+			WaitBetweenSpawns	20
 			TotalCurrency 100
 			TFBot
 			{
@@ -3454,9 +3454,9 @@ WaveSchedule
 			Name 2support2
 			WaitForAllDead 2fb
 			Where spawnbot_alley
-			Totalcount 6
+			Totalcount 4
 			Spawncount 2
-			MaxActive 3
+			MaxActive 4
 			Hideicon 1
 			Support Limited
 			WaitBeforeStarting	5
@@ -3516,7 +3516,7 @@ WaveSchedule
 						Class Demoman
 						Name "Fallen Major Catastrophe"
 						ClassIcon demo_bomber
-						Health 45000
+						Health 43000
 						Scale 1.9
 						FastUpdate 1
 						UseMeleeThreatPrioritization 1  
@@ -3982,7 +3982,7 @@ WaveSchedule
 				{
 					Class Demoman
 					Name "Fallen 얀샋ㄷ읃ㄴㄴ둫ㄷㄱ"
-					Health 40000
+					Health 38000
 					ClassIcon demo_atomic
 
 					Skill Expert
@@ -4247,9 +4247,9 @@ WaveSchedule
 			Name 3ba
 			WaitForAllDead 3aa
 			Where spawnbot_left
-			Totalcount 9
-			Spawncount 3
-			MaxActive 6
+			Totalcount 6
+			Spawncount 2
+			MaxActive 4
 			WaitBeforeStarting	0
 			WaitBetweenSpawns	15
 			TotalCurrency 150
@@ -4259,13 +4259,6 @@ WaveSchedule
 				{
 					Template T_TFBot_Giant_Demo_Barrage
 					Attributes AlwaysCrit
-				}
-				TFBot
-				{
-					Template T_TFBot_Medic
-					Skill Expert
-					Item "Field Practice"
-					Name "Fallen Uber Medic"
 				}
 				TFBot
 				{
@@ -4281,9 +4274,9 @@ WaveSchedule
 			Name 3ba
 			WaitForAllDead 3aa
 			Where spawnbot
-			Totalcount 9
-			Spawncount 3
-			MaxActive 6
+			Totalcount 6
+			Spawncount 2
+			MaxActive 4
 			WaitBeforeStarting	0
 			WaitBetweenSpawns	15
 			TotalCurrency 150
@@ -4293,13 +4286,6 @@ WaveSchedule
 				{
 					Template T_TFBot_Giant_Demo_Barrage
 					Attributes AlwaysCrit
-				}
-				TFBot
-				{
-					Template T_TFBot_Medic
-					Skill Expert
-					Item "Field Practice"
-					Name "Fallen Uber Medic"
 				}
 				TFBot
 				{
