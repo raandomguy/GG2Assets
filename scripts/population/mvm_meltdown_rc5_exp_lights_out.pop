@@ -31,7 +31,6 @@ PrecacheModel	"models/bots/boss_bot/combat_tank/combat_tank_minigun.mdl"
 PrecacheModel	"models/bots/boss_bot/combat_tank/combat_tank_rocketpod.mdl"
 PrecacheModel	"models/bots/boss_bot/combat_tank/combat_tank_rocket.mdl"
 PrecacheModel 	"models/bots/sniper_boss/bot_sniper_boss.mdl"
-PrecacheModel	"models/props_gameplay/cap_circle_320.mdl"
 
 Templates
 {
@@ -298,6 +297,7 @@ Templates
 				"melee range multiplier" 1.35
 				"hand scale" 1.4
 				"switch from wep deploy time decreased" 0.5
+				"melee cleave attack" 1 //fuck you shield
 				}
 				CharacterAttributes
 				{
@@ -375,6 +375,7 @@ Templates
 				"melee range multiplier" 1.35
 				"hand scale" 1.4	
 				"switch from wep deploy time decreased" 0.5
+				"melee cleave attack" 1 //fuck you shield
 				}				
 				CharacterAttributes
 				{
