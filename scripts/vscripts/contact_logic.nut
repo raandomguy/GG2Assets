@@ -1406,10 +1406,18 @@ Contact.DamageNearbyBuildings <- function() {
 
 Contact.HurtCannonOrbital <- function() {
     if(Contact.cannonPuppet == null || !IsPlayerAlive(Contact.cannonPuppet)) return
-    if(Contact.cannonPuppet.GetHealth() > 5000 && Contact.numCores != 4)
-        Contact.cannonPuppet.SetHealth(Contact.cannonPuppet.GetHealth() - 120)
-    else //~ 40 secs till your ass is grass
-        Contact.cannonPuppet.SetHealth(Contact.cannonPuppet.GetHealth() - 55)
+
+    local h = Contact.cannonPuppet.GetHealth()
+    local dmg = 55
+
+    if(Contact.cannonPuppet.GetHealth() > 5500 && Contact.numCores != 4){
+        dmg = 110
+    }
+
+    if(h < dmg) {
+        EntFireByHandle(Contact.cannonPuppet, "$Suicide", null, 0, null, null)
+    }
+    else { Contact.cannonPuppet.SetHealth(Contact.cannonPuppet.GetHealth() - dmg) }
 }
 
 
