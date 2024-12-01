@@ -307,6 +307,7 @@ WaveSchedule
                     }
                 }
             }
+            // NoPushaway 1
         }
         //
         // Basic Templates for this mission
@@ -370,7 +371,7 @@ WaveSchedule
 
             Item "The Cross-Comm Crash Helmet"
 
-            RocketCustomParticle eyeboss_projectile  
+            RocketCustomParticle eyeboss_projectile [$SIGSEGV]
             HomingRockets  
 			{
 				IgnoreDisguisedSpies 1
@@ -562,7 +563,7 @@ WaveSchedule
                 "attach particle effect" 3150
                 "voice pitch scale" 0.4
 			}
-            RocketCustomParticle eyeboss_projectile  
+            RocketCustomParticle eyeboss_projectile [$SIGSEGV]
             HomingRockets  
 			{
 				IgnoreDisguisedSpies 1
@@ -762,11 +763,12 @@ WaveSchedule
                 "fire rate penalty" 99  // No grenade launcher firing animations.
 			}
 
-            ItemAttributes
+            ItemAttributes // 8 stickies are too much! maybe it's the reason why some players crashed during its section.
             {
                 ItemName "TF_WEAPON_PIPEBOMBLAUNCHER"
                 "fire rate bonus" 0.01
                 "faster reload rate" 0.2
+                "clip size bonus" 0.5 // 4 in a row
 				"projectile spread angle penalty" 3
                 "Projectile speed increased" 0.25 // reduced from 0.35
                 "stickybomb charge rate" 0.001
@@ -892,6 +894,7 @@ WaveSchedule
             {
                 "targetname" "tomb_relay"
                 "OnTrigger" "tomb,Enable,,0.01,-1"
+                "OnTrigger" "tomb_teleport_check,Enable,,0.5,-1"
                 "OnTrigger" "tomb_teleport,Enable,,0.1,-1"
                 "OnTrigger" "tomb_particle_intro,Start,,0.01,-1"
                 "OnTrigger" "tomb_particle_intro,Stop,,1,-1"
@@ -913,6 +916,16 @@ WaveSchedule
                 "damagefilter" "filter_red"
                 "OnBreak" "!self,KillHierarchy,,0.01,-1"
                 "OnBreak" "tomb_particle,KillHierarchy,0.01,-1"
+			}
+            trigger_teleport
+			{
+				"targetname" "tomb_teleport_check" 
+				"mins" "-200 -200 -200"
+				"maxs" "200 200 200"
+				"spawnflags" "1"
+				"filtername" "tombitself"
+				"target" "tomb"
+				"startdisabled" "1"
 			}
             info_particle_system
 			{
@@ -992,6 +1005,7 @@ WaveSchedule
             {
                 "targetname" "tomb_kill"
                 "OnTrigger" "tomb,Kill,,0.01,-1"
+                "OnTrigger" "tomb_teleport_check,Kill,,0.01,-1"
                 "OnTrigger" "tomb_teleport,Disable,,0.01,-1"
                 "OnTrigger" "tomb_particle_intro,Kill,,0.01,-1"
                 "OnTrigger" "tomb_sound,Kill,,0.01,-1"
@@ -1010,8 +1024,8 @@ WaveSchedule
 			{
 				"targetname" "crushthetomb"
 				"origin" "182 0 86"
-				"mins" "-50 -40 -50"
-				"maxs" "50 40 50"
+				"mins" "-100 -80 -100"
+				"maxs" "100 80 100"
                 "nodmgforce" "1"
 	            "damagetype" "8"
 	            "damagemodel" "0"
@@ -1093,7 +1107,7 @@ WaveSchedule
             Target wave_finished_relay
             Action Trigger
         }
-        Explanation  
+        Explanation [$SIGSEGV]
 		{
             Line "{b8383b}>The Detective :{FFFFFF} Mecenaries, welcome to the Newfolk Campsite."
             Line "{b8383b}>The Detective :{FFFFFF} According to some witnesses, this campsite was cursed by a bloodthirst group of cult."
@@ -2221,7 +2235,7 @@ WaveSchedule
         {
             Name "3b-giant"
             WaitForAllSpawned "3a-giant"
-            Where spawnbot_tank
+            Where spawnbot
             TotalCount 3
             MaxActive 3
             SpawnCount 3
@@ -2264,7 +2278,7 @@ WaveSchedule
             {
                 Name "tankboss"
                 StartingPathTrackNode "tank_path_a1"
-                Health 22000
+                Health 20000
                 Speed 75
                 Skin 0
                 SpawnTemplate Tombstone_remove_tank
@@ -2330,6 +2344,7 @@ WaveSchedule
         {
             Name "3c-giant"
             WaitForAllSpawned "3b-giant"
+            Where spawnbot
             Where spawnbot_tank
             TotalCount 6
             MaxActive 6
@@ -2343,7 +2358,12 @@ WaveSchedule
             {
                 TFBot
                 { 
-                    Template T_TFBot_Giant_Soldier_Buff_Spammer 
+                    Template T_TFBot_Giant_Soldier_Buff_Spammer
+                    ItemAttributes
+                    {
+                        ItemName "TF_WEAPON_ROCKETLAUNCHER"
+				        "fire rate bonus" 0.7 // shoots a bit slower since there are a tons of rockets this subwave and maybe it's the reason why some players crashed during this section.
+                    }
                 }
                 TFBot
                 { 
@@ -2360,7 +2380,6 @@ WaveSchedule
             Name "3d"
             WaitForAllSpawned "3c-giant"
             Where spawnbot
-            Where spawnbot_tank
             TotalCount 3
             MaxActive 3
             SpawnCount 3
@@ -2374,14 +2393,29 @@ WaveSchedule
                 TFBot
                 { 
                     Template T_TFBot_Giant_Soldier_Buff_Spammer 
+                    ItemAttributes
+                    {
+                        ItemName "TF_WEAPON_ROCKETLAUNCHER"
+				        "fire rate bonus" 0.7 // shoots a bit slower since there are a tons of rockets this subwave and maybe it's the reason why some players crashed during this section.
+                    }
                 }
                 TFBot
                 { 
                     Template T_TFBot_Giant_Soldier_Backup_Spammer 
+                    ItemAttributes
+                    {
+                        ItemName "TF_WEAPON_ROCKETLAUNCHER"
+				        "fire rate bonus" 0.7 // shoots a bit slower since there are a tons of rockets this subwave and maybe it's the reason why some players crashed during this section.
+                    }
                 }
                 TFBot
                 { 
                     Template T_TFBot_Giant_Soldier_Conch_Spammer 
+                    ItemAttributes
+                    {
+                        ItemName "TF_WEAPON_ROCKETLAUNCHER"
+				        "fire rate bonus" 0.7 // shoots a bit slower since there are a tons of rockets this subwave and maybe it's the reason why some players crashed during this section.
+                    }
                 }
             }
         }
