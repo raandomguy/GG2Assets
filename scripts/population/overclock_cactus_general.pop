@@ -1166,7 +1166,7 @@ WaveSchedule
 			Tier 1
 			AllowedWeapons
 			{
-				ItemName "The Gunboats"
+				ItemName "The Thermal Thruster"
 			}
 		}
 		BaseJumper
