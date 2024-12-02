@@ -4020,7 +4020,7 @@ Oh_Dios_Mio_Es_Eso_Una_Pizza_Tower_Referencia
                 }
                 TFBot
                 {
-                    Template T_TFBot_Sniper_Huntsman_Spammer Action Mobber ClassIcon sniper_but_they_use_huntsman_sometimes SpawnTemplate time_add_1 Attributes AlwaysCrit CharacterAttributes { "attach particle effect" "3043" } 
+                    Template T_TFBot_Sniper_Huntsman_Spammer Action Mobber ClassIcon sniper_but_they_use_huntsman_sometimes SpawnTemplate time_add_1 Tag bot_add15seconds Attributes AlwaysCrit CharacterAttributes { "attach particle effect" "3043" } 
                 }
             }
         }
