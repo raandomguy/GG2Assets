@@ -395,7 +395,7 @@ WaveSchedule
 					FireInput
 					{
 						Target !self
-						Action $Tauntfromitem
+						Action $TauntFromItem
 						Param "Taunt: Mannrobics"
 						Delay 3.5
 						Repeats 1
@@ -672,6 +672,7 @@ WaveSchedule
 			UseMeleeThreatPrioritization 1
 			StripItemSlot 0
 			StripItemSlot 2
+			NoCrouchButtonRelease 0
 			Action Idle
 			AimAt Head
 			SpawnTemplate class_undead_4
@@ -710,6 +711,7 @@ WaveSchedule
 			{
 				Defense
 				{
+					StripItemSlot 2
 					Item "Dustbowl Eagle"
 					InterruptAction
 					{
@@ -724,12 +726,9 @@ WaveSchedule
 				}
 				PlaceSentry
 				{
+					NoCrouchButtonRelease 1
 					Item "Dustbowl Eagle"
-					CharacterAttributes
-					{
-						"no_jump" 1
-						"no_duck" 1
-					}
+					Item "Upgradeable TF_WEAPON_WRENCH"
 					InterruptAction
 					{
 						Target "ai_go_sentry"
@@ -753,28 +752,54 @@ WaveSchedule
 							disableshadows = 1
 							`OnAnimationBegun#1` : `!self,SetAnimation,end,6,-1`
 							`OnAnimationBegun#2` : `!self,Kill,,7,-1`
-						}).AcceptInput(`SetAnimation`, `start`, null, null)
-						"
+						}).AcceptInput(`SetAnimation`, `start`, null, null)"
 						Delay -1
 						Repeats 1
 					}
 					ClientCommand
 					{
-						Name "build 2 0"
-						Delay 5
+						Name "destroy 2"
+						Delay 1
+						Repeats 1
+					}
+					ClientCommand
+					{
+						Name "build 2"
+						Delay 4
 						Repeats 1
 					}
 					FireWeapon
 					{
-						Delay 5.75
+						Delay 4
 						Repeats 1
-						Duration 0.4
+						Duration 13.5
+						Type "Crouch"
+					}
+					FireWeapon
+					{
+						Delay 5.6
+						Repeats 1
+						Duration 11.5
 						Type "Primary"
 					}
+					// WeaponSwitch
+					// {
+					// 	Type "Melee"
+					// 	Delay 6
+					// 	Repeats 1
+					// }
 					WeaponSwitch
 					{
 						Type "Secondary"
-						Delay 8
+						Delay 17.5
+						Repeats 1
+					}
+					FireInput
+					{
+						Target !self
+						Action $ChangeAttributes
+						Param "Defense"
+						Delay 17.5
 						Repeats 1
 					}
 				}
@@ -803,7 +828,7 @@ WaveSchedule
 					FireInput
 					{
 						Target !self
-						Action $Tauntfromitem
+						Action $TauntFromItem
 						Param "Taunt: Texas Twirl 'Em"
 						Delay -1
 						Repeats 1
@@ -944,8 +969,6 @@ WaveSchedule
 			{
 				"allow friendly fire" 1
 				"collect currency on kill" 1
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"no_jump" 1
 				"move speed bonus" 0.65
 				"voice pitch scale" 0
@@ -983,8 +1006,6 @@ WaveSchedule
 			{
 				"allow friendly fire" 1
 				"collect currency on kill" 1
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"no_jump" 1
 				"move speed bonus" 0.65
 				"voice pitch scale" 0
@@ -1024,8 +1045,6 @@ WaveSchedule
 			{
 				"allow friendly fire" 1
 				"collect currency on kill" 1
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"no_jump" 1
 				"move speed bonus" 0.65
 				"voice pitch scale" 0
@@ -1070,8 +1089,6 @@ WaveSchedule
 			{
 				"allow friendly fire" 1
 				"collect currency on kill" 1
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"no_jump" 1
 				"move speed bonus" 0.65
 				"voice pitch scale" 0
@@ -1120,8 +1137,6 @@ WaveSchedule
 			{
 				"always gib" 1
 				"weapon always gib" 1
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"move speed bonus" 0.65
 				"gesture speed increase" 1
 				"cancel falling damage" 1
@@ -1178,8 +1193,6 @@ WaveSchedule
 			{
 				"always gib" 1
 				"weapon always gib" 1
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"move speed bonus" 0.65
 				"gesture speed increase" 1
 				"cancel falling damage" 1
@@ -1230,8 +1243,6 @@ WaveSchedule
 			{
 				"always gib" 1
 				"weapon always gib" 1
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"move speed bonus" 0.65
 				"gesture speed increase" 1
 				"cancel falling damage" 1
@@ -1310,8 +1321,6 @@ WaveSchedule
 			{
 				"always gib" 1
 				"weapon always gib" 1
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"move speed bonus" 0.65
 				"gesture speed increase" 1
 				"cancel falling damage" 1
@@ -1368,8 +1377,6 @@ WaveSchedule
 			{
 				"always gib" 1
 				"weapon always gib" 1
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"move speed bonus" 0.65
 				"gesture speed increase" 1
 				"cancel falling damage" 1
@@ -1436,8 +1443,6 @@ WaveSchedule
 			{
 				"always gib" 1
 				"weapon always gib" 1
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"move speed bonus" 0.65
 				"gesture speed increase" 1
 				"cancel falling damage" 1
@@ -1487,8 +1492,6 @@ WaveSchedule
 			{
 				"always gib" 1
 				"weapon always gib" 1
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"move speed bonus" 0.65
 				"gesture speed increase" 1
 				"cancel falling damage" 1
@@ -1559,8 +1562,6 @@ WaveSchedule
 			{
 				"always gib" 1
 				"weapon always gib" 1
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"move speed bonus" 0.65
 				"gesture speed increase" 1
 				"cancel falling damage" 1
@@ -1610,8 +1611,6 @@ WaveSchedule
 			{
 				"always gib" 1
 				"weapon always gib" 1
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"move speed bonus" 0.65
 				"gesture speed increase" 1
 				"cancel falling damage" 1
@@ -1662,8 +1661,6 @@ WaveSchedule
 			{
 				"always gib" 1
 				"weapon always gib" 1
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"move speed bonus" 0.65
 				"gesture speed increase" 1
 				"cancel falling damage" 1
@@ -1727,8 +1724,6 @@ WaveSchedule
 			{
 				"always gib" 1
 				"weapon always gib" 1
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"move speed bonus" 0.65
 				"gesture speed increase" 1
 				"cancel falling damage" 1
@@ -1787,8 +1782,6 @@ WaveSchedule
 			{
 				"always gib" 1
 				"weapon always gib" 1
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"move speed bonus" 0.65
 				"gesture speed increase" 1
 				"cancel falling damage" 1
@@ -1845,8 +1838,6 @@ WaveSchedule
 			{
 				"always gib" 1
 				"weapon always gib" 1
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"move speed bonus" 0.65
 				"gesture speed increase" 1
 				"cancel falling damage" 1
@@ -1903,8 +1894,6 @@ WaveSchedule
 			{
 				"always gib" 1
 				"weapon always gib" 1
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"move speed bonus" 0.65
 				"gesture speed increase" 1
 				"cancel falling damage" 1
@@ -1958,8 +1947,6 @@ WaveSchedule
 			{
 				"always gib" 1
 				"weapon always gib" 1
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"move speed bonus" 0.65
 				"gesture speed increase" 1
 				"cancel falling damage" 1
@@ -2013,8 +2000,6 @@ WaveSchedule
 			{
 				"always gib" 1
 				"weapon always gib" 1
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"move speed bonus" 0.65
 				"gesture speed increase" 1
 				"cancel falling damage" 1
@@ -2069,8 +2054,6 @@ WaveSchedule
 			{
 				"always gib" 1
 				"weapon always gib" 1
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"CARD: move speed bonus" 1.067
 				"move speed bonus" 0.65
 				"gesture speed increase" 1
@@ -2129,8 +2112,6 @@ WaveSchedule
 
 				"always gib" 1
 				"weapon always gib" 1
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"CARD: move speed bonus" 1.067
 				"move speed bonus" 0.65
 				"gesture speed increase" 1
@@ -2559,8 +2540,6 @@ WaveSchedule
 				"dmg taken from bullets reduced" 0.5
 				//"dmg taken from fire reduced" 0.5
 				"mult dmgtaken from melee" 0.5
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"move speed bonus" 0.65
 				"gesture speed increase" 1
 				"cancel falling damage" 1
@@ -2615,8 +2594,6 @@ WaveSchedule
 				"dmg taken from bullets reduced" 0.5
 				//"dmg taken from fire reduced" 0.5
 				"mult dmgtaken from melee" 0.5
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"move speed bonus" 0.65
 				"gesture speed increase" 1
 				"cancel falling damage" 1
@@ -2678,8 +2655,6 @@ WaveSchedule
 				"dmg taken from bullets reduced" 0.5
 				//"dmg taken from fire reduced" 0.5
 				"mult dmgtaken from melee" 0.5
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"move speed bonus" 0.65
 				"gesture speed increase" 1
 				"cancel falling damage" 1
@@ -2731,8 +2706,6 @@ WaveSchedule
 				"dmg taken from bullets reduced" 0.5
 				//"dmg taken from fire reduced" 0.5
 				"mult dmgtaken from melee" 0.5
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"move speed bonus" 0.65
 				"gesture speed increase" 1
 				//"damage penalty" 0.35
@@ -2790,8 +2763,6 @@ WaveSchedule
 				"dmg taken from bullets reduced" 0.5
 				//"dmg taken from fire reduced" 0.5
 				"mult dmgtaken from melee" 0.5
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"move speed bonus" 0.65
 				"gesture speed increase" 1
 				"cancel falling damage" 1
@@ -2852,8 +2823,6 @@ WaveSchedule
 				"dmg taken from bullets reduced" 0.5
 				//"dmg taken from fire reduced" 0.5
 				"mult dmgtaken from melee" 0.5
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"move speed bonus" 0.65
 				"gesture speed increase" 1
 				"cancel falling damage" 1
@@ -2909,8 +2878,6 @@ WaveSchedule
 				"dmg taken from bullets reduced" 0.5
 				//"dmg taken from fire reduced" 0.5
 				"mult dmgtaken from melee" 0.5
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"move speed bonus" 0.65
 				"gesture speed increase" 1
 				"cancel falling damage" 1
@@ -2965,8 +2932,6 @@ WaveSchedule
 				"dmg taken from bullets reduced" 0.5
 				//"dmg taken from fire reduced" 0.5
 				"mult dmgtaken from melee" 0.5
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"move speed bonus" 0.65
 				"gesture speed increase" 1
 				"cancel falling damage" 1
@@ -3027,8 +2992,6 @@ WaveSchedule
 				"dmg taken from bullets reduced" 0.5
 				//"dmg taken from fire reduced" 0.5
 				"mult dmgtaken from melee" 0.5
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"CARD: move speed bonus" 1.067
 				"move speed bonus" 0.65
 				"gesture speed increase" 1
@@ -3086,8 +3049,6 @@ WaveSchedule
 
 				//"always gib" 1
 				//"weapon always gib" 1
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"move speed bonus" 0.65
 				//"damage penalty" 0.35
 				//"gesture speed increase" 1
@@ -3147,8 +3108,6 @@ WaveSchedule
 
 				//"always gib" 1
 				//"weapon always gib" 1
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"move speed bonus" 0.65
 				//"damage penalty" 0.35
 				//"gesture speed increase" 1
@@ -3206,8 +3165,6 @@ WaveSchedule
 
 				//"always gib" 1
 				//"weapon always gib" 1
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"move speed bonus" 0.65
 				//"damage penalty" 0.35
 				//"gesture speed increase" 1
@@ -3266,8 +3223,6 @@ WaveSchedule
 
 				//"always gib" 1
 				//"weapon always gib" 1
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"move speed bonus" 0.65
 				//"damage penalty" 0.35
 				//"gesture speed increase" 1
@@ -3326,8 +3281,6 @@ WaveSchedule
 
 				//"always gib" 1
 				//"weapon always gib" 1
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"move speed bonus" 0.65
 				//"damage penalty" 0.35
 				//"gesture speed increase" 1
@@ -3386,8 +3339,6 @@ WaveSchedule
 
 				//"always gib" 1
 				//"weapon always gib" 1
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"move speed bonus" 0.65
 				//"damage penalty" 0.35
 				//"gesture speed increase" 1
@@ -3445,8 +3396,6 @@ WaveSchedule
 
 				//"always gib" 1
 				//"weapon always gib" 1
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"move speed bonus" 0.65
 				//"damage penalty" 0.35
 				//"gesture speed increase" 1
@@ -3505,8 +3454,6 @@ WaveSchedule
 
 				//"always gib" 1
 				//"weapon always gib" 1
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"move speed bonus" 0.65
 				//"damage penalty" 0.35
 				//"gesture speed increase" 1
@@ -3564,8 +3511,6 @@ WaveSchedule
 
 				//"always gib" 1
 				//"weapon always gib" 1
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"move speed bonus" 0.65
 				//"damage penalty" 0.35
 				//"gesture speed increase" 1
@@ -3624,8 +3569,6 @@ WaveSchedule
 
 				//"always gib" 1
 				//"weapon always gib" 1
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"move speed bonus" 0.65
 				//"damage penalty" 0.35
 				//"gesture speed increase" 1
@@ -3689,8 +3632,6 @@ WaveSchedule
 
 				//"always gib" 1
 				//"weapon always gib" 1
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"move speed bonus" 0.65
 				//"damage penalty" 0.35
 				//"gesture speed increase" 1
@@ -3755,8 +3696,6 @@ WaveSchedule
 
 				//"always gib" 1
 				//"weapon always gib" 1
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"move speed bonus" 0.65
 				//"damage penalty" 0.35
 				//"gesture speed increase" 1
@@ -3815,8 +3754,6 @@ WaveSchedule
 
 				//"always gib" 1
 				//"weapon always gib" 1
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"move speed bonus" 0.65
 				//"damage penalty" 0.35
 				//"gesture speed increase" 1
@@ -3876,8 +3813,6 @@ WaveSchedule
 
 				//"always gib" 1
 				//"weapon always gib" 1
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"move speed bonus" 0.65
 				//"damage penalty" 0.35
 				//"gesture speed increase" 1
@@ -3935,8 +3870,6 @@ WaveSchedule
 
 				//"always gib" 1
 				//"weapon always gib" 1
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"move speed bonus" 0.65
 				//"damage penalty" 0.35
 				//"gesture speed increase" 1
@@ -3995,8 +3928,6 @@ WaveSchedule
 
 				//"always gib" 1
 				//"weapon always gib" 1
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"move speed bonus" 0.65
 				//"damage penalty" 0.35
 				//"gesture speed increase" 1
@@ -4059,8 +3990,6 @@ WaveSchedule
 
 				"always gib" 1
 				//"weapon always gib" 1
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"CARD: move speed bonus" 1.067
 				"move speed bonus" 0.65
 				//"damage penalty" 0.35
@@ -4125,8 +4054,6 @@ WaveSchedule
 
 				"always gib" 1
 				//"weapon always gib" 1
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"CARD: move speed bonus" 1.067
 				"move speed bonus" 0.65
 				//"damage penalty" 0.35
@@ -4196,8 +4123,6 @@ WaveSchedule
 				"always gib" 1
 				"move speed bonus" 0.65
 				"fire rate penalty" 1.5
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"cancel falling damage" 1
 				"mult smack time" 0
 				"cannot be sapped" 1
@@ -4256,8 +4181,6 @@ WaveSchedule
 				"always gib" 1
 				"move speed bonus" 0.65
 				"fire rate penalty" 1.5
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"cancel falling damage" 1
 				"mult smack time" 0
 				"cannot be sapped" 1
@@ -4317,8 +4240,6 @@ WaveSchedule
 				"always gib" 1
 				"move speed bonus" 0.65
 				"fire rate penalty" 1.5
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"cancel falling damage" 1
 				"mult smack time" 0
 				"cannot be sapped" 1
@@ -4393,8 +4314,6 @@ WaveSchedule
 				"always gib" 1
 				"move speed bonus" 0.65
 				"fire rate penalty" 1.5
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"cancel falling damage" 1
 				"mult smack time" 0
 				"cannot be sapped" 1
@@ -4455,8 +4374,6 @@ WaveSchedule
 				"always gib" 1
 				"move speed bonus" 0.65
 				"fire rate penalty" 1.5
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"cancel falling damage" 1
 				"mult smack time" 0
 				"cannot be sapped" 1
@@ -4518,8 +4435,6 @@ WaveSchedule
 				"always gib" 1
 				"move speed bonus" 0.65
 				"fire rate penalty" 1.5
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"cancel falling damage" 1
 				"mult smack time" 0
 				"cannot be sapped" 1
@@ -4596,8 +4511,6 @@ WaveSchedule
 				"always gib" 1
 				"move speed bonus" 0.65
 				"fire rate penalty" 1.5
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"cancel falling damage" 1
 				"mult smack time" 0
 				"cannot be sapped" 1
@@ -4660,8 +4573,6 @@ WaveSchedule
 				"always gib" 1
 				"move speed bonus" 0.65
 				"fire rate penalty" 1.5
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"cancel falling damage" 1
 				"mult smack time" 0
 				"cannot be sapped" 1
@@ -4725,8 +4636,6 @@ WaveSchedule
 				"always gib" 1
 				"move speed bonus" 0.65
 				"fire rate penalty" 1.5
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"cancel falling damage" 1
 				"mult smack time" 0
 				"cannot be sapped" 1
@@ -4807,8 +4716,6 @@ WaveSchedule
 				"gesture speed increase" 2
 				"dmg taken from fire increased" 2
 
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"weapon always gib" 1
 				"damage penalty" 0.385
 				"fire rate penalty" 1.5
@@ -4897,8 +4804,6 @@ WaveSchedule
 				"dmg taken from fire increased" 2
 
 				"always gib" 1
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"weapon always gib" 1
 				"damage penalty" 0.385
 				"fire rate penalty" 1.75
@@ -4966,8 +4871,6 @@ WaveSchedule
 				"hand scale" 0.01
 
 				"always gib" 1
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"cancel falling damage" 1
 				"cannot be sapped" 1
 				"crit kill will gib" 1
@@ -4978,7 +4881,7 @@ WaveSchedule
 			FireInput
 			{
 				Target burn_relay
-				Action trigger
+				Action Trigger
 				Delay -1
 				Repeats 1
 				IfHealthBelow 66
@@ -4990,7 +4893,7 @@ WaveSchedule
 			Class HeavyWeapons
 			ClassIcon heavy_chainsaw
 			Name "Maniac"
-			Health 325
+			Health 300
 			Scale 1
 			Tag blood_death
 			Skill Expert
@@ -5024,8 +4927,6 @@ WaveSchedule
 				"damage penalty" 0.35 //dropped won't have this
 
 				"weapon always gib" 1
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"move speed bonus" 0.9
 				"gesture speed increase" 1
 				"cancel falling damage" 1
@@ -5068,7 +4969,7 @@ WaveSchedule
 			FireInput //heal ability
 			{
 				Target "brute_relay"
-				Action "trigger"
+				Action "Trigger"
 				Delay 15
 				Cooldown 30
 				IfHealthBelow 2999
@@ -5127,8 +5028,6 @@ WaveSchedule
 				"override footstep sound set" 7
 				"increased air control" 4
 
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"increased jump height" 1.3
 				"move speed bonus" 0.65
 				"damage force reduction" 0
@@ -5168,7 +5067,7 @@ WaveSchedule
 			FireInput //heal ability
 			{
 				Target "brute_relay_nerfed"
-				Action "trigger"
+				Action "Trigger"
 				Delay 15
 				Cooldown 30
 				IfHealthBelow 2999
@@ -5227,8 +5126,6 @@ WaveSchedule
 				"override footstep sound set" 7
 				"increased air control" 4
 
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"increased jump height" 1.3
 				"move speed bonus" 0.65
 				"damage force reduction" 0
@@ -5268,7 +5165,7 @@ WaveSchedule
 			FireInput //heal ability
 			{
 				Target "brute_relay"
-				Action "trigger"
+				Action "Trigger"
 				Delay 15
 				Cooldown 30
 				IfHealthBelow 2999
@@ -5319,8 +5216,6 @@ WaveSchedule
 				"override footstep sound set" 7
 				"increased air control" 4
 
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"increased jump height" 1.3
 				"move speed bonus" 0.65
 				"damage force reduction" 0
@@ -5403,7 +5298,7 @@ WaveSchedule
 			FireInput
 			{
 				Target "leaper_relay"
-				Action "trigger"
+				Action "Trigger"
 				IfSeeTarget 1
 				Delay 8
 				Cooldown 8
@@ -5458,8 +5353,6 @@ WaveSchedule
 				"gesture speed increase" 2
 				"dmg from melee increased" 1.5
 
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"damage force reduction" 0
 				"cancel falling damage" 1
 				"mult smack time" 0
@@ -5540,7 +5433,7 @@ WaveSchedule
 			FireInput
 			{
 				Target "leaper_relay"
-				Action "trigger"
+				Action "Trigger"
 				IfSeeTarget 1
 				Delay 8
 				Cooldown 8
@@ -5587,8 +5480,6 @@ WaveSchedule
 				"gesture speed increase" 2
 				"dmg from melee increased" 1.5
 
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"damage force reduction" 0
 				"cancel falling damage" 1
 				"mult smack time" 0
@@ -5634,8 +5525,6 @@ WaveSchedule
 				"allow friendly fire" 1
 				"collect currency on kill" 1
 				"stickybomb charge rate" -1.3	//SL fix
-				"can breathe under water" 1
-				"swimming mastery" 1
 				"cancel falling damage" 1
 				"cannot be sapped" 1
 				"voice pitch scale" 0.65
@@ -5702,7 +5591,7 @@ WaveSchedule
 			FireInput //mannpower
 			{
 				Target "behemoth_relay"
-				Action "trigger"
+				Action "Trigger"
 				Delay -1
 				Repeats 1
 				IfHealthBelow 7501
@@ -5761,8 +5650,6 @@ WaveSchedule
 				"ammo regen" 1				//for gray
 				"voice pitch scale" 0
 				"override footstep sound set" 0
-				"can breathe under water" 1
-				"swimming mastery" 1
 			}
 		}
 
@@ -5782,7 +5669,7 @@ WaveSchedule
 			Tag blood_death_big
 			Tag blood_death_huge
 			//Tag bot_leaper //surprise jumps
-			//Tag bot_nolastmanspeed
+			Tag bot_nolastmanspeed
 			NoIdleSound 1
 			AlwaysGlow 0
 			Attributes UseBossHealthBar
@@ -5791,15 +5678,16 @@ WaveSchedule
 			Attributes AlwaysFireWeapon
 			ExtAttr IgnoreBots
 			ExtAttr IgnoreBuildings
-			ExtAttr AlwaysFireWeaponAlt
+			// ExtAttr AlwaysFireWeaponAlt
 			PainSound "Zombie.Break"
 			DeathSound "Virophage.Scream"
 			Item "Basic Spellbook"
 			Item "UPGRADEABLE TF_WEAPON_PIPEBOMBLAUNCHER"
-			Item "Upgradeable TF_WEAPON_KNIFE"
+			// Item "Upgradeable TF_WEAPON_KNIFE"
 			UseMeleeThreatPrioritization 1
 			StripItemSlot 0
 			StripItemSlot 1
+			StripItemSlot 2
 			SpawnTemplate p_viro_base
 			UseCustomModel "models/player/heavy.mdl"
 			NoCrouchButtonRelease 1
@@ -5836,7 +5724,7 @@ WaveSchedule
 				"stickybomb charge rate" -1.3
 				"stun on hit" 4
 				"stun on hit type" "movement"
-				"stun on hit slow" 1
+				"stun on hit slow" 0.85
 				"add cond on hit" 101
 				"add cond on hit duration" 4
 				"damage bonus" 0.1
@@ -5849,7 +5737,7 @@ WaveSchedule
 				"mult projectile scale" 1.5
 				"crit vs non burning players" 1
 				"crit vs burning players" 1
-				"sticky arm time penalty" 1.6
+				"sticky arm time penalty" 7
 				"max pipebombs increased" 12
 				"ignores other projectiles" 1
 				"centerfire projectile" 1
@@ -5857,27 +5745,27 @@ WaveSchedule
 				"projectile trail particle" "~eb_spit_goop"
 				"fire input on hit" "!self^$PlaySound^Halloween.PlayerScream"
 				"fire input on hit name restrict" "player"
-				"custom hit sound" "npc/barnacle/barnacle_digesting2.wav"
+				// "custom hit sound" "npc/barnacle/barnacle_digesting2.wav"
 				"custom weapon fire sound" "Virophage.Spit"
-				"custom weapon reload sound" "npc/barnacle/barnacle_digesting1.wav"
+				// "custom weapon reload sound" "npc/barnacle/barnacle_digesting1.wav"
 				"custom impact sound" "=80|npc/antlion_grub/squashed.wav"
 				"custom projectile model" "models/weapons/w_bugbait.mdl"
 			}
-			ItemAttributes
-			{
-				ItemName "Upgradeable TF_WEAPON_KNIFE"
-				"damage bonus" 101
-				"melee range multiplier" 0.25
-				"melee bounds multiplier" 0.25
-				//"fire rate penalty" 1.5
-				"custom hit sound" "ambient/halloween/male_scream_09.wav"
-				"fire input on hit" "!activator^$PlaySound^Virophage.Eat"
-				"fire input on hit name restrict" "player"
-				"fire input on attack" "!self^RunScriptCode^EntFire(`nom_relay`, `Trigger`, null, -1, self)"
-				"crit vs non burning players" 1
-				"crit vs burning players" 1
-				"custom item model" "models/empty.mdl" //"models/trespasser/burnacle.mdl"
-			}
+			// ItemAttributes
+			// {
+			// 	ItemName "Upgradeable TF_WEAPON_KNIFE"
+			// 	"damage bonus" 101
+			// 	"melee range multiplier" 0.25
+			// 	"melee bounds multiplier" 0.25
+			// 	//"fire rate penalty" 1.5
+			// 	"custom hit sound" "ambient/halloween/male_scream_09.wav"
+			// 	"fire input on hit" "!activator^$PlaySound^Virophage.Eat"
+			// 	"fire input on hit name restrict" "player"
+			// 	"fire input on attack" "!self^RunScriptCode^EntFire(`nom_relay`, `Trigger`, null, -1, self)"
+			// 	"crit vs non burning players" 1
+			// 	"crit vs burning players" 1
+			// 	"custom item model" "models/empty.mdl" //"models/trespasser/burnacle.mdl"
+			// }
 			CharacterAttributes
 			{
 				"mult projectile count" 3
@@ -5902,8 +5790,9 @@ WaveSchedule
 				"dmg pierces resists absorbs" 1
 				"increased jump height" 0
 				"voice pitch scale" 0
-				"move speed as health decreases" 2 //1.5?
-				"heal on kill" 1337
+				"move speed bonus" 1.25
+				"move speed as health decreases" 1.25 //1.5?
+				// "heal on kill" 1337
 				"stomp player damage" 0.025
 				"stomp building damage" 9999
 				"dmg from melee increased" 2
@@ -5958,28 +5847,29 @@ WaveSchedule
 			//ExtAttr AlwaysFireWeaponAlt
 			PainSound "Zombie.Break"
 			DeathSound "Virophage.Scream"
-			Item "Upgradeable TF_WEAPON_KNIFE"
+			// Item "Upgradeable TF_WEAPON_KNIFE"
 			UseMeleeThreatPrioritization 1
 			StripItemSlot 0
 			StripItemSlot 1
+			StripItemSlot 2
 			SpawnTemplate p_viro_base_blue
 			UseCustomModel "models/player/heavy.mdl"
 			NoCrouchButtonRelease 1
-			ItemAttributes
-			{
-				ItemName "Upgradeable TF_WEAPON_KNIFE"
-				"damage bonus" 101
-				"melee range multiplier" 0.25
-				"melee bounds multiplier" 0.25
-				//"fire rate penalty" 1.5
-				"custom hit sound" "ambient/halloween/male_scream_09.wav"
-				"fire input on hit" "!activator^$PlaySound^Virophage.Eat"
-				"fire input on hit name restrict" "player"
-				"fire input on attack" "!self^RunScriptCode^EntFire(`eat_relay`, `Trigger`, null, -1, self)"
-				"crit vs non burning players" 1
-				"crit vs burning players" 1
-				"custom item model" "models/empty.mdl" //"models/trespasser/burnacle.mdl"
-			}
+			// ItemAttributes
+			// {
+			// 	ItemName "Upgradeable TF_WEAPON_KNIFE"
+			// 	"damage bonus" 101
+			// 	"melee range multiplier" 0.25
+			// 	"melee bounds multiplier" 0.25
+			// 	//"fire rate penalty" 1.5
+			// 	"custom hit sound" "ambient/halloween/male_scream_09.wav"
+			// 	"fire input on hit" "!activator^$PlaySound^Virophage.Eat"
+			// 	"fire input on hit name restrict" "player"
+			// 	"fire input on attack" "!self^RunScriptCode^EntFire(`eat_relay`, `Trigger`, null, -1, self)"
+			// 	"crit vs non burning players" 1
+			// 	"crit vs burning players" 1
+			// 	"custom item model" "models/empty.mdl" //"models/trespasser/burnacle.mdl"
+			// }
 			CharacterAttributes
 			{
 				"move speed penalty" 0.35
@@ -6117,7 +6007,7 @@ WaveSchedule
 					FireInput
 					{
 						Target "corrupted_chatter_1"
-						Action trigger
+						Action Trigger
 						Delay -1
 						Cooldown 0.1
 						Repeats 1
@@ -6125,7 +6015,7 @@ WaveSchedule
 					FireInput
 					{
 						Target !self
-						Action $Tauntfromitem
+						Action $TauntFromItem
 						Param "RPS Taunt"
 						Delay 3
 						Cooldown 1.5
@@ -6145,22 +6035,22 @@ WaveSchedule
 					FireInput
 					{
 						Target !self
-						Action $Tauntfromitem
+						Action $TauntFromItem
 						Param "Taunt: The Scaredy-cat!"
 						Delay -1
 						Repeats 1
 					}
 					FireInput
 					{
-						target scene_emissary
-						action cancelpending
+						Target scene_emissary
+						Action CancelPending
 						Delay -1
 						Repeats 1
 					}
 					FireInput
 					{
-						target scene_emissary_early
-						action trigger
+						Target scene_emissary_early
+						Action Trigger
 						Delay 0.5
 						Repeats 1
 					}
@@ -6227,8 +6117,8 @@ WaveSchedule
 				{
 					FireInput
 					{
-						target corrupted_chatter_1
-						action cancelpending
+						Target corrupted_chatter_1
+						Action CancelPending
 						Delay -1
 						Repeats 1
 					}
@@ -6452,7 +6342,7 @@ WaveSchedule
 			Class HeavyWeapons
 			ClassIcon heavy_chainsaw
 			Name "Manic"
-			Health 325
+			Health 300
 			Scale 1
 			Tag metal_death
 			Tag metal_hit
@@ -6891,24 +6781,32 @@ WaveSchedule
 				Delay -1
 				Repeats 1
 			}
+			FireInput
+			{
+				Target !self
+				Action "runscriptcode"
+				Param "Trespasser.DispatchParticleEffectOn(self, `utaunt_aestheticlogo_teamcolor_blue`)"
+				Delay 1
+				Repeats 1
+			}
 			EventChangeAttributes
 			{
-				Solo
-				{
-					FireInput
-					{
-						Target !self
-						Action "runscriptcode"
-						Param "Trespasser.DispatchParticleEffectOn(self, `utaunt_aestheticlogo_teamcolor_blue`)"
-						Delay 1
-						Repeats 1
-					}
-					ItemAttributes
-					{
-						ItemName "UPGRADEABLE TF_WEAPON_ROCKETLAUNCHER"
-						"damage bonus" 2
-					}
-				}
+				// Solo
+				// {
+				// 	FireInput
+				// 	{
+				// 		Target !self
+				// 		Action "runscriptcode"
+				// 		Param "Trespasser.DispatchParticleEffectOn(self, `utaunt_aestheticlogo_teamcolor_blue`)"
+				// 		Delay 1
+				// 		Repeats 1
+				// 	}
+				// 	ItemAttributes
+				// 	{
+				// 		ItemName "UPGRADEABLE TF_WEAPON_ROCKETLAUNCHER"
+				// 		"damage bonus" 2
+				// 	}
+				// }
 				Gray
 				{
 					FireInput
