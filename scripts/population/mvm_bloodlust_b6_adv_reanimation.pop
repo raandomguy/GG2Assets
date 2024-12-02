@@ -1,3 +1,4 @@
+#base base_restricts.pop
 // Halloween 666 on such a tiny map
 // by Spectλtor™ : https://steamcommunity.com/id/ImNotSpecNotes/
 // 感谢好时光服务器协助我测试的CNTF2社区成员们。
@@ -774,6 +775,15 @@ WaveSchedule
                 "stickybomb charge rate" 0.001
             }
 
+            FireWeapon    //Periodically fires weapon
+            {
+                Delay 1 //Time before the first fire input starts (Default: 10)
+                Cooldown 1 //Time between each fire input (Default: 10)
+                Repeats 0 //How many times should bot use the fire input in total (Default: 0 - Infinite)
+                Duration 0.1 //How long should the button be pressed (Default: 0.1)
+				Type "Secondary" 
+			}
+
 			CharacterAttributes
 			{
 				"move speed bonus"	0.5
@@ -829,6 +839,8 @@ WaveSchedule
     SpawnTemplate "Rift_Middle_Remove"
     //SpawnTemplate "Tutorial_Localizaiton"
     SpawnTemplate missionname
+    SpawnTemplate Tankentrance_stucksolution
+
     PointTemplates
     {
         missionname
@@ -1078,6 +1090,15 @@ WaveSchedule
                 "start_active" "1"
 			}
         }
+        Tankentrance_stucksolution
+        {
+            logic_relay
+            {
+                "targetname" "tankstuck_relay"
+                "OnTrigger" "spawnbot_tank,Disable,,0,-1"
+                "OnTrigger" "spawnbot_tank,Enable,,8,-1"
+            }
+        }
     }
 
     Mission
@@ -1304,6 +1325,12 @@ WaveSchedule
             TotalCurrency 100
 
             FirstSpawnWarningSound mvm/mvm_tank_start.wav
+
+            FirstSpawnOutput
+            {
+                Target tankstuck_relay
+                Action Trigger
+            }
         
             Tank
             {
@@ -1757,6 +1784,12 @@ WaveSchedule
             TotalCurrency 100
 
             FirstSpawnWarningSound mvm/mvm_tank_start.wav
+
+            FirstSpawnOutput
+            {
+                Target tankstuck_relay
+                Action Trigger
+            }
         
             Tank
             {
@@ -2273,6 +2306,12 @@ WaveSchedule
             TotalCurrency 100
 
             FirstSpawnWarningSound mvm/mvm_tank_start.wav
+
+            FirstSpawnOutput
+            {
+                Target tankstuck_relay
+                Action Trigger
+            }
         
             Tank
             {
@@ -2843,6 +2882,12 @@ WaveSchedule
             TotalCurrency 100
 
             FirstSpawnWarningSound mvm/mvm_tank_start.wav
+
+            FirstSpawnOutput
+            {
+                Target tankstuck_relay
+                Action Trigger
+            }
         
             Tank
             {
