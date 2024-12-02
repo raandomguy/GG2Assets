@@ -10,6 +10,7 @@ spawn_interval <- 1.90; 					// starting value, gap between spawns
 local sfx_roundstart_normal = Entities.FindByName(null, "snd_start")
 local sfx_roundstart_boss = Entities.FindByName(null, "snd_start_boss")
 
+if (max_active > 24) max_active = 24
 
 ::ZM_SetupRound <- function() {
 
