@@ -96,7 +96,7 @@ if(!("breadeventslol" in getroottable())){
                     if(dbug) PopExtUtil.PrintTable(params)
                     local hits = Bread.GetSentryTrace(params.inflictor, params.damage_position)
                     local owner = params.attacker
-                    if(ent.GetName().find("crate")!= null || ent == Bread.breadboss) {ent.TakeDamageEx(owner, owner, params.weapon, params.damage_force, params.damage_position, params.damage*0.45, 2)}
+                    if(ent.GetName().find("crate")!= null || ent == Bread.breadboss) {ent.TakeDamageEx(owner, owner, params.weapon, params.damage_force, params.damage_position, params.damage*0.55, 2)}
 
                     if(hits != null) {
                         //local dmgBonus = self.GetAttribute("damage bonus",1)
@@ -111,7 +111,7 @@ if(!("breadeventslol" in getroottable())){
                         }
                     }
                 } else if (params.inflictor.GetClassname() == "obj_sentrygun" && params.attacker.GetTeam()==2){
-                    if(ent.GetName().find("crate")!= null || ent == Bread.breadboss) params.damage = params.damage*1.3
+                    if(ent.GetName().find("crate")!= null || ent == Bread.breadboss) params.damage = params.damage*1.4
                 }
             } catch (exception){
 
@@ -160,6 +160,8 @@ if(!("breadeventslol" in getroottable())){
                 if(params.attacker.GetTeam()!=2) {
                     params.damage = 0
                     return
+                } else if (Bread.desperation == true) {
+                    params.damage = params.damage * 1.25
                 }
                 // if(params.attacker.GetClassname().find("sentrygun")!=null) {
                 //     params.attacker = params.attacker.GetOwner()
@@ -182,7 +184,7 @@ if(!("breadeventslol" in getroottable())){
                         params.damage = params.damage * 0.85
 
                     } else if (params.weapon.GetClassname().find("flamethrower")!=null || params.weapon.GetClassname().find("tf_weapon_rocketlauncher_fireball")!=null ) {
-                        params.damage = params.damage * 0.65
+                        params.damage = params.damage * 0.69
                     }
                                     // bow with penetration is way too strong, need to nerf
                     else if((params.weapon.GetClassname().find("bow")!=null && params.weapon.GetAttribute("projectile penetration",0) > 0) || params.weapon.GetClassname().find("tf_weapon_raygun")!=null){
@@ -989,6 +991,10 @@ Bread.BreadBossSetup <- function(breadboss) {
     Bread.Hints()
 
 }
+Bread.desperation <- false
+Bread.DesperateTimes <- function() {
+    Bread.desperation = true
+}
 
 Bread.Hints <- function() {
     for (local i = 1, player; i <= MaxClients().tointeger(); i++)
@@ -997,6 +1003,8 @@ Bread.Hints <- function() {
         {
             if(player.GetPlayerClass() == Constants.ETFClass.TF_CLASS_SNIPER)
                 ClientPrint(player, 3, "\x078ff347 Hint: While zoomed, try aiming for the tentacles or the center of the boss' forehead")
+            if(player.GetPlayerClass() == Constants.ETFClass.TF_CLASS_SPY)
+                ClientPrint(player, 3, "\x078ff347 Hint: You can backstab the boss, just watch out for the tentacles")
         }
     }
 }
@@ -1663,7 +1671,7 @@ Bread.TentySetSeq <- function(tenty, seq, rate = 1, cycle = 0.0) {
 Bread.TentyUpdateTarget <- function(tenty) {
     local ent = ClaudzUtil.GetClosestTargetLOS(tenty, 1200, 2, tenty)
     tenty.GetScriptScope().curTarget <- ent
-    tenty.GetScriptScope().nextUpdate <- Time() + 3.5
+    tenty.GetScriptScope().nextUpdate <- Time() + 4
 }
 Bread.TentyRotate <- function(tenty) {
     local scope = tenty.GetScriptScope()
