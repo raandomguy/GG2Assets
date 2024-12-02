@@ -73,9 +73,11 @@ local DefaultCallbacks = {
 	{
 		flTimeTarget = iTime
 	}
-	function Add(iTime)
+	function Add(iTime, iSecondsCap = 0)
 	{
 		iTime += iTimeRemainingLast
+		if(iSecondsCap > 0 && iTime > iSecondsCap)
+			iTime = iSecondsCap
 		Set(iTime)
 	}
 	function SetParams(Table)
@@ -183,7 +185,7 @@ local DefaultCallbacks = {
 			SetPropString(hText, "m_iszMessage", format("%s%i:%s%i%s", sTextPrefix, iMinutes, sZero, iSeconds, sTextSuffix))
 			if(!bHideText)
 				hText.AcceptInput("Display", null, null, null)
-	
+
 			if(flTimeTarget == -1)
 			{
 				if(iTimeRemainingLast != iTimeRemaining)
