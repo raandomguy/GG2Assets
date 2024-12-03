@@ -82,10 +82,11 @@ jobs:
         run: |
 
           {
+            cd ~/tf2server/tf/gg2
             echo -e "${{ secrets.TOHRU_KEY_USA }}" > /tmp/deploy_key
             chmod 600 /tmp/deploy_key
 
-            rsync -a -e "ssh -p 47422 -i /tmp/deploy_key -o StrictHostKeyChecking=no" --delete --update --exclude=".*" --exclude="*.bz2" . redho@pnj.thebel.net:~/tf2server/tf/gg2/
+            rsync -a -e "ssh -p 47422 -i /tmp/deploy_key -o StrictHostKeyChecking=no" --delete --update --exclude=".*" --exclude="*.bz2" --exclude="*.zip" . redho@pnj.thebel.net:~/tf2server/tf/gg2/
 
             rm -rf /tmp/deploy_key
           } &
