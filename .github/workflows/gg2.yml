@@ -81,8 +81,8 @@ jobs:
             SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: |
 
+          cd tf/download
           {
-            cd ~/tf2server/tf/gg2
             echo -e "${{ secrets.TOHRU_KEY_USA }}" > /tmp/deploy_key
             chmod 600 /tmp/deploy_key
 
@@ -91,7 +91,6 @@ jobs:
             rm -rf /tmp/deploy_key
           } &
 
-          cd tf/download
           for i in "22 pterodactyl@us.potato.tf" "27040 pterodactyl@us.potato.tf" "3438 pterodactyl@us.potato.tf" "22 pterodactyl@usw2.potato.tf" "22 pterodactyl@usw3.potato.tf" "22 pterodactyl@sgp.potato.tf" "22 pterodactyl@eu2.potato.tf" "22 pterodactyl@eu3.potato.tf" "22 pterodactyl@eu4.potato.tf" "27035 pterodactyl@eu.potato.tf" "22 pterodactyl@10.243.40.231" "22 pterodactyl@aus.potato.tf"; do a=( $i );
           {
             ssh -o StrictHostKeyChecking=no -p ${a[0]} ${a[1]} "touch /var/tf2server/tf/occupiedservers/wake; exit 0"
