@@ -112,7 +112,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 	//	"special item description"				"Deals x3 impact damage; Only bleeds once on impact"
 	//	//	WORKS PERFECTLY!
 	//}
-	CustomWeapon [$SIGSEGV]	[$SIGSEGV]	
+	CustomWeapon [$SIGSEGV]
 	{
 		Name				"Chop Suey!"
 		OriginalItemName	"The Flying Guillotine"
