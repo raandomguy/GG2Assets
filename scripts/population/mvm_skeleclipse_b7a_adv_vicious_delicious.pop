@@ -1034,7 +1034,7 @@ population
 			MaxActive	2
 			SpawnCount	1
 			Where	spawnbot
-			WaitBeforeStarting	15
+			WaitBeforeStarting	25
 			WaitBetweenSpawns	25
 			TFBot
 			{
@@ -1053,7 +1053,7 @@ population
 			SpawnCount	1
 			Where	spawnbot
 			WaitBeforeStarting	0
-			WaitBetweenSpawns	3
+			WaitBetweenSpawns	5
 			Support	1
 			TFBot
 			{
