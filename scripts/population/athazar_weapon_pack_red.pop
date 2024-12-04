@@ -165,7 +165,7 @@ athazar's_bar_and_bazaar	// subtle sneed's seed and feed reference
 		Name	"The Meta-Cola"
 		OriginalItemName	"Crit-a-Cola"
 		"custom item model"				"models/weapons/c_models/c_energy_drink/c_energy_drink_green.mdl"
-		"special item description"		"Upon drinking, grants Soda Popper's hype effect to you + Attacking an enemy milks them for 1.5 seconds"
+		"special item description"		"Upon drinking, grants Soda Popper's hype effect to you + Attacking an enemy milks them for 3 seconds"
 		"special item description 2"	"''What do you mean they put the meta in a cola?''"
 		
 		"mod_mark_attacker_for_death"	0	// so you can actually use the benefit of the milk on hit. there's no opportunity to use the milk on hit when you're fucking dead from eating a mini-crit rocket or pipe
@@ -211,18 +211,16 @@ athazar's_bar_and_bazaar	// subtle sneed's seed and feed reference
 
 		
 		"special item description"		"Very slow to switch to and fire, but fires explosive shells with no damage falloff and has an infinite clip"
-		"special item description 2"	"Killing with this weapon grants a mini-crit boost to all weapons for 7 seconds"
-		"special item description 3"	"Can shoot down incoming projectiles in close range, similar to Heavy's deflect upgrade"
+		"special item description 2"	"Can shoot down incoming projectiles in close range, similar to Heavy's deflect upgrade"
+		"special item description 3"	"[NOTICE] Has access to a selection of special buff granting ammo at the Upgrade Station!"
 
-		"damage bonus"				20
+		"damage bonus"				15
 		"bullets per shot bonus"	0.15
 		"no damage falloff"			1
 		"explosive bullets"			150
 		"weapon always gib"			1
 		"fire rate penalty"			2.2
 		"switch from wep deploy time decreased"	0.5
-		"single wep deploy time increased"		1.5
-		"minicritboost on kill"		7
 		"maxammo secondary reduced"	0.5
 		"mod max primary clip override"	-1
 		"attack projectiles"			1	// I think this is reasonable because you're giving up a banner
@@ -621,19 +619,19 @@ athazar's_bar_and_bazaar	// subtle sneed's seed and feed reference
 	// What the actual fuck. Disregard all prior comments.
 	// 9/4/24 nevermind fuck this medigun entirely holy shit
 
-	CustomWeapon	// originally from malpractice but now Different™
+	CustomWeapon	// originally from malpractice but now Different™ (edit 12/3/24: now VERY different)
 	{
-		Name	"The Cauterizer"
+		Name	"Phoenix's Bulwark"
 		OriginalItemName	"Upgradeable TF_WEAPON_MEDIGUN"
 		"paintkit_proto_def_index"		205	// Fire Glazed
 		"set_item_texture_wear"			0
 		"special item description"		"Passively grants a 25% damage bonus vs burning targets to your patient and afterburn immunity to you"
-		"special item description 2"	"Ubercharge grants minicrits, ignite on hit, and high burn damage"
-		"special item description 3"	"Tripled Ubercharge Rate that stacks with buyable upgrade"
+		"special item description 2"	"Ubercharge grants minicrits, ignite on hit, high burn damage, and x2 revive rate. Taking fatal damage while Ubercharge is active instantly sends you or your patient to spawn with 1 HP."
+		"special item description 3"	"Tripled Ubercharge rate that stacks with buyable upgrade"
 		"medigun passive attributes"	"damage bonus vs burning|1.25"	// should hopefully not stack with the huo long's inherent bonus
 		"medigun passive attributes owner"	"afterburn immunity|1"
 		"effect cond override"			16
-		"effect add attributes"			"attach particle effect|1|weapon burn dmg increased|4|Set DamageType Ignite|1|projectile trail particle|spell_fireball_small_red"
+		"effect add attributes"			"attach particle effect|1|weapon burn dmg increased|4|Set DamageType Ignite|1|projectile trail particle|spell_fireball_small_red|revive rate|2|teleport instead of die|2"
 		"heal rate bonus"				1.20
 		"ubercharge rate penalty"		3	// should stack with base ubercharge bonus upgrade and not count as already bought
 	}
@@ -647,15 +645,15 @@ athazar's_bar_and_bazaar	// subtle sneed's seed and feed reference
 		"damage penalty"				0.05
 		"add uber charge on hit"		0
 		"special item description"		"Extremely low damage but inflicts a very powerful yet slow bleed that lowers enemy healing by 50%"	// I am definitely not beating the Grouch allegations at this point
-		"special item description 2"	"On hit, grants +50% revive rate, +50% medigun range, and Backup + Conch effect for 1.5 seconds per tick of damage"
+		"special item description 2"	"While an enemy is bleeding, grants +50% revive rate, +50% medigun range, and Backup + Conch effect. Effects persist for 3 seconds after bleed ends"
 		"mult bleeding delay"			3
 		"mult bleeding dmg"				7.5
 		"bleeding duration"				5
-		"add attributes on hit"			"healing received penalty|0.5|1.5"
+		"add attributes on hit"			"healing received penalty|0.5|3"
 		
 		"self add cond on hit"			7450
-		"self add cond on hit duration"	1.5	// effectively same duration as bleed- every tick of bleed counts as a hit and resets the timer
-		"self add attributes on hit"	"mult medigun range|1.5|1.5|revive rate|1.5|1.5"	// oops it's all 1.5
+		"self add cond on hit duration"	3	// effectively same duration as bleed- every tick of bleed counts as a hit and resets the timer
+		"self add attributes on hit"	"mult medigun range|1.5|3|revive rate|1.5|3"
 	}
 
 	CustomWeapon
@@ -691,13 +689,14 @@ athazar's_bar_and_bazaar	// subtle sneed's seed and feed reference
 		"custom item model"	"models/weapons/c_models/c_laserbow/c_laserbow_nocull.mdl"
 
 		"special item description"		"Shoots a volley of 3 arrows- center arrow is full damage while the side ones deal less damage"
-		"special item description 2"	"All arrows briefly home in on the nearest target after a short delay upon being fired"
+		"special item description 2"	"All arrows briefly home in towards your crosshair after a short delay upon being fired"
 		"special item description 3"	"[NOTICE] Projectile Penetration Upgrade is disabled due to bugs with it"
 
 		"mod projectile heat seek power"	150
 		"mod projectile heat aim error"		75
 		"mod projectile heat aim start time"	0.25
 		"mod projectile heat aim time"			0.5
+		 "mod projectile heat follow crosshair"	1
 		"arrow mastery" 						1
 		
 	}
@@ -717,11 +716,14 @@ athazar's_bar_and_bazaar	// subtle sneed's seed and feed reference
 		"stun on hit no giants"	1
 		"stun on hit type"		"bonk"
 		"mark for death"		1	// I mean, may as well since you're trading the jarate splash for this meme
+		"mult dmg vs giants"	2
+		"minicrits become crits"	1
+		"custom kill icon"	"mailbox"
 
 		"special item description"		"Throw a brick projectile that stuns any non-giant enemy for 3 seconds"
 		"special item description 2"	"On hit, marks any target for death regardless of size"
 		"special item description 3"	"[NOTICE] Upgrading the slow upgrade will affect giants"
-		"spread offset pattern"		"10 -15 -25"
+		"spread offset pattern"			"10 -15 -25"
 
 	}
 
@@ -844,11 +846,10 @@ athazar's_bar_and_bazaar	// subtle sneed's seed and feed reference
 	ItemAttributes	[$SIGSEGV]	// Probably the only actual rebalance I'll be doing?
 	{
 		ItemName	"The Gunslinger"
-		"special item description"			"Grants a free disposable mini-sentry, x2 dispenser heal/ammo rate, +25% sentry damage"
-		"special item description"			"[NOTICE] Has access to special mini-sentry modules at the Upgrade Station"
+		"special item description"			"Grants a free disposable mini-sentry, x2 dispenser heal/ammo rate, +50% sentry damage"
 		"mult dispenser rate" 				2
 		"engy disposable sentries"			1
-		"engy sentry damage bonus"			1.25
+		"engy sentry damage bonus"			1.5
 	}
 
 	//ItemAttributes	[$SIGSEGV]	// Not a real rebalance- just fixes the fact this crashes if you have homing attributes from the Infrared Transmitter
@@ -1204,7 +1205,7 @@ for(local i = 0; i <= 8; i++)
 		{
 			Primary		"Pill Popper"
 			//Secondary	"Infrared Transmitter"
-			Secondary	"The Cauterizer"
+			Secondary	"Phoenix's Bulwark"
 			Melee		"The Lethal Injector"
 		}
 		Sniper	
@@ -1385,29 +1386,6 @@ for(local i = 0; i <= 8; i++)
 			}
 		}
 
-		gunslinger_rocketmodule
-		{
-			Name			"Gunslinger Module: Rocket"
-			Attribute		"cannot trade"
-			Cap				1
-			Increment		1
-			Cost			0
-			Description		"Your sentries shoot rockets instead of bullets."
-			SecondaryAttributes
-			{
-				"sentry bullet weapon"	"Rocket Module"
-				"engy sentry fire rate increased"	4.5
-			}
-			AllowedWeapons
-			{
-				ItemName	"The Gunslinger"
-			}
-			DisallowedUpgrade
-			{
-				Upgrade	gunslinger_flamemodule
-			}
-		}
-
 		pillpopper_milk
 		{
 			Name			"Mad Milk Grenades"
@@ -1466,6 +1444,66 @@ for(local i = 0; i <= 8; i++)
 				ItemName	"Tranquilizer Gun"
 			}
 		}
+
+		howitzer_damagebonus
+		{
+			Name			"+25% Damage Bonus"
+			Attribute		"CARD: damage bonus"
+			Cap				2
+			Increment		0.25
+			Cost			400
+			AllowedWeapons
+			{
+				ItemName	"The Handheld Howitzer"
+			}
+		}
+		howitzer_buff
+		{
+			Name			"Buff Charge: Buff Banner"
+			Attribute		"never craftable"	// dummy attribute because you can't have multiple upgrades with the same base attribute for the same weapon ("cannot trade" in my case)
+			Cap				1
+			Increment		1
+			Cost			0
+			Description		"Grants 7 seconds of the Buff Banner effect on kill"
+			SecondaryAttributes
+			{
+				"add cond on kill"			16
+				"add cond on kill duration"	7
+			}
+			AllowedWeapons
+			{
+				ItemName	"The Handheld Howitzer"
+			}
+			DisallowedUpgrade
+			{
+				Upgrade	howitzer_backup
+				Upgrade	howitzer_conch
+			}
+		}
+		howitzer_conch
+		{
+			Name			"Buff Charge: Concheror"
+			Attribute		"flame_reflection_add_life_time"	// dummy attribute because you can't have multiple upgrades with the same base attribute for the same weapon ("cannot trade" in my case)
+			Cap				1
+			Increment		1
+			Cost			0
+			Description		"Grants 7 seconds of the Concheror effect on kill"
+			SecondaryAttributes
+			{
+				"add cond on kill"			29
+				"add cond on kill duration"	7
+			}
+			AllowedWeapons
+			{
+				ItemName	"The Handheld Howitzer"
+			}
+			DisallowedUpgrade
+			{
+				Upgrade	howitzer_backup
+				Upgrade	howitzer_buff
+			}
+		}
+
 	}
 
 	/////////////////////////

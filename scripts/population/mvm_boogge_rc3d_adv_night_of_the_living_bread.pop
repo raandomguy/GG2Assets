@@ -7145,7 +7145,8 @@ Bread
                 IncludeScript(`bread_logic`)
                 IncludeScript(`trace_filter`)
 
-                ClientPrint(null,3,`\x078ff347 This wave uses music. You can control music volume in game settings.`)
+                ClientPrint(null,3,`\x078ff347 Reminder: this mission uses custom models and music. Make sure you have enabled downloads in options (Allow all custom files then rejoin)`)
+                ClientPrint(null,3,`\x078ff347 You will see errors if you don't. You can control music volume in game settings.`)
 
                 EntFire(`music_*`,`StopSound`)
                 TextualTimer.SetParams({

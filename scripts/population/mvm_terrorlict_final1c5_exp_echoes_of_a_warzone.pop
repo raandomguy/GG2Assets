@@ -4346,11 +4346,11 @@ Oh_Dios_Mio_Es_Eso_Una_Pizza_Tower_Referencia
                 		StartingPathTrackNode "blimpfinale_1"
 						Classicon blimp2_lite
 						Scale 1
-               		OnKilledOutput
-                	{
-                    		Target boss_dead_relay
-                    		Action Trigger
-                	}
+               		OnKilledOutput 
+                {
+                    Target "add60seconds"
+                    Action Trigger
+                }
                 
                 	OnBombDroppedOutput
                 	{
@@ -4660,7 +4660,7 @@ Oh_Dios_Mio_Es_Eso_Una_Pizza_Tower_Referencia
                         Delay 0 // Time before the first task starts. Must be above 0, or it will not execute (Default: 10)
                         Repeats 0 // How many times should bot do the task in total (Default: 0 - Infinite)
                         Duration 20 // How long should the ai be interrupted
-                        Cooldown 30
+                        Cooldown 20
                         Distance 0
                         WaitUntilDone 0 // If set, duration timer only starts when the bot moves to the target location or the aim target is killed (Default: 0)
                     }
