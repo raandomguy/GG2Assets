@@ -183,7 +183,6 @@ Oh_Dios_Mio_Es_Eso_Una_Pizza_Tower_Referencia
             "projectile spread angle penalty"	25
             "sticky arm time penalty"		99
             "Blast radius increased"		2
-            "use large smoke explosion"		1
             "mult projectile scale"			2.5
             "damage bonus"	2
             "projectile range decreased"	0.4
