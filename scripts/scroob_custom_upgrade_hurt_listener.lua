@@ -224,6 +224,8 @@ function scoutMechPrimaryCall(condition, caller, activator)
 				activator:SetAttributeValue(name, value)
 			end
 		end
+		--fix a bug where you can eject in a giant's asshole and instakill them
+		activator:SetAttributeValue("not solid to players", 1)
 		
 		if activator.m_iHealth < 125 then
 			activator:AddHealth((125 - activator.m_iHealth))
@@ -296,6 +298,7 @@ function scoutMechPrimaryCall(condition, caller, activator)
 					end
 					
 					giantBodyDummy:Remove()
+					activator:SetAttributeValue("not solid to players", 0)
 						
 					timer.Simple(1, function()
 						giantBodyDummyExplode:AcceptInput("Stop")
