@@ -723,33 +723,33 @@ WaveSchedule
 				Attributes AlwaysCrit
 			}
 		}
-		WaveSpawn
-		{
-			//WaitForAllSpawned "W2_D"
-			Where spawnbot_mission_spy
-			TotalCount 50
-			MaxActive 4
-			SpawnCount 1
-			WaitBetweenSpawns 8
-			WaitBeforeStarting 2.6
-			TotalCurrency 50
-			Support 1
+		//WaveSpawn
+		//{
+		//	//WaitForAllSpawned "W2_D"
+		//	Where spawnbot_mission_spy
+		//	TotalCount 50
+		//	MaxActive 4
+		//	SpawnCount 1
+		//	WaitBetweenSpawns 8
+		//	WaitBeforeStarting 2.6
+		//	TotalCurrency 50
+		//	Support 1
 
-			TFBot
-			{
-				Template T_TFBot_Demo_Burst
-				Item "The Voodoo Juju (Slight Return)"
-			}
-		}
+		//	TFBot
+		//	{
+		//		Template T_TFBot_Demo_Burst
+		//		Item "The Voodoo Juju (Slight Return)"
+		//	}
+		//}
 		WaveSpawn
 		{
 			Name "W2_B"
 			WaitForAllSpawned "W2_A"
 			Where spawnbot_mid
-			TotalCount 5
+			TotalCount 4
 			MaxActive 4
 			SpawnCount 1
-			WaitBetweenSpawns 13
+			WaitBetweenSpawns 15
 			WaitBeforeStarting 10
 			TotalCurrency 150
 

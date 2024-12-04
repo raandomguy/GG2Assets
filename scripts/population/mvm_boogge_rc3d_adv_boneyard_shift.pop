@@ -1,5 +1,6 @@
 // Adv Mission by Rappy https://steamcommunity.com/id/Chad_URL_Enjoyer/
 // Special thanks to Mo for the custom upgrades! https://steamcommunity.com/id/totallynotcaptainMo
+// Special thanks to Chrstin for making the nut file! https://steamcommunity.com/id/Chrstin
 
 //Different spawnbots
 //spawnbot_flank: makes them spawn on the left side
@@ -11,29 +12,14 @@
 //tank_path_bridge: tank takes an underworld bridge path
 //tank_path_voidghost: tank has a ghost + goes to the underworld
 
-//
-// Starting Currency: 800
-//
-// +----------+----------+----------+
-// | Wave     | Currency | A+       |
-// +----------+----------+----------+
-// | Wave 1   | 800      | 900      |
-// | Wave 2   | 800      | 900      |
-// | Wave 3   | 750      | 850      |
-// | Wave 4   | 750      | 850      |
-// | Wave 5   | 1000     | 1100     |
-// | Wave 6   | 900      | 1000     |
-// +----------+----------+----------+
-// | Total    | 5000     | 5600     |
-// +----------+----------+----------+
-//
+
 
 #base robot_giant.pop
 #base robot_standard.pop
 #base extended_weapon_upgrades_mo.pop
 WaveSchedule
 {
-	StartingCurrency    800
+	StartingCurrency    850
     RespawnWaveTime    4
     CanBotsAttackWhileInSpawnRoom    no
 	Advanced 1
@@ -942,7 +928,7 @@ Wave
 			WaitBeforeStarting	2
 			WaitBetweenSpawns	7
 			Where	spawnbot_flank
-			TotalCurrency	100
+			TotalCurrency	150
 			TFBot
 			{
 				Class Pyro
@@ -985,7 +971,7 @@ Wave
 			WaitForAllSpawned	w1b-T
 			WaitBeforeStarting	5
 			WaitBetweenSpawns	16
-			TotalCurrency	200
+			TotalCurrency	250
 			Where	spawnbot
 			TFBot
 			{
@@ -1612,7 +1598,7 @@ Wave
 				Attributes UseBossHealthBar
 				Attributes HoldFireUntilFullReload
 				UseMeleeThreatPrioritization 1
-				Health 32000
+				Health 30000
 				Scale 1.8
 				Name "Blast Imperfect"
 				ItemAttributes
@@ -2155,17 +2141,17 @@ Wave
 		{
 			Name w5support
 			TotalCount	69
-			MaxActive	6
+			MaxActive	4
 			SpawnCount	2
 			WaitBeforeStarting	15
-			WaitBetweenSpawns	10
+			WaitBetweenSpawns	12
 			Where spawnbot_flank
 			Support 1
 			TotalCurrency	100
 			TFBot
 			{
 				Class Pyro
-				Skill Expert
+				Skill Hard
 				Item "Fallen Angel"
 				Item "The Maniac's Manacles"
 				Item "The Gothic Guise"
@@ -2207,7 +2193,7 @@ Wave
 			TFBot
 			{
 				Class Pyro
-				Skill Expert
+				Skill Hard
 				Item "Fallen Angel"
 				Item "The Maniac's Manacles"
 				Item "The Gothic Guise"
