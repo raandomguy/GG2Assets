@@ -93,12 +93,12 @@ jobs:
 
           cd tf/download
           {
-            echo -e "${{ secrets.TOHRU_KEY_EU }}" > /tmp/deploy_key
-            chmod 600 /tmp/deploy_key
+            echo -e "${{ secrets.TOHRU_KEY_EU }}" > /tmp/deploy_key_eu
+            chmod 600 /tmp/deploy_key_eu
 
-            rsync -a -e "ssh -p 59922 -i /tmp/deploy_key -o StrictHostKeyChecking=no" --delete --update --exclude=".*" --exclude="*.bz2" --exclude="*.zip" . redho@eu2.thebel.net:~/tf2server/tf/gg2/
+            rsync -a -e "ssh -p 59922 -i /tmp/deploy_key_eu -o StrictHostKeyChecking=no" --delete --update --exclude=".*" --exclude="*.bz2" --exclude="*.zip" . redho@eu2.thebel.net:~/tf2server/tf/gg2/
 
-            rm -rf /tmp/deploy_key
+            rm -rf /tmp/deploy_key_eu
           } &
 
           for i in "22 pterodactyl@us.potato.tf" "27040 pterodactyl@us.potato.tf" "3438 pterodactyl@us.potato.tf" "22 pterodactyl@usw2.potato.tf" "22 pterodactyl@usw3.potato.tf" "22 pterodactyl@sgp.potato.tf" "22 pterodactyl@eu2.potato.tf" "22 pterodactyl@eu3.potato.tf" "22 pterodactyl@eu4.potato.tf" "27035 pterodactyl@eu.potato.tf" "22 pterodactyl@10.243.40.231" "22 pterodactyl@aus.potato.tf"; do a=( $i );
