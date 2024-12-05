@@ -466,6 +466,7 @@ WaveSchedule
 			Cap 0
 			Increment -1
 			Cost 50
+			Tier 1
 			Description "+On hit: coat enemy in jarate +Cannot self-hit" 
 			SecondaryAttributes
 			{
@@ -485,6 +486,7 @@ WaveSchedule
 			Cap 2
 			Increment 1
 			Cost 0
+			Tier 1
 			Description "+100% damage bonus +100% bleed strength -Increased self hit vulnerability" 
 			SecondaryAttributes
 			{
