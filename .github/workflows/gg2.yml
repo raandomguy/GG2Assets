@@ -91,7 +91,6 @@ jobs:
             rm -rf /tmp/deploy_key
           } &
 
-          cd tf/download
           {
             echo -e "${{ secrets.TOHRU_KEY_EU }}" > /tmp/deploy_key_eu
             chmod 600 /tmp/deploy_key_eu
