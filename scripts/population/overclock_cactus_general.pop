@@ -1558,6 +1558,7 @@ WaveSchedule
 				"boots falling stomp" 1
 				"weapon burn time reduced" -0.9
 				"maxammo secondary reduced" -0.75
+				"provide on active" 1
 			}
 			Description "+30% Jump Height +Mantreads Stomp -90% afterburn time -75% ammo" 
 			Tier 1
