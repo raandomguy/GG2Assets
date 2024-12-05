@@ -2930,7 +2930,7 @@ Real?
 				"targetname"	"w7_init_relay"
 				"OnTrigger"		"bignet,RunScriptCode,LightUpTheNight.DecideWave7(),0,-1"
 				"OnTrigger"		"bignet,RunScriptCode,StyleSystem.SetActive(false),0,-1"
-				"OnTrigger"		"force_path_b,Trigger,,0,-1"	// Because we can't have nice things (multiple initwaveoutputs)
+				//"OnTrigger"		"force_path_b,Trigger,,0,-1"	// Because we can't have nice things (multiple initwaveoutputs)
 			}
 			logic_relay
 			{
@@ -9214,16 +9214,16 @@ Real?
 			Target	wave_finished_relay
 			Action	Trigger
 		}
-		InitWaveOutput
-		{
-			Target	force_path_b
-			Action	Trigger
-		}
+		//InitWaveOutput
+		//{
+		//	Target	force_path_b
+		//	Action	Trigger
+		//}
 		Explanation	[$SIGSEGV]
 		{
 			Line	"{yellow}[WARNING] No gatebots or gate tanks spawn in this mission."
 			Line	"{yellow}The underworld is also disabled during this mission."
-			Line	"{yellow}Bomb paths are no longer random and forced per wave."
+			//Line	"{yellow}Bomb paths are no longer random and forced per wave."
 		}
 		SpawnTemplate	we_are_so_back
 		WaveSpawn
@@ -9475,11 +9475,11 @@ Real?
 			Target	wave_finished_relay
 			Action	Trigger
 		}
-		InitWaveOutput
-		{
-			Target	force_path_b
-			Action	Trigger
-		}
+		//InitWaveOutput
+		//{
+		//	Target	force_path_b
+		//	Action	Trigger
+		//}
 		Explanation	[$SIGSEGV]
 		{
 			Line	"{yellow}[WARNING] Bots with a fist in their icon (Gutterman/Guttertank) will pull out their fists when in melee range."
@@ -9691,11 +9691,11 @@ Real?
 			Target	wave_finished_relay
 			Action	Trigger
 		}
-		InitWaveOutput
-		{
-			Target	force_path_a
-			Action	Trigger
-		}
+		//InitWaveOutput
+		//{
+		//	Target	force_path_a
+		//	Action	Trigger
+		//}
 		Explanation	[$SIGSEGV]
 		{
 			Line	"{yellow}[WARNING] An orbital weapon system has been detected in the atmosphere..."
@@ -9829,7 +9829,7 @@ Real?
 			Name	wave3bg
 			WaitForAllDead	wave3a2
 			TotalCurrency	50
-			TotalCount	9
+			TotalCount	7
 			MaxActive	4
 			SpawnCount	1
 			WaitBetweenSpawns	6.9
@@ -9844,7 +9844,7 @@ Real?
 			Name	wave3b
 			WaitForAllDead	wave3a1
 			TotalCurrency	50
-			TotalCount	40
+			TotalCount	32
 			MaxActive	14
 			SpawnCount	4
 			WaitBetweenSpawns	4
@@ -9936,11 +9936,11 @@ Real?
 			Target	wave_finished_relay
 			Action	Trigger
 		}
-		InitWaveOutput
-		{
-			Target	force_path_a
-			Action	Trigger
-		}
+		//InitWaveOutput
+		//{
+		//	Target	force_path_a
+		//	Action	Trigger
+		//}
 		Explanation	[$SIGSEGV]
 		{
 			Line	"{yellow}[WARNING] {blue}Stalkers {yellow}will spawn during this wave."
@@ -9983,7 +9983,7 @@ Real?
 					WeaponRestrictions	SecondaryOnly
 					Scale	1.5
 					Health	350
-					Skill	Hard
+					Skill	Normal
 					Name	"Armored Pistol Scout"
 					Item	"Fortunate Son"
 					Item	"Flak Jack"
@@ -10192,11 +10192,11 @@ Real?
 			Target	wave_finished_relay
 			Action	Trigger
 		}
-		InitWaveOutput
-		{
-			Target	force_path_b
-			Action	Trigger
-		}
+		//InitWaveOutput
+		//{
+		//	Target	force_path_b
+		//	Action	Trigger
+		//}
 
 		Explanation	[$SIGSEGV]
 		{
@@ -10623,11 +10623,11 @@ Real?
 			Target	wave_finished_relay
 			Action	Trigger
 		}
-		InitWaveOutput
-		{
-			Target	force_path_a
-			Action	Trigger
-		}
+		//InitWaveOutput
+		//{
+		//	Target	force_path_a
+		//	Action	Trigger
+		//}
 
 		WaveSpawn
 		{
