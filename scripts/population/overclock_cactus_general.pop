@@ -1721,25 +1721,28 @@ WaveSchedule
 				ItemName "The Maul"
 			}
 		}
-//		Powerjack
-//		{
-//			Name "Unstable Mod Exposed Battery"
-//			Attribute "critboost on kill"
-//			Cap 3
-//			Increment 3
-//			Cost 0
-//			SecondaryAttributes //Secondary attributes applied when upgrade is applied, for each upgrade level
-//			{
-//				"damage penalty" -0.2
-//				"dmg taken increased" 0.3
-//			}
-//			Description "+3 seconds of critical hits on kill -20% damage penalty -30% damage vulnerability"
-//			Tier 1
-//			AllowedWeapons
-//			{
-//				ItemName "The Powerjack"
-//			}
-//		}
+		Powerjack
+		{
+			Name "Unstable Mod Exposed Battery"
+			Attribute "critboost on kill"
+			Cap 2
+			Increment 2
+			Cost 0
+			SecondaryAttributes //Secondary attributes applied when upgrade is applied, for each upgrade level
+			{
+				"damage penalty" -0.2
+				"move speed bonus" -0.15
+				"heal on kill" -25
+				"provide on active" -1
+				"increase buff duration" -0.35
+			}
+			Description "+2 seconds of critical hits on kill -20% damage penalty -35% mmmph duration"
+			Tier 1
+			AllowedWeapons
+			{
+				ItemName "The Powerjack"
+			}
+		}
 		Neon
 		{
 			Name "Unstable Mod: Gordbort Capacitor"
@@ -1747,10 +1750,10 @@ WaveSchedule
 			Cap 1
 			Increment 1
 			Cost 0
-			Description "+Damages all robots connected via medibeam -25% slower swing speed"
+			Description "+Damages all robots connected via medibeam -20% slower swing speed"
 			SecondaryAttributes 
 			{
-				"fire rate penalty"		0.25
+				"fire rate penalty"		0.2
 			}
 			Tier 1
 			AllowedWeapons
@@ -1895,9 +1898,36 @@ WaveSchedule
 				"fire rate bonus HIDDEN" -0.3
 				"auto fires full clip" 1
 				"projectile spread angle penalty" 3
-//				"blast radius increased" 0.35
 			}
 			Description "(i)Beggars Style Reload +30% faster firing speed +35% splash radius -2 degrees of deviation" 
+			Tier 1
+			AllowedWeapons
+			{
+				ClassName TF_WEAPON_GRENADELAUNCHER
+				ItemName "Festive Grenade Launcher"
+			}
+			DisallowedWeapons // Disallow those weapons
+			{
+				ItemName "The Loch-n-Load"
+			}
+		}
+		GrenadeLauncherB
+		{
+			Name "Unstable Mod: Big Bertha"
+			Attribute "mult projectile scale" 
+			Cap 1.5
+			Increment 0.5
+			Cost 0
+			SecondaryAttributes
+			{
+				"fire rate bonus HIDDEN" 0.2
+				"blast radius increased" 0.5
+				"Projectile speed decreased" -0.4
+				"CARD: damage bonus" 0.15
+				"Reload time increased" 0.25
+
+			}
+			Description "+50% explosion Radius +15% damage bonus -40% projectile speed -25% reload speed -20% firing speed" 
 			Tier 1
 			AllowedWeapons
 			{
@@ -1919,12 +1949,14 @@ WaveSchedule
 			SecondaryAttributes
 			{
 				"damage penalty" -0.3
-				"projectile spread angle penalty" 2
+				"projectile spread angle penalty" 3
 				"sticky air burst mode" -1
 				"grenade damage reduction on world contact" -0.5
 				"fuse bonus" -0.8
+				"Blast radius decreased" -0.5
+				"clip size penalty" -0.5
 			}
-			Description "+Weapon now fires 2 bombs simultaneously +Pipes do not shatter -30% damage penalty -80% shorter fuse time" 
+			Description "+Fires 2 bombs +Pipes do not shatter -30% damage penalty -80% shorter fuse time -50% blast radius -" 
 			Tier 1
 			AllowedWeapons
 			{
@@ -1960,15 +1992,15 @@ WaveSchedule
 		{
 			Name "Unstable Mod: Extra Adhesive"
 			Attribute "max pipebombs decreased"
-			Cap -3
-			Increment -3
+			Cap -2
+			Increment -2
 			Cost 0
 			SecondaryAttributes
 			{
 				"sticky arm time bonus" -0.1
 				"stickybomb stick to enemies" 1
 			}
-			Description "+10% faster arm-time +bombs stick to enemies -3 max active sticky bombs" 
+			Description "+10% faster arm-time +bombs stick to enemies -2 max active sticky bombs" 
 			Tier 1
 			AllowedWeapons
 			{
@@ -2019,6 +2051,7 @@ WaveSchedule
 				"stickybomb_charge_damage_increase" 0.15
 				"mult projectile scale" 1.0
 				"stickybomb charge rate" -0.15
+				"stickybomb stick to enemies" 1
 			}
 			Description "+25% clip size +15% damage at full charge +15% Charge speed -Stickies fizzle after 1.5 seconds" 
 			Tier 1
@@ -2262,6 +2295,43 @@ WaveSchedule
 				ItemName "The Persian Persuader"
 			}
 		}
+		Heavy_stock_a
+		{
+			Name "Stable Mod: Thinned Drum Walls"
+			Description "+25% Ammo +5% faster spinup +Can swap weapons while spun up"
+			AllowPlayerClass HeavyWeapons
+			AllowedWeapons
+			{
+				SimilarToItem	"Festive Minigun 2011"
+			}
+			Cost 0
+			Attribute "mod minigun can holster while spinning" 
+			Increment 1
+			Cap 1
+			SecondaryAttributes
+			{
+				"hidden primary max ammo bonus" 0.25
+				"minigun spinup time decreased" -0.05
+			}
+		}
+		Heavy_stock_b
+		{
+			Name "Unstable Mod: Exhaust Vectoring"
+			Description "+10% damage bonus -50% less accurate spread"
+			AllowPlayerClass HeavyWeapons
+			AllowedWeapons
+			{
+				SimilarToItem	"Festive Minigun 2011"
+			}
+			Cost 0
+			Attribute "damage bonus" 
+			Increment 0.1
+			Cap 1.1
+			SecondaryAttributes
+			{
+				"spread penalty" 0.5
+			}
+		}
 		HeavyBalancedBrass
 		{
 			Name "Unstable Mod: Defense Framework"
@@ -2488,9 +2558,9 @@ WaveSchedule
 			SecondaryAttributes
 			{
 				"mod_maxhealth_drain_rate" -10
-				"dmg taken increased" 0.2
+				"dmg taken increased" 0.1
 			}
-			Description "+No hp drain +Crits when minicrits -20% damage vulnerability" 
+			Description "+No hp drain +Crits when minicrits -10% damage vulnerability" 
 			Tier 1
 			AllowedWeapons
 			{
@@ -2585,19 +2655,58 @@ WaveSchedule
 				ItemName "The Pomson 6000"
 			}
 		}	
+		Widow
+		{
+			Name "Balanced Overclock: Sentry Companion A.I"
+			Attribute "engy sentry radius increased"
+			Cap 1.2
+			Increment 0.2
+			Cost 0
+			SecondaryAttributes
+			{
+				"mod ammo per shot" 25
+				"damage bonus bullet vs sentry target" 0.3
+			}
+			Description "+30% damage to sentry's targets +25% sentry range -25 increased metal per shot" 
+			Tier 1
+			AllowedWeapons
+			{
+				ItemName "The Widowmaker"
+			}
+		}
 		Ranger
 		{
 			Name "Unstable Mod: Compact Sensor"
 			Attribute "maxammo metal reduced"
-			Cap 0.75
-			Increment -0.25
+			Cap 0.8
+			Increment -0.2
 			Cost 0
 			SecondaryAttributes
 			{
 				"engineer building teleporting pickup" -50
 				"clip size penalty" -0.16
 			}
-			Description "+hauling cost reduced to 50 metal -15% clip size -25% max metal" 
+			Description "+hauling cost reduced to 50 metal -15% clip size -20% max metal" 
+			Tier 1
+			AllowedWeapons
+			{
+				ItemName "The Rescue Ranger"
+			}
+		}
+		Ranger_b
+		{
+			Name "Unstable Mod: Crossbow Bolts"
+			Attribute "engineer building teleporting pickup"
+			Cap 150
+			Increment 50
+			Cost 0
+			SecondaryAttributes
+			{
+				"disable wrangler shield" 1
+				"override projectile type" -10
+				"damage penalty" -0.25
+			}
+			Description "+Now headshots -Hauling Cost increased to 150 metal -No Wrangler Shield -25% damage penalty" 
 			Tier 1
 			AllowedWeapons
 			{
@@ -2655,10 +2764,11 @@ WaveSchedule
 			Cost 0
 			SecondaryAttributes //Secondary attributes applied when upgrade is applied, for each upgrade level
 			{
-				"damage bonus bullet vs sentry target" 1
+				"damage bonus bullet vs sentry target" 0.5
 				"building cost reduction" -0.5
+				"damage bonus" 0.5
 			}
-			Description "+100% damage to sentry target +on kill: gain 6 seconds of minicrits +Building cost reduced by 50%" 
+			Description "+50% damage to sentry target +50% damage bonus +on kill: gain 6 seconds of minicrits +Building cost reduced by 50%" 
 			Tier 1
             AllowPlayerClass Engineer
 			AllowedWeapons
@@ -2669,17 +2779,16 @@ WaveSchedule
 		}
 		Wrangler
 		{
-			Name "Unstable Mod: Sentry Jumper"
+			Name "Stable Mod: Sentry Jumper"
 			Attribute "rocket jump damage reduction"
 			Cap 0.05
 			Increment -0.95
 			Cost 0
 			SecondaryAttributes //Secondary attributes applied when upgrade is applied, for each upgrade level
 			{
-				"maxammo metal reduced" -0.15
 				"cancel falling damage" 1
 			}
-			Description "+90% less damage from sentry jumping -15% less metal" 
+			Description "+90% less damage from sentry jumping" 
 			Tier 1
 			AllowedWeapons
 			{
@@ -2705,8 +2814,10 @@ WaveSchedule
 				"alt-fire disabled" 1	
 				"add onhit addammo" 10
 				"attack projectiles" 2
+				"no self effect" 1
+				"bleeding duration" 4
 			}
-			Description "+Primary fire now uses an explosive +10 metal per hit -250% slower firing speed -No Alt fire" 
+			Description "+Primary fire is now explosive +10 metal per hit +On hit: bleed -250% slower firing speed -No Alt fire" 
 			Tier 1
 			AllowedWeapons
 			{
@@ -2728,7 +2839,7 @@ WaveSchedule
 				"engy disposable sentries" 1
 				"mult teleporter recharge rate" -0.5
 			}
-			Description "+1 disposable sentry gun +50% more effecient dispenser and teleporter +25% Melee Damage" 
+			Description "+1 disposable sentry gun +50% more effecient dispenser and teleporter" 
 			Tier 1
             Allowplayerclass Engineer
             AllowedWeapons
@@ -2745,9 +2856,11 @@ WaveSchedule
 			Cost 0
 			SecondaryAttributes //Secondary attributes applied when upgrade is applied, for each upgrade level
 			{
-				"damage bonus" 0.5
+				"damage bonus" 1.0
+				"halloween reload time decreased" 0.5
+				"engy building health bonus" 1.0
 			}
-			Description "+75 max hp +50% melee damage" 
+			Description "+75 max hp +100% melee damage +50% reload to all weapons +100% building health bonus" 
 			Tier 1
             Allowplayerclass Engineer
             AllowedWeapons
