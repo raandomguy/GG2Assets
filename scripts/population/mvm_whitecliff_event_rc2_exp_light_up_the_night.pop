@@ -1262,16 +1262,6 @@ Real?
 				Target	tank_path*
 				Action	KILL
 			}
-			OnSpawnOutput	// ensures control over path with InitWaveOutput chicanery
-			{
-				Target	bombpath_choose_relay
-				Action	KILL
-			}
-			OnSpawnOutput
-			{
-				Target	bombpath_clearall_relay
-				Action	Trigger
-			}
 			logic_relay	// ensures tank barricade breaks but really I could just remove the tank barricade
 			{
 				"targetname"	"tank_bust_fix_relay"
