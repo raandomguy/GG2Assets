@@ -224,8 +224,6 @@ function scoutMechPrimaryCall(condition, caller, activator)
 				activator:SetAttributeValue(name, value)
 			end
 		end
-		--fix a bug where you can eject in a giant's asshole and instakill them
-		activator:SetAttributeValue("not solid to players", 1)
 		
 		if activator.m_iHealth < 125 then
 			activator:AddHealth((125 - activator.m_iHealth))
@@ -233,6 +231,9 @@ function scoutMechPrimaryCall(condition, caller, activator)
 		if not activator:IsAlive() then
 			return
 		end
+		
+				--fix a bug where you can eject in a giant's asshole and instakill them
+		activator:SetAttributeValue("not solid to players", 1)
 		
 			activatorOrigin = activator:GetAbsOrigin()
 			dummyOrigin = "" .. activatorOrigin[1] .. " " .. activatorOrigin[2] .. " " .. activatorOrigin[3] .. ""
