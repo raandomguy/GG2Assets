@@ -85,6 +85,8 @@ elmarcianito
     PrecacheModel "models/props_mvm/gatebot_hologram.mdl"
     PrecacheModel "models/props_gameplay/cap_square_512.mdl"
     PrecacheModel "models/props_frontline/tank_turret.mdl"
+    PrecacheSound "juridisticion_planetaria.mp3"
+    PrecacheSound "xtermination.mp3"
     PrecacheSound "lastlegs_alt_cmprsd.mp3"
     PrecacheSound "drg_run_stais_remix.mp3"
     PrecacheSound "ui/cyoa_musicmoregun.mp3"
@@ -523,7 +525,7 @@ elmarcianito
             ambient_generic
             {
                 "targetname" "w7loop"
-                "message" "#surface_tension_returns_rorr.mp3"
+                "message" "#juridisticion_planetaria.mp3"
                 "health" "10"
                 "pitch" "100"
                 "spawnflags" "17"
@@ -596,13 +598,8 @@ elmarcianito
             logic_relay
             {
                 "targetname" "w7_loop"
-                "OnTrigger" "tf_gamerulesRunScriptCodeClientPrint(null, 3, `Now Playing: Risk of Rain Returns - Surface Tension Returns by Chris Christodoulou & Damjan Mravunac`)0-1"
+                "OnTrigger" "tf_gamerulesRunScriptCodeClientPrint(null, 3, `Now Playing: Planetary Jurisdisticion By GoodBobFR`)0-1"
                 "OnTrigger"	"w7loop,PlaySound,,0.1,-1"
-                "OnTrigger"	"w7loop,StopSound,,207,-1"
-                "OnTrigger"	"w7loop,PlaySound,,207.1,-1"
-                "OnTrigger"	"w7loop,StopSound,,414,-1"
-                "OnTrigger"	"w7loop,PlaySound,,414.1,-1"
-                "OnTrigger"	"w7loop,StopSound,,621,-1"
             }
             logic_relay
             {
@@ -8831,13 +8828,9 @@ elmarcianito
             {
                 "targetname" "nomoremusiccauseimlazy"
                 "OnTrigger" "tf_gamerules,$StopVO,#music\hl2_song29.mp3,0,-1"
-                "OnTrigger" "tf_gamerules,$StopVO,#music\hl1_song15.mp3,0,-1"
+                "OnTrigger" "tf_gamerules,$StopVO,#xtermination.mp3,0,-1"
             }
-            logic_relay
-            {
-                "targetname" "really"
-                "OnTrigger" "tf_gamerules,PlayVO,#music\hl1_song15.mp3,0,-1"
-            }
+            
             logic_relay
             {
                 "targetname" "seriously"
@@ -8871,7 +8864,8 @@ elmarcianito
                 "OnTrigger" "tf_gamerules,PlayVO,mvm\mvm_mothership_loop.wav,10,-1"
                 "OnTrigger" "tf_gamerules,$StopVO,mvm\mvm_mothership_loop.wav,24,-1"
                 "OnTrigger" "tf_gamerules,PlayVO,misc\halloween\clock_tick.wav,15.5,-1"
-                "OnTrigger" "tf_gamerules,PlayVO,#music\hl1_song15.mp3,0,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,#xtermination.mp3,0,-1"
+                "OnTrigger" "tf_gamerulesRunScriptCodeClientPrint(null, 3, `Now Playing: X-Termination By GoodBobFR`)0-1"
                 "OnTrigger" "tf_gamerules,PlayVO,vo\mvm\mght\heavy_mvm_m_incoming03.mp3,21.5,-1"
                 "OnTrigger" "tf_gamerules,PlayVO,npc\strider\striderx_alert4.wav,10,-1"
                 "OnTrigger" "tf_gamerules,PlayVO,vo\announcer_security_warning.mp3,0,-1"
