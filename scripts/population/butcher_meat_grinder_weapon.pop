@@ -11,7 +11,8 @@ WaveSchedule
 			"damage bonus vs burning" 1.5
 			"damage penalty" 0.85
 			"clip size penalty" 0.75
-			"special item description" "Rocket can ignite enemies."
+			"no self effect" 1
+			"special item description" "Rocket can ignite enemies, No self afterburn."
 			"special item description 2" "+50% damage to burning enemies."
 			"special item description 3" "-15% damage penalty, -1 clip size"
 			"paintkit_proto_def_index" 256

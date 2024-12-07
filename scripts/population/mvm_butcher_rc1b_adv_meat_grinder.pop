@@ -100,6 +100,14 @@ WaveSchedule
 			WeaponRestrictions PrimaryOnly
 		}
 		
+		T_TFBot_Scout_Pistol
+		{
+			Class Scout
+			ClassIcon scout_pistol_nys
+			Name "Pistol Scout"
+			WeaponRestrictions SecondaryOnly
+		}
+		
 		T_TFBot_Scout_Melee_FixIcons
 		{
 			Template T_TFBot_Scout_Melee
@@ -1315,7 +1323,8 @@ WaveSchedule
 			
 			TFBot
 			{
-				Template T_TFBot_Scout_SunOnAStick
+				Template T_TFBot_Scout_Pistol
+				Skill Easy
 			}
 		}
 		
