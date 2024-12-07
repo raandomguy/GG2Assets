@@ -90,7 +90,7 @@ elmarcianito
     PrecacheSound "lastlegs_alt_cmprsd.mp3"
     PrecacheSound "drg_run_stais_remix.mp3"
     PrecacheSound "ui/cyoa_musicmoregun.mp3"
-    PrecacheSound "surface_tension_returns_rorr.mp3"
+    // PrecacheSound "surface_tension_returns_rorr.mp3"
     PrecacheSound "spike_in_a_rail_sped_up_bastion.mp3"
 	PrecacheSound "the_blind_huntress_wizard_with_a_gun.mp3"
     PrecacheSound "player\taunt_bumpkins_banjo_music.wav"
