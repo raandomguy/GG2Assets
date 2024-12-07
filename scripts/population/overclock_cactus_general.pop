@@ -2310,6 +2310,7 @@ WaveSchedule
 			Attribute "mod minigun can holster while spinning" 
 			Increment 1
 			Cap 1
+			Tier 1
 			SecondaryAttributes
 			{
 				"hidden primary max ammo bonus" 0.25
@@ -2329,6 +2330,7 @@ WaveSchedule
 			Attribute "damage bonus" 
 			Increment 0.1
 			Cap 1.1
+			Tier 1
 			SecondaryAttributes
 			{
 				"spread penalty" 0.5
