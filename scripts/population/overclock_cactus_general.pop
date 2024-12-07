@@ -3071,28 +3071,6 @@ WaveSchedule
 
 			}
 		}
-		YER_A
-		{
-			Name "Stable Mod: Prototype Module"
-			Attribute "collect currency on kill" 
-			Cap 1
-			Increment 1
-			Cost 0
-			SecondaryAttributes //Secondary attributes applied when upgrade is applied, for each upgrade level
-			{
-				"melee range multiplier"	1.0
-				"mult cloak meter consume rate" -0.33
-				"cannot disguise" 1
-				"damage bonus" 0.25
-				"max health additive bonus" 50
-			}
-			Description "+50% melee range +25% damage bonus +33% melee range +50 max health -Cannot Disguise without backstab"
-			Tier 1
-            AllowedWeapons
-			{
-				ItemName "Your Eternal Reward"
-			}
-		}
 		Sapper
 		{
 			Name "Unstable Overclock: Malware payload"
