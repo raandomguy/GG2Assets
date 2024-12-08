@@ -3058,7 +3058,7 @@ WaveSchedule
 			Cap 1
 			Increment 1
 			Cost 0
-			SecondaryAttributes //Secondary attributes applied when upgrade is applied, for each upgrade level
+			d //Secondary attributes applied when upgrade is applied, for each upgrade level
 			{
 				"melee range multiplier"	1.0
 				"damage penalty" -0.15
@@ -3192,7 +3192,6 @@ WaveSchedule
 			}
             AllowedWeapons
 			{
-				ItemName "The Kritzkrieg"
 				ClassName TF_WEAPON_MEDIGUN
 				ItemName "Festive Medigun 2011"
 			}
@@ -3200,14 +3199,15 @@ WaveSchedule
 			{
 				ItemName "The Quick-Fix"
 				ItemName "The Vaccinator"
+				ItemName "The Kritzkrieg"
 			}
 		}
 		MedigunB
 		{
 			Name "Unstable Mod: Rüstung Chip"
 			Attribute "heal rate bonus"
-			Cap 1.20
-			Increment 0.20
+			Cap 1.25
+			Increment 0.25
 			Cost 0
 			Description "(i)Ubercharge: Increase move, weapon and reload speed" 
 			Tier 1
@@ -3215,16 +3215,10 @@ WaveSchedule
 			{
 				"medigun keep charged effect" 1
 				"effect cond override" 2106481
+				"ubercharge overheal rate penalty" 0.1
 			}
             AllowedWeapons
 			{
-				ClassName TF_WEAPON_MEDIGUN
-				ItemName "Festive Medigun 2011"
-			}
-            DisallowedWeapons
-			{
-				ItemName "The Quick-Fix"
-				ItemName "The Vaccinator"
 				ItemName "The Kritzkrieg"
 			}
 		}
