@@ -129,6 +129,12 @@ if ("RedRidgeEvents" in getroottable()) delete ::RedRidgeEvents // this is done 
 		local hasthestuff = false
 		local outputs = []
 		
+		if (GetRoundState() != 4)
+		{
+			building.Destroy()
+			return
+		}
+		
 		if (object == 0) // dispenser
 		{
 			AddThinkToEnt(building, "DispenserThink")
@@ -138,7 +144,7 @@ if ("RedRidgeEvents" in getroottable()) delete ::RedRidgeEvents // this is done 
 				if (!building.IsValid()) NetProps.SetPropString(building, "m_iszScriptThinkFunction", "")
 				local metalcount = GetPropInt(building,"m_iAmmoMetal")
 				local isbuilding = GetPropInt(building,"m_bBuilding")
-				local touchtrig; touchtrig = Entities.FindByClassnameWithin(touchtrig,"dispenser_touch_trigger",building.GetCenter(),DISP_RADIUS);
+				local touchtrig = Entities.FindByClassnameWithin(null,"dispenser_touch_trigger",building.GetCenter(),DISP_RADIUS);
 				if (building.IsValid() && isbuilding == 0 && touchtrig != null)
 				{
 					if (!hasthestuff)
