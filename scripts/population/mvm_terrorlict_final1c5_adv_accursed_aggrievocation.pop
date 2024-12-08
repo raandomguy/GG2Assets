@@ -205,9 +205,6 @@ popuwashyon
 
 	PrecacheModel	"models/buildables/mini_dispenser_faithful.mdl"
 	PrecacheModel	"models/buildables/mini_dispenser_faithful_light.mdl"
-
-	PrecacheGeneric "materials/hud/leaderboard_class_pyro_flare_rain_homing_nys.vmt"
-	PrecacheGeneric "materials/hud/leaderboard_class_pyro_flare_rain_homing_nys.tf"
 	
 	PointTemplates
 	{
@@ -6892,6 +6889,23 @@ popuwashyon
 						Delay 0
 					}
 				}
+			}
+		}
+		
+		WaveSpawn
+		{
+			Name "OnlyHereToPrecacheTheIcon"
+			WaitForAllDead "wave6_phase4"
+			TotalCount 1
+			MaxActive 1
+			SpawnCount 1
+			Support Limited
+			HideIcon 1
+			TFBot
+			{
+				Class Pyro
+				Name "I should not spawn."
+				ClassIcon pyro_flare_rain_homing_nys
 			}
 		}
 	}
