@@ -150,9 +150,6 @@ athazar's_bar_and_bazaar	// subtle sneed's seed and feed reference
 		"special item description 3"	"Bonus collection radius and healing will reset after 5 seconds. Killing again resets the timer."
 		"mult credit collect range"		0.5
 		"add attributes on kill"		"mult credit collect range|2.50|5|health from credits|25|5"
-		
-		"bullets per shot bonus"	0.8
-		"weapon spread bonus"		0.8
 	}
 	// Dev Notes: The Payoff is a revised version of "Pay to Play" from Powerplant Rev.
 	// The older version functioned in a really weird and admittedly unconventional/fucking goofy way.
@@ -265,13 +262,9 @@ athazar's_bar_and_bazaar	// subtle sneed's seed and feed reference
 		OriginalItemName	"The Phlogistinator"
 		//"custom item model"	"models/weapons/c_models/c_solar_carbonizer/c_solar_carbonizer.mdl"
 		"damage penalty"	0.85
-		"weapon burn time reduced"	0.0001
-		"afterburn duration penalty"	0.0001
-		"weapon burn dmg reduced"	0.5
 		"rage receive scale"		1.2
 		
-		"special item description"		"Alternative Phlog; MMMPH is replaced with triple banner effect (Battalion's Backup + Buff Banner + Concheror)"
-		"special item description 2"	"-15% damage penalty and significantly reduced afterburn; Afterburn upgrades are disabled on this weapon"
+		"special item description"		"Alternative Phlog; MMMPH is replaced with triple banner effect that charges 20% faster at the cost of -15% damage"
 		"effect cond override"	1056026
 		
 		//"spread offset pattern"		"10 -15 100"	// oh custom flamethrower models, why do you have to be like this
@@ -1019,7 +1012,7 @@ for(local i = 0; i <= 8; i++)
 			{
 				Target	!activator
 				Action	$AddItemAttribute
-				Param	"CARD: damage bonus|1.75|0"
+				Param	"CARD: damage bonus|1.5|0"
 			}
 			OnParentKilledOutput
 			{
@@ -1503,7 +1496,23 @@ for(local i = 0; i <= 8; i++)
 				Upgrade	howitzer_buff
 			}
 		}
-
+		metacola_slow
+		{
+			Name			"Chemical Additive"
+			Attribute		"cannot trade"
+			Cap				1
+			Increment		1
+			Cost			400
+			Description		"Effect now grants briefly halved movement speed on hit enemies"
+			SecondaryAttributes
+			{
+				"effect add attributes"	"add cond on hit|27|add cond on hit duration|3|add cond when active|36|stun on hit type|movement|stun on hit|1|stun on hit slow|0.5"
+			}
+			AllowedWeapons
+			{
+				ItemName	"The Meta-Cola"
+			}
+		}
 	}
 
 	/////////////////////////
@@ -1517,16 +1526,6 @@ for(local i = 0; i <= 8; i++)
 	{
 		Upgrade		"faster reload rate"	// defunct - weapon has infinite clip and therefore no reload
 		ItemName	"The Handheld Howitzer"
-	}
-	DisallowUpgrade	  
-	{
-		Upgrade		"weapon burn dmg increased"	// defunct - weapon's downside is nearly no afterburn
-		ItemName	"The Solar Carbonizer"
-	}
-	DisallowUpgrade	  
-	{
-		Upgrade		"weapon burn time increased"	// defunct - weapon's downside is nearly no afterburn
-		ItemName	"The Solar Carbonizer"
 	}
 	DisallowUpgrade	  
 	{
