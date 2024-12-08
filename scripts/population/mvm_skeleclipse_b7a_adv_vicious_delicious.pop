@@ -817,6 +817,25 @@ population
 					BotsAreHumans = 130
 					NoThrillerTaunt = 1
                 })
+				
+				// The below lines prints text in the middle of the screen on setup time
+				
+				local hText = SpawnEntityFromTable(`game_text`, {
+                    targetname = `wave_explanation_text`
+                    channel    = 1
+                    effect     = 2
+                    fadeout    = 0.5
+                    fxtime     = 0.5
+                    holdtime   = 15
+                    x          = -1
+                    y          = 0.25
+                    spawnflags = 1
+                    color      = `51 221 51`
+                    message    = `This mission features custom weapons! Look for the side menu to the left of your screen when upgrading your weapons.`
+                })
+                hText.AcceptInput(`Display`, null, null, null)
+                hText.Kill()
+				
             "
         }
 		StartWaveOutput
@@ -1645,7 +1664,7 @@ population
 			MaxActive	4
 			SpawnCount	1
 			Where	spawnbot_right
-			WaitBeforeStarting	8
+			WaitBeforeStarting	2
 			WaitBetweenSpawns	4
 			Squad
 			{
@@ -2084,9 +2103,9 @@ population
                     effect     = 2
                     fadeout    = 0.5
                     fxtime     = 0.5
-                    holdtime   = 30	//	intentionally long because the w3 finish screen is on top of it for ~15 seconds
+                    holdtime   = 20
                     x          = -1
-                    y          = 0.25
+                    y          = 0.41	//	just beneath the w3 end screen
                     spawnflags = 1
                     color      = `221 51 51`
                     message    = `Combat tanks will forever patrol the map and will not deploy a bomb into the hatch.`
