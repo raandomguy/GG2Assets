@@ -833,6 +833,24 @@ population
 					BotsAreHumans = 130
 					NoThrillerTaunt = 1
                 })
+				
+				// The below lines prints text in the middle of the screen on setup time
+				
+				local hText = SpawnEntityFromTable(`game_text`, {
+					targetname = `wave_explanation_text`
+					channel    = 1
+					effect     = 2
+					fadeout    = 0.5
+					fxtime     = 0.5
+					holdtime   = 15
+					x          = -1
+					y          = 0.25
+					spawnflags = 1
+					color      = `51 221 51`
+					message    = `This mission features custom weapons! Look for the side menu to the left of your screen when upgrading your weapons.`
+				})
+				hText.AcceptInput(`Display`, null, null, null)
+				hText.Kill()
             "
         }
 		StartWaveOutput
