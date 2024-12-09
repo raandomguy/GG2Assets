@@ -25,6 +25,286 @@ WaveSchedule
 		"Civilian.MVM_ExplosionDeath"	"Breakable.Metal"
 	}
 	
+	
+	ItemAttributes
+	{		
+		SimilarToItem "Rocket Jumper"
+		"special item description" "Has custom upgrades"
+	}
+	ItemAttributes
+	{
+		SimilarToItem "The Splendid Screen"
+		Classname "tf_weapon_grenadelauncher"
+		ItemName "The Loch-n-Load"
+		ItemName "The Iron Bomber"
+		ItemName "The Loose Cannon"
+		SimilarToItem "The Eyelander"
+		SimilarToItem "The Scottish Handshake"
+		SimilarToItem "The Half-Zatoichi"
+		SimilarToItem "The Ullapool Caber"
+		SimilarToItem "Nessie's Nine Iron"
+		SimilarToItem "The Pain Train"
+		SimilarToItem "The Persian Persuader"
+		SimilarToItem "The Claidheamohmor"
+		SimilarToItem "The Horseless Headless Horseman's Headtaker"
+		SimilarToItem "TF_WEAPON_BOTTLE"
+		SimilarToItem "The Scotsman's Skullcutter"
+		ItemName "the direct hit"
+		ItemName "The Air Strike"
+		SimilarToItem "Upgradeable TF_WEAPON_SHOTGUN_PRIMARY"
+		SimilarToItem "The Reserve Shooter"
+		SimilarToItem "Panic Attack Shotgun"	
+		SimilarToItem "The Righteous Bison"		
+		ItemName "The Mantreads"
+		ItemName "The Market Gardener"
+		SimilarToItem "TF_WEAPON_PISTOL"
+		ItemName "The Cow mangler 5000"
+		ClassName TF_WEAPON_SHOTGUN_PRIMARY
+		ItemName "The Pomson 6000"
+		SimilarToItem "The Gunslinger" 
+		SimilarToItem "The Frontier Justice"
+		SimilarToItem "The Flare Gun"
+		SimilarToItem "The Manmelter"
+		SimilarToItem "The Machina"
+		SimilarToItem "The Flying Guillotine"
+		SimilarToItem "The Dalokohs Bar"
+		SimilarToItem "Tomislav"
+		ItemName "The Huo Long Heatmaker"
+		SimilarToItem "The Backburner"
+		ItemName "The Axtinguisher"
+		SimilarToItem "TF_WEAPON_INVIS"
+		SimilarToItem "The Cloak and Dagger"
+		SimilarToItem "The Big Earner"
+		SimilarToItem "L'Etranger"
+		SimilarToItem "TF_WEAPON_ROCKETLAUNCHER"
+		SimilarToItem "The Original"	
+		"special item description" "Has custom upgrades"
+	}
+	ItemAttributes
+	{
+		SimilarToItem "TF_WEAPON_ROCKETLAUNCHER"	
+		"special item description" "Has custom upgrades"
+	}
+	ItemAttributes
+	{
+		SimilarToItem "L'Etranger"	
+		"special item description" "Has custom upgrades"
+	}
+	ItemAttributes
+	{
+		SimilarToItem "The Big Earner"
+		"special item description" "Has custom upgrades"
+	}
+	ItemAttributes
+	{
+		SimilarToItem "The Cloak and Dagger"
+		"special item description" "Has custom upgrades"
+	}
+	ItemAttributes
+	{
+		SimilarToItem "TF_WEAPON_INVIS"
+		"special item description" "Has custom upgrades"
+	}	
+	ItemAttributes
+	{
+		ItemName "The Axtinguisher"
+		"special item description" "Has custom upgrades"
+	}
+	ItemAttributes
+	{
+		SimilarToItem "The Backburner"
+		"special item description" "Has custom upgrades"
+	}
+	ItemAttributes
+	{
+		ItemName "The Huo Long Heatmaker"
+		"special item description" "Has custom upgrades"
+	}
+	ItemAttributes
+	{
+		SimilarToItem "Tomislav"
+		"special item description" "Has custom upgrades"
+	}
+	ItemAttributes
+	{
+		SimilarToItem "Tomislav"
+		"special item description" "Has custom upgrades"
+	}
+	ItemAttributes
+	{
+		SimilarToItem "The Dalokohs Bar"
+		"special item description" "Has custom upgrades"
+	}
+	ItemAttributes
+	{
+		SimilarToItem "The Flying Guillotine"
+		"special item description" "Has custom upgrades"
+	}	
+	ItemAttributes
+	{
+		SimilarToItem "The Machina"
+		"special item description" "Has custom upgrades"
+	}
+	ItemAttributes
+	{
+		SimilarToItem "The Manmelter"
+		"special item description" "Has custom upgrades"
+	}
+	ItemAttributes
+	{
+		SimilarToItem "The Flare Gun"
+		"special item description" "Has custom upgrades"
+	}
+	ItemAttributes
+	{
+		SimilarToItem "The Frontier Justice"
+		"special item description" "Has custom upgrades"
+	}
+	ItemAttributes
+	{
+		SimilarToItem "The Gunslinger" 
+		"special item description" "Has custom upgrades"
+	}
+	ItemAttributes
+	{
+		ItemName "The Pomson 6000"
+		"special item description" "Has custom upgrades"
+	}
+	ItemAttributes
+	{
+		ClassName TF_WEAPON_SHOTGUN_PRIMARY
+		"special item description" "Has custom upgrades"
+	}
+	ItemAttributes
+	{
+		ItemName "The Cow mangler 5000"
+		"special item description" "Has custom upgrades"
+	}	
+	ItemAttributes
+	{
+		SimilarToItem "TF_WEAPON_PISTOL"
+		"special item description" "Has custom upgrades"
+	}	
+	ItemAttributes
+	{
+		ItemName "The Market Gardener"
+		"special item description" "Has custom upgrades"
+	}
+	ItemAttributes
+	{	
+		ItemName "The Mantreads"
+		"special item description" "Has custom upgrades"
+	}
+	ItemAttributes
+	{
+		SimilarToItem "The Righteous Bison"		
+		"special item description" "Has custom upgrades"
+	}	
+	ItemAttributes
+	{
+		SimilarToItem "Panic Attack Shotgun"		
+		"special item description" "Has custom upgrades"
+	}	
+	ItemAttributes
+	{
+		SimilarToItem "The Reserve Shooter"	
+		"special item description" "Has custom upgrades"
+	}
+	ItemAttributes
+	{
+		SimilarToItem "Upgradeable TF_WEAPON_SHOTGUN_PRIMARY"	
+		"special item description" "Has custom upgrades"
+	}
+	ItemAttributes
+	{
+		ItemName "The Air Strike"
+		"special item description" "Has custom upgrades"
+	}
+	ItemAttributes
+	{
+		ItemName "the direct hit"	
+		"special item description" "Has custom upgrades"
+	}
+	ItemAttributes
+	{
+		SimilarToItem "The Scotsman's Skullcutter"
+		"special item description" "Has custom upgrades"
+	}
+	ItemAttributes
+	{
+		SimilarToItem "TF_WEAPON_BOTTLE"
+		"special item description" "Has custom upgrades"
+	}
+	ItemAttributes
+	{
+		SimilarToItem "The Horseless Headless Horseman's Headtaker"
+		"special item description" "Has custom upgrades"
+	}
+	ItemAttributes
+	{
+		SimilarToItem "The Claidheamohmor"
+		"special item description" "Has custom upgrades"
+	}
+	ItemAttributes
+	{
+		SimilarToItem "The Persian Persuader"
+		"special item description" "Has custom upgrades"
+	}
+	ItemAttributes
+	{
+		SimilarToItem "The Pain Train"
+		"special item description" "Has custom upgrades"
+	}
+	ItemAttributes
+	{
+		SimilarToItem "Nessie's Nine Iron"
+		"special item description" "Has custom upgrades"
+	}
+	ItemAttributes
+	{
+		SimilarToItem "The Ullapool Caber"
+		"special item description" "Has custom upgrades"
+	}
+	ItemAttributes
+	{
+		SimilarToItem "The Half-Zatoichi"
+		"special item description" "Has custom upgrades"
+	}
+	ItemAttributes
+	{
+		SimilarToItem "The Scottish Handshake"
+		"special item description" "Has custom upgrades"
+	}
+	ItemAttributes
+	{
+		SimilarToItem "The Eyelander"
+		"special item description" "Has custom upgrades"
+	}
+	ItemAttributes
+	{
+		ItemName "The Loose Cannon"
+		"special item description" "Has custom upgrades"
+	}
+	ItemAttributes
+	{
+		ItemName "The Iron Bomber"
+		"special item description" "Has custom upgrades"
+	}
+	ItemAttributes
+	{
+		ItemName "The Loch-n-Load"
+		"special item description" "Has custom upgrades"
+	}	
+	ItemAttributes
+	{
+		Classname "tf_weapon_grenadelauncher"
+		"special item description" "Has custom upgrades"
+	}
+	ItemAttributes
+	{
+		SimilarToItem "The Splendid Screen"
+		"special item description" "Has custom upgrades"
+	}	
 	CustomWeapon
 	{
 			"SHRAPNEL_GUN"
@@ -157,10 +437,10 @@ WaveSchedule
 			"paintkit_proto_def_index" 414
 			"set_item_texture_wear" 0
 			"fire rate bonus" 0.65
-			"damage penalty" 0.75
+			"damage penalty" 0.65
 			"add cond when active" 114
 			"max health additive penalty" -25
-			"special item description 2" "On kill by knife or spawned bot, victim explodes into an allied spy bot that will live for 25 seconds"
+			"special item description 2" "On kill by knife or spawned bot, victim explodes into an allied spy bot that will live for 14 seconds"
 			"special item description 4" "While active, see teammate outlines through walls. Useful for finding enemy spies and tracking your bots"
 		}
 	}
