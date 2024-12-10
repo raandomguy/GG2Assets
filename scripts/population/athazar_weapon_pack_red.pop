@@ -150,6 +150,7 @@ athazar's_bar_and_bazaar	// subtle sneed's seed and feed reference
 		"special item description 3"	"Bonus collection radius and healing will reset after 5 seconds. Killing again resets the timer."
 		"mult credit collect range"		0.5
 		"add attributes on kill"		"mult credit collect range|2.50|5|health from credits|25|5"
+		"clip size penalty"	0.66
 	}
 	// Dev Notes: The Payoff is a revised version of "Pay to Play" from Powerplant Rev.
 	// The older version functioned in a really weird and admittedly unconventional/fucking goofy way.
@@ -162,13 +163,14 @@ athazar's_bar_and_bazaar	// subtle sneed's seed and feed reference
 		Name	"The Meta-Cola"
 		OriginalItemName	"Crit-a-Cola"
 		"custom item model"				"models/weapons/c_models/c_energy_drink/c_energy_drink_green.mdl"
-		"special item description"		"Upon drinking, grants Soda Popper's hype effect to you + Attacking an enemy milks them for 3 seconds"
-		"special item description 2"	"''What do you mean they put the meta in a cola?''"
+		"special item description"		"Upon drinking, grants a speed boost and 75% chance to dodge incoming damage + Attacking an enemy milks them for 3 seconds"
+		"special item description 2"		"Successful dodges are indicated by healing 1 HP"
+		"special item description 3"	"''What do you mean they put the meta in a cola?''"
 		
-		"mod_mark_attacker_for_death"	0	// so you can actually use the benefit of the milk on hit. there's no opportunity to use the milk on hit when you're fucking dead from eating a mini-crit rocket or pipe
+		"mod_mark_attacker_for_death"	0
 
-		"effect add attributes"	"add cond on hit|27|add cond on hit duration|3|add cond when active|36"
-		"effect cond override"	65
+		"effect add attributes"	"add cond on hit|27|add cond on hit duration|3"
+		"effect cond override"	8271
 		"mult effect duration"	1.25
 
 	}
@@ -536,7 +538,7 @@ athazar's_bar_and_bazaar	// subtle sneed's seed and feed reference
 		OriginalItemName	"Upgradeable TF_WEAPON_PDA_ENGINEER_BUILD"
 		"custom item model"	"models/ctf2w/weapons/w_models/w_mini_pda.mdl"
 		"custom dispenser model"		"models/buildables/mini_dispenser_faithful"
-		"special item description"		"Replaces dispenser and teleporters with a Mini-Dispenser and Mini-Teleporters. Gives you a free disposable Mini-Sentry."
+		"special item description"		"Replaces dispenser and teleporters with a Mini-Dispenser and Mini-Teleporters. Gives you a free disposable Mini-Sentry. Synergizes with the Gunslinger."
 		"special item description 2"	"Grants a 75% damage bonus to your primary weapon"
 		"special item description 3"	"All buildings are locked to level 1 but your dispenser and teleporters build 200% faster"
 		"building max level"			1
@@ -619,14 +621,16 @@ athazar's_bar_and_bazaar	// subtle sneed's seed and feed reference
 		"paintkit_proto_def_index"		205	// Fire Glazed
 		"set_item_texture_wear"			0
 		"special item description"		"Passively grants a 25% damage bonus vs burning targets to your patient and afterburn immunity to you"
-		"special item description 2"	"Ubercharge grants minicrits, ignite on hit, high burn damage, and x2 revive rate. Taking fatal damage while Ubercharge is active instantly sends you or your patient to spawn with 1 HP."
-		"special item description 3"	"Tripled Ubercharge rate that stacks with buyable upgrade"
-		"medigun passive attributes"	"damage bonus vs burning|1.25"	// should hopefully not stack with the huo long's inherent bonus
+		"special item description 2"	"Ubercharge grants minicrits, ignite on hit, high burn damage, and x2 revive rate. Taking fatal damage while Ubercharge is active instantly sends you (not your patient) to spawn with 1 HP."
+		"special item description 3"	"Tripled Ubercharge rate that stacks with buyable upgrade. Projectile Shield ignites enemies."
+		"medigun passive attributes"	"damage bonus vs burning|1.25|attribute immunity|teleport instead of die"	// should hopefully not stack with the huo long's inherent bonus
 		"medigun passive attributes owner"	"afterburn immunity|1"
 		"effect cond override"			16
 		"effect add attributes"			"attach particle effect|1|weapon burn dmg increased|4|Set DamageType Ignite|1|projectile trail particle|spell_fireball_small_red|revive rate|2|teleport instead of die|2"
 		"heal rate bonus"				1.20
 		"ubercharge rate penalty"		3	// should stack with base ubercharge bonus upgrade and not count as already bought
+		"Set DamageType Ignite"			1
+		"weapon burn dmg reduced"		0.5
 	}
 	CustomWeapon
 	{
@@ -638,15 +642,15 @@ athazar's_bar_and_bazaar	// subtle sneed's seed and feed reference
 		"damage penalty"				0.05
 		"add uber charge on hit"		0
 		"special item description"		"Extremely low damage but inflicts a very powerful yet slow bleed that lowers enemy healing by 50%"	// I am definitely not beating the Grouch allegations at this point
-		"special item description 2"	"While an enemy is bleeding, grants +50% revive rate, +50% medigun range, and Backup + Conch effect. Effects persist for 3 seconds after bleed ends"
+		"special item description 2"	"While an enemy is bleeding, grants +50% revive rate, +50% medigun range, and Backup + Conch effect. Effects persist for 5 seconds after bleed ends"
 		"mult bleeding delay"			3
 		"mult bleeding dmg"				7.5
 		"bleeding duration"				5
 		"add attributes on hit"			"healing received penalty|0.5|3"
 		
 		"self add cond on hit"			7450
-		"self add cond on hit duration"	3	// effectively same duration as bleed- every tick of bleed counts as a hit and resets the timer
-		"self add attributes on hit"	"mult medigun range|1.5|3|revive rate|1.5|3"
+		"self add cond on hit duration"	5	// effectively same duration as bleed- every tick of bleed counts as a hit and resets the timer
+		"self add attributes on hit"	"mult medigun range|1.5|5|revive rate|1.5|5"
 	}
 
 	CustomWeapon
@@ -1248,7 +1252,7 @@ for(local i = 0; i <= 8; i++)
 				//ItemName	"Artillery Sentry Wrench"
 				ItemName	"Pill Popper"
 				//ItemName	"Infrared Transmitter"
-				ItemName	"The Cauterizer"
+				ItemName	"Phoenix's Bulwark"
 				ItemName	"The Lethal Injector"
 				ItemName	"50th Caliber"
 				ItemName	"The Astral Assassin"
@@ -1506,7 +1510,7 @@ for(local i = 0; i <= 8; i++)
 			Description		"Effect now grants briefly halved movement speed on hit enemies"
 			SecondaryAttributes
 			{
-				"effect add attributes"	"add cond on hit|27|add cond on hit duration|3|add cond when active|36|stun on hit type|movement|stun on hit|1|stun on hit slow|0.5"
+				"effect add attributes"	"add cond on hit|27|add cond on hit duration|3|stun on hit type|movement|stun on hit|1|stun on hit slow|0.5"
 			}
 			AllowedWeapons
 			{
