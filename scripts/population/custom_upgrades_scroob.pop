@@ -1624,7 +1624,7 @@ WaveSchedule
 			{
 				Name "Explosive Axtinguish"
 				Attribute "tool needs giftwrap"
-				Description "On hit with burning enemy, hit all enemies within a 300 hammer unit radius. Acts identically to hits with the weapon"
+				Description "On hit with burning enemy, every enemy within a 300hu radius of the victim will also be hit. Pulling out the axtinguisher right before a crit flare hits a victim will trigger this effect at range"
 				Cap 1
 				Increment 1
 				Cost 200

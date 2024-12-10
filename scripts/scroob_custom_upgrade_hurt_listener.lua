@@ -12,7 +12,7 @@ AddEventCallback("player_hurt", function(eventTable)
 		
 		local primary = attacker:GetPlayerItemBySlot(0)	
 	
-	if eventTable.bonuseffect == 1.0 and attacker:GetPlayerItemBySlot(2):GetAttributeValue("tool needs giftwrap", true) == 1 and attacker.m_hActiveWeapon.m_iClassname == "tf_weapon_fireaxe" then
+	if eventTable.bonuseffect == 1.0 and attacker:GetPlayerItemBySlot(2):GetAttributeValue("tool needs giftwrap", true) == 1 and attacker.m_hActiveWeapon.m_iClassname == "tf_weapon_fireaxe" and eventTable.damageamount > 40 then
 		print("That was an axtinguish")
 		
 		--print(victim)
@@ -229,6 +229,7 @@ function scoutMechPrimaryCall(condition, caller, activator)
 			activator:AddHealth((125 - activator.m_iHealth))
 		end
 		if not activator:IsAlive() then
+			activator:SetAttributeValue("not solid to players", 0)
 			return
 		end
 		
@@ -305,6 +306,7 @@ function scoutMechPrimaryCall(condition, caller, activator)
 						giantBodyDummyExplode:AcceptInput("Stop")
 						giantBodyDummyExplode:Remove()
 						giantBodyDummyExplodeSound:Remove()
+						activator:SetAttributeValue("not solid to players", 0)
 					end)
 			end)
 	end	
