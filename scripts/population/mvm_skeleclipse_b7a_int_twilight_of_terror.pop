@@ -1,18 +1,19 @@
 //	Mission made by BlacKy -> -> https://steamcommunity.com/profiles/76561197970217314/
-//	Massive thanks to my MvM buddies who helped me with constant testing for this mission!
+//	Massive thanks to Lazy, Oskar and Murko who helped me playtest the mission and custom weapons.
+//	Also thanks to Ptyx and other potato heads who helped me with problem solving in custom weapons and other scripty stuff.
 
 
 //	===Credit Statistics===
 //	Starting Credits         : 1350
-//	Total Dropped Credits    : 4450
+//	Total Dropped Credits    : 4150
 //	Total Bonus Credits      : 600
-//	Maximum Possible Credits : 6400
+//	Maximum Possible Credits : 6100
 //	W1:  650
 //	W2:  600
 //	W3:  800
 //	W4:  650
-//	W5:  700
-//	W6:  550
+//	W5:  550
+//	W6:  400
 //	W7:  500
 
 
@@ -628,7 +629,7 @@ population
 		T_TFBot_Giant_Demo_Lead_Sprinkler
 		{
 			Class 				Demoman
-			Health 				7500
+			Health 				15000
 			Skill 				Expert
 			Name 				"Lead Sprinkler"
 			WeaponRestrictions 	SecondaryOnly
@@ -652,7 +653,7 @@ population
 				"stickybomb charge rate"			0.001
 				"fire rate bonus"    				0.05
 				"faster reload rate"				0.2
-				"Projectile range increased"		0.15
+				"Projectile range increased"		0.25
 				"max pipebombs decreased" 			5
 			//	"override projectile type"			14		//	Sticky Jumper
 				"projectile spread angle penalty" 	45
@@ -832,6 +833,24 @@ population
 					BotsAreHumans = 130
 					NoThrillerTaunt = 1
                 })
+				
+				// The below lines prints text in the middle of the screen on setup time
+				
+				local hText = SpawnEntityFromTable(`game_text`, {
+					targetname = `wave_explanation_text`
+					channel    = 1
+					effect     = 2
+					fadeout    = 0.5
+					fxtime     = 0.5
+					holdtime   = 15
+					x          = -1
+					y          = 0.25
+					spawnflags = 1
+					color      = `51 221 51`
+					message    = `This mission features custom weapons! Look for the side menu to the left of your screen when upgrading your weapons.`
+				})
+				hText.AcceptInput(`Display`, null, null, null)
+				hText.Kill()
             "
         }
 		StartWaveOutput
@@ -1949,7 +1968,7 @@ population
 		WaveSpawn
 		{
 			Name	5a
-			TotalCurrency	300
+			TotalCurrency	150
 			TotalCount	6
 			MaxActive	4
 			SpawnCount	2
@@ -2164,7 +2183,7 @@ population
 		WaveSpawn
 		{
 			Name	6a
-			TotalCurrency	150
+			TotalCurrency	100
 			TotalCount	16
 			MaxActive	8
 			SpawnCount	4
@@ -2331,7 +2350,7 @@ population
 		{
 			Name	6d
 			WaitForAllSpawned	6c
-			TotalCurrency	150
+			TotalCurrency	50
 			TotalCount	2
 			MaxActive	2
 			SpawnCount	2
@@ -2725,33 +2744,39 @@ population
 				Tag nav_prefer_flank_mid
 			}
 		}
+		//	The following sound relays are in support limited in case the boss dies before all the sounds are done triggering.
+		//	If this was to happen, the end screen would halt until all voices are done being played.
 		WaveSpawn
 		{
 			Name	de_nuke_spawn_voice_relay_7.1
 			WaitForAllSpawned	7e
-			WaitBeforeStarting	15
+			WaitBeforeStarting	0
 			FirstSpawnWarningSound	"vo\mvm\mght\demoman_mvm_m_specialcompleted11.mp3"
+			Support limited
 		}
 		WaveSpawn
 		{
 			Name	de_nuke_spawn_voice_relay_7.2
 			WaitForAllSpawned	7e
-			WaitBeforeStarting	20
+			WaitBeforeStarting	10
 			FirstSpawnWarningSound	"vo\mvm\mght\demoman_mvm_m_specialcompleted01.mp3"
+			Support limited
 		}
 		WaveSpawn
 		{
 			Name	de_nuke_spawn_voice_relay_7.3
 			WaitForAllSpawned	7e
-			WaitBeforeStarting	25
+			WaitBeforeStarting	15
 			FirstSpawnWarningSound	"vo\mvm\mght\demoman_mvm_m_specialcompleted04.mp3"
+			Support limited
 		}
 		WaveSpawn
 		{
 			Name	de_nuke_spawn_voice_relay_7.3
 			WaitForAllSpawned	7e
-			WaitBeforeStarting	30
+			WaitBeforeStarting	20
 			FirstSpawnWarningSound	"vo\mvm\mght\demoman_mvm_m_specialcompleted06.mp3"
+			Support limited
 		}
 	}
 }

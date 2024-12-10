@@ -20,7 +20,7 @@ population
 	SpellDropRateCommon 0
 	SpellDropRateGiant 1
 	NoSkeletonSplit 1
- 	FastNPCUpdate 1
+	FastNPCUpdate 1
 	
 	SpellBookNormalRoll   // Override spell roll. The value specifies how many spell charges to give. You can duplicate spells to increase their roll chance
 	{
@@ -216,7 +216,7 @@ population
 			{
 				"targetname"	"IgniterBulletsPrep"
 				"OnTrigger"	"pop_interface,ChangeBotAttributes,FireBulletsPrep,0,-1"
-				"OnTrigger"	"IgniterBullets,Trigger,,2,-1"
+				"OnTrigger"	"IgniterBullets,Trigger,,1,-1"
 			}
 			logic_relay
 			{
@@ -280,9 +280,9 @@ population
 		{
 			Class	Heavyweapons
 			Name	"Mangled Menace"
-			ClassIcon	heavy_heater_giant
+			ClassIcon	heavy_ignite
 			Skill Expert
-			Health 75000
+			Health 80000
 			Scale 1.8
 			Attributes	"MiniBoss"
 			Attributes	"UseBossHealthBar"
@@ -295,7 +295,6 @@ population
 				"airblast vertical vulnerability multiplier" 0.1
 				"rage giving scale"	0.2
 				"override footstep sound set" 2
-				"collect currency on kill" 1
 				"cannot pick up intelligence" 1
 			}
 			FireInput
@@ -316,7 +315,7 @@ population
 						Delay 0 //Time before the first taunt starts (Default: 10)
 						Cooldown 0 //Time between each taunt (Default: 10)
 						Repeats 0 //How many times the bot should taunt in total (Default: 0 - Infinite)
-						Duration 2 //Duration of a looping taunt (Default: 0.1)
+						Duration 1 //Duration of a looping taunt (Default: 0.1)
 						Name "Taunt: Russian Rubdown" //If set, uses this item taunt instead of default
 					}
 					FireInput
@@ -336,9 +335,8 @@ population
 						"airblast vertical vulnerability multiplier" 0.1
 						"rage giving scale"	0.2
 						"override footstep sound set" 2
-						"collect currency on kill" 1
 						"cannot pick up intelligence" 1
-						"gesture speed increase" 2
+						"gesture speed increase" 4
 					}
 				}
 				FireBullets
@@ -362,10 +360,9 @@ population
 						"airblast vertical vulnerability multiplier" 0.1
 						"rage giving scale"	0.2
 						"override footstep sound set" 2
-						"collect currency on kill" 1
 						"cannot pick up intelligence" 1
 						"Set DamageType Ignite"	1
-						"weapon burn dmg increased"	2
+						"weapon burn dmg increased"	3
 					}
 				}
 				FireballShotgun
@@ -389,14 +386,13 @@ population
 						"airblast vertical vulnerability multiplier" 0.1
 						"rage giving scale"	0.2
 						"override footstep sound set" 2
-						"collect currency on kill" 1
 						"cannot pick up intelligence" 1
 						"damage penalty" 0.75
 						"override projectile type extra" "spellfireball" // Attributes
 						"fire rate penalty" 20
-						"projectile spread angle penalty" 5
+						"projectile spread angle penalty" 7
 						"mult projectile count" 5
-						"dmg bonus vs buildings" 4
+						"dmg bonus vs buildings" 5
 					}
 				}
 				YummyCrits	//Add more buffs?
@@ -433,9 +429,8 @@ population
 						"airblast vertical vulnerability multiplier" 0.1
 						"rage giving scale"	0.2
 						"override footstep sound set" 2
-						"collect currency on kill" 1
 						"cannot pick up intelligence" 1
-						"health regen"	800
+						"health regen"	1800
 						"gesture speed increase" 2
 					}
 				}
@@ -460,7 +455,6 @@ population
 						"airblast vertical vulnerability multiplier" 0.1
 						"rage giving scale"	0.2
 						"override footstep sound set" 2
-						"collect currency on kill" 1
 						"cannot pick up intelligence" 1
 						"attack projectiles" 2
 					}
@@ -486,9 +480,8 @@ population
 						"airblast vertical vulnerability multiplier" 0.1
 						"rage giving scale"	0.2
 						"override footstep sound set" 2
-						"collect currency on kill" 1
 						"cannot pick up intelligence" 1
-						"fire rate bonus" 0.5
+						"fire rate bonus" 0.4
 					}
 				}
 				
@@ -790,7 +783,7 @@ population
 			WeaponRestrictions	PrimaryOnly
 			Item	"The Direct Hit"
 			Scale	1.35
-			Health	800
+			Health	850
 		}
 		GiantSkeletalSmasher
 		{
@@ -809,7 +802,7 @@ population
 			CharacterAttributes
 			{
 				"fire rate bonus" 0.01
-				"move speed bonus"	0.5
+				"move speed bonus"	0.65
 				"damage force reduction" 0.6
 				"airblast vulnerability multiplier" 0.6
 			}
@@ -830,8 +823,8 @@ population
 				"move speed bonus"	0.5
 				"damage force reduction" 0.6
 				"airblast vulnerability multiplier" 0.6
-				"dmg bonus vs buildings" 4
-				"fire rate penalty" 1.4
+				"dmg bonus vs buildings" 5
+				"fire rate penalty" 1.2
 			}
 		}
 		GiantHeavyShotgunFlamer
@@ -849,12 +842,12 @@ population
 				"move speed bonus"	0.5
 				"damage force reduction" 0.6
 				"airblast vulnerability multiplier" 0.6
-				"dmg bonus vs buildings" 4
+				"dmg bonus vs buildings" 5
 				"override projectile type extra" "spellfireball" // Attributes
 				"fire rate penalty" 7
 				"Reload time increased" 0.001
 				"mult projectile count" 4
-				"projectile spread angle penalty" 5
+				"projectile spread angle penalty" 7
 			}
 		}
 		MedicAOEHeal
@@ -864,7 +857,7 @@ population
 			WeaponRestrictions	SecondaryOnly
 			ClassIcon	medic_armored_lite
 			Scale	1.4
-			Health	750
+			Health	800
 		}
 		ShotgunMinigiant
 		{
@@ -898,7 +891,7 @@ population
 			}
 		}
 	}
-	Wave //WAVE 1 - CASH 700
+	Wave //WAVE 1 - CASH 650
 	{
 		WaitWhenDone	65
 		Checkpoint	Yes
@@ -1051,7 +1044,7 @@ population
 			WaitForAllDead	Main1
 			WaitForAllSpawned	Main1b
 			Name	Main3
-			TotalCurrency	100
+			TotalCurrency	50
 			TotalCount	15
 			MaxActive	10
 			SpawnCount	5
@@ -1188,7 +1181,7 @@ population
 			SpawnCount	1
 			Where	spawnbot
 			WaitBeforeStarting	0
-			WaitBetweenSpawns	5
+			WaitBetweenSpawns	5.4
 			RandomSpawn 1
 			Support	1
 			TFBot
@@ -1257,7 +1250,7 @@ population
 			Where	spawnbot_left
 			Where	spawnbot_flank
 			WaitBeforeStarting	0.1
-			WaitBetweenSpawns	5
+			WaitBetweenSpawns	4.5
 			RandomSpawn 1
 			TFBot
 			{
@@ -1275,7 +1268,7 @@ population
 			SpawnCount	1
 			Where	spawnbot
 			WaitBeforeStarting	0
-			WaitBetweenSpawns	14
+			WaitBetweenSpawns	12
 			RandomSpawn 1
 			TFBot
 			{
@@ -1410,6 +1403,7 @@ population
 			TFBot
 			{
 				Template	T_TFBot_Pyro_Flaregun //SWAP THESE OUT FOR SOMETHING MORE POTENT
+				Attributes	AlwaysCrit
 			}
 		}
 //		WaveSpawn
@@ -1482,13 +1476,13 @@ population
 				CharacterAttributes
 				{
 					"clip size bonus" 0.75
-					"damage bonus" 0.45
+					"damage bonus" 0.55
 					"fire rate bonus" 0.001
 					"clip size upgrade atomic" 0
 					"blast radius increased" 1.25
 					//"Projectile speed increased" 0.4
 					"projectile spread angle penalty" 4
-					"faster reload rate" 0.7
+					"faster reload rate" 0.6
 				}
 			}
 		}
@@ -1519,7 +1513,7 @@ population
 	
 	
 	
-	Wave //WAVE 5 - CASH 650
+	Wave //WAVE 5 - CASH 700
 	{
 		WaitWhenDone	65
 		Checkpoint	Yes
@@ -1546,9 +1540,9 @@ population
 		{
 			Name	Main1
 			TotalCurrency	150
-			TotalCount	8
-			MaxActive	6
-			SpawnCount	2
+			TotalCount	12
+			MaxActive	9
+			SpawnCount	3
 			Where	spawnbot
 			WaitBeforeStarting	0
 			WaitBetweenSpawns	10
@@ -1564,6 +1558,10 @@ population
 			{
 				Template	MedicAOEHeal
 			}
+			TFBot
+			{
+				Template	MedicAOEHeal
+			}
 			}
 		}
 		WaveSpawn
@@ -1574,7 +1572,7 @@ population
 			MaxActive	8
 			SpawnCount	2
 			Where	spawnbot_flank
-			WaitBeforeStarting	0
+			WaitBeforeStarting	0.1
 			WaitBetweenSpawns	3.5
 			RandomSpawn 1
 			TFBot
@@ -1605,7 +1603,7 @@ population
 			WaitForAllDead	Main1
 			WaitForAllSpawned	Main1b
 			Name	Main2b
-			TotalCurrency	100
+			TotalCurrency	150
 			TotalCount	10
 			MaxActive	6
 			SpawnCount	2
@@ -1637,6 +1635,7 @@ population
 			{
 				Class	Scout
 				WeaponRestrictions	SecondaryOnly
+				ClassIcon	scout_pistol_nys
 				Skill	Easy
 				Name	"Scout"
 				Attributes	"AlwaysCrit"
@@ -1873,7 +1872,7 @@ population
 			SpawnCount	2
 			Where	spawnbot
 			WaitBeforeStarting	0
-			WaitBetweenSpawns	10
+			WaitBetweenSpawns	8
 			RandomSpawn 1
 			Squad
 			{
@@ -1885,6 +1884,7 @@ population
 			{
 				Template	T_TFBot_Giant_Soldier_Spammer
 				Item	"The Direct	Hit"
+				Attributes	AlwaysCrit
 			}
 			}
 		}
@@ -1892,12 +1892,12 @@ population
 		{
 			Name	Main1b
 			TotalCurrency	100
-			TotalCount	28
+			TotalCount	32
 			MaxActive	8
 			SpawnCount	2
 			Where	spawnbot
 			WaitBeforeStarting	0.1
-			WaitBetweenSpawns	3.7
+			WaitBetweenSpawns	3.6
 			RandomSpawn 1
 			TFBot
 			{
@@ -1973,6 +1973,10 @@ population
 	{
 		WaitWhenDone	65
 		Checkpoint	Yes
+		Explanation
+		{
+			Line "{red}Scouts in support are giant this wave."
+		}
 		InitWaveOutput
 		{
 			Target	init_wave_relay_alt
@@ -2013,7 +2017,7 @@ population
 			SpawnCount	1
 			Where	spawnbot
 			WaitBeforeStarting	0
-			WaitBetweenSpawns	20
+			WaitBetweenSpawns	18
 			RandomSpawn 1
 			Support	1
 			TFBot
@@ -2031,7 +2035,7 @@ population
 			SpawnCount	2
 			Where	spawnbot
 			WaitBeforeStarting	0.1
-			WaitBetweenSpawns	10
+			WaitBetweenSpawns	9
 			RandomSpawn 1
 			Support	1
 			TFBot
@@ -2049,7 +2053,7 @@ population
 			SpawnCount	2
 			Where	spawnbot
 			WaitBeforeStarting	0.1
-			WaitBetweenSpawns	8.5
+			WaitBetweenSpawns	8
 			RandomSpawn 1
 			Support	1
 			RandomChoice

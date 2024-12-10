@@ -1,14 +1,16 @@
-// Mission made by BlacKy -> -> https://steamcommunity.com/profiles/76561197970217314/
+//	Mission made by BlacKy -> -> https://steamcommunity.com/profiles/76561197970217314/
+//	Massive thanks to Lazy, Oskar and Murko who helped me playtest the mission and custom weapons.
+//	Also thanks to Ptyx and other potato heads who helped me with problem solving in custom weapons and other scripty stuff.
 
 //	===Credit Statistics===
-//	Starting Credits         : 1000
-//	Total Dropped Credits    : 5000
+//	Starting Credits         : 1300
+//	Total Dropped Credits    : 4700
 //	Total Bonus Credits      : 400
 //	Maximum Possible Credits : 6400
-//	W1: 1050
+//	W1:  900
 //	W2:  900
-//	W3: 1150
-//	W4: 1000
+//	W3:  950
+//	W4: 1050
 //	W5:	 900
 
 
@@ -450,7 +452,7 @@ population
 				"set_item_texture_wear"				0				//	FN
 				"paintkit_proto_def_index"			"4.24593e-43n"	//	303 - Macaw Masked
 			//	The above 2 lines enable warpaints in a listen server
-				"damage penalty" 					0.75
+			//	"damage penalty" 					0.75
 				"clip size penalty"					1.5
 				"faster reload rate" 				0.5
 				"fire rate bonus"    				0.33
@@ -459,7 +461,7 @@ population
 			{
 				"SPELL: set Halloween footstep type"			2452877	//	TVoT (BLU)
 				"override footstep sound set" 					5
-				"move speed bonus"								0.4
+				"move speed bonus"								0.5
 				"airblast vertical vulnerability multiplier"	0.3
 				"airblast vulnerability multiplier"				0.1
 				"damage force reduction" 						0.2
@@ -505,7 +507,6 @@ population
 			Skill		Expert
 			Health		3000
 			Attributes	MiniBoss
-			Attributes	AlwaysCrit
 			WeaponRestrictions MeleeOnly
 			Item		"The Third Degree"
 			Item		"Wiki Cap"
@@ -534,7 +535,6 @@ population
 			Skill		Expert
 			Health		3000
 			Attributes	MiniBoss
-			Attributes	AlwaysCrit
 			WeaponRestrictions MeleeOnly
 			Item		"The Homewrecker"
 			Item		"The Vicious Visage"
@@ -817,6 +817,25 @@ population
 					BotsAreHumans = 130
 					NoThrillerTaunt = 1
                 })
+				
+				// The below lines prints text in the middle of the screen on setup time
+				
+				local hText = SpawnEntityFromTable(`game_text`, {
+                    targetname = `wave_explanation_text`
+                    channel    = 1
+                    effect     = 2
+                    fadeout    = 0.5
+                    fxtime     = 0.5
+                    holdtime   = 15
+                    x          = -1
+                    y          = 0.25
+                    spawnflags = 1
+                    color      = `51 221 51`
+                    message    = `This mission features custom weapons! Look for the side menu to the left of your screen when upgrading your weapons.`
+                })
+                hText.AcceptInput(`Display`, null, null, null)
+                hText.Kill()
+				
             "
         }
 		StartWaveOutput
@@ -996,6 +1015,7 @@ population
 				Attributes	HoldFireUntilFullReload
 				ClassIcon	soldier_bison_spammer
 				Tag nav_prefer_flank_mid
+				Item		"Demonic Dome"
 				ItemAttributes
 				{
 					ItemName	"The Righteous Bison"
@@ -1033,7 +1053,7 @@ population
 			MaxActive	2
 			SpawnCount	1
 			Where	spawnbot
-			WaitBeforeStarting	15
+			WaitBeforeStarting	25
 			WaitBetweenSpawns	25
 			TFBot
 			{
@@ -1052,7 +1072,7 @@ population
 			SpawnCount	1
 			Where	spawnbot
 			WaitBeforeStarting	0
-			WaitBetweenSpawns	3
+			WaitBetweenSpawns	5
 			Support	1
 			TFBot
 			{
@@ -1300,7 +1320,7 @@ population
 			WaitBetweenSpawns	15
 			TFBot
 			{
-				Template	T_TFBot_Giant_Fast_Degree_pyro
+				Template	T_TFBot_Giant_Fast_homewrecker_pyro
 				Tag nav_prefer_flank_left
 			}
 		}
@@ -1384,10 +1404,10 @@ population
 		{
 			Name	2c
 			WaitForAllSpawned	2b
-			TotalCurrency	75
-			TotalCount	16
-			MaxActive	6
-			SpawnCount	2
+			TotalCurrency	25
+			TotalCount	8
+			MaxActive	3
+			SpawnCount	1
 			Where	spawnbot_right
 			WaitBeforeStarting	8
 			WaitBetweenSpawns	8
@@ -1401,33 +1421,59 @@ population
 					Scale		1.2
 					Tag nav_prefer_flank_left
 				}
-				TFBot
-				{
-					Template	T_TFBot_Medic_Shield
-					Tag nav_prefer_flank_left
-					CharacterAttributes
-					{
-						"generate rage on heal"	1
-					}
-				}
 			}
 		}
 		WaveSpawn
 		{
 			Name	2c2
 			WaitForAllSpawned	2b
-			TotalCurrency	75
-			TotalCount	7
-			MaxActive	3
-			SpawnCount	1
+			TotalCurrency	100
+			TotalCount	14
+			MaxActive	6
+			SpawnCount	2
 			Where	spawnbot_left
 			WaitBeforeStarting	8
 			WaitBetweenSpawns	8
 			TFBot
 			{
-				Template	T_TFBot_Sniper_Huntsman_Spammer
-				ClassIcon	sniper_bow_multi
+				Template	T_TFBot_Sniper_Huntsman
+				Name		"Fire Huntsman Sniper"
+				Classicon	sniper_bow_fire_yoovy
 				Tag nav_prefer_flank_left
+				ItemAttributes
+				{
+					Itemname "The Huntsman"
+					"Set DamageType Ignite"		1
+					"attach particle effect"	13
+				}
+			}
+		}
+		WaveSpawn
+		{
+			Name	sup2.1
+			WaitForAllSpawned	2b
+			TotalCount	4
+			MaxActive	4
+			SpawnCount	1
+			Where	spawnbot_left
+			Where	spawnbot_right
+			WaitBeforeStarting	25
+			WaitBetweenSpawns	8
+			Support 1
+			TFBot
+			{
+				Class	Pyro
+				Skill	Normal
+				Name	"Phlog Pyro"
+				ClassIcon	pyro_phlog
+				Attributes	SpawnWithFullCharge
+				Item	"the phlogistinator"
+				Tag nav_prefer_flank_left
+				ItemAttributes
+				{
+					ItemName	"the phlogistinator"
+					"airblast disabled"	0
+				}
 			}
 		}
 		WaveSpawn
@@ -1444,6 +1490,7 @@ population
 			TFBot
 			{
 				Template	T_TFBot_Giant_Fast_Degree_pyro
+				Attributes	AlwaysCrit
 				Tag nav_prefer_flank_left
 			}
 		}
@@ -1460,7 +1507,8 @@ population
 			WaitBetweenSpawns	20
 			TFBot
 			{
-				Template	T_TFBot_Giant_Fast_homewrecker_pyro
+				Template	T_TFBot_Giant_Fast_Degree_pyro
+				Attributes	AlwaysCrit
 				Tag nav_prefer_flank_left
 			}
 		}
@@ -1546,34 +1594,6 @@ population
 		}
 		WaveSpawn
 		{
-			Name	sup2.1
-			WaitForAllSpawned	2b
-			TotalCount	4
-			MaxActive	4
-			SpawnCount	1
-			Where	spawnbot_left
-			Where	spawnbot_right
-			WaitBeforeStarting	25
-			WaitBetweenSpawns	8
-			Support 1
-			TFBot
-			{
-				Class	Pyro
-				Skill	Normal
-				Name	"Phlog Pyro"
-				ClassIcon	pyro_phlog
-				Attributes	SpawnWithFullCharge
-				Item	"the phlogistinator"
-				Tag nav_prefer_flank_left
-				ItemAttributes
-				{
-					ItemName	"the phlogistinator"
-					"airblast disabled"	0
-				}
-			}
-		}
-		WaveSpawn
-		{
 			Name	sup2.2
 			WaitForAllSpawned	2e3
 			TotalCount	4
@@ -1635,6 +1655,29 @@ population
 		//		Param	"ClientPrint(null,3,`\x0700cc00 A tank has been deployed with 12,500 HP!`)"
 		//	}
 		//}
+		WaveSpawn
+		{
+			Name	2f
+			WaitForAllDead	2e3
+			TotalCurrency	25
+			TotalCount	6
+			MaxActive	4
+			SpawnCount	1
+			Where	spawnbot_right
+			WaitBeforeStarting	2
+			WaitBetweenSpawns	4
+			Squad
+			{
+				TFBot
+				{
+					Template	T_TFBot_Heavy_IronFist_Airblast
+					Classicon	heavy_steelfist_push_yoovy
+					Health		450
+					Scale		1.2
+					Tag nav_prefer_flank_left
+				}
+			}
+		}
 		WaveSpawn
 		{
 			Name	2g
@@ -1712,40 +1755,34 @@ population
 		{
 			Name	3a
 			TotalCurrency	100
-			TotalCount	4
-			MaxActive	4
-			SpawnCount	2
+			TotalCount	2
+			MaxActive	2
+			SpawnCount	1
 			Where	spawnbot_right
 			WaitBeforeStarting	1
-			WaitBetweenSpawns	15
+			WaitBetweenSpawns	12
 			Squad
 			{
 				TFBot
 				{
-					Template	T_TFBot_Giant_Soldier
-					Attributes	AlwaysCrit
+					Template	T_TFBot_Giant_Soldier_RocketPush
+					Name		"Giant Conch Blast Soldier"
+					Item		"The Concheror"
 					Tag nav_prefer_flank_right
-					Item	"Upgradeable TF_WEAPON_ROCKETLAUNCHER"	
-					Tag	"popext_warpaint{ idx = 295, slot = 0}"	//	Polter-Guised
-					//	The above line makes warpaints work in Potato testing servers with popext. slot 0 = primary weapon slot
-					ItemAttributes
+					Attributes  SpawnWithFullCharge
+					ClassIcon	soldier_blast_conch_yoovy
+					Item		"Wanderer's Wool"
+					CharacterAttributes
 					{
-						ItemName "Upgradeable TF_WEAPON_ROCKETLAUNCHER"	
-						"set_item_texture_wear"				0				//	FN
-						"paintkit_proto_def_index"			"4.13383e-43n"	//	295 - Polter-Guised
-					//	The above 2 lines enable warpaints in a listen server
+						"increase buff duration"	9.0
 					}
-				}
-				TFBot
-				{
-					Template	T_TFBot_Medic
 				}
 			}
 		}
 		WaveSpawn
 		{
 			Name	3b
-			TotalCurrency	75
+			TotalCurrency	100
 			TotalCount	30
 			MaxActive	6
 			SpawnCount	3
@@ -1762,14 +1799,14 @@ population
 		WaveSpawn
 		{
 			Name	3b2
-			TotalCurrency	75
-			TotalCount	20
+			TotalCurrency	50
+			TotalCount	16
 			MaxActive	6
 			SpawnCount	2
 			Where	spawnbot_right
 			Where	spawnbot_left
 			WaitBeforeStarting	2
-			WaitBetweenSpawns	8
+			WaitBetweenSpawns	15
 			Squad
 			{
 				TFBot
@@ -1840,9 +1877,9 @@ population
 			Name	3e
 			WaitForAllSpawned	3c
 			TotalCurrency	100
-			TotalCount	8
-			MaxActive	4
-			SpawnCount	2
+			TotalCount	12
+			MaxActive	6
+			SpawnCount	3
 			Where	spawnbot
 			WaitBeforeStarting	10
 			WaitBetweenSpawns	15
@@ -1877,7 +1914,30 @@ population
 						ItemName	"The Quick-Fix"
 						"uber duration bonus"			100
 						"heal rate bonus"				5
-						"reduced_healing_from_medics"	0.2
+						"reduced_healing_from_medics"	0.4
+					}
+					CharacterAttributes
+					{
+						"airblast vulnerability multiplier" 0.6
+						"bot medic uber health threshold" 	1000
+						"cannot pick up intelligence"		1
+					}
+				}
+				TFBot
+				{
+					Template	T_TFBot_Medic_QuickFix
+					Health		500
+					Scale		1.5
+					Name		"Armored Pop Quick-Fix Medic"
+					Classicon	medic_quickfix_armored_spammer
+					Attributes	SpawnWithFullCharge
+					WeaponRestrictions	SecondaryOnly
+					ItemAttributes
+					{
+						ItemName	"The Quick-Fix"
+						"uber duration bonus"			100
+						"heal rate bonus"				5
+						"reduced_healing_from_medics"	0.4
 					}
 					CharacterAttributes
 					{
@@ -1893,12 +1953,12 @@ population
 			Name	3f
 			WaitForAllSpawned	3d
 			TotalCurrency	100
-			TotalCount	18
-			MaxActive	8
+			TotalCount	14
+			MaxActive	10
 			SpawnCount	2
 			Where	spawnbot
 			WaitBeforeStarting	5
-			WaitBetweenSpawns	8
+			WaitBetweenSpawns	5
 			TFBot
 			{
 				Class	Heavy
@@ -2005,7 +2065,7 @@ population
 		{
 			Name	neckrid_boss_death_3.1
 			WaitForAllDead	3h
-			DoneWarningSound	"vo\halloween_boss\knight_dying.mp3"
+			DoneWarningSound	"vo\halloween_boss\knight_death02.mp3"
 		}
 	}
 	Wave
@@ -2017,7 +2077,7 @@ population
 		}
 		InitWaveOutput
 		{
-			Target wave_start_relay
+			Target bignet
 			Action runscriptcode
             Param	
 			"
@@ -2034,7 +2094,24 @@ population
 					NoThrillerTaunt = 1
                 })
 				
+				// The below lines prints text in the middle of the screen on setup time
+				
 				ClientPrint(null,3,`\x07dd3333 Combat tanks will forever patrol the map and will not deploy a bomb into the hatch.`)
+				local hText = SpawnEntityFromTable(`game_text`, {
+                    targetname = `wave_explanation_text`
+                    channel    = 1
+                    effect     = 2
+                    fadeout    = 0.5
+                    fxtime     = 0.5
+                    holdtime   = 20
+                    x          = -1
+                    y          = 0.41	//	just beneath the w3 end screen
+                    spawnflags = 1
+                    color      = `221 51 51`
+                    message    = `Combat tanks will forever patrol the map and will not deploy a bomb into the hatch.`
+                })
+                hText.AcceptInput(`Display`, null, null, null)
+                hText.Kill()
 				
 				//	COMBAT TANK STUFF
 				
@@ -2354,7 +2431,7 @@ population
 				Speed	80
 				Name	"combattank|rocketpod|rocketpod"	//	tank's characteristics (type|weapon1|weapon2)
 				StartingPathTrackNode "tank_loop_mid_1"		//	for modded tanks, you place the *modded* path's name here
-				ClassIcon	tank_combat_rocket   	//	A rocketpod tank icon for modded servers
+				ClassIcon	tank_combat_rocket [$SIGSEGV] 	//	A rocketpod tank icon for modded servers
 			}
 			FirstSpawnOutPut	//	A Vscript for showing tank's HP in game, as text
 			{
@@ -2893,7 +2970,7 @@ population
 				Skin	1
 				Name	"combattank|minigun|minigun"		//	tank's characteristics (type|weapon1|weapon2)
 				StartingPathTrackNode "tank_loop_left_1"	//	for modded tanks, you place the *modded* path's name here
-				ClassIcon	tank_combat_minigun   	//	A minigun tank icon for modded servers
+				ClassIcon	tank_combat_minigun [$SIGSEGV] 	//	A minigun tank icon for modded servers
 			}
 			FirstSpawnOutPut	//	A Vscript for showing tank's HP in game, as text
 			{
@@ -2992,7 +3069,7 @@ population
 			SpawnCount	2
 			Where	spawnbot_right
 			WaitBeforeStarting	25
-			WaitBetweenSpawns	15
+			WaitBetweenSpawns	12
 			Squad
 			{
 				TFBot
@@ -3039,7 +3116,7 @@ population
 			Where	spawnbot_left
 			Where	spawnbot_right
 			WaitBeforeStarting	5
-			WaitBetweenSpawns	7
+			WaitBetweenSpawns	6
 			Support	1
 			TFBot
 			{

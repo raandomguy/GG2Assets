@@ -1,6 +1,7 @@
 #base robot_giant.pop
 #base robot_standard.pop
 #base reverse_timer_text_v3.pop
+#base overclock_cactus_general.pop
 //#base judge_restricts.pop
 
 // Mission by Claudz
@@ -164,8 +165,8 @@ Bread
 			"mod mini-crit airborne" 		0
 			"clip size bonus upgrade" 		2
 			"fire rate bonus" 				0
-			"damage penalty" 				4
-			"projectile lifetime" 			5 // remember to bump this up for bosses
+			"damage penalty" 				3.75
+			"projectile lifetime" 			5.5 // remember to bump this up for bosses
 			"override projectile type" 		13
 			"projectile spread angle mult" 	2
 			"penetrate teammates" 			1
@@ -274,7 +275,7 @@ Bread
             OriginalItemName "tf_weapon_rocketlauncher"
             "add damage type" 128
 			"remove damage type" 64
-            "damage bonus" 0.4
+            "damage bonus" 0.35
             "projectile gravity" 999
             "Projectile speed increased" 0.3
             "projectile spread angle penalty" 0 //3
@@ -301,7 +302,7 @@ Bread
             OriginalItemName "tf_weapon_rocketlauncher"
             "add damage type" 128
 			"remove damage type" 64
-            "damage bonus" 0.8
+            "damage bonus" 0.75
             "projectile gravity" 999
             "Projectile speed increased" 0.2
             "projectile spread angle penalty" 0 //3
@@ -425,39 +426,8 @@ Bread
             "dmg bonus vs buildings" "1.25"
             "mult dmg vs npc" 2.5
         }
-        // "sentry_minigun" {
-        //     OriginalItemName "Tomislav"
-        //     //"sniper fires tracer" 1
-        //     "spread penalty" "0.3"
-        //     "projectile spread angle penalty" "0.1"
-        //     "weapon spread bonus" 0.1
-        //     //"projectile penetration" 1
-        //     "projectile penetration heavy" "3"
-        //     //"shot penetrate all players" "1"
-        //     // "override projectile type" 13
-        //     //"mult_postfiredelay" "1.2"
-        // }
-        // "Piercing_Sentry"
-        // {
-        //     OriginalItemName "TF_WEAPON_PDA_ENGINEER_BUILD" //Item "Upgradeable TF_WEAPON_PDA_ENGINEER_BUILD"
-        //     "sentry bullet weapon" "sentry_minigun" //"TF_WEAPON_MINIGUN" 
-
-        // }
 
     }
-    // ExtraLoadoutItems
-	// {
-	// 	//AllowEquipOutsideSpawn 1 // Allow equipping items outside spawn
-	// 	Engineer // Player Class
-	// 	{
-	// 		PDA // Extended syntax, Item slot to use
-	// 		{
-	// 			Item  "Piercing_Sentry" // Item name, custom weapon names are available
-	// 			//Cost 100 // The cost of the weapon (default: 0)
-	// 		}
-
-	// 	}
-	// }
 
     ExtendedUpgrades
     {
@@ -1247,9 +1217,9 @@ Bread
             OnSpawnOutput
             {
                 Target "!parent"
-                Action "AddOutput"
-                Param  "targetname breadtank"
-                Delay  0.1
+                Action "RunScriptCode"
+                Param  "Bread.SetBreadTank(self)"
+                Delay  0.2
             }
             // OnSpawnOutput
             // {
@@ -2679,7 +2649,7 @@ Bread
                 "spawnflags" "1"
                 "wait" "0.8"
                 "OnTrigger" "!activator,bleedplayer,3,0,-1"
-                "OnTrigger" "!activatorRunScriptCodeself.TakeDamageEx(bread_bite_dmg, activator, null, Vector(), Vector(), 75, 0)0-1"
+                "OnTrigger" "!activatorRunScriptCodeself.TakeDamageEx(bread_bite_dmg, activator, null, Vector(), Vector(), 90, 0)0-1"
                 "OnTrigger" "!activator,$PlaySoundToSelf,=30|weapons\cleaver_hit_03.wav,0,-1"
                 "filtername" "filter_is_red_not_ubered"
                 "StartDisabled" "1"
@@ -2970,7 +2940,8 @@ Bread
                 "targetname" "erupt_relay"
                 "OnTrigger"  "digtimer,Enable,,0,-1"
                 "OnTrigger"  "backoff_indicator,Enable,,0,-1"
-                "OnTrigger"  "breadtank,SetSpeed,70,0,-1"
+                //"OnTrigger"  "breadtank,SetSpeed,70,0,-1"
+                "OnTrigger" "tf_gamerulesRunScriptCodeBread.SetBreadTankSpeed(`70`)0-1"
                 "Ontrigger"  "BreadSoundRoar,ForceSpawnAtEntityOrigin,bread_core,0,-1"
                 "OnTrigger"  "BreadSoundExplode,ForceSpawnAtEntityOrigin,bread_core,1.5,-1"
                 "OnTrigger"	"tf_gamerules,PlayVO,ambient\explosions\explode_5.wav,1.45,1"
@@ -2991,7 +2962,8 @@ Bread
                 "OnTrigger"  "dustimpact,stop,,9,-1"
                 "OnTrigger"  "erupt_relayRunScriptCodeBread.EruptAttack()1.5-1"
                 "OnTrigger"  "backoff_indicator,Disable,,6,-1"
-                "OnTrigger"  "breadtank,SetSpeed,110,4,-1"
+                //"OnTrigger"  "breadtank,SetSpeed,110,4,-1"
+                "OnTrigger" "tf_gamerulesRunScriptCodeBread.SetBreadTankSpeed(`110`)4-1"
                 "OnTrigger"  "moreTentacleBurstRelay,RunScriptCode,Bread.SummonMeleeTentacles(),3,-1"
 
                 "OnTrigger"  "weakrelay*,trigger,,0,-1"
@@ -3003,7 +2975,8 @@ Bread
                 "OnTrigger"  "disable_bite,trigger,,0,-1"
                 // "OnTrigger"  "breadboss,Disable,,0,-1"
                 // "OnTrigger"  "breadboss,$SetSolidFlags,4,0,-1"
-                "OnTrigger"  "breadtank,SetSpeed,0,0,-1"
+                //"OnTrigger"  "breadtank,SetSpeed,0,0,-1"
+                "OnTrigger" "tf_gamerulesRunScriptCodeBread.SetBreadTankSpeed(`0`)0-1"
                 "OnTrigger"  "makeNonsolid,trigger,,0,-1"
                 "OnTrigger"  "killbreadtent*,trigger,,0,-1"
                 "Ontrigger"  "BreadSoundConcrete,ForceSpawnAtEntityOrigin,bread_core,2,-1"
@@ -3011,7 +2984,8 @@ Bread
                 //"OnTrigger"  "bread_rotate_relay,Disable,,0,-1"
                 //"OnTrigger"  "bread_core,$StopRotateTowards,,0.2,-1"
                 "OnTrigger"  "breadboss,$SetKey$renderfx,6,2.7,-1"
-                "OnTrigger"  "breadtank,SetSpeed,150,2.0,-1"
+                //"OnTrigger"  "breadtank,SetSpeed,150,2.0,-1"
+                "OnTrigger" "tf_gamerulesRunScriptCodeBread.SetBreadTankSpeed(`150`)2.0-1"
                 "OnTrigger"  "digdown_relayRunScriptCodeBread.EruptReverse()0.0-1"
                 //"OnTrigger"  "digdown_relayRunScriptCodeBread.DigDown()4-1"
                 "OnTrigger"  "digtimer,Enable,,0,-1"
@@ -3057,7 +3031,8 @@ Bread
             {
                 "targetname" "phase_2_start_relay"
                 "OnTrigger" "digdown_relay,trigger,,0.0,-1"
-                "OnTrigger"  "breadtank,SetSpeed,150,2,-1"
+                //"OnTrigger"  "breadtank,SetSpeed,150,2,-1"
+                "OnTrigger" "tf_gamerulesRunScriptCodeBread.SetBreadTankSpeed(`150`)2-1"
 
                 "OnTrigger" "bread_phase_1_timer,Disable,,0.0,-1"
                 "OnTrigger" "erupt_relay,Disable,,0,-1"
@@ -3072,7 +3047,8 @@ Bread
                 "OnTrigger" "bite_relay,Enable,,5,-1"
 
                 "OnTrigger" "erupt_relay,trigger,,3.5,-1"
-                "OnTrigger"  "breadtank,kill,,3,-1"
+                //"OnTrigger"  "breadtank,kill,,3,-1"
+                "OnTrigger" "tf_gamerulesRunScriptCodeBread.KillBreadTank()3-1"
                 "OnTrigger"  "cap_hatch_destroy_animated_prop,Enable,,4.5,-1"
                 "OnTrigger"  "cap_hatch_destroy_animated_prop,SetAnimation,explode,4.6,-1"
                 "OnTrigger"  "cap_hatch_destroy_animated_prop,SetAnimation,idle,6,-1"
@@ -3435,7 +3411,7 @@ Bread
                 "filtername" "filter_is_player"
                 "OnStartTouch" "!activatorRunScriptCodeself.ApplyAbsVelocityImpulse(Vector(0,0,700))0.1-1"
                 "OnStartTouch" "!activatorRunScriptCodeself.EmitSound(`General.banana_slip`)0.1-1"
-                "OnStartTouch" "!activatorRunScriptCodeself.TakeDamage(65,1,self)0.1-1"
+                "OnStartTouch" "!activatorRunScriptCodeself.TakeDamage(75,1,self)0.1-1"
 
                 "wait" "0.1"
                 "StartDisabled" "1"
@@ -5699,7 +5675,7 @@ Bread
                 "projectile speed decreased" 0.5 // 0.4
                 "fire rate bonus" 0.3
                 "attach particle effect" 250
-                "fire rate penalty" 4
+                "fire rate penalty" 3.3
                 "mod projectile heat aim time" 0.2
                 "mod projectile heat no predict target speed" 1
                 "mod projectile heat aim start time" 0.50
@@ -5879,7 +5855,7 @@ Bread
 			{
 				ItemName "The Bread Bite"
 				"mod_maxhealth_drain_rate" 0
-                "move speed bonus" 0.85
+                "move speed bonus" 0.75
 			}
             ItemAttributes
             {
@@ -5999,7 +5975,7 @@ Bread
                 //"blast radius increased" 1.15
                 "Projectile speed increased" 0.55
                 "projectile spread angle penalty" 3
-                "heal on hit for rapidfire" 444
+                "heal on hit for rapidfire" 222
                 "no self blast dmg" 1
                 "penetrate teammates" 1
                 "custom projectile model" "models\weapons\c_models\c_bread\c_bread_plainloaf.mdl"
@@ -6055,6 +6031,7 @@ Bread
                 "fire rate bonus" 0.2
                 "faster reload rate" 0.3
                 "cancel falling damage" 1
+                "move speed bonus"	0.6
             }
             ItemAttributes
             {
@@ -6267,7 +6244,7 @@ Bread
         RunForThisManyWaves 1
         CooldownTime        40
         DesiredCount        2
-        InitialCooldown     100
+        InitialCooldown     60
         TFBot
         {
             Template T_TFBot_Spy_Bread
@@ -6282,7 +6259,7 @@ Bread
         Where               spawnbot_mission_spy
         BeginAtWave         2
         RunForThisManyWaves 1
-        CooldownTime        70
+        CooldownTime        60
         DesiredCount        1
         InitialCooldown     80
     
@@ -6457,9 +6434,9 @@ Bread
             Name "w1a1"
             WaitforAllDead "w1c2"
             Where spawnbot
-            TotalCount 15
-            MaxActive 5
-            SpawnCount 5
+            TotalCount 12
+            MaxActive 4
+            SpawnCount 4
             WaitBeforeStarting 10
             WaitBetweenSpawns 10
             TotalCurrency 50
@@ -6489,12 +6466,15 @@ Bread
                     Template T_TFBot_Pyro_Backburner
                     MoveBehindEnemy 1
                     Tag bot_flank
+                    Action Mobber
+
                 }  
                 TFBot
                 {
                     Template T_TFBot_Pyro_Backburner
                     MoveBehindEnemy 1
                     Tag bot_flank
+                    Action Mobber
                     Attributes AlwaysFireWeapon
                 }  
             }
@@ -6523,6 +6503,7 @@ Bread
             Name "w1b1"
             WaitforAllDead "w1a1"
             Where spawnbot
+            Where spawnbot_flank
             TotalCount 25
             MaxActive 5
             SpawnCount 5
@@ -6558,12 +6539,12 @@ Bread
         WaveSpawn
         {
             Name "w1b2"
-            waitforallspawned "w1a1"
+            WaitForAllDead "w1a1"
             Where spawnbot_side
             TotalCount 4
             MaxActive 2
             SpawnCount 1
-            WaitBeforeStarting 12
+            WaitBeforeStarting 6
             WaitBetweenSpawns 15
             TotalCurrency 50
         
@@ -6619,7 +6600,7 @@ Bread
             MaxActive 3
             SpawnCount 3
             WaitBeforeStarting 12
-            WaitBetweenSpawns 11
+            WaitBetweenSpawns 8
             TotalCurrency 25
             RandomChoice
             {
@@ -6652,7 +6633,7 @@ Bread
             MaxActive 6
             SpawnCount 3
             WaitBeforeStarting 10
-            WaitBetweenSpawns 18
+            WaitBetweenSpawns 11
             TotalCurrency 50
             TFBot
             {
@@ -6740,7 +6721,7 @@ Bread
         WaveSpawn
         {
             Name "w1es"
-            WaitForAllSpawned "w1b2"
+            WaitForAllSpawned "w1a1"
             Where spawnbot_void1
             Where spawnbot_void2
             Where spawnbot_void3
@@ -6996,8 +6977,8 @@ Bread
             WaitForAllDead "w1d2"
             Where spawnbot_invasion
             TotalCount 16
-            MaxActive 8
-            SpawnCount 4
+            MaxActive 6
+            SpawnCount 3
             WaitBeforeStarting 8
             WaitBetweenSpawns 17
             TotalCurrency 25
@@ -7036,10 +7017,10 @@ Bread
             TotalCount 1
             MaxActive 1
             SpawnCount 1
-            WaitBeforeStarting 12
+            WaitBeforeStarting 17
             WaitBetweenSpawns 0
             TotalCurrency 150
-            FirstSpawnWarningSound mvm\giant_heavy\giant_heavy_entrance.wav
+            
 
             TFBot
             {
@@ -7058,6 +7039,7 @@ Bread
             WaitBeforeStarting 12
             WaitBetweenSpawns 0
             TotalCurrency 150
+            FirstSpawnWarningSound mvm\giant_heavy\giant_heavy_entrance.wav
             // FirstSpawnOutput                                                                                                                                                            
 			// {
 			// 	 Target gamerules                                            
@@ -7091,8 +7073,8 @@ Bread
             WaitForAllSpawned "w1e1b"
             Where spawnbot_invasion
             TotalCount 20
-            MaxActive 4
-            SpawnCount 4
+            MaxActive 2
+            SpawnCount 2
             WaitBeforeStarting 8
             WaitBetweenSpawns 15
             TotalCurrency 0
@@ -7163,7 +7145,8 @@ Bread
                 IncludeScript(`bread_logic`)
                 IncludeScript(`trace_filter`)
 
-                ClientPrint(null,3,`\x078ff347 This wave uses music. You can control music volume in game settings.`)
+                ClientPrint(null,3,`\x078ff347 Reminder: this mission uses custom models and music. Make sure you have enabled downloads in options (Allow all custom files then rejoin)`)
+                ClientPrint(null,3,`\x078ff347 You will see errors if you don't. You can control music volume in game settings.`)
 
                 EntFire(`music_*`,`StopSound`)
                 TextualTimer.SetParams({
@@ -7184,6 +7167,10 @@ Bread
                     {
                         //EntFire(`tf_gamerules`, `PlayVO`, `vo/announcer_ends_60sec.mp3`, 0, null)
                         EntFire(`music_phase3`, `PlaySound`, null, 0, null)
+                    }
+                    `30` : function()
+                    {
+                        Bread.DesperateTimes()
                     }
                 })
             "
@@ -7209,37 +7196,28 @@ Bread
                 NoFormation 1
                 TFBot
                 {
-                    Item "Bread Biter"
-                    //Template T_TFBot_Soldier_Buff_Banner
                     Class Soldier
-                    Name "Buff Soldier"
                     Skill Normal
-                    ClassIcon soldier_buff
-                    //Attributes SpawnWithFullCharge
-                    Item "The Buff Banner"
+                    Item "Bread Biter"
+                    Template T_TFBot_Soldier_Buff_Banner
+                    MaxVisionRange 1600
+                    CharacterAttributes
+                    {
+                        "increase buff duration"	2.0
+                    }
                 }
                 TFBot
                 {
-                    Item "Bread Biter"
-                    //Template T_TFBot_Soldier_Buff_Banner
                     Class Soldier
-                    Name "Buff Soldier"
                     Skill Normal
-                    ClassIcon soldier_buff
-                    //Attributes SpawnWithFullCharge
-                    Item "The Buff Banner"
+                    Item "Bread Biter"
+                    Template T_TFBot_Soldier_Buff_Banner
+                    MaxVisionRange 1600
+                    CharacterAttributes
+                    {
+                        "increase buff duration"	2.0
+                    }
 
-                }
-                TFBot
-                {
-                    Item "Bread Biter"
-                    //Template T_TFBot_Soldier_Buff_Banner
-                    Class Soldier
-                    Name "Buff Soldier"
-                    Skill Normal
-                    ClassIcon soldier_buff
-                    //Attributes SpawnWithFullCharge
-                    Item "The Buff Banner"
                 }
                 TFBot
                 {
@@ -7247,12 +7225,30 @@ Bread
                     Skill Hard
                     Item "Bread Biter"
                     Template T_TFBot_Soldier_Buff_Banner
+                    MaxVisionRange 1600
+                    CharacterAttributes
+                    {
+                        "increase buff duration"	2.0
+                    }
+                }
+                TFBot
+                {
+                    Class Soldier
+                    Skill Hard
+                    Item "Bread Biter"
+                    Template T_TFBot_Soldier_Buff_Banner
+                    MaxVisionRange 1600
+                    CharacterAttributes
+                    {
+                        "increase buff duration"	2.0
+                    }
                 }
                 TFBot
                 {
                     Class Pyro
                     ClassIcon 	pyro_reflect
-                    Skill Normal
+                    MaxVisionRange 1600
+                    Skill Hard
                     Item "Bread Biter"
                     Item "Traffic Cone"
                     Name "Reflective Toaster"
@@ -7261,7 +7257,8 @@ Bread
                 {
                     Class Pyro
                     ClassIcon 	pyro_reflect
-                    Skill Normal
+                    MaxVisionRange 1600
+                    Skill Hard
                     Item "Bread Biter"
                     Item "Traffic Cone"
                     Name "Reflective Toaster"
@@ -7313,11 +7310,11 @@ Bread
             Name "w2b1"
             WaitforAllDead "w2a1"
             Where spawnbot_flank
-            TotalCount 9
+            TotalCount 12
             MaxActive 6
             SpawnCount 3
             WaitBeforeStarting 3
-            WaitBetweenSpawns 10
+            WaitBetweenSpawns 9
             TotalCurrency 50
         
             TFBot
@@ -7332,9 +7329,9 @@ Bread
             Name "w2b2"
             WaitForAllSpawned "w2a2"
             Where spawnbot_side
-            TotalCount 6
-            MaxActive 6
-            SpawnCount 3
+            TotalCount 8
+            MaxActive 8
+            SpawnCount 4
             WaitBeforeStarting 25
             WaitBetweenSpawns 15
             TotalCurrency 150
@@ -7372,6 +7369,7 @@ Bread
                 }
                 TFBot { Template T_TFBot_Medic_QuickUber}
                 TFBot { Template T_TFBot_Medic_QuickUber}
+                TFBot { Template T_TFBot_Medic_QuickUber}
             }
         }
         WaveSpawn
@@ -7389,18 +7387,14 @@ Bread
             TFBot
             {
                 Class Soldier
-                // Skill Hard
-                // Item "Bread Biter"
-                // Template T_TFBot_Soldier_Extended_Buff_Banner
-                MaxVisionRange 1600
-                Item "Bread Biter"
-                //Template T_TFBot_Soldier_Buff_Banner
-                Class Soldier
-                Name "Buff Soldier"
                 Skill Normal
-                ClassIcon soldier_buff
-                Attributes SpawnWithFullCharge
-                Item "The Buff Banner"
+                Item "Bread Biter"
+                Template T_TFBot_Soldier_Buff_Banner
+                MaxVisionRange 1600
+                CharacterAttributes
+                {
+                    "increase buff duration"	2.0
+                }
             }
         }
         WaveSpawn
@@ -7677,11 +7671,11 @@ Bread
             WaitForAllDead "w2d1"
             Where spawnbot_flank
             Randomspawn 1
-            TotalCount 15
+            TotalCount 25
             MaxActive 5
             SpawnCount 5
             WaitBeforeStarting 5
-            WaitBetweenSpawns 10
+            WaitBetweenSpawns 6
             TotalCurrency 50
             //support limited
             Squad 
@@ -7712,11 +7706,13 @@ Bread
                 {
                     Template    T_TFBot_Scout_Cleaver
                     ClassIcon Scout
+                    MaxVisionRange 1600
                 }
                 TFBot
                 {
                     Template    T_TFBot_Scout_Cleaver
                     ClassIcon Scout
+                    MaxVisionRange 1600
                 }
             }  
         }
@@ -7787,7 +7783,7 @@ Bread
                     {
                         ItemName "TF_WEAPON_MEDIGUN"
                         "ubercharge rate bonus" 6.5
-                        "uber duration bonus" -5
+                        "uber duration bonus" -4
                     }
                     MaxVisionRange 2000
                 }
@@ -7798,7 +7794,7 @@ Bread
                     {
                         ItemName "TF_WEAPON_MEDIGUN"
                         "ubercharge rate bonus" 6.5
-                        "uber duration bonus" -5
+                        "uber duration bonus" -4
                     }
                     MaxVisionRange 2000
                 }
@@ -7809,7 +7805,7 @@ Bread
             Name "w2e2"
             WaitForAllDead "w2d2"
             Where spawnbot_flank
-            TotalCount 9
+            TotalCount 12
             MaxActive 3
             SpawnCount 3
             WaitBeforeStarting 3
@@ -7855,7 +7851,7 @@ Bread
             {
                 Target "gamerules"
                 Action "RunScriptCode"
-                Param "ClientPrint(null, 3, `\x078ff347 Hint: Projectile penetration cuts through the thickness of bread`)"
+                Param "ClientPrint(null, 3, `\x078ff347 Hint: Fire, Explosions, and Projectile Penetration cuts through the thickness of bread`)"
             }
 		} //
         WaveSpawn // Dummy
@@ -7906,7 +7902,7 @@ Bread
             FirstSpawnWarningSound "vo\mvm_get_to_upgrade01.mp3"
             FirstSpawnOutput
             {
-                Target "spawnbot_mission_spy"
+                Target "spawnbot_mission_temp" //"spawnbot_mission_spy"
                 Action "Disable"
             }
         }
@@ -7916,11 +7912,11 @@ Bread
 			WaitForAllDead "w2e2"
 			WaitBeforeStarting 50
             FirstSpawnWarningSound misc/halloween/clock_tick.wav
-            FirstSpawnOutput
-            {
-                Target "spawnbot_mission_temp"
-                Action "Disable"
-            }
+            // FirstSpawnOutput
+            // {
+            //     Target "spawnbot_mission_temp"
+            //     Action "Disable"
+            // }
 		}
         WaveSpawn
 		{
@@ -8031,7 +8027,7 @@ Bread
                 SpawnTemplate DummyTankCues
                 ClassIcon 	heavy_breadbite_nys_giant
 				Health 999999
-				Name breadtank
+				Name "breadtank"
 				Speed 0
 				StartingPathTrackNode tank_path_1
                 Scale 0.1
@@ -8072,7 +8068,7 @@ Bread
             MaxActive 4
             SpawnCount 4
             WaitBeforeStarting 35
-            WaitBetweenSpawns 11
+            WaitBetweenSpawns 12
             TotalCurrency 25
             //Support Limited
             TFBot
@@ -8081,6 +8077,7 @@ Bread
                 Skill Hard
                 Item "Bread Biter"
                 Action Mobber
+                MaxVisionRange 1600
             }
         }
         WaveSpawn
@@ -8092,7 +8089,7 @@ Bread
             MaxActive 2
             SpawnCount 1
             WaitBeforeStarting 8
-            WaitBetweenSpawns 18
+            WaitBetweenSpawns 20
             TotalCurrency 150
             Support 1
             RandomChoice {
@@ -8360,7 +8357,7 @@ Bread
                 Class Pyro
                 Name "bready bye"
                 Skill Expert
-                Health 1200
+                Health 1500
                 UseBestWeapon 1
                 Scale 1.5
                 //WeaponRestrictions PrimaryOnly
@@ -8412,7 +8409,7 @@ Bread
             MaxActive 4
             SpawnCount 2
             WaitBeforeStarting 97
-            WaitBetweenSpawns 11
+            WaitBetweenSpawns 12
             TotalCurrency 125
             Support 1
             RandomChoice
@@ -8458,7 +8455,7 @@ Bread
             MaxActive 4
             SpawnCount 2
             WaitBeforeStarting 105
-            WaitBetweenSpawns 15
+            WaitBetweenSpawns 16
             TotalCurrency 125
             Support 1
             RandomChoice

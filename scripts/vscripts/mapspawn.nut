@@ -82,6 +82,12 @@ function __potato::OnEntitiesSpawned() {
 		}
 	}
 	delete ScriptsBuffer
+
+	// Suppress CVar change notifications for these which are always set by the game for MvM.
+	if (NetProps.GetPropBool(hGamerules, "m_bPlayingMannVsMachine")) {
+		Convars.SetValue("mp_tournament", 1)
+		Convars.SetValue("mp_tournament_stopwatch", 0)
+	}
 }
 
 /**
@@ -165,7 +171,7 @@ EntFireByHandle(::__potato.hWorldspawn, "RunScriptCode",
 // They should probably become more integrated with this script eventually.
 try IncludeScript("stringtofile.nut") catch (_) {}
 try IncludeScript("contracts.nut") catch (_) {}
-// try IncludeScript("vpi/vpi.nut") catch (_) {}
+try IncludeScript("vpi/vpi.nut") catch (_) {}
 // The modules here can be found in the "vscripts/potato" folder.
 // They are not dependent on each other.
 

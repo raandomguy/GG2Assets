@@ -15,7 +15,8 @@ RobotLimit 45 //reconfigurer
 NoRedBotsRandomCrit 1	
 BotsUsePlayerTeleporters 0
 CustomNavFile mvm_meltdown_rc5_whurr //thank you whurr
-FixWavespawnReserveSlotsOnDisabledSpawnbot 1 // Fix wavespawn reserving slots even when spawnbot is disabled 	
+FixWavespawnReserveSlotsOnDisabledSpawnbot 1 // Fix wavespawn reserving slots even when spawnbot is disabled
+//StuckTimeMultiplier 3.5 	
 
 PrecacheSound "metal_popper_giant_mode_active_1.mp3"
 PrecacheSound "metal_popper_giant_mode_active_2.mp3"
@@ -31,7 +32,6 @@ PrecacheModel	"models/bots/boss_bot/combat_tank/combat_tank_minigun.mdl"
 PrecacheModel	"models/bots/boss_bot/combat_tank/combat_tank_rocketpod.mdl"
 PrecacheModel	"models/bots/boss_bot/combat_tank/combat_tank_rocket.mdl"
 PrecacheModel 	"models/bots/sniper_boss/bot_sniper_boss.mdl"
-PrecacheModel	"models/props_gameplay/cap_circle_320.mdl"
 
 Templates
 {
@@ -298,6 +298,7 @@ Templates
 				"melee range multiplier" 1.35
 				"hand scale" 1.4
 				"switch from wep deploy time decreased" 0.5
+				"melee cleave attack" 1 //fuck you shield
 				}
 				CharacterAttributes
 				{
@@ -375,6 +376,7 @@ Templates
 				"melee range multiplier" 1.35
 				"hand scale" 1.4	
 				"switch from wep deploy time decreased" 0.5
+				"melee cleave attack" 1 //fuck you shield
 				}				
 				CharacterAttributes
 				{

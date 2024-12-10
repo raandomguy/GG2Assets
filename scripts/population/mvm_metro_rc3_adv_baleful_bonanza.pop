@@ -21,8 +21,8 @@ WaveSchedule
     NoCritPumpkin			1 
 	NoHolidayPickups		1
     //Sigsegv mod-exclusive
-	MedigunShieldDamage 1   //Shield Medics can now harm human teams
-    ItemAttributes   //Adds attributes to specified item given to players
+	MedigunShieldDamage 1 [$SIGSEGV] //Shield Medics can now harm human teams
+    ItemAttributes [$SIGSEGV] //Adds attributes to specified item given to players
 	{
 		ItemName "The Gas Passer"
 		"attach particle effect" 12 //Massed Flies Unusual effect
@@ -133,7 +133,7 @@ WaveSchedule
 			Item "TF_WEAPON_SPELLBOOK"
             Item "The Panisher"
 			AlwaysGlow 1   //Bot always glows in the map like the bomb
-            RocketCustomParticle	flare_glow   //Rockets will now glow like flares
+            RocketCustomParticle	flare_glow [$SIGSEGV] //Rockets will now glow like flares
 			ItemAttributes
 			{
 				ItemName "The Black Box"
@@ -185,7 +185,7 @@ WaveSchedule
                 "attach particle effect" 149 //Chromatica Unusual effect
                 "set item tint rgb" 8208497 //A Deep Commitment to Purple paint
             }
-			WeaponSwitch  
+			WeaponSwitch [$SIGSEGV]
 			{
 				Delay 0
 				Cooldown 8.5
@@ -194,7 +194,7 @@ WaveSchedule
 				Type "Secondary"
 				IfHealthAbove 20001
 			}
-			WeaponSwitch  
+			WeaponSwitch [$SIGSEGV]
 			{
 				Delay 18
 				Cooldown 18
@@ -203,7 +203,7 @@ WaveSchedule
 				Type "Primary"
 				IfHealthAbove 20001
 			}
-			WeaponSwitch  
+			WeaponSwitch [$SIGSEGV]
 			{
 				Delay 0
 				Repeats 0
@@ -303,7 +303,7 @@ WaveSchedule
 		}
         T_TFBot_Giant_Pyro_Fury
         {
-            UseMeleeThreatPrioritization 1   //Sigsegv-mod exclusive; will prioritize closest target
+            UseMeleeThreatPrioritization 1 [$SIGSEGV] //Sigsegv-mod exclusive; will prioritize closest target
             ClassIcon pyro_giant
             Name "Giant Dragon's Fury Pyro"
             Health  3000
@@ -317,7 +317,7 @@ WaveSchedule
             Item "The Cauterizer's Caudal Appendage"
             Item "The Monster's Stompers"
             Attributes  MiniBoss
-            Spell  
+            Spell [$SIGSEGV]
             {
                 Type "Fireball"
                 Delay 5 //Will not cast this spell in the first 5 seconds
@@ -430,7 +430,7 @@ WaveSchedule
                 "max health additive bonus" 3125
                 "deploy time increased" 0.5
 			}
-            Spell  
+            Spell [$SIGSEGV]
             {
                 Type "Pumpkin MIRV" 
                 Delay 0 //Will not cast this spell in the first 2 seconds
@@ -438,7 +438,7 @@ WaveSchedule
                 IfSeeTarget 1
                 Charges 1
             }
-            Spell  
+            Spell [$SIGSEGV]
             {
                 Type "Ball O' Bats"
                 Delay 0 
@@ -495,8 +495,8 @@ WaveSchedule
         T_TFBot_Chief_Demoman_DonkPush //taken from my intermediate Brugge mission Sparkbag Subroutine; he gronk, he stronk, but most importantly he donk
 		{
             //Sigsegv-mod exclusive; this bot will lead cannonballs and aim at enemy's feet for increased accuracy
-			AimLeadProjectileSpeed 1453  
-			AimAt Feet   
+			AimLeadProjectileSpeed 1453 [$SIGSEGV]
+			AimAt Feet [$SIGSEGV] 
 			Class Demoman
 			Name "Donkin' Dynamo"
 			ClassIcon demo_hybrid_3_giant
@@ -569,8 +569,8 @@ WaveSchedule
         T_TFBot_Medic_Overheal
 		{
 			//Sigsegv-mod exclusive; this bot will lead syringes and aim at enemy's head for increased accuracy
-			AimLeadProjectileSpeed 1000  
-			AimAt Head   
+			AimLeadProjectileSpeed 1000 [$SIGSEGV]
+			AimAt Head [$SIGSEGV] 
 			Class Medic
 			Name "Overhealer Medic"
 			Skill Expert
@@ -658,7 +658,7 @@ WaveSchedule
 			ClassIcon sentry_buster
 			Attributes MiniBoss
 			Attributes	DisableDodge
-            ExtAttr AlwaysFireWeaponAlt   //Sigsegv mod-exclusive
+            ExtAttr AlwaysFireWeaponAlt [$SIGSEGV] //Sigsegv mod-exclusive
 			WeaponRestrictions MeleeOnly
 			Item  "the wrap assassin"
 			Item "The Wing Mann"	
@@ -721,7 +721,7 @@ WaveSchedule
 			Target	wave_finished_relay
 			Action	Trigger
 		}
-        Explanation   //Sigsegv mod-exclusive; displays a message before a wave starts
+        Explanation [$SIGSEGV] //Sigsegv mod-exclusive; displays a message before a wave starts
 		{
 			Line "{green}////////////////////"
 			Line "{yellow}NOTICE"
@@ -1134,7 +1134,7 @@ WaveSchedule
                 NoWaitForFormation 1
                 TFBot
                 {
-                    UseMeleeThreatPrioritization 1   //Sigsegv-mod exclusive; will prioritize closest target
+                    UseMeleeThreatPrioritization 1 [$SIGSEGV] //Sigsegv-mod exclusive; will prioritize closest target
                     ClassIcon	heavy_giant
                     Health	5000
                     Name	"Giant Crit-on-Kill Heavy"
@@ -1217,11 +1217,11 @@ WaveSchedule
             Name	wave1e
             WaitForAllDead wave1d
             TotalCurrency	100
-            TotalCount	5
-            MaxActive	5
+            TotalCount	3
+            MaxActive	3
             SpawnCount	1
             WaitBeforeStarting	10
-            WaitBetweenSpawns   9
+            WaitBetweenSpawns   12
             Where	spawnbot_right
             TFBot
             {
@@ -1295,7 +1295,7 @@ WaveSchedule
                 Name "Fireball Caster Pyro"
                 Item "TF_WEAPON_SPELLBOOK"
                 Item "The Crone's Dome"
-                Spell  
+                Spell [$SIGSEGV]
                 {
                     Type "Fireball"
                     Delay 5 //Will not cast this spell in the first 5 seconds
@@ -1699,7 +1699,7 @@ WaveSchedule
                 }
                 TFBot
                 {
-                    UseMeleeThreatPrioritization 1   //Sigsegv-mod exclusive; will prioritize closest target
+                    UseMeleeThreatPrioritization 1 [$SIGSEGV] //Sigsegv-mod exclusive; will prioritize closest target
                     Class Heavyweapons
                     Name "Giant Deflector Heater Heavy"
                     ClassIcon heavy_giant
@@ -1777,7 +1777,7 @@ WaveSchedule
                 }
                 TFBot
                 {
-                    UseMeleeThreatPrioritization 1   //Sigsegv-mod exclusive; will prioritize closest target
+                    UseMeleeThreatPrioritization 1 [$SIGSEGV] //Sigsegv-mod exclusive; will prioritize closest target
                     Class Heavyweapons
                     Name "Giant Deflector Heater Heavy"
                     ClassIcon heavy_giant
@@ -1883,7 +1883,7 @@ WaveSchedule
                 Health  275
                 Class Engineer
                 Skill Expert
-                Action FetchFlag   //Forces bot to grab the bomb
+                Action FetchFlag [$SIGSEGV] //Forces bot to grab the bomb
                 Item "The Rescue Ranger"			
                 WeaponRestrictions PrimaryOnly
                 Attributes AlwaysCrit
@@ -2027,7 +2027,7 @@ WaveSchedule
                 Name "Giant Rapid Burst Sorcerer"
                 Item "TF_WEAPON_SPELLBOOK"
                 Item "The Crone's Dome"
-                Spell  
+                Spell [$SIGSEGV]
                 {
                     Type "Healing Aura"
                     Delay 0 
@@ -2232,7 +2232,7 @@ WaveSchedule
                     }
                     Item "TF_WEAPON_SPELLBOOK"
                     Item "The Crone's Dome"
-                    Spell  
+                    Spell [$SIGSEGV]
                     {
                         Type "Fireball"
                         Delay 5 //Will not cast this spell in the first 5 seconds

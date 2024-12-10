@@ -668,7 +668,7 @@ const TIMER_INTERVAL = 0.2352941176470588; // ((1/60) / 255).
 		scope.Preserved.warpcooldown = Time() + WARP_TIME
 	}
 	
-	if (buttons & Constants.FButtons.IN_ATTACK)
+	if (buttons & Constants.FButtons.IN_ATTACK && scope.Preserved.isenteringlevel == 0)
 	{
 		if (scope.Preserved.zombie_type <= 3 && Preserved.attackcooldown < Time())
 		{

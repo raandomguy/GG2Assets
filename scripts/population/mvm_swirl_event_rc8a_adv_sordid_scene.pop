@@ -91,6 +91,34 @@ WaveSchedule
 	
 	Templates
 	{
+		T_TFGateBot_Heavy_Easy_That_Does_Not_Get_Perma_Crits_On_Gate_Cap_Why_Is_This_A_Thing
+		{
+			Class Heavy
+
+			EventChangeAttributes
+			{
+				Default
+				{
+					BehaviorModifiers push			// having these will cause bots to run towards gates
+					Attributes IgnoreFlag			// having these will cause bots to run towards gates
+					Tag nav_prefer_gate1_flank 		// having these will cause bots to run towards gates
+					Tag bot_gatebot 				// having these will cause bots to run towards gates
+
+					Item "MvM GateBot Light Heavy"
+					Skill Easy
+				}
+				RevertGateBotsBehavior
+				{
+					Item "MvM GateBot Light Heavy"
+					ItemAttributes               // turn off light hat
+					{
+						ItemName "MvM GateBot Light Heavy"
+						"item style override" 1
+					}
+					Skill Easy
+				}
+			}
+		}
 
 		T_TFBot_Large_Soldier_Hyper
 		{
@@ -1448,7 +1476,7 @@ WaveSchedule
 				NextSpawnerClone 2
 				TFBot
 				{
-					Template T_TFGateBot_Heavy_Easy
+					Template T_TFGateBot_Heavy_Easy_That_Does_Not_Get_Perma_Crits_On_Gate_Cap_Why_Is_This_A_Thing
 				}
 			}
 		}

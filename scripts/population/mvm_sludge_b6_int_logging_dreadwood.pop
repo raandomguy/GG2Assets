@@ -24,6 +24,7 @@ population
     PrecacheModel models/weapons/c_models/c_broken_steel/c_broken_steel.mdl
     PrecacheModel models/weapons/c_models/c_heavy_bot_arms.mdl
     PrecacheSound weapons/shotgun/shotgun_reload1.wav
+	UpgradeStationKeepWeapons 1	// Needed for nice upgrading of Medizinische Schrotflinte
 	ExtraSpawnPoint
     {
         Name "spawnbot_skele"
@@ -80,6 +81,40 @@ population
 	}
 	PointTemplates
 	{
+		OnEquipMedicShotgun
+		{
+			OnSpawnOutput
+			{
+				Target !parent
+				Action RunScriptCode
+				Param "
+					# Find and kill placeholder weapon.
+					for (local i = 0; i < 7; ++i) {
+						local placeholder = NetProps.GetPropEntityArray(self, `m_hMyWeapons`, i)
+						if (placeholder == null || placeholder.GetName() != `tf_weapon_syringegun_medic`) continue
+						placeholder.Kill()
+						break
+					}
+
+					# Make a TF_WEAPON_SHOTGUN_PRIMARY
+					local wep = Entities.CreateByClassname(`tf_weapon_shotgun_primary`)
+					NetProps.SetPropInt(wep, `m_AttributeManager.m_Item.m_iItemDefinitionIndex`, 9)
+					NetProps.SetPropBool(wep, `m_AttributeManager.m_Item.m_bInitialized`, true)
+					NetProps.SetPropBool(wep, `m_bValidatedAttachedEntity`, true)
+					wep.SetTeam(self.GetTeam())
+					wep.DispatchSpawn()
+
+					# Add custom attributes; original animations must be present before being granted to the player.
+					wep.AddAttribute(`use original class weapon animations`, 1, -1)
+					wep.AddAttribute(`max health additive penalty`, -25, -1)
+
+					self.Weapon_Equip(wep)
+					# VScript does not allow adding string attributes.
+					self.AcceptInput(`$AddItemAttribute`, `custom weapon name|Medizinische Schrotflinte|TF_WEAPON_SHOTGUN_PRIMARY`, null, null)
+					self.Weapon_Switch(wep)
+				"
+			}
+		}
 	    coolbosstext
         {
             game_text
@@ -297,6 +332,38 @@ population
 					Item "Medic Mask"
 					Item "prussian pickelhaube"
 		}
+		Warbird_Rapid_Soldier
+		{
+			Class Soldier
+			Name	"Giant Rapid Fire Soldier"
+			ClassIcon	soldier_spammer
+			Health 3800
+			Skill Expert
+			WeaponRestrictions PrimaryOnly
+			Scale	1.8
+			MaxVisionRange	1000
+			Attributes MiniBoss
+
+			Item	"warbird_rocketlauncher_warhawk"
+			Item	"Soldier's Stash"
+
+			ItemAttributes
+			{
+				ItemName	warbird_rocketlauncher_warhawk
+				"clip size bonus"	2.5
+				"fire rate bonus"	0.5
+				"faster reload rate"	-0.8
+			}
+
+			CharacterAttributes
+			{
+				"move speed bonus"	0.5
+				"damage force reduction" 0.4
+				"airblast vulnerability multiplier" 0.4
+				"override footstep sound set" 3
+				"Projectile speed increased" 0.65
+			}
+		}
 	}
 	CustomWeapon
         {
@@ -344,13 +411,20 @@ population
 			"speed_boost_on_kill" 3
             "custom item model" "models\workshop\weapons\c_models\c_roughrider\c_pep_scattergun.mdl"
         }
+
 	CustomWeapon
-	    {
-		     Name "Medizinische Schrotflinte"
-			 OriginalItemName "tf_weapon_shotgun_primary"
-			"max health additive bonus" -25
-			"use original class weapon animations" 1
-		}
+	{
+		Name "Medizinische Schrotflinte"
+		OriginalItemName "tf_weapon_syringegun_medic"
+		// This is just a safe placeholder because giving TF_WEAPON_SHOTGUN_PRIMARY actually
+		//  gives TF_WEAPON_SHOTGUN_PYRO and eats the Medi-gun for some reason.
+	}
+	PlayerItemEquipSpawnTemplate
+	{
+		Name OnEquipMedicShotgun
+		ItemName "Medizinische Schrotflinte"
+	}
+
     CustomWeapon
         {
              Name "The Zwischenzug"
@@ -456,7 +530,7 @@ population
             }
 
             AllowPlayerClass Heavy
-            RequiredWeapons
+            AllowedWeapons
             {
                 ItemName "The Family Business"
             }
@@ -507,6 +581,18 @@ population
 	ItemAttributes
 	{
 	    ItemName "Gloves Of Running Urgently"
+		"self mark for death" 1
+		"mod_maxhealth_drain_rate" -5
+	}
+	ItemAttributes
+	{
+	    ItemName "Festive Gloves of Running Urgently"
+		"self mark for death" 1
+		"mod_maxhealth_drain_rate" -5
+	}
+	ItemAttributes
+	{
+	    ItemName "The Bread Bite"
 		"self mark for death" 1
 		"mod_maxhealth_drain_rate" -5
 	}
@@ -946,7 +1032,7 @@ population
 					Skill	Normal
 					MaxVisionRange	1000
 					WeaponRestrictions	PrimaryOnly
-					Action	      FetchFlag  
+					Action	      FetchFlag [$SIGSEGV]
 					Attributes	"HoldFireUntilFullReload"
 					Attributes	"AlwaysCrit"
 					Item	"the frontier justice"
@@ -1044,7 +1130,7 @@ population
 					Skill	Easy
 					MaxVisionRange	500
 					WeaponRestrictions	PrimaryOnly
-					Action	      FetchFlag  
+					Action	      FetchFlag [$SIGSEGV]
 					ItemAttributes
 					{
 						ItemName	"the crusader's crossbow"
@@ -1064,7 +1150,7 @@ population
 					Skill	Normal
 					MaxVisionRange	500
 					WeaponRestrictions	PrimaryOnly
-					Action	      FetchFlag  
+					Action	      FetchFlag [$SIGSEGV]
 					ItemAttributes
 					{
 						ItemName	"the crusader's crossbow"
@@ -1084,7 +1170,7 @@ population
 					Skill	Hard
 					MaxVisionRange	500
 					WeaponRestrictions	PrimaryOnly
-					Action	      FetchFlag  
+					Action	      FetchFlag [$SIGSEGV]
 					ItemAttributes
 					{
 						ItemName	"the crusader's crossbow"
@@ -1278,24 +1364,10 @@ population
 			WaitBetweenSpawns	30
 			Where	spawnbot
 			
-			
-				TFBot
-				{
-				    ClassIcon    soldier_spammer
-					Name	"Giant Rapid Fire Soldier"
-					Scale	1.8
-					MaxVisionRange	1000
-					Template	T_TFBot_Giant_Soldier
-					ItemAttributes
-					{
-						ItemName	warbird_rocketlauncher_warhawk
-						"clip size bonus"	2.5
-						"fire rate bonus"	0.5
-						"faster reload rate"	0.7
-					}
-					Item	"warbird_rocketlauncher_warhawk"
-					Item	"soldier's stash"
-				}
+			TFBot
+			{
+				Template Warbird_Rapid_Soldier
+			}
 			
 		}
 		WaveSpawn
@@ -2406,7 +2478,7 @@ population
 					Skill	Normal
 					MaxVisionRange	1000
 					WeaponRestrictions	PrimaryOnly
-					Action	      FetchFlag  
+					Action	      FetchFlag [$SIGSEGV]
 					ItemAttributes
 					{
 						ItemName	"the crusader's crossbow"
@@ -2441,7 +2513,7 @@ population
 					Skill	Normal
 					MaxVisionRange	1000
 					WeaponRestrictions	PrimaryOnly
-					Action	      FetchFlag  
+					Action	      FetchFlag [$SIGSEGV]
 					ItemAttributes
 					{
 						ItemName	"the crusader's crossbow"
@@ -2502,20 +2574,7 @@ population
 			{
 				TFBot
 				{
-				    ClassIcon    soldier_spammer
-					Name	"Giant Rapid Fire Soldier"
-					Scale	1.8
-					MaxVisionRange	1000
-					Template	T_TFBot_Giant_Soldier
-					ItemAttributes
-					{
-						ItemName	warbird_rocketlauncher_warhawk
-						"clip size bonus"	2.5
-						"fire rate bonus"	0.5
-						"faster reload rate"	0.7
-					}
-					Item	"warbird_rocketlauncher_warhawk"
-					Item	"soldier's stash"
+				    Template Warbird_Rapid_Soldier
 				}
 				TFBot
 				{
@@ -2748,20 +2807,7 @@ population
 			
 				TFBot
 				{
-				    ClassIcon    soldier_spammer
-					Name	"Giant Rapid Fire Soldier"
-					Scale	1.8
-					MaxVisionRange	1000
-					Template	T_TFBot_Giant_Soldier
-					ItemAttributes
-					{
-						ItemName	warbird_rocketlauncher_warhawk
-						"clip size bonus"	2.5
-						"fire rate bonus"	0.5
-						"faster reload rate"	0.7
-					}
-					Item	"warbird_rocketlauncher_warhawk"
-					Item	"soldier's stash"
+				    Template Warbird_Rapid_Soldier
 				}
 			
 		}
@@ -2777,23 +2823,10 @@ population
 			Where	"spawnbot_right"
 			
 			
-				TFBot
-				{
-				    ClassIcon    soldier_spammer
-					Name	"Giant Rapid Fire Soldier"
-					Scale	1.8
-					MaxVisionRange	1000
-					Template	T_TFBot_Giant_Soldier
-					ItemAttributes
-					{
-						ItemName	warbird_rocketlauncher_warhawk
-						"clip size bonus"	2.5
-						"fire rate bonus"	0.5
-						"faster reload rate"	0.7
-					}
-					Item	"warbird_rocketlauncher_warhawk"
-					Item	"soldier's stash"
-				}
+			TFBot
+			{
+				Template Warbird_Rapid_Soldier
+			}
 			
 		}
 		WaveSpawn
@@ -3225,7 +3258,7 @@ population
 						    MaxVisionRange	1000
 							weaponRestrictions	SecondaryOnly
 							Attributes	"HoldFireUntilFullReload"
-							RingOfFire 15  
+							RingOfFire 15 [$SIGSEGV]
 							KeepAwayRadius 50 // Keep away distance from target
 							ItemAttributes
 					        {
@@ -3235,7 +3268,7 @@ population
 								"faster reload rate"	0.5
 								"clip size upgrade atomic"	4
 					        }
-							CustomWeaponModel   //Sets custom weapon model
+							CustomWeaponModel [$SIGSEGV] //Sets custom weapon model
 				            {
 			                    Slot 1 //Valid loadout positions:
 					            Model "models/weapons/c_models/c_wee_willy/c_wee_willy.mdl"

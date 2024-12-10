@@ -7,7 +7,7 @@ local BOTS_ATTRIBUTES = {
 	["weapon always gib"] = 1,
 	["health regen"] = 5,
 	["health from packs increased"] = 5,
-	["armor piercing"] = 60,
+	["armor piercing"] = 45,
 	["move speed bonus"] = 1.5,
 	["model scale"] = 0.75,
 	["voice pitch scale"] = 1.50,
@@ -300,7 +300,7 @@ function virusKnifeKill(damage, activator, caller)
 		botSpawn:SetAbsOrigin(origin)
 		botSpawn:SwitchClassInPlace("Spy")
 		--25
-		botSpawn:AddCond(51, 0.5, activator)
+		botSpawn:AddCond(51, 1, activator)
 		botSpawn:AddCond(32, 10, activator)
 		botSpawn:SetCustomModelWithClassAnimations("models/bots/spy/bot_spy.mdl")
 
@@ -335,8 +335,8 @@ function virusKnifeKill(damage, activator, caller)
 
 	end)
 	
-	--25
-		local timeLeft = 25
+	--14
+		local timeLeft = 14
 		local logicLoop
 		
 		--checks every half second rather than every tick because this isn't code that needs to be updated constantly
@@ -358,7 +358,7 @@ function virusKnifeKill(damage, activator, caller)
 				botSpawn:Suicide()	
 				return
 			end
-		end, 50)	
+		end, 29) --one extra because of a pair of freak incidents where the spies lived forever
 			
 end
 
@@ -384,7 +384,7 @@ function cloneSpawn(activator)
 		botSpawn:SetAbsOrigin(origin)
 		botSpawn:SwitchClassInPlace("Soldier")
 		--25
-		botSpawn:AddCond(51, 1.5, activator)
+		botSpawn:AddCond(51, 2, activator)
 		
 		local ownerPrimary = owner:GetPlayerItemBySlot(0)
 		local ownerSecondary = owner:GetPlayerItemBySlot(1)

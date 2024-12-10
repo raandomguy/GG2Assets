@@ -53,6 +53,7 @@ elmarcianito
     PrecacheModel "models/projectiles/fos_hologram_projectile_blu_l_static.mdl"
     PrecacheModel "models/projectiles/fos_hologram_projectile_blu_l_spin.mdl" 
     PrecacheModel "models/projectiles/fos_hologram_projectile_blu_r_spin.mdl" 
+    PrecacheModel "models/props_gameplay/cap_circle_768.mdl"
     PrecacheModel "models/props_invasion/props_alien/walker.mdl" 
     PrecacheModel "models/props_invasion/props_alien/walker_explode_gib01.mdl" 
     PrecacheModel "models/props_invasion/props_alien/walker_explode_gib02.mdl" 
@@ -83,10 +84,13 @@ elmarcianito
 	PrecacheModel "models\props_invasion\props_alien\arch.mdl"
     PrecacheModel "models/props_mvm/gatebot_hologram.mdl"
     PrecacheModel "models/props_gameplay/cap_square_512.mdl"
+    PrecacheModel "models/props_frontline/tank_turret.mdl"
+    PrecacheSound "juridisticion_planetaria.mp3"
+    PrecacheSound "xtermination.mp3"
     PrecacheSound "lastlegs_alt_cmprsd.mp3"
     PrecacheSound "drg_run_stais_remix.mp3"
     PrecacheSound "ui/cyoa_musicmoregun.mp3"
-    PrecacheSound "surface_tension_returns_rorr.mp3"
+    // PrecacheSound "surface_tension_returns_rorr.mp3"
     PrecacheSound "spike_in_a_rail_sped_up_bastion.mp3"
 	PrecacheSound "the_blind_huntress_wizard_with_a_gun.mp3"
     PrecacheSound "player\taunt_bumpkins_banjo_music.wav"
@@ -111,6 +115,11 @@ elmarcianito
 	PrecacheSound "ambient\levels\labs\electric_explosion1.wav"
 
     PrecacheGeneric "materials/colorcorrection/greencurvesonly.raw"
+    PrecacheGeneric "materials/hud/leaderboard_class_heavy_deflector_hyper.vmt"
+    PrecacheGeneric "materials/hud/leaderboard_class_heavy_deflector_hyper.vtf"
+    PrecacheGeneric "materials/hud/leaderboard_class_heavy_atomic_v2.vmt"
+    PrecacheGeneric "materials/hud/leaderboard_class_heavy_atomic_v2.vtf"
+
     PrecacheParticle "hammer_bell_ring_shockwave"
     PrecacheParticle "merasmus_object_spawn"
     PrecacheParticle "merasmus_tp"
@@ -516,7 +525,7 @@ elmarcianito
             ambient_generic
             {
                 "targetname" "w7loop"
-                "message" "#surface_tension_returns_rorr.mp3"
+                "message" "#juridisticion_planetaria.mp3"
                 "health" "10"
                 "pitch" "100"
                 "spawnflags" "17"
@@ -589,13 +598,8 @@ elmarcianito
             logic_relay
             {
                 "targetname" "w7_loop"
-                "OnTrigger" "tf_gamerulesRunScriptCodeClientPrint(null, 3, `Now Playing: Risk of Rain Returns - Surface Tension Returns by Chris Christodoulou & Damjan Mravunac`)0-1"
+                "OnTrigger" "tf_gamerulesRunScriptCodeClientPrint(null, 3, `Now Playing: Planetary Jurisdisticion By GoodBobFR`)0-1"
                 "OnTrigger"	"w7loop,PlaySound,,0.1,-1"
-                "OnTrigger"	"w7loop,StopSound,,207,-1"
-                "OnTrigger"	"w7loop,PlaySound,,207.1,-1"
-                "OnTrigger"	"w7loop,StopSound,,414,-1"
-                "OnTrigger"	"w7loop,PlaySound,,414.1,-1"
-                "OnTrigger"	"w7loop,StopSound,,621,-1"
             }
             logic_relay
             {
@@ -772,7 +776,7 @@ elmarcianito
                 "origin" "0 0 150"
                 "mins" "-300 -300 -300"
                 "maxs" "300 300 300"
-                "damage" "300"
+                "damage" "400"
                 "spawnflags" "64"
                 "damagetype" "64"
 				"onhurtplayer" "!activator,$igniteplayerduration,10,0,-1"
@@ -8824,13 +8828,9 @@ elmarcianito
             {
                 "targetname" "nomoremusiccauseimlazy"
                 "OnTrigger" "tf_gamerules,$StopVO,#music\hl2_song29.mp3,0,-1"
-                "OnTrigger" "tf_gamerules,$StopVO,#music\hl1_song15.mp3,0,-1"
+                "OnTrigger" "tf_gamerules,$StopVO,#xtermination.mp3,0,-1"
             }
-            logic_relay
-            {
-                "targetname" "really"
-                "OnTrigger" "tf_gamerules,PlayVO,#music\hl1_song15.mp3,0,-1"
-            }
+            
             logic_relay
             {
                 "targetname" "seriously"
@@ -8864,7 +8864,8 @@ elmarcianito
                 "OnTrigger" "tf_gamerules,PlayVO,mvm\mvm_mothership_loop.wav,10,-1"
                 "OnTrigger" "tf_gamerules,$StopVO,mvm\mvm_mothership_loop.wav,24,-1"
                 "OnTrigger" "tf_gamerules,PlayVO,misc\halloween\clock_tick.wav,15.5,-1"
-                "OnTrigger" "tf_gamerules,PlayVO,#music\hl1_song15.mp3,0,-1"
+                "OnTrigger" "tf_gamerules,PlayVO,#xtermination.mp3,0,-1"
+                "OnTrigger" "tf_gamerulesRunScriptCodeClientPrint(null, 3, `Now Playing: X-Termination By GoodBobFR`)0-1"
                 "OnTrigger" "tf_gamerules,PlayVO,vo\mvm\mght\heavy_mvm_m_incoming03.mp3,21.5,-1"
                 "OnTrigger" "tf_gamerules,PlayVO,npc\strider\striderx_alert4.wav,10,-1"
                 "OnTrigger" "tf_gamerules,PlayVO,vo\announcer_security_warning.mp3,0,-1"
@@ -11271,7 +11272,7 @@ elmarcianito
                 {
                     Template T_TFBot_Giant_Soldier_SlowBarrage
                     ClassIcon soldier_barrage_mangler
-                    Health 22000
+                    Health 18000
                     Attributes UseBossHealthBar
                     Name "Otherworldly Barrage"
                         AddCond
@@ -11334,7 +11335,7 @@ elmarcianito
             {
                 Template T_TFBot_Giant_Demoman
                 ClassIcon 	demo_sticky_nuke_giant
-                Health 22000
+                Health 17000
                 Attributes UseBossHealthBar
                 Name "Otherworldly Annihilator"
                 Item "The Loch-n-Load"
@@ -12481,7 +12482,7 @@ elmarcianito
                 Class Spy
                 ClassIcon 	spy_revolver_lite //temporary
                 Scale 1.8
-                Health 21000
+                Health 23000
                 Attributes MiniBoss
                 Attributes UseBossHealthBar
                 Attributes HoldFireUntilFullReload		
@@ -13477,7 +13478,7 @@ elmarcianito
                 Class Medic
                 ClassIcon medic_crossbow_bleed_giant //temporary or maybe 	heavy_bread_bleed
                 Scale 1.8
-                Health 18000
+                Health 22000
                 Attributes MiniBoss
                 Attributes UseBossHealthBar
                 Attributes HoldFireUntilFullReload		
@@ -13945,7 +13946,7 @@ elmarcianito
                 ClassIcon demo_bicorne_lite
                 AlwaysGlow 1
                 Skill Expert
-                Health 27000
+                Health 30000
                 WeaponRestrictions PrimaryOnly
                 Attributes UseBossHealthBar
                 Attributes HoldFireUntilFullReload
@@ -13983,7 +13984,7 @@ elmarcianito
                     Action "disable"
                     Delay 0
                     Repeats 1
-                    IfHealthBelow 20000
+                    IfHealthBelow 23000
                 }
                 FireInput  
                 {
@@ -13992,7 +13993,7 @@ elmarcianito
                     Delay 3
                     Repeats 99
                     Cooldown 13
-                    IfHealthBelow 17000
+                    IfHealthBelow 20000
                 }
                 FireInput  
                 {
@@ -14000,13 +14001,13 @@ elmarcianito
                     Action "trigger"
                     Delay 0
                     Repeats 1
-                    IfHealthBelow 20000
+                    IfHealthBelow 23000
                 }
                 addcond
                 {
                     Index 5
                     Duration 3
-                    IfHealthBelow 20000
+                    IfHealthBelow 23000
                 }
                 FireInput  
                 {

@@ -10,6 +10,7 @@ spawn_interval <- 1.90; 					// starting value, gap between spawns
 local sfx_roundstart_normal = Entities.FindByName(null, "snd_start")
 local sfx_roundstart_boss = Entities.FindByName(null, "snd_start_boss")
 
+if (max_active > 24) max_active = 24
 
 ::ZM_SetupRound <- function() {
 
@@ -129,4 +130,5 @@ function IncrementWaveNumber()
 	NetProps.SetPropInt(PopExtUtil.ObjectiveResource, "m_nMannVsMachineWaveCount", round_number)
 	NetProps.SetPropString(text_gameover_2, "m_iszMessage", format("You survived %d waves", (round_number-1)))
 	boss_timer -= 1
+	ResetPowerupCount()
 }

@@ -19,7 +19,7 @@
 		"hidden secondary max ammo penalty" : 0.96
 		"clip size bonus" : 2
 		"bullets per shot bonus" : 2
-		"damage bonus" : 3.5
+		"damage bonus" : 3
 		"projectile spread angle penalty" : 2
 		"override projectile type" : 2 
 		"projectile speed increased" : 1.4
@@ -135,6 +135,7 @@
 		"maxammo secondary increased" : 2.13
 		"clip size penalty HIDDEN" : 1.6
 		"mult_spread_scales_consecutive" : 1
+		"damage bonus HIDDEN" : 1.5
 		"can headshot" : 1
 	}
 	"ZM_SuperHeatsink" :
@@ -144,7 +145,7 @@
 		Slot = "secondary"
 		ItemClass = "tf_weapon_smg"
         AnimSet = "sniper"
-		"damage bonus" : 2
+		"damage bonus" : 2.5
 		"fire rate bonus HIDDEN" : 0.8
 		"maxammo secondary increased" : 4.26
 		"clip size penalty HIDDEN" : 2.6
@@ -189,7 +190,7 @@
         AnimSet = "sniper"
 		"maxammo secondary increased" : 2.4
 		"clip size penalty HIDDEN" : 1.2
-		"damage bonus HIDDEN" : 1.5
+		"damage bonus HIDDEN" : 2
 		"can headshot" : 1
 	}
 	"ZM_SuperThumpy" :
@@ -201,7 +202,7 @@
         AnimSet = "sniper"
 		"maxammo secondary increased" : 4.8
 		"clip size penalty HIDDEN" : 2.4
-		"damage bonus HIDDEN" : 2.5
+		"damage bonus HIDDEN" : 3
 		"can headshot" : 1
 		"paintkit_proto_def_index" : 402
 		"set_item_texture_wear" : 0
@@ -243,14 +244,18 @@
 		Slot = "primary"
 		ItemClass = "tf_weapon_shotgun_primary"
         AnimSet = "engineer"
-		"explosive bullets" : 128
+		"explosive bullets ext" :
+		{
+			damage = 25
+			radius = 112
+			particle = "rd_robot_explosion"
+			killicon = "shotgun_pyro"
+		}
 		"clip size penalty" : 0.5
-		"damage bonus HIDDEN" : 3
 		"fire rate penalty" : 1.25
 		"blast dmg to self increased" : 0.1 // lower self damage?
 		"spread penalty" : 1.33
 		"self dmg push force decreased" : 0
-		"can headshot" : 1
 		"replace weapon fire sound" : ["Weapon_Shotgun.Single","Deadlands_BMMH.Single"]
 	}
 	"ZM_SuperBMMH" :
@@ -260,7 +265,13 @@
 		Slot = "primary"
 		ItemClass = "tf_weapon_shotgun_primary"
         AnimSet = "engineer"
-		"explosive bullets" : 128
+		"explosive bullets ext" :
+		{
+			damage = 50
+			radius = 112
+			particle = "rd_robot_explosion"
+			killicon = "shotgun_pyro"
+		}
 		"damage bonus HIDDEN" : 4
 		"fire rate penalty" : 1.25
 		"blast dmg to self increased" : 0.1 // lower self damage?
@@ -268,7 +279,6 @@
 		"self dmg push force decreased" : 0
 		"maxammo primary increased" : 2
 		"replace weapon fire sound" : ["Weapon_Shotgun.Single","Deadlands_BMMH.Single"]
-		"can headshot" : 1
 		"paintkit_proto_def_index" : 402
 		"set_item_texture_wear" : 0
 	}
@@ -313,7 +323,6 @@
 		ItemClass = "tf_weapon_rocketlauncher"
         AnimSet = "soldier"
 		"damage bonus HIDDEN" : 1.5
-		"rocket specialist" : 4
 		"maxammo primary increased" : 1.5
 		"self dmg push force decreased" : 0.15
 	}
@@ -324,7 +333,6 @@
 		ItemClass = "tf_weapon_rocketlauncher"
         AnimSet = "soldier"
 		"damage bonus HIDDEN" : 2.5
-		"rocket specialist" : 4
 		"clip size bonus" : 2
 		"self dmg push force decreased" : 0.15
 		"maxammo primary increased" : 3
@@ -440,8 +448,14 @@
 		Slot = "secondary"
 		ItemClass = "tf_weapon_pistol"
         AnimSet = "engineer"
-	//	"damage bonus HIDDEN" : 8
-		"explosive bullets" : 116
+		"explosive bullets ext" :
+		{
+			damage = 100
+			radius = 96
+			particle = "merasmus_bomb_explosion"
+			sound = "weapons/cow_mangler_explode.wav"
+			killicon = "the_capper"
+		}
 		"fire rate penalty"  : 1.5
 		"mod max primary clip override" : 20
 		"blast dmg to self increased" : 0.1
@@ -456,9 +470,14 @@
 		Slot = "secondary"
 		ItemClass = "tf_weapon_pistol"
         AnimSet = "engineer"
-	//	"damage bonus HIDDEN" : 8
-		"damage bonus" : 2
-		"explosive bullets" : 116
+		"explosive bullets ext" :
+		{
+			damage = 200
+			radius = 96
+			particle = "merasmus_bomb_explosion"
+			sound = "weapons/cow_mangler_explode.wav"
+			killicon = "the_capper"
+		}
 		"fire rate penalty"  : 1.5
 		"mod max primary clip override" : 40
 		"maxammo secondary increased" : 2

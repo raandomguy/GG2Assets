@@ -7,6 +7,7 @@ WaveSchedule
 	LuaScriptFile "scripts/bot_reserve_combo.lua"
 	LuaScriptFile "scripts/bot_pale_burst.lua"
 	PrecacheModel "models\bots\soldier_boss\bot_soldier_boss_gibby.mdl"
+	PrecacheModel "models\bots\soldier\bot_soldier_gibby.mdl"
 	PrecacheSound "battered_box_halfway.mp3"
 	
 	PointTemplates
@@ -28,7 +29,20 @@ WaveSchedule
 				Action "$PaleBurstLogic"
 				Delay 0.01
 			}
-		}		
+		}
+		gengie_dispenser
+		{
+			obj_dispenser
+			{
+				"spawnflags" "2"
+				"teamnum" "3"
+				"origin" "0 0 50"
+				"solid" "0"
+				"defaultupgrade" "2"
+				"modelscale" 1
+				$cannotbesapped "1"				
+			}
+		}
 	}
 	Templates
 	{
@@ -65,6 +79,34 @@ WaveSchedule
 				ItemName "Crit-a-Cola"
 				"effect bar recharge rate increased"	0.5
 				"mod_mark_attacker_for_death" 0
+			}
+		}
+		//Gives haste cond instead of minicrits, instead of marking, it gives negative health regeneration.
+		//pair these guys with a healing bot for synergy, note that they are affected by falloff compared to their crit-a-cola brethern.
+		T_TFBot_Scout_Cola_Cocaine
+		{
+			Class Scout
+			Name "Cocaine Cola Scout"
+			ClassIcon scout_cola_haste
+			Skill Normal
+			CustomEyeGlowColor "255 100 100" //they need their fix
+			WeaponRestrictions PrimaryOnly
+			MaxVisionRange 1200
+			Item "Crit-a-Cola"
+			Item "Bonk Leadwear"
+			Attributes HoldFireUntilFullReload //used so they don't look as awkward when they shoot off all their ammo
+			ItemAttributes
+			{
+				ItemName "Crit-a-Cola"
+				"effect bar recharge rate increased"	0.5
+				"effect cond override" "32" //Adds disciplinary action effect
+				"effect add attributes" "is suicide counter|5|gesture speed increase|5|fire rate bonus|0.5|reload rate bonus|0.5|clip size bonus|1.5|voice pitch scale|0.5|always gib|1|SET BONUS: special dsp|38" //Fakes haste cond and adds the negative health regen
+				"fire input on effect" "!activator^speakresponseconcept^tlk_player_battlecry"
+			}
+			ItemAttributes
+			{
+			ItemName "Bonk Leadwear"
+			"item color rgb" 4342338 //paint it black, distinguishes it from the regular colas
 			}
 		}		
 		//Mini super scout that dies when lightly farted on
@@ -623,6 +665,119 @@ WaveSchedule
 			{
 			Name "PaleBurst"
 			}			
+		}
+		T_TFBot_Soldier_Shotgun_Charge
+		{
+			Class Soldier 
+			Skill Expert
+			ClassIcon heavy_shotgun
+			Name "Charging Shotgun Soldier"
+			UseCustomModel "models\bots\soldier\bot_soldier_gibby.mdl"
+			Item "The Doe-Boy"	
+			Item "Iron Fist"
+			WeaponRestrictions SecondaryOnly
+			//Credit to either lite or hellmet, either way this was taken from trespasser remaster
+			ItemAttributes
+			{
+				ItemName "Iron Fist"
+				//don't worry about precaching anything here, it is all stock game assets
+				"custom item model" "models\weapons\c_models\c_targe\c_targe.mdl"
+				"attachment name" "effect_hand_L"
+				"attachment offset" "0 -5 5"
+				"attachment angles" "-25 25 50"				
+			}
+			FireInput
+			{
+			Target "!self"
+			Action $AddCond
+			Param "17, 1.75"
+			Delay 0.01
+			Repeats 0
+			Cooldown 12
+			}
+			CharacterAttributes
+			{
+				//Shield Stats:
+				"dmg taken from fire reduced" 0.5
+				"dmg taken from blast reduced" 0.7			
+			}			
+		}
+		T_TFBot_Soldier_Shotgun_Charge_Tide
+		{
+			Class Soldier 
+			Skill Expert
+			ClassIcon heavy_shotgun
+			Name "Charging Shotgun Soldier"
+			UseCustomModel "models\bots\soldier\bot_soldier_gibby.mdl"
+			Item "The Doe-Boy"	
+			Item "Iron Fist"
+			WeaponRestrictions SecondaryOnly
+			//Credit to either lite or hellmet, either way this was taken from trespasser remaster
+			ItemAttributes
+			{
+				ItemName "Iron Fist"
+				//don't worry about precaching anything here, it is all stock game assets
+				"custom item model" "models\weapons\c_models\c_wheel_shield\c_wheel_shield.mdl"
+				"attachment name" "effect_hand_L"
+				"attachment offset" "0 -5 5"
+				"attachment angles" "-25 25 50"	
+				
+			}
+			FireInput
+			{
+			Target "!self"
+			Action $AddCond
+			Param "17, 1.75"
+			Delay 0.01
+			Repeats 0
+			Cooldown 12
+			}
+			CharacterAttributes
+			{
+				//Shield Stats:
+				"dmg taken from fire reduced" 0.85
+				"dmg taken from blast reduced" 0.85
+				"full charge turn control" 1
+				"lose demo charge on damage when charging" 1
+			}
+		}
+		T_TFBot_Soldier_Shotgun_Charge_Splendid
+		{
+			Class Soldier 
+			Skill Expert
+			ClassIcon heavy_shotgun
+			Name "Charging Shotgun Soldier"
+			UseCustomModel "models\bots\soldier\bot_soldier_gibby.mdl"
+			Item "The Doe-Boy"	
+			Item "Iron Fist"
+			WeaponRestrictions SecondaryOnly
+			//Credit to either lite or hellmet, either way this was taken from trespasser remaster
+			ItemAttributes
+			{
+				ItemName "Iron Fist"
+				//don't worry about precaching anything here, it is all stock game assets
+				"custom item model" "models\weapons\c_models\c_persian_shield\c_persian_shield.mdl"
+				"attachment name" "effect_hand_L"
+				"attachment offset" "0 -5 5"
+				"attachment angles" "-25 25 50"
+
+			}
+			FireInput
+			{
+			Target "!self"
+			Action $AddCond
+			Param "17, 1.75"
+			Delay 0.01
+			Repeats 0
+			Cooldown 8
+			}
+			CharacterAttributes
+			{
+				//Shield Stats:
+				"dmg taken from fire reduced" 0.8
+				"dmg taken from blast reduced" 0.8
+				"charge impact damage increased" 1.7			
+			}
 		}		
 		//Chonky, best thought of as 1/3 of a gburst rather than a tankier soldier
 		T_TFBot_Soldier_Minigiant_Burst
@@ -884,6 +1039,7 @@ WaveSchedule
 					ItemName "TF_WEAPON_ROCKETLAUNCHER"
 					"faster reload rate" -0.8
 					"fire rate bonus" 0.5
+					 "Projectile speed increased" 0.65
 				}
 				CharacterAttributes
 				{
@@ -912,6 +1068,7 @@ WaveSchedule
 					ItemName "TF_WEAPON_ROCKETLAUNCHER"
 					"faster reload rate" -0.8
 					"fire rate bonus" 0.5
+					"Projectile speed increased" 0.65
 				}
 				CharacterAttributes
 				{
@@ -1170,6 +1327,38 @@ WaveSchedule
 				"Projectile speed increased" 0.9
 			}
 		}
+		//Instead of one burst of 3 rockets, it is 3 bursts of 3 rockets, much much harder to dodge.
+		T_TFBot_Giant_Soldier_RocketShotgun_Giga
+		{
+				Class Soldier
+				Health 4200
+				Skill Expert
+				Name "Giga Blackbox Soldier"
+				ClassIcon soldier_blackbox_hyper		
+				Item "The Black Box"
+				WeaponRestrictions PrimaryOnly
+				Attributes HoldFireUntilFullReload
+				Attributes MiniBoss
+				Item "Armored Authority"
+				ItemAttributes
+				{
+					ItemName "The Black Box"
+					"damage bonus" 0.45 //blackbox
+					"heal on hit for rapidfire" 400
+					"clip size upgrade atomic" 1
+					"projectile spread angle penalty" 5
+					"mult projectile count" 3
+					"ignores other projectiles" 1
+				}				
+				CharacterAttributes
+				{
+					"move speed bonus"	0.5
+					"damage force reduction" 0.4
+					"airblast vulnerability multiplier" 0.4
+					"override footstep sound set" 3
+					"rocket jump damage reduction" 0.01
+				}	
+		}		
 		T_TFBot_Giant_Soldier_RocketShotgun_Nitro
 		{
 			Class Soldier
@@ -1535,6 +1724,87 @@ WaveSchedule
 				"Projectile speed increased" 1.3
 			}
 		}
+		//Funny, extremely fast, not that great on closed in maps.
+		T_TFBot_Pyro_Thermal_Thruster
+		{
+			
+			Class Pyro
+			Name "Thermal Thruster Pyro"
+			ClassIcon pyro_thruster_lite
+			Skill Expert
+			Item "the thermal thruster"
+			ChangeAttributes    //Periodically changes bot attributes, defined in EventChangeAttributes
+			{
+				Delay 0.01 //Time before the first bot attribute change (Default: 10)
+				Cooldown 2 //Time between each bot attribute change (Default: 10)
+				Repeats 0 //How many times should bot change attributes in total (Default: 0 - Infinite)
+				MinTargetRange 1000
+				Name "Default" // Name of the bot attributes listed in EventChangeAttributes
+			}			
+			ChangeAttributes    //Periodically changes bot attributes, defined in EventChangeAttributes
+			{
+				Delay 0.01 //Time before the first bot attribute change (Default: 10)
+				Cooldown 0.5 //Time between each bot attribute change (Default: 10)
+				Repeats 0 //How many times should bot change attributes in total (Default: 0 - Infinite)
+				//IfSeeTarget 1		
+				Name "Kill" // Name of the bot attributes listed in EventChangeAttributes
+				MaxTargetRange 300
+			}			
+			FireWeapon    //Periodically fires weapon
+			{
+				Delay 0.01 //Time before the first fire input starts (Default: 10)
+				Cooldown 3 //Time between each fire input (Default: 10)
+				Repeats 0 //How many times should bot use the fire input in total (Default: 0 - Infinite)
+				//IfSeeTarget 1 //When set to 1, this task activates only when the bot can see the target player (Default 0 - Always activate)
+				Duration 0.01 //How long should the button be pressed (Default: 0.1)
+				Type "Primary" // Type of fire input, Possible values:
+			}						
+			EventChangeAttributes
+			{
+				Default
+				{
+					Attributes SuppressFire
+					WeaponRestrictions SecondaryOnly
+					DesiredAttackRange 50
+					AimOffset "25.58 0 0"   //Aim this much higher than normally (default: 0 0 0)
+					ItemAttributes
+					{
+						ItemName "the thermal thruster"
+						"mult_item_meter_charge_rate" 0.1
+						"deploy time increased" 0.01
+						"gesture speed increase" 25
+					}
+					ItemAttributes
+					{
+					ItemName "TF_WEAPON_FLAMETHROWER"
+					"airblast disabled" 1
+					"deploy time increased" 0.01
+					}
+					UseHumanAnimations 1
+					UseMeleeThreatPrioritization 1
+				}
+				Kill
+				{
+					DesiredAttackRange 50
+					WeaponRestrictions PrimaryOnly
+					ItemAttributes
+					{
+						ItemName "the thermal thruster"
+						"mult_item_meter_charge_rate" 0.1
+						"deploy time increased" 0.01
+						"force weapon switch" 1
+						"gesture speed increase" 25
+					}
+					ItemAttributes
+					{
+					ItemName "TF_WEAPON_FLAMETHROWER"
+					"airblast disabled" 1
+					"deploy time increased" 0.01
+					}					
+					UseHumanAnimations 0
+				}
+			}	
+		}		
 		//Template deemed too crappy for enduring exceptions, might be cool in an adv
 		T_TFBot_FlareGun_FastShot_Leaping //the scorch shot is horrible and unfun to fight, this is literally just the fast scorch shot template with a flare gun instead of that godforsaken weapon
 		{
@@ -1842,7 +2112,59 @@ WaveSchedule
 					Item	"The Dragon's Fury"
 					Item 	"The Flare Gun"
 					WeaponRestrictions	PrimaryOnly
-					MaxVisionRange 1120
+					MaxVisionRange 800
+					ItemAttributes
+					{
+						ItemName	"The Dragon's Fury"
+						"damage bonus" 1.20
+					}
+					CharacterAttributes
+					{
+						"airblast disabled"    1
+						"damage force reduction" 0.6
+						"airblast vulnerability multiplier" 0.6
+						"override footstep sound set" 6
+						"move speed bonus"	0.5
+					}
+				}
+				T_TFBot_Giant_Pyro_Fury_Combo
+				{
+					Class Pyro
+					Health	3000
+					Skill Expert
+					ClassIcon	"pyro_dragon_combo"
+					Tag bot_giant
+					Name	"Giant Combo Fury Pyro"
+					Attributes MiniBoss
+					Item	"The Dragon's Fury"
+					Item 	"The Flare Gun"
+					WeaponRestrictions	PrimaryOnly
+						WeaponSwitch
+						{
+							Type "Primary"
+							MaxTargetRange 800
+							Delay 0.1
+							Repeats 0
+							Cooldown 0
+							IfSeeTarget 1
+						}
+						WeaponSwitch
+						{
+							Type "Secondary"
+							MaxTargetRange 9999
+							MinTargetRange 800
+							Delay 0.1
+							Repeats 0
+							Cooldown 0
+							IfSeeTarget 1
+						}
+					ItemAttributes
+					{
+						ItemName "the flare gun"
+						"fire rate bonus" 0.5
+						"faster reload rate" 0.5
+						"Projectile speed increased" 1.3
+					}						
 					ItemAttributes
 					{
 						ItemName	"The Dragon's Fury"
@@ -1968,7 +2290,7 @@ WaveSchedule
 		{
 			Class Demoman
 			Name "Burst Fire Loch Demo"
-			ClassIcon demo_loch_burst_giant	// Non-giant vmt points to the wrong file, GG.
+			ClassIcon demo_loch_burst
 			Skill Expert
 			WeaponRestrictions PrimaryOnly
 			Attributes HoldFireUntilFullReload
@@ -1997,12 +2319,51 @@ WaveSchedule
 				ItemName "the loch-n-load"
 				"bleeding duration" 10
 				"attach particle effect" 702
+				"paintkit_proto_def_index" 407
+				"set_item_texture_wear" 0				
 			}
 			ItemAttributes
 			{
 				ItemName "The FR-0"
 				"set item tint RGB" 7511618
 			}			
+		}
+
+		T_TFBot_Giant_Demo_Acid_Loch
+		{
+			Class Demoman
+			Name "Giant Rapid Fire Acid Loch Demo"
+			ClassIcon demo_loch_caustic_giant
+			Skill Expert
+			Health 3300
+			WeaponRestrictions PrimaryOnly
+			Attributes HoldFireUntilFullReload
+			Attributes MiniBoss
+			Item "the loch-n-load"
+			Item "The FR-0"			
+			ItemAttributes
+			{
+				ItemName "the loch-n-load"
+				"faster reload rate" -0.4
+				"fire rate bonus" 0.75
+				"bleeding duration" 10
+				"attach particle effect" 702
+				"paintkit_proto_def_index" 407
+				"set_item_texture_wear" 0
+
+			}
+			ItemAttributes
+			{
+				ItemName "The FR-0"
+				"set item tint RGB" 7511618
+			}			
+			CharacterAttributes
+			{
+				"move speed bonus"	0.5
+				"damage force reduction" 0.5
+				"airblast vulnerability multiplier" 0.5
+				"override footstep sound set" 4
+			}
 		}		
 		//Funny, like a blast soldier but with more predictable knockback and less range
 		T_TFBot_Demo_Cannon
@@ -2089,6 +2450,39 @@ WaveSchedule
 			CharacterAttributes
 			{
 			"rocket jump damage reduction" 99999 //auto die when using caber
+			}
+			WeaponRestrictions MeleeOnly
+		}
+		//Anti bodyblocking bot, gets its skull caved in by sentries harder than usual
+		T_TFBot_Demo_Steam_Locomotive
+		{
+			Class Demoman
+			ClassIcon paintrain_lite
+			Skill Expert
+			Item "Ali Baba's Wee Booties"
+			Item "The Pain Train"
+			Item "The Tide Turner"	
+			Item "Alcoholic Automaton"
+			Name "Steam Locomotive"
+			Item "Engineer's Cap"
+			ItemAttributes
+			{
+				ItemName "The Tide Turner"
+				"Attack not cancel charge" 1
+			}
+			ItemAttributes
+			{
+				ItemName "Alcoholic Automaton"
+				"attach particle effect" 36
+				"item style override" 1
+			}			
+				
+			CharacterAttributes
+			{
+			"stomp building damage" 50
+			"stomp player time" 0.1
+			"stomp player damage" 5
+			"stomp player force" 100
 			}
 			WeaponRestrictions MeleeOnly
 		}		
@@ -2571,6 +2965,38 @@ WaveSchedule
 				"increase buff duration"	40.0
 				"deploy time increased" 0.01
 			}
+		}
+		T_TFBot_Giant_Demo_Burst_Extended_Buff_Banner
+		{
+			Class Demoman
+			Name "Giant Extended Buff Burst Demo"
+			ClassIcon demo_burst_buff_giant
+			Skill Expert
+			Health 3300
+			WeaponRestrictions PrimaryOnly
+			Attributes HoldFireUntilFullReload
+			Attributes MiniBoss
+			Attributes SpawnWithFullCharge
+			Item "The Buff Banner"			
+			ItemAttributes
+			{
+				ItemName "TF_WEAPON_GRENADELAUNCHER"
+				"faster reload rate" 0.65 //35% faster reload
+				"fire rate bonus" 0.1
+				"clip size upgrade atomic" 7.0
+				"projectile spread angle penalty" 5
+				"Projectile speed increased"	1.1
+
+			}
+			CharacterAttributes
+			{
+				"move speed bonus"	0.5
+				"damage force reduction" 0.5
+				"airblast vulnerability multiplier" 0.5
+				"override footstep sound set" 4
+				"increase buff duration"	40.0
+				"deploy time increased" 0.01
+			}
 		}		
 		T_TFBot_Heater_Heavy
 		{
@@ -2615,6 +3041,27 @@ WaveSchedule
 				"auto fires full clip" 1
 			}
 		}
+		//Weird, I would not advise giving these things expert AI ever. 
+		T_TFBot_Heavy_Minigiant
+		{
+			Class Heavy
+			Skill Normal
+			ClassIcon heavy_armored
+			Health 1200
+			Name "Armored Heavy"
+			"scale" 1.5
+			Attributes HoldFireUntilFullReload
+			ItemAttributes
+			{
+			ItemName "TF_WEAPON_MINIGUN"
+			"damage bonus" 1.25
+			}
+			CharacterAttributes
+			{
+				"head scale" 0.7
+				"move speed bonus"	0.85
+			}
+		}		
 		//Stronger than valve template, has no damage penalty. Use with fire or if you hate spy
 		T_TFBot_Heater_Heavy_Giant
 		{
@@ -2709,6 +3156,33 @@ WaveSchedule
 				"airblast vulnerability multiplier" 0.3
 				"override footstep sound set" 2
 			}
+		}
+		//Compromise between a melee giant like an axe pyro and a giant gauntlet for durability and speed.
+		T_TFBot_Giant_Boxing_Heavy_Fast
+		{
+			Class heavyweapons
+			Name "Super Heavyweight Champ"
+			ClassIcon heavy_gru_giant
+			Skill expert
+			Health 5000
+			Item "Gloves of Running Urgently MvM"
+			Item "Pugilist's Protector"
+			WeaponRestrictions MeleeOnly
+			Attributes MiniBoss
+			ItemAttributes
+			{
+				ItemName "Gloves of Running Urgently MvM"
+				"fire rate bonus" 0.6
+				"damage bonus" 1.2
+
+			}
+			CharacterAttributes
+			{
+				"move speed bonus"	0.5
+				"damage force reduction" 0.3
+				"airblast vulnerability multiplier" 0.3
+				"override footstep sound set" 2
+			}
 		}		
 		T_TFBot_Engineer_Sentry_Teleporter_Mechanic
 		{
@@ -2759,6 +3233,33 @@ WaveSchedule
 				"airblast vulnerability multiplier" 0.6
 				"airblast vertical vulnerability multiplier" 0.2
 			}		
+		}
+		//Giant pistol engie that heals everyone around it
+		T_TFBot_Giant_Engineer_Dispenser
+		{
+		Class Engineer
+		Attributes Miniboss
+		Health 3300
+		Skill Expert
+		Tag bot_giant
+		Name "Giant Dispenser Engineer"
+		ClassIcon dispenser_giant //temporary, fix it
+		WeaponRestrictions "SecondaryOnly"
+		SpawnTemplate "gengie_dispenser" //this template sucks ass, make it better
+		Action Fetchflag
+		ItemAttributes
+		{
+			ItemName "TF_WEAPON_PISTOL"
+			"damage bonus" "1.5"
+		}
+		CharacterAttributes
+		{
+			"head scale" 0.65
+			"move speed bonus"	0.5
+			"damage force reduction" 0.4
+			"airblast vulnerability multiplier" 0.4
+			"override footstep sound set" 5 //engineers are lighter giants, I thought it would be fitting to use the gscout footsteps
+		}		
 		}
 		//These guys are kinda trash, they don't move fast, die fast, and don't hurt that much. Send them in numbers if you want them to do things
 		T_TFBot_Medic_Syringe_Milk
@@ -2815,7 +3316,7 @@ WaveSchedule
 			{
 				"bot medic uber health threshold" 200
 			}
-		}
+		}		
 		//Typical gkritz template, use it as a counterable way to add crits to things while raising the effective health of something
 		T_TFBot_Giant_Medic_Kritz
 		{
@@ -2844,7 +3345,61 @@ WaveSchedule
 				"bot medic uber health threshold" 9000
 			}			
 		}
-		//Credit to lyney, this is ripped directly from their robot pop (robot_lyney). Ubers on half HP, as you'd expect from a umed
+		//I hate batts, this template exists to apply it in a controlled and counterable manner.
+		T_TFBot_Medic_Battalion
+		{
+			Class Medic
+			Name "Battalion's Medic"
+			ClassIcon medic_backup_lite
+			Item "Armored Authority"
+			Skill Normal
+			Attributes SpawnWithFullCharge
+			Item "Upgradeable TF_WEAPON_MEDIGUN"
+			ItemAttributes
+			{
+				ItemName "Upgradeable TF_WEAPON_MEDIGUN"
+				"ubercharge rate bonus" 5
+				"uber duration bonus" 100
+				"effect cond override" 26
+				"paintkit_proto_def_index" 217
+				"set_item_texture_wear" 0				
+			}
+			CharacterAttributes
+			{
+				"bot medic uber health threshold" 200
+			}
+		}
+		//I hate batts, this template exists to apply it in a controlled and counterable manner. Now in giant flavor.
+		T_TFBot_Giant_Medic_Battalion
+		{
+			Class Medic
+			Name "Giant Battalion's Medic"
+			ClassIcon medic_backup_lite //will stack with common template, fix it
+			Item "Armored Authority"
+			Skill Normal
+			Attributes SpawnWithFullCharge
+			Item "Upgradeable TF_WEAPON_MEDIGUN"
+			Health 4500
+			Attributes MiniBoss
+			ItemAttributes
+			{
+				ItemName "Upgradeable TF_WEAPON_MEDIGUN"
+				"ubercharge rate bonus" 5
+				"uber duration bonus" 100
+				"effect cond override" 26
+				"paintkit_proto_def_index" 217
+				"set_item_texture_wear" 0				
+			}
+			CharacterAttributes
+			{
+				"move speed bonus"	0.5
+				"damage force reduction" 0.6
+				"airblast vulnerability multiplier" 0.6
+				"heal rate bonus" 200
+				"bot medic uber health threshold" 9000
+			}
+		}		
+		//Credit to lyney, this is ripped directly from their robot pop (robot_lyney). Ubers on half HP, as you'd expect from a common umed, with a delay so it is possible to avoid
 		T_TFBot_Giant_Uber_Medic
 		{
 			Class Medic
@@ -3275,6 +3830,91 @@ WaveSchedule
 					"override footstep sound set" 5 //snipers are lighter giants, I thought it would be fitting to use the gscout footsteps
 				}
 			}
+			T_TFBot_Giant_Sniper
+			{ 
+				Class Sniper
+				Attributes Miniboss
+				//UseCustomModel "models/bots/sniper_boss/bot_sniper_boss.mdl"
+				Health 3300
+				Skill Expert
+				Name "Giant Sniper"
+				ClassIcon sniper_giant
+				MaxVisionRange 2000
+				ItemAttributes
+				{
+					ItemName "TF_WEAPON_SNIPERRIFLE"
+					"sniper aiming movespeed decreased" 1
+					"faster reload rate" 2.5
+					"damage bonus" 1.75
+					"no_jump" 1
+				}
+					FireInput
+					{
+						Target !self
+						Action $AddCond
+						Param "1"
+						Delay 0.1
+						Repeats 0
+						Cooldown 0.1
+						IfSeeTarget 1
+					}
+					FireInput
+					{
+						Target !self
+						Action $RemoveCond
+						Param "1"
+						Delay 0.1
+						Repeats 0
+						Cooldown 0.1
+						IfNoTarget 1
+					}
+					FireWeapon    //Periodically fires weapon
+					{
+						Delay 1 //Time before the first fire input starts (Default: 10)
+						Cooldown 0.5 //Time between each fire input (Default: 10)
+						Repeats 0 //How many times should bot use the fire input in total (Default: 0 - Infinite)
+						Duration 0.1 //How long should the button be pressed (Default: 0.1)
+						Type "Primary" 
+						IfSeeTarget 1
+					}					
+				StripItemSlot 1
+				StripItemSlot 2
+				CharacterAttributes
+				{
+					"move speed bonus"	0.5
+					
+					"damage force reduction" 0.4
+					"airblast vulnerability multiplier" 0.4
+					"override footstep sound set" 5 //snipers are lighter giants, I thought it would be fitting to use the gscout footsteps
+				}
+			}
+		//Funky template, don't give these guys crits, ever.	
+		T_TFBot_Spy_Addcond66
+		{ 
+			Class Spy
+			Action FetchFlag
+			Skill Expert
+			Name "Active Camo Spy"
+			ClassIcon spy_revolver_lite
+			Item "Night Vision Gawkers"
+			Item "A Hat to Kill For"
+			PreferClass Sniper
+			AddCond
+			{
+					Index 66
+					Delay 0.3		
+			}
+			AddCond
+			{
+				Index 27
+				Delay 0.2
+			}				
+			CharacterAttributes
+			{
+			"cannot disguise" 1
+			"cannot pick up intelligence" 1
+			}
+		}		
 		//Pretty mediocre, is satan incarnate with crits, otherwise they're typical revolver spies that happen
 		//to ignore resistances
 		T_TFBot_Spy_Enforcer
@@ -3292,6 +3932,53 @@ WaveSchedule
 			"cannot disguise" 1
 			}
 		}
+		//Way stronger than a regular old enforcer, but also dies much faster as compensation
+		T_TFBot_Spy_Enforcer_Cola
+		{
+			Class Spy
+			Skill Easy
+			WeaponRestrictions PrimaryOnly
+			ClassIcon spy_enforcer_cola_nys
+			Name "Perma Cola Enforcer Spy"
+			Item "The Enforcer"
+			Item "Bonk Leadwear"
+			Action Fetchflag
+			AddCond
+			{
+					Index 30
+					Delay 0.3		
+			}			
+			AddCond
+			{
+					Index 19
+					Delay 0.3		
+			}
+			CharacterAttributes
+			{
+			"cannot disguise" 1
+			}
+		}
+		//Way stronger than a regular old enforcer, lacks faster death downside, be careful with using these.
+		T_TFBot_Spy_Enforcer_Cola_No_Mark
+		{
+			Class Spy
+			Skill Easy
+			WeaponRestrictions PrimaryOnly
+			ClassIcon spy_enforcer_cola_nys
+			Name "Perma Cola Enforcer Spy"
+			Item "The Enforcer"
+			Item "Bonk Leadwear"
+			Action Fetchflag			
+			AddCond
+			{
+					Index 19
+					Delay 0.3		
+			}
+			CharacterAttributes
+			{
+			"cannot disguise" 1
+			}
+		}		
 		//This can be a really annoying giant, be wary of spamming them or sending buff soldiers with them
 		//Oh and just don't put crits on them, I will undo every suture in your skull if you do.
 		T_TFBot_Giant_Spy_Enforcer

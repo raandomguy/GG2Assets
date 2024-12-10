@@ -1262,16 +1262,6 @@ Real?
 				Target	tank_path*
 				Action	KILL
 			}
-			OnSpawnOutput	// ensures control over path with InitWaveOutput chicanery
-			{
-				Target	bombpath_choose_relay
-				Action	KILL
-			}
-			OnSpawnOutput
-			{
-				Target	bombpath_clearall_relay
-				Action	Trigger
-			}
 			logic_relay	// ensures tank barricade breaks but really I could just remove the tank barricade
 			{
 				"targetname"	"tank_bust_fix_relay"
@@ -2930,7 +2920,7 @@ Real?
 				"targetname"	"w7_init_relay"
 				"OnTrigger"		"bignet,RunScriptCode,LightUpTheNight.DecideWave7(),0,-1"
 				"OnTrigger"		"bignet,RunScriptCode,StyleSystem.SetActive(false),0,-1"
-				"OnTrigger"		"force_path_b,Trigger,,0,-1"	// Because we can't have nice things (multiple initwaveoutputs)
+				//"OnTrigger"		"force_path_b,Trigger,,0,-1"	// Because we can't have nice things (multiple initwaveoutputs)
 			}
 			logic_relay
 			{
@@ -3525,10 +3515,6 @@ Real?
 				"OnTrigger"		"wave7_music_relay_3,Disable,,0,-1"
 				"OnTrigger"		"wave7_music_relay_3,CancelPending,,0,-1"
 				"OnTrigger"		"wave7_music_relay_4,Trigger,,0,-1"
-
-
-				"OnTrigger"		"player,$DisplayTextChat,{green}The bomb has been reset- regain your ground as soon as possible!,0,-1"
-				"OnTrigger"		"intel,ForceReset,,0,-1"
 			}
 
 
@@ -3560,8 +3546,6 @@ Real?
 			logic_relay
 			{
 				"targetname"	"skybreaker_phase6_relay"
-				"OnTrigger"		"player,$DisplayTextChat,{green}The bomb has been reset- regain your ground as soon as possible!,0,-1"
-				"OnTrigger"		"intel,ForceReset,,0,-1"
 				"OnTrigger"		"point_populator_interface,$PauseWavespawn,wave7_inf_scout_support,5,-1"
 				"OnTrigger"		"@f@filter_skybreaker@player,$AddPlayerAttribute,no_attack|1,0,-1"
 				"OnTrigger"		"!activator,$AddCond,71 5,0.0,-1"
@@ -4729,7 +4713,7 @@ Real?
 			math_counter
 			{
 				"targetname"	"tcs_enrage_counters"
-				"max"			"40"
+				"max"			"35"
 				"OnHitMax"		"player,$DisplayTextChat,{blue}Time-Constraint Soul {reset}: Oh I see. You know who else likes to spam canteens?,0.5,1"
 
 				"OnHitMax"		"@f@filter_tcs@player,$AddCond,52 8,3,-1"
@@ -7641,7 +7625,7 @@ Real?
 			Class	Soldier
 			Name	"Chief Sawblade Vortex Soldier"
 			ClassIcon	soldier_sawcon_burst
-			Health	17500
+			Health	15000
 			Skill	Expert
 			WeaponRestrictions	PrimaryOnly
 			Attributes		MiniBoss
@@ -8168,7 +8152,7 @@ Real?
 			ClassIcon	heavy_head_nys
 			Scale	2
 			Skill	Expert
-			Health	160000
+			Health	170000
 			Attributes	MiniBoss
 			Attributes	UseBossHealthBar
 			Action		Mobber
@@ -8291,7 +8275,7 @@ Real?
 				Delay 		0
 				Cooldown	0
 				Repeats		1
-				IfHealthBelow	80001
+				IfHealthBelow	87501
 			}
 			FireInput   
 			{
@@ -8300,7 +8284,7 @@ Real?
 				Param		"960 -5936 704"
 				Delay 		5
 				Repeats		1
-				IfHealthBelow	80001
+				IfHealthBelow	87501
 			}
 			FireInput   
 			{
@@ -8308,7 +8292,7 @@ Real?
 				Action		"Disable"
 				Delay 		0.01
 				Repeats		1
-				IfHealthBelow	80001
+				IfHealthBelow	87501
 			}
 			FireInput   
 			{
@@ -8316,7 +8300,7 @@ Real?
 				Action		"CancelPending"
 				Delay 		0.01
 				Repeats		1
-				IfHealthBelow	80001
+				IfHealthBelow	87501
 			}
 
 			InterruptAction
@@ -8341,7 +8325,7 @@ Real?
 				"dmg taken from self reduced"	0.00001
 				"gesture speed increase"		0.75
 				"move speed bonus"				0.65
-				"dmg taken increased"	0.5
+				"dmg taken increased"	0.45
 				"dmg from melee increased"	2
 				"dmg from ranged reduced"	2
 				"dmg taken mult from special damage type 2"	1.5	// so that the nail minigun isn't abysmal dogshit against specifically this guy
@@ -9220,16 +9204,16 @@ Real?
 			Target	wave_finished_relay
 			Action	Trigger
 		}
-		InitWaveOutput
-		{
-			Target	force_path_b
-			Action	Trigger
-		}
+		//InitWaveOutput
+		//{
+		//	Target	force_path_b
+		//	Action	Trigger
+		//}
 		Explanation	[$SIGSEGV]
 		{
 			Line	"{yellow}[WARNING] No gatebots or gate tanks spawn in this mission."
 			Line	"{yellow}The underworld is also disabled during this mission."
-			Line	"{yellow}Bomb paths are no longer random and forced per wave."
+			//Line	"{yellow}Bomb paths are no longer random and forced per wave."
 		}
 		SpawnTemplate	we_are_so_back
 		WaveSpawn
@@ -9464,7 +9448,6 @@ Real?
 			TFBot
 			{
 				Template	T_TFBot_Scout_Sandman
-				Attributes	AlwaysCrit
 				Tag	bot_nopoints
 			}
 		}
@@ -9482,11 +9465,11 @@ Real?
 			Target	wave_finished_relay
 			Action	Trigger
 		}
-		InitWaveOutput
-		{
-			Target	force_path_b
-			Action	Trigger
-		}
+		//InitWaveOutput
+		//{
+		//	Target	force_path_b
+		//	Action	Trigger
+		//}
 		Explanation	[$SIGSEGV]
 		{
 			Line	"{yellow}[WARNING] Bots with a fist in their icon (Gutterman/Guttertank) will pull out their fists when in melee range."
@@ -9496,9 +9479,9 @@ Real?
 		{
 			Name	wave2a1
 			TotalCurrency	100
-			TotalCount	15
-			MaxActive	6
-			SpawnCount	5
+			TotalCount	12
+			MaxActive	5
+			SpawnCount	4
 			WaitBetweenSpawns	10
 			Where	spawnbot
 			Squad
@@ -9507,11 +9490,6 @@ Real?
 				{
 					Template	T_TFBot_Giant_Scout_Baseball_Armored
 					Name		"bodyblock check"
-				}
-				TFBot	
-				{
-					Template	T_TFBot_Medic_QuickUber
-					Name		"Quick Uber Medic"
 				}
 				TFBot	
 				{
@@ -9666,8 +9644,8 @@ Real?
 			Support			1
 			TotalCurrency	50
 			TotalCount	48
-			MaxActive	10
-			SpawnCount	3
+			MaxActive	8
+			SpawnCount	2
 			WaitBeforeStarting	5
 			WaitBetweenSpawns	5
 			Where	spawnbot
@@ -9675,7 +9653,7 @@ Real?
 			TFBot
 			{
 				Class	Pyro
-				Skill	Expert
+				Skill	Normal
 				Attributes	AlwaysFireWeapon
 				Item	"Fire Marshal"
 				Item	"Invisible Flame"
@@ -9703,11 +9681,11 @@ Real?
 			Target	wave_finished_relay
 			Action	Trigger
 		}
-		InitWaveOutput
-		{
-			Target	force_path_a
-			Action	Trigger
-		}
+		//InitWaveOutput
+		//{
+		//	Target	force_path_a
+		//	Action	Trigger
+		//}
 		Explanation	[$SIGSEGV]
 		{
 			Line	"{yellow}[WARNING] An orbital weapon system has been detected in the atmosphere..."
@@ -9841,7 +9819,7 @@ Real?
 			Name	wave3bg
 			WaitForAllDead	wave3a2
 			TotalCurrency	50
-			TotalCount	9
+			TotalCount	7
 			MaxActive	4
 			SpawnCount	1
 			WaitBetweenSpawns	6.9
@@ -9856,7 +9834,7 @@ Real?
 			Name	wave3b
 			WaitForAllDead	wave3a1
 			TotalCurrency	50
-			TotalCount	40
+			TotalCount	32
 			MaxActive	14
 			SpawnCount	4
 			WaitBetweenSpawns	4
@@ -9948,11 +9926,11 @@ Real?
 			Target	wave_finished_relay
 			Action	Trigger
 		}
-		InitWaveOutput
-		{
-			Target	force_path_a
-			Action	Trigger
-		}
+		//InitWaveOutput
+		//{
+		//	Target	force_path_a
+		//	Action	Trigger
+		//}
 		Explanation	[$SIGSEGV]
 		{
 			Line	"{yellow}[WARNING] {blue}Stalkers {yellow}will spawn during this wave."
@@ -10204,11 +10182,11 @@ Real?
 			Target	wave_finished_relay
 			Action	Trigger
 		}
-		InitWaveOutput
-		{
-			Target	force_path_b
-			Action	Trigger
-		}
+		//InitWaveOutput
+		//{
+		//	Target	force_path_b
+		//	Action	Trigger
+		//}
 
 		Explanation	[$SIGSEGV]
 		{
@@ -10635,11 +10613,11 @@ Real?
 			Target	wave_finished_relay
 			Action	Trigger
 		}
-		InitWaveOutput
-		{
-			Target	force_path_a
-			Action	Trigger
-		}
+		//InitWaveOutput
+		//{
+		//	Target	force_path_a
+		//	Action	Trigger
+		//}
 
 		WaveSpawn
 		{

@@ -1905,7 +1905,7 @@ WaveSchedule
 		{
 			Name				stage2
 			WaitForAllSpawned	stage1
-			Where			spawnbot_side	// spawnbot
+			Where				spawnbot_side
 			TotalCount			16	// 32
 			MaxActive			6	// 12
 			SpawnCount			2	// 4
@@ -2288,13 +2288,13 @@ WaveSchedule
 			Action	RunScriptCode
 			Param	"
 			EntFire(`boss_changeattributes_relay`, `cancelpending`,null,-1); //stop the changeattrbs relay so it doesn't spit errors.
-			ClientPrint(null,3,`\x07FF0000AN ERROR HAS OCCURRED [the index 'SINS' does not exist]. Check console for details`)
-			ClientPrint(null,3,`\x07FFFF00AN ERROR HAS OCCURRED [the index 'SINS' does not exist]. Check console for details`)
-			ClientPrint(null,3,`\x07FFFFFFAN ERROR HAS OCCURRED [the index 'SINS' does not exist]. Check console for details`)
-			ClientPrint(null,3,`\x070000FFAN ERROR HAS OCCURRED [the index 'SINS' does not exist]. Check console for details`)
-			ClientPrint(null,3,`\x0700FFFFAN ERROR HAS OCCURRED [the index 'SINS' does not exist]. Check console for details`)
-			ClientPrint(null,3,`\x0700FF00AN ERROR HAS OCCURRED [the index 'SINS' does not exist]. Check console for details`)
-			ClientPrint(null,3,`\x07123456AN ERROR HAS OCCURRED [the index 'SINS' does not exist]. Check console for details`)
+			// ClientPrint(null,3,`\x07FF0000AN ERROR HAS OCCURRED [the index 'SINS' does not exist]. Check console for details`)
+			// ClientPrint(null,3,`\x07FFFF00AN ERROR HAS OCCURRED [the index 'SINS' does not exist]. Check console for details`)
+			// ClientPrint(null,3,`\x07FFFFFFAN ERROR HAS OCCURRED [the index 'SINS' does not exist]. Check console for details`)
+			// ClientPrint(null,3,`\x070000FFAN ERROR HAS OCCURRED [the index 'SINS' does not exist]. Check console for details`)
+			// ClientPrint(null,3,`\x0700FFFFAN ERROR HAS OCCURRED [the index 'SINS' does not exist]. Check console for details`)
+			// ClientPrint(null,3,`\x0700FF00AN ERROR HAS OCCURRED [the index 'SINS' does not exist]. Check console for details`)
+			// ClientPrint(null,3,`\x07123456AN ERROR HAS OCCURRED [the index 'SINS' does not exist]. Check console for details`)
 			"
 		}
 
@@ -2332,12 +2332,12 @@ WaveSchedule
 		{
 			Name				stage1
 			Where				spawnbot_invasion
-			TotalCount			666
-			MaxActive			9
-			SpawnCount			3
+			TotalCount			333	// 666
+			MaxActive			12	// 9
+			SpawnCount			4	// 3
 			WaitBeforeStarting	1
 			WaitBetweenSpawns	8
-			TotalCurrency		666
+			TotalCurrency		333	// 666
 			RandomSpawn			1
 			Support				1
 
@@ -2399,6 +2399,46 @@ WaveSchedule
 						"voice pitch scale"		0	// disables voicelines
 						"cancel falling damage"	1
 					}
+				}
+			}
+		}
+
+		WaveSpawn	// Now they teleport in.
+		{
+			Name				stage1
+			Where				spawnbot_invasion
+			TotalCount			333	// 666
+			MaxActive			6
+			SpawnCount			3
+			WaitBeforeStarting	0.5
+			WaitBetweenSpawns	8
+			TotalCurrency		333	// 666
+			RandomSpawn			1
+			Support				1
+
+			TFBot
+			{
+				Class				Sniper
+				WeaponRestrictions	MeleeOnly
+				ClassIcon			spell_skeletons_lite
+				Name				Skeleton
+				// Tag					popext_usecustommodel|models/bots/skeleton_sniper/skeleton_sniper.mdl
+				Tag					"popext_usecustommodel{ model = `models/bots/skeleton_sniper/skeleton_sniper.mdl`}"
+				// Tag					popext_deathsound|misc/halloween/skeleton_break.wav
+				Tag					"popext_deathsound{ sound = `misc/halloween/skeleton_break.wav`}"
+				// Tag					popext_setskin|1
+				Tag					"popext_setskin{ skin = 1}"
+				// Tag					popext_giveweapon|tf_weapon_fists|5
+				Tag					"popext_giveweapon{ weapon = `tf_weapon_fists` id = `5`}"
+				// Tag					popext_addcond|64|0.5
+				Health				200
+				Scale				1.2
+				MaxVisionRange		400
+
+				CharacterAttributes
+				{
+					"voice pitch scale"		0	// disables voicelines
+					"cancel falling damage"	1
 				}
 			}
 		}

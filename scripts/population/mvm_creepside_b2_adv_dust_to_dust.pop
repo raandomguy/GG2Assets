@@ -59,6 +59,7 @@ gettysburg
 
     BurnTimeFasterBurn 1
 
+    PrecacheModel models/bots/demo/bot_sentry_buster_gray.mdl
     PrecacheModel models/bots/soldier_boss/bot_soldier_gray_boss.mdl
     PrecacheModel models/bots/soldier/bot_soldier_gray.mdl
     PrecacheModel models/bots/soldier/bot_soldier_gibby.mdl
@@ -589,7 +590,7 @@ gettysburg
         "Giant Dragon's Fury"
         {
             OriginalItemName "The Dragon's Fury"
-            "item_meter_charge_rate" 0.45
+            "item_meter_charge_rate" 0.6
             "mult dmg vs tanks" 1.75
             "killstreak tier" 1
             "special item description" "Increased rate of fire and tank damage."
@@ -757,7 +758,7 @@ gettysburg
         {
             OriginalItemName Deflector
             "damage bonus" 1.3
-            "attack projectiles" 2
+            "attack projectiles" 1
             "killstreak tier" 1
             "special item description" "Damage bonus and projectile deflection."
         }
@@ -958,6 +959,12 @@ gettysburg
         "Horns Paint"
         {
             OriginalItemName "The Horrible Horns"
+            "set item tint rgb" 2960676
+        }
+
+        "Spine-chilling Paint"
+        {
+            OriginalItemName "Spine-Chilling Skull"
             "set item tint rgb" 2960676
         }
     }
@@ -1323,7 +1330,7 @@ gettysburg
     ItemAttributes //Giant Dragon's Fury
     {
         ItemName "The Dragon's Fury"
-        "item_meter_charge_rate" 0.45
+        "item_meter_charge_rate" 0.6
         "mult dmg vs tanks" 1.75
         "special item description" "Increased rate of fire and tank damage."
     }
@@ -1681,6 +1688,8 @@ gettysburg
             "maxammo secondary increased" 1.5
             "health from packs increased" 0.75
             "mult dmgtaken from melee" 2
+            "mult bleeding delay" 0.5
+            "mult bleeding dmg" 2
 
             "voice pitch scale" 0.75
             "damage force reduction" 0.5
@@ -1834,6 +1843,7 @@ gettysburg
             "medic machinery beam" 2
             "heal rate bonus" 1.33
             "revive rate" 4
+            "rage receive scale" 0.5
 
             "bombinomicon effect on death" 1
 
@@ -3669,12 +3679,11 @@ gettysburg
                     StripItemSlot 2
 
                     CustomEyeParticle killstreak_t4_lvl2
-                    CustomEyeGlowColor "200 0 0"
 
                     CharacterAttributes
                     {
-                        "mult airblast refire time" 51
-                        "mult airblast primary refire time" .02
+                        "mult airblast refire time" 3
+                        "mult airblast primary refire time" .33
                         "voice pitch scale" 0
                     }
                 }
@@ -3857,7 +3866,6 @@ gettysburg
                     StripitemSlot 2
 
                     CustomEyeParticle killstreak_t6_lvl2
-                    CustomEyeGlowColor "200 0 0"
 
                     CharacterAttributes
                     {
@@ -4007,11 +4015,11 @@ gettysburg
             Support Limited
             SpawnCount 1
             RandomSpawn 1
-            MaxActive 2
-            TotalCount 10
+            MaxActive 3
+            TotalCount 15
 
             WaitBeforeStarting 18
-            WaitBetweenSpawns 5
+            WaitBetweenSpawns 4
             WaitForAllDead 2c
 
             TFBot
@@ -4255,8 +4263,8 @@ gettysburg
         WaveSpawn
         {
             Name 2d_2
-            Where spawnbot_flank_right
-            Where spawnbot_flank_left
+            Where cliffspawn_right
+            Where cliffspawn_left
             RandomSpawn 1
             //Support Limited
             TotalCount 6
@@ -4271,7 +4279,7 @@ gettysburg
 
             TFBot
             {
-                Name "Armored Major League Scout"
+                Name "Giant Armored Sandman"
                 Class Scout
                 ClassIcon scout_stun_giant_armored
                 Health 3000
@@ -4292,6 +4300,7 @@ gettysburg
                 ItemAttributes
                 {
                     ItemName "The Sandman"
+                    "damage bonus" 1.5
                     "effect bar recharge rate increased" 0.1
                     "killstreak tier" 2
                     "killstreak idleeffect" 1
@@ -4427,13 +4436,14 @@ gettysburg
                 ItemAttributes
                 {
                     ItemName "Upgradeable TF_WEAPON_WRENCH"
-                    "melee attack rate bonus" 0.75
+                    "melee attack rate bonus" 0.7
                     "construction rate increased" 1.3
                 }
 
                 CharacterAttributes
                 {
                     "engy dispenser radius increased" 4
+                    "voice pitch scale" 0
                 }
             }
         }
@@ -4483,6 +4493,7 @@ gettysburg
                 CharacterAttributes
                 {
                     "engy dispenser radius increased" 4
+                    "voice pitch scale" 0
                 }
             }
         }
@@ -6174,7 +6185,6 @@ gettysburg
                     Action FetchFlag
 
                     CustomEyeParticle killstreak_t1_lvl2
-                    CustomEyeGlowColor "0 0 200"
 
                     FireWeapon
                     {
@@ -6186,17 +6196,17 @@ gettysburg
 
                     FireInput
                     {
-                        Target "switch_to_sentry_mode"
-                        Action "Trigger"
+                        Target switch_to_sentry_mode
+                        Action Trigger
                         Delay 0
-                        Cooldown 6
+                        Cooldown 4.5
                         IfSeeTarget 1
                     }
 
                     FireInput
                     {
-                        Target "switch_to_shotgun_mode"
-                        Action "Trigger"
+                        Target switch_to_shotgun_mode
+                        Action Trigger
                         Delay 0
                         Cooldown 1.5
                         IfSeeTarget 0
@@ -6325,7 +6335,6 @@ gettysburg
                     AimAt Head
 
                     CustomEyeParticle killstreak_t1_lvl2
-                    CustomEyeGlowColor "0 0 200"
                     
                     SpawnTemplate powerup_logic
 
@@ -6408,7 +6417,6 @@ gettysburg
                     AimLeadProjectileSpeed 1
 
                     CustomEyeParticle killstreak_t1_lvl2
-                    CustomEyeGlowColor "0 0 200"
 
                     SpawnTemplate powerup_logic
 
@@ -6920,7 +6928,7 @@ gettysburg
             {
                 Name "Hellborn Demoknight"
                 Class Demoman
-                ClassIcon scout_giant_support
+                ClassIcon engineer_giant_support
                 Skill Expert
                 Health 20000
                 Scale 2.33
@@ -7125,7 +7133,7 @@ gettysburg
             }
         }
 
-        WaveSpawn //blue giant scouts put here for wavebar
+        WaveSpawn //blue giant engineers put here for wavebar
         {
             Name 5c_blue_giants
             Where spawnbot_giant
@@ -7144,101 +7152,160 @@ gettysburg
             {
                 TFBot
                 {
-                    Name "Giant Scout"
-                    Class Scout
-                    ClassIcon scout_giant_support
+                    Name "Giant Battle Engineer"
+                    Class Engineer
+                    ClassIcon engineer_giant_support
                     Skill Expert
-                    Health 1600
-                    Item "The Last Laugh"
-                    Item "Claws and Infect"
-                    Item "Upgradeable TF_WEAPON_SCATTERGUN"
-                    Item "Upgradeable TF_WEAPON_PISTOL_SCOUT"
+                    Health 3000
+                    Item "Upgradeable TF_WEAPON_SHOTGUN_PRIMARY"
+                    Item "Upgradeable TF_WEAPON_PISTOL"
+                    Item "Iron Lung"
+                    Item "Iron Fist"
+                    Item "Arkham Cowl"
+                    Item "Spine-chilling Paint"
+                    Item "Creepy Crawlers"
                     Attributes MiniBoss
                     Attributes HoldFireUntilFullReload
-                    Action Mobber
-                    MaxVisionRange 1200
-                    
-                    Tag bot_giant
+                    MaxVisionRange 1600
 
-                    NoIdleSound 1
-                    DesiredAttackRange 400
-                    UseBestWeapon 1
-                    PreferTeam Spectator
+                    Tag bot_giant
+                    Tag flank_right
+
                     CustomEyeGlowColor "0 0 0"
+                    Action FetchFlag
+                    UseMeleeThreatPrioritization 1
 
                     ItemAttributes
                     {
-                        ItemName "Upgradeable TF_WEAPON_SCATTERGUN"
-                        "paintkit_proto_def_index" 289
+                        ItemName "Upgradeable TF_WEAPON_SHOTGUN_PRIMARY"
+                        "paintkit_proto_def_index" 269
                         "set_item_texture_wear" 1
-                        "damage bonus" 1.5
-                        "reload time decreased" 0.6
-                        "killstreak tier" 2
-                        "killstreak idleeffect" 1
+                        "damage bonus" 1.6
+                        "spread penalty" 1.2
+                        "halloween reload time decreased" 0.6
+                        "clipsize increase on kill" 6
+                        "killstreak tier" 1
                     }
 
                     ItemAttributes
                     {
-                        ItemName "Upgradeable TF_WEAPON_PISTOL_SCOUT"
-                        "damage bonus" 1.5
-                        "fire rate bonus" 0.8
-                        "killstreak tier" 2
-                        "killstreak idleeffect" 1
+                        ItemName "Upgradeable TF_WEAPON_PISTOL"
+                        "paintkit_proto_def_index" 269
+                        "set_item_texture_wear" 1
+                        "damage bonus" 1.3
+                        "weapon spread bonus" 0.8
+                        "killstreak tier" 1
                     }
 
                     CharacterAttributes
                     {
+                        "move speed penalty" 0.5
                         "damage force reduction" 0.35
-                        "airblast vulnerability multiplier" 0.35
                         "airblast vertical vulnerability multiplier" 0.5
-                        "override footstep sound set" 5
                         "voice pitch scale" 0
-                        "mult dmg vs giants" 1.5
-                        "move speed bonus" 1.1
+                        "override footstep sound set" 7
                     }
+
+                    WeaponSwitch
+                    {
+                        Type Primary
+                        MaxTargetRange 350
+                        MinTargetRange 0
+                        Delay 0.1
+                        Repeats 0
+                        Cooldown 0.75
+                        IfSeeTarget 1
+                    }
+
+                    WeaponSwitch
+                    {
+                        Type Secondary
+                        MaxTargetRange 9999
+                        MinTargetRange 350
+                        Delay 0.1
+                        Repeats 0
+                        Cooldown 0.75
+                        IfSeeTarget 1
+                    }	
                 }
 
                 TFBot
                 {
-                    Name "Giant Scout"
-                    Class Scout
-                    ClassIcon scout_giant_support
+                    Name "Giant Battle Engineer"
+                    Class Engineer
+                    ClassIcon engineer_giant_support
                     Skill Expert
-                    Health 1600
-                    Item "The Last Laugh"
-                    Item "Claws and Infect"
-                    Item "The Force-a-Nature"
+                    Health 3000
+                    Item "Upgradeable TF_WEAPON_SHOTGUN_PRIMARY"
+                    Item "Upgradeable TF_WEAPON_PISTOL"
+                    Item "Iron Lung"
+                    Item "Iron Fist"
+                    Item "Arkham Cowl"
+                    Item "Spine-chilling Paint"
+                    Item "Creepy Crawlers"
                     Attributes MiniBoss
-                    Action Mobber
-                    MaxVisionRange 1200
-                    
-                    Tag bot_giant
+                    Attributes HoldFireUntilFullReload
+                    MaxVisionRange 1600
 
-                    NoIdleSound 1
-                    DesiredAttackRange 200
-                    PreferTeam Spectator
+                    Tag bot_giant
+                    Tag flank_right
+
                     CustomEyeGlowColor "0 0 0"
+                    Action FetchFlag
+                    UseMeleeThreatPrioritization 1
 
                     ItemAttributes
                     {
-                        ItemName "The Force-a-Nature"
-                        "damage penalty" 1
-                        "damage bonus" 1.5
-                        "reload time decreased" 0.6
-                        "killstreak tier" 2
-                        "killstreak idleeffect" 1
+                        ItemName "Upgradeable TF_WEAPON_SHOTGUN_PRIMARY"
+                        "paintkit_proto_def_index" 269
+                        "set_item_texture_wear" 1
+                        "damage bonus" 1.6
+                        "spread penalty" 1.2
+                        "halloween reload time decreased" 0.6
+                        "clipsize increase on kill" 6
+                        "killstreak tier" 1
+                    }
+
+                    ItemAttributes
+                    {
+                        ItemName "Upgradeable TF_WEAPON_PISTOL"
+                        "paintkit_proto_def_index" 269
+                        "set_item_texture_wear" 1
+                        "damage bonus" 1.3
+                        "weapon spread bonus" 0.8
+                        "killstreak tier" 1
                     }
 
                     CharacterAttributes
                     {
+                        "move speed penalty" 0.5
                         "damage force reduction" 0.35
-                        "airblast vulnerability multiplier" 0.35
                         "airblast vertical vulnerability multiplier" 0.5
-                        "override footstep sound set" 5
                         "voice pitch scale" 0
-                        "mult dmg vs giants" 1.5
-                        "move speed bonus" 1.1
+                        "override footstep sound set" 7
                     }
+
+                    WeaponSwitch
+                    {
+                        Type Primary
+                        MaxTargetRange 350
+                        MinTargetRange 0
+                        Delay 0.1
+                        Repeats 0
+                        Cooldown 0.75
+                        IfSeeTarget 1
+                    }
+
+                    WeaponSwitch
+                    {
+                        Type Secondary
+                        MaxTargetRange 9999
+                        MinTargetRange 350
+                        Delay 0.1
+                        Repeats 0
+                        Cooldown 0.75
+                        IfSeeTarget 1
+                    }	
                 }
             }
         }
@@ -8246,122 +8313,6 @@ gettysburg
             }
         }
 
-        // WaveSpawn //red engineers
-        // {
-        //     Where hidden
-        //     TotalCount 10
-        //     SpawnCount 1
-        //     MaxActive 1
-        //     Support Limited
-
-        //     WaitForAllSpawned red3
-        //     WaitBeforeStarting 3
-        //     WaitBetweenSpawnsAfterDeath 30
-
-        //     RandomChoice
-        //     {
-        //         NextSpawnerClone 9
-        //         TFBot
-        //         {
-        //             Class Engineer
-        //             ClassIcon red2_lite
-        //             Skill Hard
-        //             Health 500
-        //             Item "Defragmenting Hard Hat 17%"
-        //             Item "The Southern Hospitality"
-        //             Item "The Flared Frontiersman"
-        //             Item "Underminer's Overcoat"
-        //             Attributes TeleportToHint
-        //             WeaponRestrictions MeleeOnly
-
-        //             CustomEyeParticle killstreak_t7_lvl2
-
-        //             AddCond {Index 43}
-
-        //             VoiceCommand
-        //             {
-        //                 Delay 0
-        //                 Cooldown 12
-        //                 Repeats 10
-        //                 IfHealthBelow 200
-        //                 Type Medic
-        //             }
-                    
-        //             CharacterAttributes
-        //             {
-        //                 "voice pitch scale" 0
-        //                 "engy building health bonus" 1.5
-        //                 //"health regen" 20
-        //                 "dmg taken from crit reduced" 0.1
-        //             }
-        //         }
-
-        //         TFBot
-        //         {
-        //             Name "Miniature Engineer"
-        //             Class Engineer
-        //             ClassIcon red2_lite
-        //             Skill Expert
-        //             Health 250
-        //             Item "Defragmenting Hard Hat 17%"
-        //             Item "The Gunslinger"
-        //             Item "The Flared Frontiersman"
-        //             Item "Underminer's Overcoat"
-        //             Scale 0.75
-        //             //Attributes TeleportToHint
-        //             TeleportWhere hidden
-
-        //             CustomEyeParticle killstreak_t7_lvl2
-
-        //             ItemAttributes
-        //             {
-        //                 ItemName "The Gunslinger"
-        //                 //"max health additive bonus" 0
-        //                 "construction rate increased" 4
-        //                 "melee attack rate bonus" 1.5
-        //                 "building max level" 1
-        //                 "mvm sentry ammo" 11
-        //                 "building scale" 0.67
-        //                 "repair rate increased" 1.5
-        //             }
-
-        //             CharacterAttributes
-        //             {
-        //                 "engy sentry damage bonus" 3
-        //                 "engy sentry fire rate increased" 0.75
-        //                 "engy building health bonus" 2
-        //                 //"engy sentry radius increased" 0.75
-        //                 "rocket specialist" 1
-        //                 "voice pitch scale" 1.2
-        //                 "gesture speed increase" 2
-        //                 "dmg taken from crit reduced" 0.1
-        //                 "move speed bonus" 1.5
-        //                 "health regen" 10
-        //                 "engy dispenser radius increased" 4
-        //                 "destroy buildings on death" 1
-        //             }
-
-        //             AddCond {Index 43}
-
-        //             VoiceCommand  
-        //             {
-        //                 Delay 10
-        //                 Cooldown 12
-        //                 Type Negative
-        //             }
-
-        //             VoiceCommand  
-        //             {
-        //                 Delay 0
-        //                 Cooldown 4
-        //                 //Repeats 2
-        //                 IfHealthBelow 125
-        //                 Type Medic
-        //             }
-        //         }
-        //     }
-        // }
-
         WaveSpawn
         {
             WaitForAllDead talk
@@ -8623,8 +8574,6 @@ gettysburg
 
                     DesiredAttackRange 75
 
-                    PreferTeam Blue
-
                     UseCustomModel models/bots/heavy_boss/bot_heavy_gray_boss.mdl
                     CustomEyeGlowColor "255 0 0"
                     DeathSound "npc/env_headcrabcanister/explosion.wav"
@@ -8650,7 +8599,7 @@ gettysburg
 
                     CharacterAttributes
                     {
-                        "move speed bonus"	0.625
+                        "move speed bonus"	0.575
                         "damage force reduction" 0.15
                         "airblast vulnerability multiplier" 0.15
                         "airblast vertical vulnerability multiplier" 0.5
@@ -8875,7 +8824,7 @@ gettysburg
                 Name combattank|railgun|minigun
                 ClassIcon tank_combat_minigun_railgun
                 StartingPathTrackNode combattank_loop_1
-                Health 75000
+                Health 82500
                 Speed 85
 
                 DisableSmokestack 1
@@ -8901,7 +8850,7 @@ gettysburg
 
             WaitForAllSpawned 1check
             WaitBeforeStarting 5
-            WaitBetweenSpawns 18
+            WaitBetweenSpawns 26
 
             TotalCurrency 100
 
@@ -8933,7 +8882,7 @@ gettysburg
                         ItemName Natascha
                         "damage penalty" 1
                         "damage bonus" 1.3
-                        spunup_damage_resistance 0.5
+                        spunup_damage_resistance 0.67
                         "killstreak tier" 2
                         "killstreak idleeffect" 1
                     }
@@ -8959,7 +8908,7 @@ gettysburg
             Where cliffspawn_right
             RandomSpawn 1
             //Support 1
-            TotalCount 20
+            TotalCount 24
             SpawnCount 2
             MaxActive 8
 
@@ -9428,7 +9377,7 @@ gettysburg
                 Class Demoman
                 ClassIcon demo_sticky_split_allygry
                 Skill Expert
-                Health 57733
+                Health 63506
                 Scale 2.2
                 Item "Upgradeable TF_WEAPON_GRENADELAUNCHER"
                 Item concealedkiller_stickybomblauncher_suddenflurry
@@ -9468,6 +9417,7 @@ gettysburg
                 {
                     TF_WEAPON_REVOLVER 2
                     TF_WEAPON_MINIGUN 0.8
+                    TF_WEAPON_KNIFE 0.6
                 }
 
                 ItemAttributes
@@ -9480,8 +9430,8 @@ gettysburg
                     "projectile spread angle penalty" 1
                     "fire rate bonus" 0.175
                     "reload time decreased" 0.1
-                    "mult dmg vs giants" 1.5
-                    "fire rate bonus with reduced health" 0.5
+                    "mult dmg vs giants" 1.25
+                    "fire rate bonus with reduced health" 0.67
                     "hold fire until full reload" 2
                     "self dmg push force increased" 3
                     "projectile speed increased" 1.1
@@ -9567,7 +9517,7 @@ gettysburg
                     "health from packs decreased" 0
                     "attach particle effect" 3010
                     "health regen" 53
-                    "mult dmgtaken from melee" 2
+                    "mult dmgtaken from melee" 2.6
                 }
 
                 FireInput
@@ -9587,7 +9537,7 @@ gettysburg
 					Repeats 0
 					Cooldown 0.75
 					IfSeeTarget 1
-				}			
+				}
 
                 WeaponSwitch
                 {
@@ -9981,30 +9931,6 @@ gettysburg
     //     {
     //         Target wave_finished_relay
     //         Action Trigger
-    //     }
-
-    //     WaveSpawn
-    //     {
-    //         Name 6a
-    //         Where spawnbot
-    //         TotalCount 90
-    //         SpawnCount 20
-    //         MaxActive 20
-
-    //         WaitBeforeStarting 1
-    //         WaitBetweenSpawns 0
-
-    //         TFBot
-    //         {
-    //             Class Engineer
-    //             TeleportWhere spawnbot
-    //             ExtAttr BuildDispenserAsTeleporter
-
-    //             CharacterAttributes
-    //             {
-    //                 "move speed bonus" 2
-    //             }
-    //         }
     //     }
     // }
 

@@ -109,7 +109,10 @@
 			CustomAttributes.ExplosiveBullets(player, items, value)
 			player.GetScriptScope().attribinfo[attr] <- format("Fires explosive rounds that deal %d damage", value)
 		}
-
+		"explosive bullets ext": function(player, items, attr, value) {
+			CustomAttributes.ExplosiveBulletsExt(player, items, value)
+			player.GetScriptScope().attribinfo[attr] <- format("Fires explosive rounds that deal %d damage in a radius of %d", value.damage, value.radius)
+		}
 		"old sandman stun": function(player, items, attr, value) {
 			CustomAttributes.OldSandmanStun(player, items)
 			player.GetScriptScope().attribinfo[attr] <- "Uses pre-JI stun mechanics"
@@ -314,6 +317,11 @@
 		//add custom item description during inspection; wrap text with \n in value
 		"special item description": function(player, items, attr, value) {
 			player.GetScriptScope().attribinfo[attr] <- format("%s", value)
+		}
+
+		"custom kill icon": function(player, items, attr, value) {
+			CustomAttributes.CustomKillIcon(player, items, value)
+			player.GetScriptScope().attribinfo[attr] <- format("Custom kill icon: %s", value)
 		}
 
 		//VANILLA ATTRIBUTE REIMPLEMENTATIONS
@@ -962,23 +970,30 @@
 
 	function RadiusSleeper(player, items, value = null) { //dummy third value to avoid wrong number of parameters errors
 
-		CustomAttributes.TakeDamagePostTable[format("RadiusSleeper_%d_%d", player.GetScriptScope().userid,  wep.entindex())] <- function(params) {
+		foreach(item, attrs in items)
+		{
+			local wep = PopExtUtil.HasItemInLoadout(player, item)
+			if (wep == null) continue
 
-			local victim = GetPlayerFromUserID(params.userid)
-			local attacker = GetPlayerFromUserID(params.attacker)
+			CustomAttributes.TakeDamagePostTable[format("RadiusSleeper_%d_%d", player.GetScriptScope().userid,  wep.entindex())] <- function(params) {
 
-			if (attacker == null) return
+				local victim = GetPlayerFromUserID(params.userid)
+				local attacker = GetPlayerFromUserID(params.attacker)
 
-			local scope = attacker.GetScriptScope()
+				if (attacker == null) return
 
-			if (!("radius sleeper" in player.GetScriptScope().attribinfo)) return
+				local scope = attacker.GetScriptScope()
 
-			if (victim == null || attacker == null || attacker != player || GetPropFloat(attacker.GetActiveWeapon(), "m_flChargedDamage") < 150.0) return
+				if (!("radius sleeper" in player.GetScriptScope().attribinfo)) return
 
-			SpawnEntityFromTable("tf_projectile_jar", {origin = victim.EyePosition()})
+				if (victim == null || attacker == null || attacker != player || GetPropFloat(attacker.GetActiveWeapon(), "m_flChargedDamage") < 150.0) return
+
+				SpawnEntityFromTable("tf_projectile_jar", {origin = victim.EyePosition()})
+			}
 		}
 	}
 
+	//OBSOLETE, use ExplosiveBulletsExt instead
 	function ExplosiveBullets(player, items, value) {
 
 		foreach(item, attrs in items)
@@ -1042,6 +1057,69 @@
 		}
 	}
 
+	function ExplosiveBulletsExt(player, items, value) {
+
+		SetPropInt(PopExtUtil.Worldspawn, "m_takedamage", 1)
+
+		local generic_bomb = "tf_generic_bomb"
+
+		foreach(item, attrs in items)
+		{
+			local wep = PopExtUtil.HasItemInLoadout(player, item)
+			if (wep == null) continue
+
+			local damage = "damage" in value ? value.damage : 150
+			local radius = "radius" in value ? value.radius : 150
+			local team = "team" in value ? value.team : player.GetTeam()
+			local model = "model" in value ? value.model : ""
+			local particle = "particle" in value ? value.particle : "mvm_loot_explosion"
+			local sound = "sound" in value ? value.sound : "weapons/pipe_bomb1.wav"
+			local killicon = "killicon" in value ? value.killicon : "megaton"
+
+			PrecacheSound(sound)
+
+			local scope = player.GetScriptScope()
+
+			CustomAttributes.TakeDamageTable[format("ExplosiveBulletsExt_%d_%d", scope.userid,  wep.entindex())] <- function(params) {
+
+				if ("explosivebullets" in scope || params.weapon != wep || !("explosive bullets ext" in player.GetScriptScope().attribinfo)) return
+
+				scope.explosivebullets <- true
+
+				local particleent = SpawnEntityFromTable("info_particle_system", { effect_name = particle })
+
+				if (params.const_entity.GetClassname() == generic_bomb ||
+					params.attacker.GetClassname() == generic_bomb ||
+					(params.attacker == player && params.const_entity.GetClassname() == generic_bomb))
+					return
+
+				local bomb = CreateByClassname(generic_bomb)
+
+				SetPropFloat(bomb, "m_flDamage", damage)
+				SetPropFloat(bomb, "m_flRadius", radius)
+				SetPropString(bomb, "m_explodeParticleName", particle) // doesn't work
+				SetPropString(bomb, "m_strExplodeSoundName", sound)
+
+				bomb.DispatchSpawn()
+				bomb.SetOwner(params.attacker)
+
+				bomb.SetTeam(team)
+				bomb.SetOrigin(params.damage_position)
+				bomb.SetHealth(1)
+				if (model != "") bomb.SetModel(model)
+
+				particleent.SetOrigin(bomb.GetOrigin())
+				SetPropString(bomb, "m_iClassname", killicon)
+				bomb.TakeDamage(1, DMG_CLUB, player)
+				EntFireByHandle(particleent, "Start", "", -1, null, null)
+				EntFireByHandle(particleent, "Stop", "", SINGLE_TICK, null, null)
+				EntFireByHandle(particleent, "Kill", "", SINGLE_TICK*2, null, null)
+
+				if ("explosivebullets" in scope) delete scope.explosivebullets
+			}
+		}
+	}
+
 	function OldSandmanStun(player, items, value = null) { //dummy third value to avoid wrong number of parameters errors
 
 		foreach(item, attrs in items)
@@ -1070,12 +1148,10 @@
 
 			local scope = wep.GetScriptScope()
 
-			local duration = 5, type = 2, speedmult = 0.2, stungiants = true
-
-			if ("duration" in value) duration = value.duration
-			if ("type" in value) type = value.type
-			if ("speedmult" in value) speedmult = value.speedmult
-			if ("stungiants" in value) stungiants = value.stungiants
+			local duration = "duration" in value ? value.duration : 5
+			local type = "type" in value ? value.type : 2
+			local speedmult = "speedmult" in value ? value.speedmult : 0.2
+			local stungiants = "stungiants" in value ? value.stungiants : true
 
 			// `stun on hit`: { duration = 4 type = 2 speedmult = 0.2 stungiants = false } //in order: stun duration in seconds, stun type, stun movespeed multiplier, can stun giants true/false
 
@@ -1095,25 +1171,25 @@
 			local wep = PopExtUtil.HasItemInLoadout(player, item)
 			if (wep == null) continue
 
-			local i = 1
+			// local i = 1
 
-			wep.GetScriptScope().ItemThinkTable[format("IsMiniBoss_%d_%d", player.GetScriptScope().userid,  wep.entindex())] <- function() {
+			// wep.GetScriptScope().ItemThinkTable[format("IsMiniBoss_%d_%d", player.GetScriptScope().userid,  wep.entindex())] <- function() {
 
-				if (player.GetActiveWeapon() == wep && !player.IsMiniBoss() && player.GetModelScale() == 1.0) {
+			// 	if (player.GetActiveWeapon() == wep && !player.IsMiniBoss() && player.GetModelScale() == 1.0) {
 
-					player.SetIsMiniBoss(true)
-					player.SetModelScale(1.75, -1)
-				}
+			// 		player.SetIsMiniBoss(true)
+			// 		player.SetModelScale(1.75, -1)
+			// 	}
 
-				if (!i)
-				{
-					player.SetIsMiniBoss(false)
-					player.SetModelScale(1.0, -1)
-				}
+			// 	if (!i)
+			// 	{
+			// 		player.SetIsMiniBoss(false)
+			// 		player.SetModelScale(1.0, -1)
+			// 	}
 
-				i++
-				if (i > 10) i = 0
-			}
+			// 	i++
+			// 	if (i > 10) i = 0
+			// }
 		}
 	}
 
@@ -1866,6 +1942,28 @@
 			wep.RemoveAttribute("SET BONUS: max health additive bonus")
 			local addHPAmount = player.GetMaxHealth() * (value - 1)
 			wep.AddAttribute("SET BONUS: max health additive bonus", addHPAmount, -1)
+		}
+	}
+
+	function CustomKillIcon(player, items, value) {
+
+		foreach(item, attrs in items)
+		{
+			local wep = PopExtUtil.HasItemInLoadout(player, item)
+			if (wep == null) continue
+
+			CustomAttributes.TakeDamageTable[format("CustomKillIcon_%d_%d", player.GetScriptScope().userid,  wep.entindex())] <- function(params) {
+
+				if (params.weapon != wep || player.GetActiveWeapon() != wep) return
+
+				local killicon_dummy = CreateByClassname("info_teleport_destination")
+				SetPropString(killicon_dummy, "m_iName", format("killicon_dummy_%d_%d", player.GetScriptScope().userid, wep.entindex()))
+				SetPropString(killicon_dummy, "m_iClassname", value)
+				params.inflictor = killicon_dummy
+			}
+			CustomAttributes.TakeDamagePostTable[format("CustomKillIcon_%d_%d", player.GetScriptScope().userid,  wep.entindex())] <- function(params) {
+				EntFire(format("killicon_dummy_%d_%d", player.GetScriptScope().userid, wep.entindex()), "Kill")
+			}
 		}
 	}
 

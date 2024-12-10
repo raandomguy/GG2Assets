@@ -75,6 +75,7 @@ This_fucking_sucks,_actually.
 	ZombiesNoWave666		1	[$SIGSEGV]
 	FastNPCUpdate			1	[$SIGSEGV]
 	ForceRobotBleed			1	[$SIGSEGV]
+
 	// Custom Weapons
 
 	PrecacheModel	"models/ctf2w/weapons/c_models/c_payoff/c_payoff.mdl"
@@ -119,6 +120,7 @@ This_fucking_sucks,_actually.
 	// Icons will not download without this
 	PrecacheGeneric	"materials/hud/leaderboard_class_medic_crossbow_burst_penetration" [$SIGSEGV]
 	PrecacheGeneric	"materials/hud/leaderboard_class_medic_blutsauger_lite" [$SIGSEGV]
+	// thank you for pointing this out by the way. I swear I had these in here already but apparently not
 
 
 	CustomWeapon	// bot only variant that isn't cbt for players to deal with especially if the med bot in question is putting this on a hitscan bot
@@ -169,6 +171,8 @@ This_fucking_sucks,_actually.
 		Name	"FinalBoss_Amputator"
 		OriginalItemName	"The Amputator"
 		"damage bonus"	2
+		"melee range multiplier"	1.5
+		"melee bounds multiplier"	2
 	}
 	CustomWeapon
 	{
@@ -531,7 +535,6 @@ This_fucking_sucks,_actually.
 				"OnTrigger"		"!activator,$GiveItem,FinalBoss_Crossbow,0,-1"
 				"OnTrigger"		"!activator,$WeaponSwitchSlot,0,0,-1"
 			}
-
 		}
 	}
 
@@ -999,7 +1002,7 @@ This_fucking_sucks,_actually.
 			ClassIcon	medic_jug_amputator2
 			Name	"Chief Needle Shotgun Medic"
 			Skill	Expert
-			Health	15000
+			Health	20000
 			Attributes	MiniBoss
 			Attributes	UseBossHealthBar
 			Item	"Bot Needle Shotgun"
@@ -1033,6 +1036,12 @@ This_fucking_sucks,_actually.
 				"cannot pick up intelligence"		1
 				"no_jump"	1
 				"no_duck"	1
+			}
+
+			WeaponResist
+			{
+				"TF_WEAPON_KNIFE"	0.85
+				"TF_WEAPON_MINIGUN"	0.6
 			}
 		}
 		T_TFBot_Giant_Medic_NeedleShotgun
@@ -1138,7 +1147,7 @@ This_fucking_sucks,_actually.
 			}
 			CharacterAttributes
 			{
-				"move speed bonus"	0.4
+				"move speed bonus"	0.5
 				"damage force reduction"	0.01
 				"airblast vulnerability multiplier"	0.01
 				"override footstep sound set"	2
@@ -1152,7 +1161,7 @@ This_fucking_sucks,_actually.
 				Repeats		1
 				Duration	0.1
 				Name		"Taunt: Burstchester"
-				IfHealthBelow 80000
+				IfHealthBelow 70000
 			}
 			FireInput   
 			{
@@ -1161,7 +1170,7 @@ This_fucking_sucks,_actually.
 				Delay 		0
 				Cooldown	0
 				Repeats		1
-				IfHealthBelow	80000
+				IfHealthBelow	70000
 			}
 		}
 		T_TFBot_Punchie_Parasite
@@ -1192,7 +1201,7 @@ This_fucking_sucks,_actually.
 			AddCond
 			{
 				Index	52
-				Duration	0.5
+				Duration	1
 			}
 		}
 
@@ -1427,7 +1436,6 @@ This_fucking_sucks,_actually.
 			ClassIcon	heavy_atomic_v2
 			Skill	Expert
 			Health	5000
-			WeaponRestrictions	PrimaryOnly
 			MaxVisionRange	1200
 			Attributes	MiniBoss
 			Item	"Corona Australis"
@@ -1443,6 +1451,18 @@ This_fucking_sucks,_actually.
 				"energy weapon penetration"	1
 				"spread offset pattern"		"100 -35 -54"
 				"dmg bonus vs buildings"	3
+				"deploy time decreased"			0.2
+				"mod minigun can holster while spinning"	1
+			}
+			ItemAttributes
+			{
+				ItemName	"TF_WEAPON_FISTS"
+				"melee range multiplier"		1.25
+				"damage causes airblast"		1
+				"melee cleave attack"			1
+				"deploy time decreased"			0.2
+				"dmg pierces resists absorbs"	1
+				"dmg bonus vs buildings"	3
 			}
 			CharacterAttributes
 			{
@@ -1450,6 +1470,24 @@ This_fucking_sucks,_actually.
 				"damage force reduction"	0.3
 				"airblast vulnerability multiplier"	0.3
 				"override footstep sound set"	2
+			}
+			WeaponSwitch
+			{
+				Delay			0.1
+				Cooldown		0
+				Repeats			0
+				Type			"Primary"
+				MaxTargetRange	9999
+				MinTargetRange	100
+			}
+			WeaponSwitch
+			{
+				Delay			0.1
+				Cooldown		0
+				Repeats			0
+				Type			"Melee"
+				MaxTargetRange	100
+				MinTargetRange	1
 			}
 		}
 
@@ -1459,7 +1497,7 @@ This_fucking_sucks,_actually.
 			ClassIcon	medic
 			Name	"The Headless Doctor"
 			Skill	Expert
-			Health	50000
+			Health	60000
 			Attributes	MiniBoss
 			Attributes	UseBossHealthBar
 			Action		FetchFlag
@@ -1482,7 +1520,7 @@ This_fucking_sucks,_actually.
 				Delay 		0
 				Cooldown	0
 				Repeats		1
-				IfHealthBelow	40000
+				IfHealthBelow	50000
 			}
 			FireInput   
 			{
@@ -1491,7 +1529,7 @@ This_fucking_sucks,_actually.
 				Delay 		0
 				Cooldown	0
 				Repeats		1
-				IfHealthBelow	30000
+				IfHealthBelow	40000
 			}
 			FireInput   
 			{
@@ -1500,7 +1538,7 @@ This_fucking_sucks,_actually.
 				Delay 		0
 				Cooldown	0
 				Repeats		1
-				IfHealthBelow	20000
+				IfHealthBelow	30000
 			}
 			FireInput   
 			{
@@ -1509,7 +1547,7 @@ This_fucking_sucks,_actually.
 				Delay 		0
 				Cooldown	0
 				Repeats		1
-				IfHealthBelow	12000
+				IfHealthBelow	15000
 			}
 
 
@@ -2133,7 +2171,7 @@ This_fucking_sucks,_actually.
 			TotalCount	50
 			MaxActive	10
 			SpawnCount	1
-			WaitBeforeStarting	30
+			WaitBeforeStarting	20
 			WaitBetweenSpawns	1
 			Where	spawnbot_left
 			Where	spawnbot_right
@@ -2150,7 +2188,7 @@ This_fucking_sucks,_actually.
 			TotalCount	3
 			MaxActive	3
 			SpawnCount	1
-			WaitBeforeStarting	45
+			WaitBeforeStarting	35
 			WaitBetweenSpawns	15
 			Where	spawnbot_left
 			Where	spawnbot_right
@@ -3018,10 +3056,10 @@ This_fucking_sucks,_actually.
 			WaitForAllDead	wave7_gauntlet_intro
 			TotalCurrency	100
 			TotalCount	100
-			MaxActive	2
+			MaxActive	3
 			SpawnCount	1
 			Support		1
-			WaitBetweenSpawns	12
+			WaitBetweenSpawns	7
 			Where	spawnbot_left
 			Where	spawnbot_right
 			TFBot
@@ -3107,10 +3145,10 @@ This_fucking_sucks,_actually.
 			Support	1
 			TotalCurrency	300
 			TotalCount	300
-			MaxActive	8
+			MaxActive	10
 			SpawnCount	2
 			WaitBeforeStarting	5
-			WaitBetweenSpawns	7
+			WaitBetweenSpawns	5
 			Where	spawnbot_left
 			Where	spawnbot_right
 			RandomChoice
