@@ -11,12 +11,13 @@
 
 // Actual new normal missions where these will show up featuring brand new ones not originally in TME:
 
-// HH3
+// GG2
 // * Butcher - Malpractice [INT]
 // * Whitecliff Event - Light Up The Night [EXP]
+// * Terrorlict: Accursed Aggrievocation [ADV]
+// * Terrorlict: Echoes of a Warzone [EXP]
 
-
-// LIST OF WEAPONS
+// LIST OF WEAPONS (extremely outdated because of my five hundred updates over the course of GG2. Ignore this.)
 
 // SCOUT:
 // Primary: The Payoff - Sets your credit collection radius to half, but killing bots grants you a significantly boosted credit collection range + bonus healing from credits. -1 bullet per shot, 20% more accurate.
@@ -216,14 +217,19 @@ athazar's_bar_and_bazaar	// subtle sneed's seed and feed reference
 		"damage bonus"				15
 		"bullets per shot bonus"	0.15
 		"no damage falloff"			1
-		"explosive bullets"			150
+		"explosive bullets"			85
 		"weapon always gib"			1
-		"fire rate penalty"			2.2
+		"fire rate penalty"			2.5
 		"switch from wep deploy time decreased"	0.5
-		"maxammo secondary reduced"	0.5
+		"maxammo secondary reduced"	0.25
 		"mod max primary clip override"	-1
 		"attack projectiles"			1	// I think this is reasonable because you're giving up a banner
 		// what in the actual fuck am I cooking
+		
+		// cooked too hard, ultranerf time
+		"crits_become_minicrits"	1
+		"crit mod disabled"			0
+		
 	}
 
 
@@ -631,6 +637,7 @@ athazar's_bar_and_bazaar	// subtle sneed's seed and feed reference
 		"ubercharge rate penalty"		3	// should stack with base ubercharge bonus upgrade and not count as already bought
 		"Set DamageType Ignite"			1
 		"weapon burn dmg reduced"		0.5
+		"fire input on effect"			"!activator^$PlaySoundToSelf^=90|player/mannpower_invulnerable.wav"
 	}
 	CustomWeapon
 	{
@@ -1444,10 +1451,10 @@ for(local i = 0; i <= 8; i++)
 
 		howitzer_damagebonus
 		{
-			Name			"+25% Damage Bonus"
+			Name			"+20% Damage Bonus"
 			Attribute		"CARD: damage bonus"
-			Cap				2
-			Increment		0.25
+			Cap				1.8
+			Increment		0.2
 			Cost			400
 			AllowedWeapons
 			{
