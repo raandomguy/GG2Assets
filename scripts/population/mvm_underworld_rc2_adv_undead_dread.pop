@@ -19,9 +19,12 @@ WaveSchedule
 	PrecacheGeneric "materials/undead_dread_overlays/weaponmod_bow.vtf"
 	PrecacheGeneric "materials/undead_dread_overlays/weaponmod_loch.vtf"
 	PrecacheGeneric "materials/undead_dread_overlays/weaponmod_hatch.vtf"
+	PrecacheGeneric "materials/undead_dread_overlays/weaponmod_shotgun.vtf"
+	
 	PrecacheGeneric "materials/undead_dread_overlays/weaponmod_bow.vmt"
 	PrecacheGeneric "materials/undead_dread_overlays/weaponmod_loch.vmt"
 	PrecacheGeneric "materials/undead_dread_overlays/weaponmod_hatch.vmt"
+	PrecacheGeneric "materials/undead_dread_overlays/weaponmod_shotgun.vmt"
 	
 	PrecacheGeneric "materials/colorcorrection/zombie_cc25.raw"
 	
@@ -355,7 +358,7 @@ WaveSchedule
 			MaxActive 5
 			TotalCount 5
 			WaitForAllDead "W1B-1"
-			WaitBeforeStarting 5
+			WaitBeforeStarting 7
 			WaitBetweenSpawns 0
 			TotalCurrency 25
 			DoneOutput
@@ -378,7 +381,7 @@ WaveSchedule
 			MaxActive 16
 			TotalCount 16
 			WaitForAllDead "W1B-1"
-			WaitBeforeStarting 12
+			WaitBeforeStarting 15
 			WaitBetweenSpawns 4
 			TotalCurrency 75
 			TFBot
@@ -395,7 +398,7 @@ WaveSchedule
 			MaxActive 10
 			TotalCount 19
 			WaitForAllDead "W1B-1"
-			WaitBeforeStarting 24
+			WaitBeforeStarting 27
 			WaitBetweenSpawns 10
 			TotalCurrency 75
 			TFBot
@@ -411,7 +414,7 @@ WaveSchedule
 			MaxActive 8
 			TotalCount 20
 			WaitForAllDead "W1B-1"
-			WaitBeforeStarting 24
+			WaitBeforeStarting 27
 			WaitBetweenSpawns 8
 			TotalCurrency 75
 			TFBot
@@ -429,7 +432,7 @@ WaveSchedule
 			MaxActive 10
 			TotalCount 10
 			WaitForAllDead "W1B-1"
-			WaitBeforeStarting 40
+			WaitBeforeStarting 42
 			WaitBetweenSpawns 0
 			TotalCurrency 100
 			Squad
@@ -955,7 +958,7 @@ WaveSchedule
 			MaxActive 2
 			TotalCount 2
 			WaitForAllDead "W2C-2"
-			WaitBeforeStarting 40
+			WaitBeforeStarting 45
 			WaitBetweenSpawns 0
 			TotalCurrency 250
 			Squad
@@ -2368,39 +2371,19 @@ WaveSchedule
 		// {
 			// Name "W4F"
 			// Where spawnbot
-			// SpawnCount 5
-			// MaxActive 5
+			// SpawnCount 1
+			// MaxActive 1
 			// TotalCount 300
 			// WaitBeforeStarting 1
 			// WaitBetweenSpawns 0
 			// TotalCurrency 0
-			// Squad
+			// TFBot
 			// {
-				// TFBot
-				// {
-					// Class Scout
-					// Tag test
-				// }
-				// TFBot
-				// {
-					// Class Soldier
-					// Tag test
-				// }
-				// TFBot
-				// {
-					// Class Pyro
-					// Tag test
-				// }
-				// TFBot
-				// {
-					// Class Demoman
-					// Tag test
-				// }
-				// TFBot
-				// {
-					// Class Heavyweapons
-					// Tag test
-				// }
+				// Class Medic
+				// Attributes IgnoreFlag
+				// Attributes IgnoreEnemies
+				
+				// Tag test
 			// }
 		// }
 		// WaveSpawn

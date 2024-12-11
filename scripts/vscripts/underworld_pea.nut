@@ -64,6 +64,7 @@
 		Vector(2100, 450, 100),
 	]
 	
+	in_snatcher_cutscene = false
 	hatchsnatcher_cutsceneover = false
 	endshaking = false
 	secretwave = 5
@@ -86,12 +87,6 @@
 	
 	shuffle_wavespawn_table =
 	{
-		// w1g =
-		// {
-			// names 	= ["soldier_conch", "sniper_bow_stun"],
-			// amounts = [12, 8]
-		// }
-		
 		w2b =
 		{
 			names 	= ["demo_fire_2", "pyro_flare"],
@@ -103,18 +98,6 @@
 			names 	= ["easyheavy", "normalheavy"],
 			amounts = [8, 7]
 		}
-		
-		// w5c =
-		// {
-			// names	= ["soldier_crit", "scout_bonk"]
-			// amounts	= [6, 30]
-		// }
-		
-		// w5f =
-		// {
-			// names	= ["soldier_crit", "sniper_bow_stun"]
-			// amounts	= [20, 12]
-		// }
 	}
 	
 	cross_connections =
@@ -174,7 +157,6 @@
 		
 			if (self.IsMiniBoss())
 			{
-				// AttachGlow("0 0 255 255")
 				AttachGlow("125 168 196 255")
 				
 				function DelayedAnnotation()
@@ -222,7 +204,16 @@
 			// self.Teleport(true, intel_entity.GetOrigin(), false, QAngle(), false, Vector())
 			// EntFireByHandle(self, "RunScriptCode", "self.TakeDamage(10000.0, 64, self)", 2.0, null, null)
 			
-			self.Zombify()
+			self.Teleport(true, Vector(550, 4600, 0), false, QAngle(), false, Vector())
+			
+			EntFireByHandle(self, "RunScriptCode", "GetShotgunVM.call(self.GetScriptScope())", 3.0, null, null)
+			EntFireByHandle(self, "RunScriptCode", "self.Weapon_Switch(NetProps.GetPropEntityArray(self, `m_hMyWeapons`, 1))", 6.0, null, null)
+			EntFireByHandle(self, "RunScriptCode", "self.Weapon_Switch(NetProps.GetPropEntityArray(self, `m_hMyWeapons`, 2))", 9.0, null, null)
+			EntFireByHandle(self, "RunScriptCode", "self.Weapon_Switch(NetProps.GetPropEntityArray(self, `m_hMyWeapons`, 0))", 12.0, null, null)
+			EntFireByHandle(self, "RunScriptCode", "self.Weapon_Switch(NetProps.GetPropEntityArray(self, `m_hMyWeapons`, 1))", 15.0, null, null)
+			EntFireByHandle(self, "RunScriptCode", "self.Weapon_Switch(NetProps.GetPropEntityArray(self, `m_hMyWeapons`, 2))", 18.0, null, null)
+			
+			// self.Zombify()
 		}
 		
 		if (self.HasBotTag("conch"))
@@ -250,7 +241,6 @@
 		
 		if (self.HasBotTag("firedemo"))
 		{
-			// self.GetWearable("models/player/items/pyro/fireman_helmet.mdl")
 			self.GetWearableItem(105)
 			AddThinkToEnt(self.GetActiveWeapon(), "FireDemo_Think")
 		}
@@ -275,13 +265,6 @@
 		if (self.HasBotTag("secretwave_skip")) self.TakeDamage(10000.0, 64, self)
 		
 		if (self.HasBotTag("hatch_snatcher")) AddThinkToEnt(self, "HatchSnatcher_Think")
-		
-		// if (self.HasBotTag("bonk"))
-		// {
-			// local scope = self.GetScriptScope()
-			
-			// if (!("nextbonktime" in scope)) scope.nextbonktime <- thinkertick
-		// }
 
 		if (Wave == 5 && secretwave_unlocked)
 		{
@@ -313,20 +296,21 @@
 	{
 		OnGameEvent_player_spawn = function(params)
 		{
-			local player = GetPlayerFromUserID(params.userid);
+			local player = GetPlayerFromUserID(params.userid)
 			
 			if (player.IsFakeClient()) { EntFireByHandle(player, "CallScriptFunction", "BotTagCheck", -1.0, null, null); return }
 
 			if (player.GetScriptScope() == null) player.ValidateScriptScope()
+			
 			player.AddCustomAttribute("vision opt in flags", 2, -1)
 		
 			local scope = player.GetScriptScope()
-		
-			if ("NewFeaturesTutorial" in scope) { if (scope.NewFeaturesTutorial != null) EntFireByHandle(player, "CallScriptFunction", "NewFeaturesTutorial", 0.1, null, null) }
+			
+			if (!("lastfetchresults" in scope)) EntFireByHandle(player, "RunScriptCode", "IsInLog.call(self.GetScriptScope())", -1.0, null, null) // needs to be delayed because steamid isn't available yet
 
-			if ("hashatchwep" in player.GetScriptScope())
+			if ("hashatchwep" in scope)
 			{
-				if (player.GetScriptScope().hashatchwep)
+				if (scope.hashatchwep)
 				{
 					local classname
 					
@@ -345,12 +329,29 @@
 					AddThinkToEnt(hatchwep, "HatchVM_Think")
 				}
 			}
+			
+			if ("hasshotgunwep" in scope)
+			{
+				local killarray = []
+				
+				for (local child = player.FirstMoveChild(); child != null; child = child.NextMovePeer())
+				{ 
+					if ("custom_wearable" in child.GetScriptScope() && NetProps.GetPropIntArray(child, "m_nModelIndexOverrides", 3) != GetModelIndex("models/props_mvm/mann_hatch.mdl")) killarray.append(child)
+				}
+				
+				foreach (ent in killarray) ent.Kill()
+				
+				if (scope.hasshotgunwep) GetShotgunVM.call(scope)
+				else NetProps.SetPropInt(player, "m_nRenderMode", 0)
+			}
 		}
 		
 		OnGameEvent_player_death = function(params)
 		{
 			local dead_player = GetPlayerFromUserID(params.userid)
 			local attacker = GetPlayerFromUserID(params.attacker)
+			
+			if (dead_player.GetPlayerClass() == 5 && dead_player.GetTeam() == 2) dead_player.SetCustomModelWithClassAnimations("")
 		}
 
 		OnGameEvent_player_say = function(params)
@@ -359,14 +360,6 @@
 			
 			if (NetProps.GetPropString(player, "m_szNetworkIDString") == "[U:1:95064912]")
 			{
-				if (params.text == "!r")
-				{
-					// ClientPrint(null,3,"changing")
-					
-					// CTFPlayer.GetWearable <- function() {}
-					// CTFBot.GetWearable <- function() {}
-				}
-				
 				if (params.text == "!s")
 				{
 					secretwave_unlocked = true
@@ -396,34 +389,6 @@
 					foreach (player in GetAllPlayers()) ClientPrint(null,3,"" + player)
 					
 					// ClientPrint(null,3,"" + NetProps.GetPropInt(intel_entity, "m_Collision.m_usSolidFlags"))
-				}
-				
-				if (params.text == "!logwipe") LogWipe()
-				if (params.text == "!grant")
-				{
-					ProgressLog(true)
-					
-					::DelayedProgressCheck <- function() // potato's stringtofile logic limits write speed to 12 files per tick and requires us to check for file structure changes after a certain delay
-					{
-						for (local i = 1; i <= Constants.Server.MAX_PLAYERS; i++)
-						{
-							local player = PlayerInstanceFromIndex(i)
-							
-							if (player == null) continue
-							if (player.IsFakeClient()) continue
-							if (player.GetTeam() != 2) continue
-							
-							local scope = player.GetScriptScope()
-
-							scope.completedall <- IsInLog.call(scope).completedall
-
-							if (scope.completedall) DisplayWeaponGallery()
-						}
-					
-						delete ::DelayedProgressCheck
-					}
-					
-					EntFireByHandle(gamerules_entity, "CallScriptFunction", "DelayedProgressCheck", 0.2, null, null)
 				}
 			}
 		}
@@ -458,7 +423,8 @@
 			for (local ent; ent = Entities.FindByModel(ent, "models/props_mvm/robot_hologram.mdl"); ) ent.Kill()
 			
 			ModifyWaveBar()
-			ProgressLog()
+			
+			foreach (player in GetAllPlayers(2)) ProgressLog.call(player.GetScriptScope())
 		}
 		
 		OnGameEvent_mvm_wave_complete = function(params)
@@ -494,7 +460,7 @@
 			
 			if (Wave == 6) secretwave_unlocked = false
 			
-			ProgressLog()
+			foreach (player in GetAllPlayers(2)) ProgressLog.call(player.GetScriptScope())
 		}
 		
 		OnGameEvent_teamplay_flag_event = function(params)
@@ -504,53 +470,12 @@
 				local intelscope = intel_entity.GetScriptScope()
 				
 				intelscope.restoredhoptimepenalty = (intelscope.restoredhoptime / 30.0)
-
-				// local player = PlayerInstanceFromIndex(params.player)
-				// EntFireByHandle(player, "RunScriptCode", "self.TakeDamage(10000.0, 64, self)", -1.0, null, null)
 			}
 			
 			if (params.eventtype == 4)
 			{
 				if (thinkertick < intel_entity.GetScriptScope().activationtime) return
 				intel_entity.GetScriptScope().DetermineReturnTime()
-			}
-		}
-		
-		OnGameEvent_player_activate = function(params)
-		{
-			local player = GetPlayerFromUserID(params.userid)
-			
-			if (!player.IsFakeClient())
-			{
-				player.ValidateScriptScope()
-				
-				local logdata = IsInLog.call(player.GetScriptScope())
-				
-				if (!logdata.found) AddToLog.call(player.GetScriptScope())
-				if (logdata.completedall)
-				{
-					player.GetScriptScope().completedall <- true
-					player.GetScriptScope().NewFeaturesTutorial <- function()
-					{
-						SendGlobalGameEvent("show_annotation", 
-						{
-							id = self.entindex()
-							text = "Congratulations on beating\nall the waves! You now have\naccess to new weapon features!"
-							worldPosX = 540
-							worldPosY = 5000
-							worldPosZ = 0
-							visibilityBitfield = (1 << self.entindex())
-							play_sound = "misc/null.wav"
-							show_distance = false
-							show_effect = false
-							lifetime = 7.5
-						})
-						
-						NewFeaturesTutorial = null
-					}
-					
-					DisplayWeaponGallery()
-				}
 			}
 		}
 		
@@ -567,6 +492,7 @@
 			}
 			
 			if ("hashatchwep" in player.GetScriptScope()) player.GetScriptScope().hashatchwep = false
+			if ("hasshotgunwep" in player.GetScriptScope()) player.GetScriptScope().hasshotgunwep = false
 		}
 		
 		OnScriptHook_OnTakeDamage = function(params)
@@ -611,8 +537,6 @@
 				
 				params.damage = inflictor.GetScriptScope().weapon.GetScriptScope().damage
 				params.damage_type = 2
-				
-				// foreach (k, v in params) ClientPrint(null,3,"key: " + k + " | " + "value: " + v)
 				
 				local attach = "head"
 				local offsets = [Vector(0, 0, 1), QAngle()]
@@ -756,7 +680,7 @@
 		local lochmodprop = SpawnEntityFromTable("prop_dynamic",
 		{
 			targetname 			 = "gallery_loch"
-			origin             	 = Vector(480, 5150, 0)
+			origin             	 = Vector(435, 5150, 0)
 			disablebonefollowers = 1
 			solid				 = 6
 			model 			   	 = "models/workshop/weapons/c_models/c_lochnload/c_lochnload.mdl"
@@ -779,7 +703,7 @@
 		local bowmodprop = SpawnEntityFromTable("prop_dynamic",
 		{
 			targetname 			 = "gallery_bow"
-			origin             	 = Vector(540, 5150, 0)
+			origin             	 = Vector(500, 5150, 0)
 			disablebonefollowers = 1
 			solid				 = 6
 			model 			   	 = "models/weapons/c_models/c_bow/c_bow.mdl"
@@ -794,11 +718,20 @@
 		
 		bowmodpropball.AcceptInput("SetParent", "!activator", bowmodprop, null)
 		EntFireByHandle(bowmodpropball, "SetParentAttachment", "muzzle", 0.1, null, null)
+		
+		local shotgunmodprop = SpawnEntityFromTable("prop_dynamic",
+		{
+			targetname 			 = "gallery_shotgun"
+			origin             	 = Vector(565, 5150, 0)
+			disablebonefollowers = 1
+			solid				 = 6
+			model 			   	 = "models/weapons/w_models/w_shotgun.mdl"
+		})
 
 		local hatchwepprop = SpawnEntityFromTable("prop_dynamic", // scaled models retain old collision so it's impossible to trace accurately on the small hatch
 		{
 			targetname 			 = "gallery_hatch"
-			origin             	 = Vector(600, 5150, 0)
+			origin             	 = Vector(635, 5150, 0)
 			angles				 = QAngle(60, -90, 0)
 			modelscale			 = 0.1
 			disablebonefollowers = 1
@@ -809,7 +742,7 @@
 		local hatchwepprop2 = SpawnEntityFromTable("prop_dynamic",
 		{
 			targetname 			 = "gallery_hatch"
-			origin             	 = Vector(600, 5150, 0)
+			origin             	 = Vector(635, 5150, 0)
 			disablebonefollowers = 1
 			solid				 = 6
 			rendermode			 = 1
@@ -943,9 +876,6 @@
 			{
 				if (!init) HideIcon("scout")
 				
-				// AddToIcon("soldier_conch", 12)
-				// AddToIcon("sniper_bow_stun", 8)
-				
 				break
 			}
 			case 2:
@@ -1007,10 +937,6 @@
 				UnhideIcon("soldier_crit", 17)
 				
 				SetTotalEnemyCount(GetTotalEnemyCount() + 27)
-				
-				// AddToIcon("soldier_crit", 26)
-				// AddToIcon("scout_bonk", 30)
-				// AddToIcon("sniper_bow_stun", 12)
 				
 				break
 			}
@@ -1338,8 +1264,7 @@
 				self.SetPlayerClass(1)
 				NetProps.SetPropInt(self, "m_Shared.m_iDesiredPlayerClass", 1)
 				self.Regenerate(true)
-				
-				// self.GetWearable("models/player/items/scout/bonk_helmet.mdl")
+
 				self.GetWearableItem(106)
 				SetFakeClientConVarValue(self, "name", "Bonk Scout")
 				self.AddWeaponRestriction(1)
@@ -1428,7 +1353,6 @@
 				SetFakeClientConVarValue(self, "name", "Heavyweapons")
 				
 				self.GetWeapon("tf_weapon_minigun", 15)
-				// self.GetWearable("models/player/items/all_class/ghostly_gibus_heavy.mdl")
 				self.GetWearableItem(940)
 				
 				self.SetDifficulty(0)
@@ -1610,6 +1534,8 @@
 	
 	HatchSnatcherIntroCutscene = function()
 	{
+		in_snatcher_cutscene = true
+		
 		PrecacheSound("ui/cyoa_musicintruderalert.mp3")
 		PrecacheSound("player/taunt_jackhammer_loop.wav")
 		
@@ -1657,7 +1583,7 @@
 		EntFireByHandle(gamerules_entity, "RunScriptCode", "EmitGlobalSound(`ui/cyoa_musicintruderalert.mp3`)", 1.0, null, null)
 		
 		EntFireByHandle(gamerules_entity, "RunScriptCode", "EmitSoundEx({sound_name = `player/taunt_jackhammer_loop.wav`, channel = 6, filter_type = 5})", 2.5, null, null)
-		EntFireByHandle(gamerules_entity, "RunScriptCode", "hatchsnatcher_cutsceneover = true", 10.0, null, null)
+		EntFireByHandle(gamerules_entity, "RunScriptCode", "hatchsnatcher_cutsceneover = true; in_snatcher_cutscene = false", 10.0, null, null)
 
 		local hatchsnatcher_dummy = SpawnEntityFromTable("prop_dynamic",
 		{
@@ -1972,7 +1898,6 @@
 				{
 					target           	  = "glow_target"
 					origin				  = self.EyePosition()
-					// GlowColor             = "153 220 255 255"
 					GlowColor			  = "125 168 196 255"
 					StartDisabled		  = 1
 				})
@@ -2746,7 +2671,6 @@
 			self.KeyValueFromInt("renderamt", 0)
 			
 			local fakemodel = self.GetWearable(origmodel)
-			// self.GetWearable("models/player/items/all_class/trn_wiz_hat_soldier.mdl")
 			self.GetWearableItem(634)
 			
 			fakemodel.KeyValueFromString("targetname", "glow_target")
@@ -2754,7 +2678,6 @@
 			scope.glow <- SpawnEntityFromTable("tf_glow",
 			{
 				target           	  = "glow_target"
-				// GlowColor             = "153 220 255 255"
 				GlowColor			  = "125 168 196 255"
 			})
 			
@@ -2880,8 +2803,6 @@
 		{
 			local oldtarget = aggrotarget.GetOrigin()
 			
-			// aggrodestinations.remove(aggrodestinations.find(aggrotarget.GetOrigin())) doesn't work!
-			
 			local ord = 0
 			
 			foreach (vec in aggrodestinations)
@@ -2927,7 +2848,6 @@
 			local fakemodelglow = SpawnEntityFromTable("tf_glow",
 			{
 				target           	  = "dummymodel_" + self.entindex()
-				// GlowColor             = "153 220 255 255"
 				GlowColor			  = "125 168 196 255"
 			})
 			
@@ -3563,9 +3483,7 @@
 			scope.End <- function()
 			{
 				SendGlobalGameEvent("hide_annotation", { id = self.entindex() })
-				
-				// ScreenFade(victim, 255, 255, 255, 10, -1.0, 8.0, 16)
-				
+
 				victim.SetForcedTauntCam(0)
 				victim.RemoveCustomAttribute("voice pitch scale")
 				victim.RemoveCustomAttribute("head scale")
@@ -3576,8 +3494,7 @@
 				AddThinkToEnt(self, null)
 				self.Kill()
 			}
-
-			// ScreenFade(victim, 255, 255, 255, 15, -1.0, 8.0, 8)
+			
 			victim.SetForcedTauntCam(1)
 			victim.AddCustomAttribute("voice pitch scale", 0, -1.0)
 			
@@ -3739,7 +3656,23 @@
 	
 	WeaponGallery_Think = function()
 	{
-		for (local ent; ent = Entities.FindByName(ent, "gallery_*"); ) ent.SetAbsAngles(ent.GetAngles() + QAngle(0, 1, 0))
+		for (local ent; ent = Entities.FindByName(ent, "gallery_*"); )
+		{
+			ent.SetAbsAngles(ent.GetAngles() + QAngle(0, 1, 0))
+			
+			if (thinkertick % 50 == 0 && ent.GetName().find("shotgun"))
+			{
+				local shotgunparticle = SpawnEntityFromTable("trigger_particle",
+				{
+					particle_name = "healthgained_red"
+					attachment_type = 0
+					spawnflags = 64
+				})
+
+				shotgunparticle.AcceptInput("StartTouch", "!activator", ent, ent)
+				shotgunparticle.Kill()
+			}
+		}
 		
 		foreach (player in GetAllPlayers(2, [Vector(525, 5150, 0), 450.0]))
 		{
@@ -3748,8 +3681,6 @@
 			local scope = player.GetScriptScope()	
 			
 			local invalid = false
-			local notmod = false
-			local allowed = true
 			
 			if (!("inmodmenu" in scope))
 			{
@@ -3763,6 +3694,7 @@
 				}
 				
 				scope.hashatchwep <- false
+				scope.hasshotgunwep <- false
 			}
 			
 			if (scope.modmenucooldown > Time())
@@ -3792,9 +3724,9 @@
 					player.AddCustomAttribute("no_attack", 1, 0.5)
 					player.AddHudHideFlags(4)
 					
-					if (!scope.completedall)
+					if (!scope.lastfetchresults.beatmission)
 					{
-						ClientPrint(player, 4, "Complete all six waves to earn access to these items")
+						ClientPrint(player, 4, "Complete the mission to earn access to these items")
 						scope.lookingat = null
 						scope.inmodmenu = false
 						player.RemoveHudHideFlags(4)
@@ -3831,8 +3763,29 @@
 						
 						case "hatch":
 						{
-							player.SetScriptOverlayMaterial("undead_dread_overlays/weaponmod_hatch")
-							notmod = true
+							if (!scope.lastfetchresults.beatsecretwave)
+							{
+								ClientPrint(player, 4, "Complete all six waves to earn access to this item")
+								invalid = true
+							}
+							
+							else player.SetScriptOverlayMaterial("undead_dread_overlays/weaponmod_hatch")
+							
+							// player.SetScriptOverlayMaterial("undead_dread_overlays/weaponmod_hatch")
+							
+							break
+						}
+						
+						case "shotgun":
+						{
+							if (player.GetPlayerClass() != 5)
+							{
+								ClientPrint(player, 4, "Only Medic can equip this")
+								invalid = true
+							}
+							
+							else player.SetScriptOverlayMaterial("undead_dread_overlays/weaponmod_shotgun")
+							
 							break
 						}
 					}
@@ -3858,50 +3811,126 @@
 			{
 				if (NetProps.GetPropInt(player, "m_afButtonPressed") & 1)
 				{
-					if (scope.lookingat.slice(8) == "hatch")
+					switch (scope.lookingat.slice(8))
 					{
-						if (!scope.hashatchwep)
+						case "hatch":
 						{
-							scope.hashatchwep = true
-							
-							local classname
-							
-							if (player.GetPlayerClass() == 1) classname = "tf_weapon_bat"
-							else if (player.GetPlayerClass() == 8) classname = "tf_weapon_knife"
-							else if (player.GetPlayerClass() == 9) classname = "tf_weapon_wrench"
-							else classname = "tf_weapon_club"
-							
-							local hatchwep = player.GetWeapon(classname, 30758)
-							
-							local vm = NetProps.GetPropEntity(player, "m_hViewModel")
+							if (!scope.hashatchwep)
+							{
+								scope.hashatchwep = true
+								
+								local classname
+								
+								if (player.GetPlayerClass() == 1) classname = "tf_weapon_bat"
+								else if (player.GetPlayerClass() == 8) classname = "tf_weapon_knife"
+								else if (player.GetPlayerClass() == 9) classname = "tf_weapon_wrench"
+								else classname = "tf_weapon_club"
+								
+								local hatchwep = player.GetWeapon(classname, 30758)
+								
+								local vm = NetProps.GetPropEntity(player, "m_hViewModel")
 
-							NetProps.SetPropInt(hatchwep, "m_nRenderMode", 1)
-							NetProps.SetPropInt(hatchwep, "m_clrRender", 0)
+								NetProps.SetPropInt(hatchwep, "m_nRenderMode", 1)
+								NetProps.SetPropInt(hatchwep, "m_clrRender", 0)
+								
+								AddThinkToEnt(hatchwep, "HatchVM_Think")
+							}
 							
-							AddThinkToEnt(hatchwep, "HatchVM_Think")
+							else
+							{
+								scope.hashatchwep = false
+								player.ForceRespawn()
+							}
 							
-							scope.modmenucooldown = Time() + 3.0
+							break
 						}
 						
-						else
+						case "shotgun":
 						{
-							scope.modmenucooldown = Time() + 3.0
-							scope.hashatchwep = false
-							player.ForceRespawn()
+							if (!scope.hasshotgunwep)
+							{
+								scope.hasshotgunwep = true
+								GetShotgunVM.call(scope)
+							}
+							
+							else
+							{
+								player.SetCustomModelWithClassAnimations("")
+
+								scope.hasshotgunwep = false
+								player.ForceRespawn()
+							}
+							
+							break
+						}
+						
+						default:
+						{
+							EquipWeaponMod.call(scope, scope.lookingat.slice(8))
+
+							break
 						}
 					}
 					
-					else
-					{
-						EquipWeaponMod.call(scope, scope.lookingat.slice(8))
-						scope.modmenucooldown = Time() + 3.0
-						scope.inmodmenu = false
-					}
+					player.SetScriptOverlayMaterial(null)
+					
+					scope.inmodmenu = false
+					scope.modmenucooldown = Time() + 3.0
 				}
 			}
 			
 			else player.SetScriptOverlayMaterial(null)
 		}
+	}
+	
+	GetShotgunVM = function()
+	{
+		local weapon = Entities.CreateByClassname("tf_weapon_shotgun_primary")
+
+		NetProps.SetPropInt(weapon, "m_AttributeManager.m_Item.m_iItemDefinitionIndex", 9)
+		NetProps.SetPropBool(weapon, "m_AttributeManager.m_Item.m_bInitialized", true)
+		NetProps.SetPropBool(weapon, "m_bValidatedAttachedEntity", true)
+		
+		weapon.SetTeam(self.GetTeam())
+		
+		Entities.DispatchSpawn(weapon)
+		
+		self.Weapon_Equip(weapon)   
+		
+		NetProps.SetPropInt(weapon, "m_nRenderMode", 1)
+		NetProps.SetPropInt(weapon, "m_clrRender", 0)
+		
+		weapon.SetCustomViewModelModelIndex(PrecacheModel("models/weapons/c_models/c_engineer_arms.mdl"))
+		weapon.SetModelSimple("models/weapons/c_models/c_engineer_arms.mdl")
+		NetProps.SetPropInt(weapon, "m_iViewModelIndex", GetModelIndex("models/weapons/c_models/c_engineer_arms.mdl"))
+		NetProps.SetPropInt(weapon, "m_iWorldModelIndex", GetModelIndex("models/weapons/c_models/c_engineer_arms.mdl"))
+
+		local hands = SpawnEntityFromTable("tf_wearable_vm", { modelindex = PrecacheModel("models/weapons/c_models/c_medic_arms.mdl") } )
+		local hands2 = SpawnEntityFromTable("tf_wearable_vm", { modelindex = PrecacheModel("models/weapons/w_models/w_shotgun.mdl") } )
+		
+		NetProps.SetPropBool(hands, "m_bForcePurgeFixedupStrings", true)
+		NetProps.SetPropBool(hands2, "m_bForcePurgeFixedupStrings", true)
+		
+		self.EquipWearableViewModel(hands)
+		self.EquipWearableViewModel(hands2)
+
+		NetProps.SetPropEntity(hands, "m_hWeaponAssociatedWith", weapon)
+		NetProps.SetPropEntity(hands2, "m_hWeaponAssociatedWith", weapon)
+		NetProps.SetPropEntity(weapon, "m_hExtraWearableViewModel", hands2)
+		
+		NetProps.SetPropIntArray(self, "m_iAmmo", 32 * NetProps.GetPropEntityArray(self, "m_hMyWeapons", 0).GetAttribute("maxammo primary increased", 1.0), 1)
+		weapon.SetClip1(-1)
+		
+		weapon.AddAttribute("mod max primary clip override", -1.0, -1.0) // hides reserve ammo
+		
+		weapon.AddAttribute("fire rate penalty", 2.5, -1.0)
+		weapon.AddAttribute("bullets per shot bonus", 10, -1.0)
+		weapon.AddAttribute("damage penalty", 0.5, -1.0)
+		
+		NetProps.SetPropEntity(self, "m_hActiveWeapon", null)	
+		self.Weapon_Switch(weapon)
+		
+		AddThinkToEnt(weapon, "ShotgunVM_Think")
 	}
 	
 	HatchVM_Think = function()
@@ -3922,34 +3951,11 @@
 			vm.DispatchSpawn()
 			vm.SetModel(self.GetModelName())
 			vm.SetAbsAngles(self.GetAbsAngles())
-			vm.AddEFlags(Constants.FEntityEFlags.EFL_NO_THINK_FUNCTION)
-			vm.SetSolid(Constants.ESolidType.SOLID_NONE)
+			vm.AddEFlags(4194304)
+			vm.SetSolid(0)
 			NetProps.SetPropBool(vm, "m_bPlacing", true)
 			NetProps.SetPropInt(vm, "m_fObjectFlags", 2)
 			NetProps.SetPropEntity(vm, "m_hBuilder", owner)
-
-			// scope.vm <- SpawnEntityFromTable("prop_dynamic",
-			// {
-				// origin             	 = self.GetOrigin()
-				// angles				 = self.GetAbsAngles()
-				// disablebonefollowers = 1
-				// disableshadows		 = 1
-				// model 			   	 = self.GetModelName()
-			// })
-			
-			// scope.hatchwepprop <- Entities.CreateByClassname("prop_dynamic")
-			
-			// hatchwepprop.SetAbsOrigin(self.GetOrigin())
-			// hatchwepprop.SetModelScale(0.06, -1.0)
-			// hatchwepprop.SetAbsAngles(QAngle(0, 0, 120))
-			// hatchwepprop.SetModel("models/props_mvm/mann_hatch.mdl")
-			
-			// hatchwepprop.KeyValueFromInt("disablebonefollowers", 1)
-			// hatchwepprop.KeyValueFromInt("disableshadows", 1)
-			
-			// NetProps.SetPropInt(hatchwepprop, "m_fEffects", 16)
-			
-			// hatchwepprop.DispatchSpawn()
 			
 			scope.hatchwepprop <- SpawnEntityFromTable("prop_dynamic",
 			{
@@ -4001,7 +4007,7 @@
 		vm.StudioFrameAdvance()
 		vm.DispatchAnimEvents(vm)
 		
-		if (owner.GetActiveWeapon() != self || owner.IsTaunting())
+		if (owner.GetActiveWeapon() != self || owner.IsTaunting() || in_snatcher_cutscene)
 		{
 			vm.DisableDraw()
 			wm.DisableDraw()
@@ -4021,8 +4027,115 @@
 		}
 
 		if (vm.GetCycle() >= 1.0) vm.SetCycle(0.0)
+		
+		return -1
+	}
+	
+	ShotgunVM_Think = function()
+	{
+		try { self.GetScriptScope() }
+		catch (e) { return }
+		
+		local scope = self.GetScriptScope()
+		
+		local owner = NetProps.GetPropEntity(self, "m_hOwner")
+		
+		local syringe = NetProps.GetPropEntityArray(owner, "m_hMyWeapons", 0)
+		local medigun = NetProps.GetPropEntityArray(owner, "m_hMyWeapons", 1)
+		local melee = NetProps.GetPropEntityArray(owner, "m_hMyWeapons", 2)
+		
+		if (!("curwep" in scope)) scope.curwep <- owner.GetActiveWeapon()
+		
+		if (owner.GetActiveWeapon() == syringe)
+		{	
+			if (NetProps.GetPropIntArray(owner, "m_iAmmo", 1) <= 0) owner.Weapon_Switch(medigun)
+			else
+			{
+				NetProps.SetPropEntity(owner, "m_hActiveWeapon", null)
+				owner.Weapon_Switch(self)
+			}
+		}
+		
+		if (thinkertick % 7 != 0) return -1
+		
+		NetProps.SetPropInt(owner, "m_nRenderMode", 10)
+		
+		owner.GetWearable("models/player/medic.mdl")
 
-		// if (thinkertick % 7 == 0) ClientPrint(null,3,"" + self.GetSequence())
+		if (owner.GetActiveWeapon() == self)
+		{	
+			if (owner.GetModelName() != "models/player/engineer.mdl") owner.SetCustomModelWithClassAnimations("models/player/engineer.mdl")
+			
+			if (NetProps.GetPropIntArray(owner, "m_iAmmo", 1) <= 0) owner.Weapon_Switch(medigun)
+
+			if (owner.IsTaunting())
+			{
+				owner.RemoveWearable(9)
+				
+				for (local scene; scene = Entities.FindByClassname(scene, "instanced_scripted_scene"); )
+				{
+					if (NetProps.GetPropEntity(scene, "m_hOwner") != owner) continue
+
+					if (NetProps.GetPropString(scene, "m_iszSceneFile").find("taunt01") != null)
+					{
+						scene.Kill()
+						
+						EntFireByHandle(owner, "RunScriptCode", "self.PlayScene(`scenes/Player/Medic/low/` + RandomInt(607, 608) + `.vcd`, -1.0)", 0.1, null, null)
+						
+						break
+					}
+					
+				}
+			}
+			
+			else owner.GetWearableItem(9)
+		}
+		
+		else
+		{
+			if (owner.GetModelName() != "models/player/medic.mdl") owner.SetCustomModelWithClassAnimations("models/player/medic.mdl")
+		
+			owner.RemoveWearable(9)
+		}
+		
+		if (owner.GetActiveWeapon() == medigun)
+		{
+			if (owner.IsTaunting())
+			{
+				if (NetProps.GetPropInt(medigun, "m_AttributeManager.m_Item.m_iItemDefinitionIndex") != 35) owner.RemoveWearable(NetProps.GetPropInt(medigun, "m_AttributeManager.m_Item.m_iItemDefinitionIndex"))
+			}
+		
+			else owner.GetWearableItem(NetProps.GetPropInt(medigun, "m_AttributeManager.m_Item.m_iItemDefinitionIndex"))
+		}
+		
+		else owner.RemoveWearable(NetProps.GetPropInt(medigun, "m_AttributeManager.m_Item.m_iItemDefinitionIndex"))
+	
+		if (owner.GetActiveWeapon() == melee)
+		{
+			if (NetProps.GetPropInt(melee, "m_AttributeManager.m_Item.m_iItemDefinitionIndex") != 30758) owner.GetWearableItem(NetProps.GetPropInt(melee, "m_AttributeManager.m_Item.m_iItemDefinitionIndex"))
+		}
+	
+		else owner.RemoveWearable(NetProps.GetPropInt(melee, "m_AttributeManager.m_Item.m_iItemDefinitionIndex"))
+
+		if (curwep != owner.GetActiveWeapon() || owner.IsTaunting())
+		{
+			owner.SetModelScale(owner.GetModelScale(), 0)
+			
+			for (local child = owner.FirstMoveChild(); child != null; child = child.NextMovePeer())
+			{ 
+				child.SetModelScale(child.GetModelScale(), 0.0)
+				
+				NetProps.SetPropBool(child, "m_AttributeManager.m_Item.m_bInitialized", false)
+				
+				EntFireByHandle(child, "RunScriptCode", "NetProps.SetPropBool(self, \x22m_AttributeManager.m_Item.m_bInitialized\x22, true)", 0.10, child, child)
+			}
+		}
+
+		curwep = owner.GetActiveWeapon()
+
+		self.AddAttribute("projectile penetration", syringe.GetAttribute("projectile penetration", 0.0), -1.0)
+		self.AddAttribute("fire rate bonus", syringe.GetAttribute("fire rate bonus", 1.0), -1.0)
+		self.AddAttribute("heal on kill", syringe.GetAttribute("heal on kill", 0.0), -1.0)
 		
 		return -1
 	}
@@ -4037,18 +4150,24 @@
 			{
 				if (NetProps.GetPropInt(player, "m_afButtonPressed") & 8192)
 				{
-					for (local i = 0; i <= 100; i++)
-					{
-						if (FileToString(logname + i) == null)
-						{
-							ClientPrint(player,3,"over")
-							break
-						}
-						
-						ClientPrint(player,3,"" + FileToString(logname + i))
-					}
+					foreach (playor in GetAllPlayers(2, false, false)) ClientPrint(player,3,NetProps.GetPropString(playor, "m_szNetname") + "'s wavedata: " + playor.GetScriptScope().lastfetchresults.wavedata)
 				}
 			}
+		}
+	}
+	
+	MapCleanup = function()
+	{
+		foreach (player in GetAllPlayers(false, false, false))
+		{
+			player.SetCustomModelWithClassAnimations("")
+			NetProps.SetPropInt(player, "m_nRenderMode", 0)
+			
+			local killarray = []
+			
+			for (local child = player.FirstMoveChild(); child != null; child = child.NextMovePeer()) { if ("custom_wearable" in child.GetScriptScope()) killarray.append(child)	}
+
+			foreach (ent in killarray) ent.Kill()
 		}
 	}
 }
@@ -4112,7 +4231,7 @@ if (!("PEA_ONETIME" in getroottable()))
 		
 		player.ValidateScriptScope()
 		
-		if (!(IsInLog.call(player.GetScriptScope()).found)) AddToLog.call(player.GetScriptScope())
+		IsInLog.call(player.GetScriptScope())
 	}
 }
 
@@ -4146,15 +4265,11 @@ for (local ent; ent = Entities.FindByClassname(ent, "func_nav_avoid"); )
 		continue
 	}
 
-	// ent.AcceptInput("Disable", null, null, null)
 	ent.Kill()
 }
 
 for (local ent; ent = Entities.FindByName(ent, "bombpath_choose_relay"); ) ent.Disable()
 for (local ent; ent = Entities.FindByName(ent, "bombpath_holograms_clear_relay"); ) ent.Disable()
-
-// for (local ent; ent = Entities.FindByModel(ent, "models/props_mvm/hologram_projector.mdl"); ) ent.Disable()
-// for (local ent; ent = Entities.FindByModel(ent, "models/props_mvm/robot_hologram.mdl"); ) ent.Disable()
 	
 SpawnNavBrush("nav_avoid_giant_upgradestation_dontdisable", Vector(-100, -550, 300), "-250 -250 -250", "250 250 250", "bot_giant")
 
@@ -4162,51 +4277,6 @@ for (local i = 3; i <= 6; i++) EntFire("sentrynest_right" + i, "Disable")
 for (local i = 2; i <= 6; i++) EntFire("sentrynest_left" + i, "Disable")
 	
 if (!(!guaranteedbranch)) cross_connections[1].remove(cross_connections[1].find(guaranteedbranch))
-	
-// if (Wave == 7) EntFire("spawnbot_tunnel", "Disable", null, -1.0, null)
-// else 		   EntFire("spawnbot_tunnel", "Enable", null, -1.0, null)
-
-// local lochmodprop = SpawnEntityFromTable("prop_dynamic",
-// {
-	// targetname			 = "loch"
-	// origin             	 = Vector(450, 5150, 0)
-	// disablebonefollowers = 1
-	// solid				 = 6
-	// model 			   	 = "models/workshop/weapons/c_models/c_lochnload/c_lochnload.mdl"
-// })
-
-// local bowmodprop = SpawnEntityFromTable("prop_dynamic",
-// {
-	// targetname			 = "bow"
-	// origin             	 = Vector(525, 5150, 0)
-	// disablebonefollowers = 1
-	// solid				 = 6
-	// model 			   	 = "models/weapons/c_models/c_bow/c_bow.mdl"
-// })
-
-// SpawnEntityFromTable("prop_dynamic",
-// {
-	// origin             	 = Vector(-2600, 8600, -500)
-	// angles				 = QAngle(0, 0, 0)
-	// disablebonefollowers = 1
-	// disablereceiveshadows = 1
-	// model 			   	 = "models/props_mvm/mann_hatch.mdl"
-// })
-
-// local hatchwepprop2 = SpawnEntityFromTable("prop_dynamic",
-// {
-	// origin             	 = Vector(600, 5150, 0)
-	// disablebonefollowers = 1
-	// solid				 = 6
-	// rendermode			 = 1
-	// renderamt			 = 0
-	// model 			   	 = "models/workshop/weapons/c_models/c_lochnload/c_lochnload.mdl"
-// })
-
-// AddThinkToEnt(lochmodprop, "GalleryProp_Think")
-// AddThinkToEnt(bowmodprop, "GalleryProp_Think")
-// AddThinkToEnt(hatchwepprop, "GalleryProp_Think")
-// AddThinkToEnt(hatchwepprop2, "GalleryProp_Think")
 
 megatonicon.KeyValueFromString("classname", "megaton")
 
@@ -4335,35 +4405,7 @@ for (local i = 1; i <= Constants.Server.MAX_PLAYERS; i++)
 
 	if (!wavewon) { if ("modsactive" in scope) { foreach (name, status in scope.modsactive) { if (status) EquipWeaponMod.call(scope, name, true) } } }
 	
-	scope.completedall <- IsInLog.call(scope).completedall
-	if (scope.completedall)
-	{
-		DisplayWeaponGallery()
-
-		if (!("NewFeaturesTutorial" in scope))
-		{
-			scope.NewFeaturesTutorial <- function()
-			{
-				SendGlobalGameEvent("show_annotation", 
-				{
-					id = self.entindex()
-					text = "Congratulations on beating\nall the waves! You now have\naccess to new weapon features!"
-					worldPosX = 540
-					worldPosY = 5000
-					worldPosZ = 0
-					visibilityBitfield = (1 << self.entindex())
-					play_sound = "misc/null.wav"
-					show_distance = false
-					show_effect = false
-					lifetime = 7.5
-				})
-				
-				NewFeaturesTutorial = null
-			}
-			
-			scope.NewFeaturesTutorial()
-		}
-	}
+	IsInLog.call(player.GetScriptScope())
 
 	if ("hasducky" in scope) delete scope.hasducky
 	
@@ -4376,17 +4418,10 @@ AssignThinkToThinksTable("Coffin_Think")
 
 AssignThinkToThinksTable("DisplayLog_Think")
 
+AssignThinkToThinksTable("FetchCheck_Think")
+
 for (local ent; ent = Entities.FindByClassname(ent, "entity_sign"); ) { if (ent.GetName().find("support") != null) ent.Enable() }
 for (local ent; ent = Entities.FindByClassname(ent, "entity_sign"); ) { if (ent.GetName().find("coffin") != null) ent.Disable() }
-
-// SpawnEntityFromTable("prop_dynamic_ornament",
-// {
-	// model                   = "models/bots/pyro_boss/bot_pyro_boss.mdl"
-	// skin 					= 1
-	// modelscale				= 1.3
-	// disablebonefollowers	= 1
-	// initialowner			= "dummymodel"
-// })
 
 if (debug)
 {

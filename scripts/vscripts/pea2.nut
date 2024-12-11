@@ -20,14 +20,13 @@
 	[
 		["CBaseCombatWeapon", ["GetOwner"]],
 		["CBaseEntity", ["Enable", "Disable"]],
-		["CTFBot", ["IsGrounded", "GetWeapon", "GetWearable", "GetWearableItem", "Zombify"]],
-		["CTFPlayer", ["IsGrounded", "GetWeapon", "GetWearable", "GetWearableItem"]]
+		["CTFBot", ["IsGrounded", "GetWeapon", "GetWearable", "GetWearableItem", "GetAllWearables", "RemoveWearable", "Zombify"]],
+		["CTFPlayer", ["IsGrounded", "GetWeapon", "GetWearable", "GetWearableItem", "GetAllWearables", "RemoveWearable"]]
 	]
 	
 	zombieitems = [5617, 5625, 5618, 5620, 5622, 5619, 5624, 5623, 5621]
 	
 	playerlog_limit = 16250
-	// playerlog_limit = 40
 	
 	tanks_in_wave = 0
 	blimps_in_wave = 0
@@ -1304,33 +1303,54 @@ CTFBot.GetWeapon <- CTFPlayer.GetWeapon
 
 CTFPlayer.GetWearable <- function(model, bonemerge = true, attachment = null, offsets = null)
 {	
-	local modelIndex = GetModelIndex(model)
+	for (local child = this.FirstMoveChild(); child != null; child = child.NextMovePeer())
+	{ 
+		if ("custom_wearable" in child.GetScriptScope())
+		{
+			if (typeof(model) == "string") { if (NetProps.GetPropIntArray(child, "m_nModelIndexOverrides", 3) == GetModelIndex(model)) return false }
+			if (typeof(model) == "integer") { if (NetProps.GetPropIntArray(child, "m_nModelIndexOverrides", 3) == model) return false }
+		}			
+	}
+	
+	local modelIndex
+	
+	if (typeof(model) == "string")
+	{
+		modelIndex = GetModelIndex(model)
+		if (modelIndex == -1) modelIndex = ::PrecacheModel(model)
+	}
 
-	if (modelIndex == -1) modelIndex = ::PrecacheModel(model)
+	if (typeof(model) == "integer") modelIndex = model
 
 	local wearable = Entities.CreateByClassname("tf_wearable")
 	
-	NetProps.SetPropInt(wearable, "m_nModelIndex", dummywearableindex)
+	NetProps.SetPropInt(wearable, "m_nModelIndex", modelIndex)
+	
+	wearable.SetAbsOrigin(this.GetLocalOrigin())
+	wearable.SetAbsAngles(this.GetLocalAngles())
 	
 	wearable.SetSkin(this.GetTeam())
 	wearable.SetTeam(this.GetTeam())
 	wearable.SetSolidFlags(4)
 	wearable.SetCollisionGroup(11)
 
+	NetProps.SetPropEntity(wearable, "m_hOwnerEntity", this)
 	wearable.SetOwner(this)
 	Entities.DispatchSpawn(wearable)
 	
 	NetProps.SetPropInt(wearable, "m_fEffects", bonemerge ? 1 | 128 : 0)
 	
+	NetProps.SetPropInt(wearable, "m_AttributeManager.m_Item.m_iItemDefinitionIndex", 65535)
+	
+	NetProps.SetPropInt(wearable, "m_AttributeManager.m_Item.m_iEntityLevel", 1)
+	
+	NetProps.SetPropBool(wearable, "m_bValidatedAttachedEntity", true)
+	NetProps.SetPropBool(wearable, "m_AttributeManager.m_Item.m_bInitialized", true)
+	NetProps.SetPropBool(wearable, "m_AttributeManager.m_Item.m_bOnlyIterateItemViewAttributes", false)
+	
 	wearable.AcceptInput("SetParent", "!activator", this, this)
 	
-	if (attachment != null) // troubleshooting attachments not working
-	{
-		wearable.AcceptInput("SetParentAttachment", attachment, null, null)
-		// EntFireByHandle(wearable, "SetParentAttachment", attachment, 0.1, null, null)
-		// EntFireByHandle(wearable, "SetParentAttachment", attachment, 0.5, null, null)
-		// EntFireByHandle(wearable, "SetParentAttachment", attachment, 1.0, null, null)
-	}
+	if (attachment != null) wearable.AcceptInput("SetParentAttachment", attachment, null, null)
 	
 	if (offsets != null)
 	{
@@ -1338,16 +1358,10 @@ CTFPlayer.GetWearable <- function(model, bonemerge = true, attachment = null, of
 		EntFireByHandle(wearable, "RunScriptCode", "self.SetLocalAngles(QAngle(" + offsets[1].x + ", " + offsets[1].y + ", " + offsets[1].z + "))", 0.1, null, null)
 	}
 	
-	else
-	{
-		EntFireByHandle(wearable, "RunScriptCode", "self.SetLocalOrigin(Vector(0, 0, 0))", 0.1, null, null)
-		EntFireByHandle(wearable, "RunScriptCode", "self.SetLocalAngles(QAngle(0, 0, 0))", 0.1, null, null)
-	}
-	
-	EntFireByHandle(wearable, "RunScriptCode", "NetProps.SetPropIntArray(self, `m_nModelIndexOverrides`, " + modelIndex + ", 0)", 1.0, null, null) 
-	EntFireByHandle(wearable, "RunScriptCode", "NetProps.SetPropIntArray(self, `m_nModelIndexOverrides`, " + modelIndex + ", 1)", 1.0, null, null) 
-	EntFireByHandle(wearable, "RunScriptCode", "NetProps.SetPropIntArray(self, `m_nModelIndexOverrides`, " + modelIndex + ", 2)", 1.0, null, null) 
-	EntFireByHandle(wearable, "RunScriptCode", "NetProps.SetPropIntArray(self, `m_nModelIndexOverrides`, " + modelIndex + ", 3)", 1.0, null, null) 
+	NetProps.SetPropIntArray(wearable, "m_nModelIndexOverrides", modelIndex, 0)
+	NetProps.SetPropIntArray(wearable, "m_nModelIndexOverrides", modelIndex, 1)
+	NetProps.SetPropIntArray(wearable, "m_nModelIndexOverrides", modelIndex, 2)
+	NetProps.SetPropIntArray(wearable, "m_nModelIndexOverrides", modelIndex, 3)
 	
 	wearable.ValidateScriptScope()
 	wearable.GetScriptScope().custom_wearable <- true
@@ -1357,6 +1371,11 @@ CTFPlayer.GetWearable <- function(model, bonemerge = true, attachment = null, of
 
 CTFPlayer.GetWearableItem <- function(id)
 {
+	for (local child = this.FirstMoveChild(); child != null; child = child.NextMovePeer())
+	{ 
+		if ("custom_wearable" in child.GetScriptScope() && NetProps.GetPropInt(child, "m_AttributeManager.m_Item.m_iItemDefinitionIndex") == id) return
+	}
+	
 	local dummy_Weapon = Entities.CreateByClassname("tf_weapon_parachute")
 	NetProps.SetPropInt(dummy_Weapon, "m_AttributeManager.m_Item.m_iItemDefinitionIndex", 1101)
 	NetProps.SetPropBool(dummy_Weapon, "m_AttributeManager.m_Item.m_bInitialized", true)
@@ -1371,8 +1390,9 @@ CTFPlayer.GetWearableItem <- function(id)
 	dummy_Weapon.Kill()
 	
 	NetProps.SetPropInt(wearable, "m_AttributeManager.m_Item.m_iItemDefinitionIndex", id)
-
 	NetProps.SetPropBool(wearable, "m_AttributeManager.m_Item.m_bInitialized", true)
+	NetProps.SetPropBool(wearable, "m_bValidatedAttachedEntity", true)
+	
 	wearable.DispatchSpawn()
 
 	wearable.ValidateScriptScope()
@@ -1380,6 +1400,42 @@ CTFPlayer.GetWearableItem <- function(id)
 
 	return wearable
 }
+
+CTFPlayer.RemoveWearable <- function(input)
+{
+	local killarray = []
+	
+	for (local child = this.FirstMoveChild(); child != null; child = child.NextMovePeer())
+	{ 
+		if ("custom_wearable" in child.GetScriptScope())
+		{
+			if (typeof(input) == "integer")
+			{
+				if (NetProps.GetPropInt(child, "m_AttributeManager.m_Item.m_iItemDefinitionIndex") == input) killarray.append(child)
+				if (NetProps.GetPropInt(child, "m_nModelIndex") == input) killarray.append(child)
+			}
+			
+			if (typeof(input) == "string") { if (NetProps.GetPropIntArray(child, "m_nModelIndexOverrides", 3) == GetModelIndex(input)) killarray.append(child) }
+		}
+	}
+
+	foreach (ent in killarray) ent.Kill()
+}
+
+CTFPlayer.GetAllWearables <- function()
+{
+	local array = []
+	
+	for (local child = this.FirstMoveChild(); child != null; child = child.NextMovePeer())
+	{ 
+		if ("custom_wearable" in child.GetScriptScope()) array.append(child)
+	}
+
+	return array
+}
+
+CTFBot.RemoveWearable <- CTFPlayer.RemoveWearable
+CTFBot.GetAllWearables <- CTFPlayer.GetAllWearables
 
 CTFBot.GetWearable <- CTFPlayer.GetWearable
 CTFBot.GetWearableItem <- CTFPlayer.GetWearableItem
