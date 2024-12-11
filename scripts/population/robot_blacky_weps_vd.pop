@@ -56,8 +56,9 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		"killstreak idleeffect"			2		//	Deadly Daffodil
 		"set_item_texture_wear"			0		//	FN
 		"paintkit_proto_def_index"		403		//	Sacred Slayer
-		"effect cond override"			4127	//	minicrits but cant be healed
-		"special item description"		"On hype: Deals minicrits, but cant be healed by any source"
+		"damage penalty"				0.9
+		"effect cond override"			16		//	minicrits
+		"special item description"		"On hype: Deals minicrits; -10% damage"
 		//	WORKS PERFECTLY!
 	}
 	CustomWeapon [$SIGSEGV]
@@ -94,12 +95,14 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		"paintkit_proto_def_index"			413	//	Sky Stallion
 		"killstreak tier"					2	//	enables killstreak effects with sheen
 		"killstreak idleeffect"				2	//	Deadly Daffodil
+		"clip size penalty"					0.75
+	//	"clip size upgrade atomic"			-1
 		"projectile gravity"				600
 		"damage penalty"					0.8
 		"no damage falloff"					1
 		"fire rate bonus"					0.2
 		"projectile spread angle penalty"	5
-		"special item description"			"Fires a barrage of spreaded mortars; -20% damage"
+		"special item description"			"Fires a barrage of spreaded mortars; -25% clip size; -20% damage"
 		//	WORKS PERFECTLY!
 	}
 		DisallowUpgrade
@@ -133,6 +136,31 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		"special item description"		"Enables 'Resistance' powerup on user - Blocks 50% of incoming damage"
 		//	WORKS PERFECTLY!
 	}
+	//CustomWeapon [$SIGSEGV]	
+	//{
+	//	Name				"Ghost Wyrm"
+	//	OriginalItemName	"The Righteous Bison"
+	//	"killstreak tier"						2			//	enables killstreak effects with sheen
+	//	"killstreak idleeffect"					7			//	Hot Rod
+	//	"mod projectile heat seek power"		1080		//	homing stuff
+	//	"mod projectile heat aim error"			1080		//	homing stuff
+	//	"mod projectile heat aim time"			10			//	homing stuff
+	//	"mod projectile heat aim start time"	0			//	homing stuff
+	//	"mod projectile heat follow crosshair"	1			//	guided projectile
+	//	"add cond when active"					11
+	//	"damage penalty on bodyshot"			1.5
+	//	"add cond when active"					16			//	banner minicrit
+	//	"energy weapon penetration"				1			//	Replaces bison projectile to pomson so it penetrates
+	//	"no damage falloff"						1
+	//	"fire rate penalty"						5
+	//	"reload full clip at once"				1
+	//	"mult dmg vs tanks"						0.25
+	//	"projectile lifetime"					4
+	//	"set item tint rgb"						16738740	//	Pink as hell
+	//	"cannot be upgraded"					1
+	//	"special item description"				"A guided crit projectile"	//	this weapon has all the info you need to know built in
+	//	//	WORKS PERFECTLY!
+	//}
 	CustomWeapon [$SIGSEGV]	
 	{
 		Name				"Ghost Wyrm"
@@ -144,18 +172,13 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		"mod projectile heat aim time"			10			//	homing stuff
 		"mod projectile heat aim start time"	0			//	homing stuff
 		"mod projectile heat follow crosshair"	1			//	guided projectile
-	//	"add cond when active"					11
-		"damage penalty on bodyshot"			1.5
-		"add cond when active"					16			//	banner minicrit
 		"energy weapon penetration"				1			//	Replaces bison projectile to pomson so it penetrates
 		"no damage falloff"						1
-		"fire rate penalty"						5
-	//	"reload full clip at once"				1
+		"fire rate penalty"						2.5
 		"mult dmg vs tanks"						0.25
-		"projectile lifetime"					4
+		"projectile lifetime"					3
 		"set item tint rgb"						16738740	//	Pink as hell
-	//	"cannot be upgraded"					1
-	//	"special item description"				"A guided crit projectile"	//	this weapon has all the info you need to know built in
+		"special item description"				"Projectiles pass through enemies till they disappear after 3 seconds"	//	this weapon has all the info you need to know built in
 		//	WORKS PERFECTLY!
 	}
 	CustomWeapon [$SIGSEGV]	
@@ -175,8 +198,9 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		"mod soldier buff range"		0.05
 		"max health additive penalty"	-20
 		"rage receive scale"			0.33
+		"increase buff duration"		0.5
 		"cannot taunt" 					1		//	Taunting causes a glitch with a pickaxe taunt triggering infinite uber, thus disabled
-		"special item description"		"Personal Uber effect; takes x3 damage threshold to be filled; no passive HP buff"
+		"special item description"		"Personal Uber effect; -50% banner duration; no passive HP buff"
 		//	WORKS PERFECTLY!
 	}
 	
@@ -219,8 +243,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		"killstreak tier"				2	//	enables killstreak effects with sheen
 		"killstreak idleeffect"			3	//	Manndarin
 		"airblast dashes"				1
-		"airblast cost increased"		3
-		"special item description"		"Stronger airblast force when crouching; x3 airblast ammo cost"
+		"special item description"		"Stronger airblast force when crouching"
 		//	WORKS PERFECTLY!
 	}
 	CustomWeapon [$SIGSEGV]	
@@ -270,9 +293,10 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		"set_item_texture_wear"				0		//	FN
 		"paintkit_proto_def_index"			285		//	Swashbuckled
 		"killstreak tier"					2		//	enables killstreak effects with sheen
-		"killstreak idleeffect"				4		//	Manndarin
+		"killstreak idleeffect"				4			//	Manndarin
 		"clip size upgrade atomic"			-3
 		"damage bonus" 						1.5
+		"mult dmg vs giants"				3
 	//	"add cond when active"				11
 		"always crit"						1
 		"blast radius increased" 			3
@@ -284,7 +308,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		"grenade launcher mortar mode"		0		//	disables fuse prime mechanism
 	//	"grenade launcher mortar mode"		1		//	detonates when fuse time ends, also disables smoke effect on misfire
 	//	"fuse bonus"    					-1		//	redundant attribute for 'mortar mode 0'
-		"projectile detonate time"			0.3
+		"projectile detonate time"			0.75
 		"kill forces attacker to laugh"		1
 		"gesture speed increase"			3
 		"cannot be upgraded"				1
@@ -297,7 +321,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		"heal on kill"						25
 		"single wep deploy time increased"	1.5
 		"single wep holster time increased"	1.5
-		"no primary ammo from dispensers while active"	1
+	//	"no primary ammo from dispensers while active"	1
 		"self dmg push force increased"		3		//	Mann Co. Space Program is under way!
 		"custom kill icon"				"megaton"
 		"special item description"			"Releases a single nuke-sized projectile near self; +25hp on kill; low fire rate and reload; 85% less ammo"
@@ -309,8 +333,8 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		OriginalItemName	"The King of Scotland Cape"
 		"add cond when active"				109	//	'King' powerup
 		"health regen"						-5
-	//	"max health additive penalty"		-75
-		"special item description"			"'King' Powerup - Constant fire rate and reload speed boost for you and every player around you ; +100 HP; 5 HP drain per second"
+		"max health additive penalty"		-100
+		"special item description"			"'King' Powerup - Constant fire rate and reload speed boost for you and every player around you; 5 HP drain per second"
 		//	WORKS PERFECTLY!
 	}
 	CustomWeapon [$SIGSEGV]	
@@ -448,7 +472,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		"gesture speed increase"				2
 		"switch from wep deploy time decreased"	0.33
 		"alt-fire disabled"						1
-		"special item description"				"Shortens Second Banana's feed animation by half; +67% faster deploy time; -50% health given when eaten; cant be dropped"
+		"special item description"				"40% less 'noms'; +67% faster deploy time; -50% health given when eaten; cant be dropped"
 		//	WORKS PERFECTLY
 	}
 	CustomWeapon [$SIGSEGV]
@@ -715,6 +739,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		"mult dmg vs tanks"			3
 		"move speed penalty"		0.33
 		"Reload time increased"		2.5
+		"hand scale"				2
 		"special item description"	"66% slower movement speed while deployed; +250% reload time"
 		//	WORKS PERFECTLY!
 	}
