@@ -635,10 +635,10 @@ athazar's_bar_and_bazaar	// subtle sneed's seed and feed reference
 		OriginalItemName	"Upgradeable TF_WEAPON_MEDIGUN"
 		"paintkit_proto_def_index"		205	// Fire Glazed
 		"set_item_texture_wear"			0
-		"special item description"		"Passively grants a 25% damage bonus vs burning targets to your patient and afterburn immunity to you"
+		"special item description"		"Passively grants afterburn immunity to you and your patient while healing"
 		"special item description 2"	"Ubercharge grants minicrits, ignite on hit, high burn damage, and x2 revive rate. Taking fatal damage while Ubercharge is active instantly sends you (not your patient) to spawn with 1 HP."
 		"special item description 3"	"Tripled Ubercharge rate that stacks with buyable upgrade. Projectile Shield ignites enemies."
-		"medigun passive attributes"	"damage bonus vs burning|1.25|attribute immunity|teleport instead of die"	// should hopefully not stack with the huo long's inherent bonus
+		"medigun passive attributes"	"afterburn immunity|1|attribute immunity|teleport instead of die"	// should hopefully not stack with the huo long's inherent bonus // edit 12/12/24: it did. fuck.
 		"medigun passive attributes owner"	"afterburn immunity|1"
 		"effect cond override"			16
 		"effect add attributes"			"attach particle effect|1|weapon burn dmg increased|4|Set DamageType Ignite|1|projectile trail particle|spell_fireball_small_red|revive rate|2|teleport instead of die|2"
