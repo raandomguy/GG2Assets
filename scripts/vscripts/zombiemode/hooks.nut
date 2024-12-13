@@ -84,6 +84,7 @@ if ("RedRidgeEvents" in getroottable()) delete ::RedRidgeEvents // this is done 
 		local inflictor = params.inflictor
 		local damage = params.damage
 		local weapon = params.weapon
+		if (attacker == null) return
 		if (attacker.GetTeam() == 3)
 		{
 			if (attacker.GetScriptScope().Preserved.zombie_type <= 5) NetProps.SetPropString(params.weapon, "m_iClassname", "unarmed_combat")
