@@ -8,8 +8,10 @@
 #base robot_gatebot.pop
 #base robot_tank_small_turret.pop
 #base overclock_cactus_general.pop
-//Test Feedback
-//
+//Buff
+// W4 - slowfire scatterguns are now normal skill with 0.65 aimtrackinginterval, Crit Buff soldiers are now large crit buff soldiers.
+// W5 - soldier squads skills slightly improved, a seperate spawn of 2 maxactive 6 total large crit rapid demos spawn with what was already there. 
+//GBazookas now crit More Crit Burst Demos now spawn after Gbazookas die.
 
 WaveSchedule
 {
@@ -35,7 +37,7 @@ WaveSchedule
 		}
 	}
 
-	PlayerAttributes   //Player attributes appied for the whole mission
+	PlayerAttributes [$SIGSEGV] //Player attributes appied for the whole mission
 	{
 		
 		Spy
@@ -127,7 +129,7 @@ WaveSchedule
 			ClassIcon soldier_spammer_hyper_lite
 			Health 750
 			Scale 1.4
-			CustomEyeGlowColor "255 0 0"   // Custom eye glow color
+			CustomEyeGlowColor "255 0 0" [$SIGSEGV] // Custom eye glow color
 			Item "The Diplomat"
 			Item "The Team Captain"
 			ItemAttributes
@@ -248,7 +250,7 @@ WaveSchedule
 			MaxVisionRange 450
 			Item "The Dragon's Fury"
 			Item "PY-40 Incinibot"
-			ItemColor   //Set item color
+			ItemColor [$SIGSEGV] //Set item color
 			{
 				ItemName "PY-40 Incinibot"
 				Red 50
@@ -300,7 +302,7 @@ WaveSchedule
 			AimTrackingInterval 0.05
 			Action Mobber
 			WeaponRestrictions MeleeOnly
-			ExtAttr IgnoreBuildings  
+			ExtAttr IgnoreBuildings [$SIGSEGV]
 			ItemAttributes 
 			{
 				ItemName "TF_WEAPON_REVOLVER"
@@ -354,7 +356,7 @@ WaveSchedule
 			Item "The Quick-fix"
 			Item "Flatliner"
 			Item "The Quadwrangler"
-			AddCond   
+			AddCond [$SIGSEGV] 
 			{ 
 				name TF_COND_SODAPOPPER_HYPE 
 			}
@@ -715,6 +717,30 @@ WaveSchedule
 				"health regen"	1
 				"damage force reduction" 0.7
 				"airblast vulnerability multiplier" 0.7
+			}
+		}
+
+		T_TFBot_Large_Soldier_Extended_Buff_Banner
+		{
+			Class Soldier
+			Name "Large Extended Buff Soldier"
+			ClassIcon soldier_buff
+			Health 750
+			Scale 1.4
+			Attributes SpawnWithFullCharge
+			Item "The Buff Banner"
+			ItemAttributes
+			{
+				ItemName "TF_WEAPON_ROCKETLAUNCHER"
+				"blast radius increased" 1.15
+			}
+			CharacterAttributes
+			{
+				"health regen"	1
+				"damage force reduction" 0.8
+				"airblast vulnerability multiplier" 0.8
+				"head scale" 0.7
+				"increase buff duration"	9.0
 			}
 		}
 	}
@@ -1904,7 +1930,7 @@ WaveSchedule
 				Item "The Flare Gun"
 				Item "The Dragon's Fury"
 				Item "PY-40 Incinibot"
-				ItemColor   //Set item color
+				ItemColor [$SIGSEGV] //Set item color
 				{
 					ItemName "PY-40 Incinibot"
 					Red 50
@@ -2488,7 +2514,7 @@ WaveSchedule
 					PreferClass Soldier // Prefer those classes over other
 					PreferClass Demoman // Prefer those classes over other
 					Item "The Bunsen Brave"
-					CustomEyeGlowColor "255 0 0"   // Custom eye glow color
+					CustomEyeGlowColor "255 0 0" [$SIGSEGV] // Custom eye glow color
 					EventChangeAttributes
 					{
 						Default
@@ -2505,7 +2531,7 @@ WaveSchedule
 							MaxVisionRange 2000
 							Attributes MiniBoss
 							Tag bot_giant
-							WeaponResist  
+							WeaponResist [$SIGSEGV]
 							{
 								"TF_WEAPON_KNIFE" 2
 							}
@@ -2602,7 +2628,8 @@ WaveSchedule
 			{
 				Template T_TFBot_Scout_Scattergun_Slowfire
 				Attributes AlwaysCrit
-				Skill Easy
+				Skill Normal
+				AimTrackingInterval 0.65
 			}
 		}
 
@@ -2819,13 +2846,13 @@ WaveSchedule
 				}
 				TFBot
 				{
-					Template T_TFBot_Soldier_Extended_Buff_Banner
+					Template T_TFBot_Large_Soldier_Extended_Buff_Banner
 					Attributes AlwaysCrit
 					Tag bot_squad_member
 				}
 				TFBot
 				{
-					Template T_TFBot_Soldier_Extended_Buff_Banner
+					Template T_TFBot_Large_Soldier_Extended_Buff_Banner
 					Attributes AlwaysCrit
 					Tag bot_squad_member
 				}
@@ -2980,22 +3007,22 @@ WaveSchedule
 				TFBot
 				{
 					Class Soldier
-					Skill Normal
+					Skill Hard
 				}
 				TFBot
 				{
 					Class Soldier
-					Skill Normal
+					Skill Hard
 				}
 				TFBot
 				{
 					Template T_TFBot_Soldier_Extended_Buff_Banner
-					Skill Normal
+					Skill Hard
 				}
 				TFBot
 				{
 					Class Soldier
-					Skill Normal
+					Skill Hard
 				}
 			}
 		}
@@ -3009,7 +3036,7 @@ WaveSchedule
 			SpawnCount 2
 			WaitBeforeStarting 8
 			WaitBetweenSpawns 1.5
-			TotalCurrency 200
+			TotalCurrency 140
 			WaitForAllSpawned "A"
 			RandomChoice
 			{
@@ -3027,6 +3054,23 @@ WaveSchedule
 					Attributes AlwaysCrit
 				}
 			}
+		}
+
+		WaveSpawn //  4 Groups of 3 Large Crit Rapidfire Demomen (200)
+		{
+			Where spawnbot_chief
+			TotalCount 6
+			MaxActive 2
+			SpawnCount 1
+			WaitBeforeStarting 8
+			WaitBetweenSpawns 4
+			TotalCurrency 60
+			WaitForAllSpawned "A"
+				TFBot
+				{
+					Template T_TFBot_Large_Demoman_Spammer
+					Attributes AlwaysCrit
+				}
 		}
 
 		WaveSpawn //  2 Shotgun Heavies (1st gate) (100)
@@ -3160,6 +3204,7 @@ WaveSchedule
 			{
 				Template T_TFBot_Giant_Soldier_Spammer_Spread
 				Tag bot_giant
+				Attributes AlwaysCrit
 			}
 		}
 
@@ -3188,7 +3233,7 @@ WaveSchedule
 					Attributes MiniBoss
 					Attributes HoldFireUntilFullReload
 					Item "The Cross-Comm Crash Helmet"
-					CustomEyeGlowColor "145 0 160"   // Custom eye glow color
+					CustomEyeGlowColor "145 0 160" [$SIGSEGV] // Custom eye glow color
 					ItemAttributes
 					{
 						ItemName "The Cross-Comm Crash Helmet"
@@ -3213,7 +3258,7 @@ WaveSchedule
 						TurnPower 2 //How fast should the rocket rotate to face the target=
 						MaxAimError 360 //Max angle between rocket and the target
 					}
-					AddCond   
+					AddCond [$SIGSEGV] 
 					{ 
 						name TF_COND_SODAPOPPER_HYPE 
 					}
@@ -3265,6 +3310,26 @@ WaveSchedule
 			WaitBetweenSpawns 5
 			TotalCurrency 70
 			WaitForAllSpawned "B"
+			Support 1
+			Randomspawn 1
+			TFBot
+			{
+				Template T_TFBot_Demo_Burst
+				Item "Scotch Bonnet"
+				Attributes AlwaysCrit
+			}
+		}
+
+		WaveSpawn //  Support Crit Burst Demomen (100)
+		{
+			Where spawnbot_main
+			TotalCount 60
+			MaxActive 3
+			SpawnCount 2
+			WaitBeforeStarting 8
+			WaitBetweenSpawns 2
+			TotalCurrency 0
+			WaitForAllDead "B"
 			Support 1
 			Randomspawn 1
 			TFBot
@@ -3627,7 +3692,7 @@ WaveSchedule
 				FastUpdate 1
 				Item "The Sightliner"
 				Item "Aim Assistant"
-				ChangeAttributes   // 100%
+				ChangeAttributes [$SIGSEGV] // 100%
 				{
 					Delay 0.1
 					Repeats 1
@@ -3640,31 +3705,31 @@ WaveSchedule
 					AttachToProjectile 1 //If set, the template is spawned as a child of the projectile being fired. Incompatible with overrideshoot
 					ItemName "TF_WEAPON_PISTOL" //Can be specified to limit to a specific weapon
 				}
-				WeaponSwitch    //Periodically switches weapon
+				WeaponSwitch [$SIGSEGV]  //Periodically switches weapon
                 		{
                     			Delay 0.1
                     			Cooldown 10
 					Type "Primary"
 				}
-				WeaponSwitch    //Periodically switches weapon
+				WeaponSwitch [$SIGSEGV]  //Periodically switches weapon
                 		{
                     			Delay 16
                     			Cooldown 10
 					Type "Melee"
 				}
-				WeaponSwitch    //Periodically switches weapon
+				WeaponSwitch [$SIGSEGV]  //Periodically switches weapon
                 		{
                     			Delay 17
                     			Cooldown 10
 					Type "Secondary"
 				}
-				ChangeAttributes    // 50%
+				ChangeAttributes [$SIGSEGV]  // 50%
 				{
 					Delay 0.1
 					Repeats 1
 					Name "A"
 				}
-				ChangeAttributes    // 50%
+				ChangeAttributes [$SIGSEGV]  // 50%
 				{
 					Delay 0.1
 					Repeats 1
