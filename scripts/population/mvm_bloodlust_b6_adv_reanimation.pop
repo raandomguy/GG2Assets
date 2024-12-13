@@ -1,4 +1,4 @@
-#base base_restricts.pop
+//#base base_restricts.pop
 // Halloween 666 on such a tiny map
 // by Spectλtor™ : https://steamcommunity.com/id/ImNotSpecNotes/
 // 感谢好时光服务器协助我测试的CNTF2社区成员们。
@@ -613,7 +613,7 @@ WaveSchedule
 				"damage force reduction" 0.4
 				"airblast vulnerability multiplier" 0.4
 				"override footstep sound set" 3
-				"Projectile speed increased" 0.9
+				"Projectile speed increased" 0.65 // nerfed from 0.9 -> 0.65, which is good.
 			}
         }
         T_TFBot_Giant_Soldier_Backup_Spammer
@@ -648,7 +648,7 @@ WaveSchedule
 				"damage force reduction" 0.4
 				"airblast vulnerability multiplier" 0.4
 				"override footstep sound set" 3
-				"Projectile speed increased" 0.9
+				"Projectile speed increased" 0.65
 			}
         }
         T_TFBot_Giant_Soldier_Conch_Spammer
@@ -683,7 +683,7 @@ WaveSchedule
 				"damage force reduction" 0.4
 				"airblast vulnerability multiplier" 0.4
 				"override footstep sound set" 3
-				"Projectile speed increased" 0.9
+				"Projectile speed increased" 0.65
 			}
         }
         T_TFBot_Giant_Pyro_Armoured
