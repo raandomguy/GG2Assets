@@ -906,6 +906,9 @@
 				{
 					HideIcon("medic")
 					HideIcon("scout_shortstop")
+					
+					duckyspawn_time = thinkertick + 4000
+					AssignThinkToThinksTable("DuckySpawn_Think")
 				}
 				
 				break
