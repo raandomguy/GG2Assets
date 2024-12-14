@@ -674,19 +674,26 @@ athazar's_bar_and_bazaar	// subtle sneed's seed and feed reference
 	    Name				"50th Caliber"
 		OriginalItemName	"The AWPer Hand"
 		"custom item model"	"models/ctf2w/weapons/c_models/c_atgun/c_atgun.mdl"
-		"special item description"	"Anti-Materiel rifle; Inherent explosive bullets, explosive headshot upgrade disabled"
+		"special item description"	"[NOTICE] CAN ONLY FIRE WHILE ZOOMED"
+		"special item description 2"	"Anti-Materiel rifle; Inherent explosive bullets, explosive headshot upgrade disabled"
+		"special item description 3"	"-50% charge rate, but normal charge rate while actively aiming at an enemy. A beep sound will play while aiming at an enemy."
 		"no damage falloff"	1	// I think this fixes the chicanery with the way explosive bullets seems to work // no it does not
 		"explosive bullets"	200
 		"dmg pierces resists absorbs"	1
-		"CARD: damage bonus"	1.20
+		"sniper full charge damage bonus"	1.20
 		//"move speed penalty"	0.85
-		"SRifle Charge rate decreased"	0.8
+		"SRifle Charge rate decreased"	0.5
 		"self dmg push force decreased"	0.5
-		"blast dmg to self increased"	1.5
+		"blast dmg to self increased"	0.2
 		//"single wep holster time increased"	1.45
 		//"single wep deploy time increased"	1.45
-		"mult dmg vs tanks"	1.85	// It IS an anti-materiel rifle after all	
+		"mult dmg vs tanks"	1.25	// It IS an anti-materiel rifle after all	
 		"dmg bonus vs buildings"	2
+		"penetrate teammates"		1
+		"sniper only fire zoomed"	1
+		"damage penalty on bodyshot"	0.75
+		"mult sniper charge per sec with enemy under crosshair"	2
+		"sniper beep with enemy under crosshair" 1
 	}
 	CustomWeapon
 	{
