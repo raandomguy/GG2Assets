@@ -1440,8 +1440,6 @@ This_fucking_sucks,_actually.
 			Attributes	MiniBoss
 			Item	"Corona Australis"
 			Item	"Immobile Suit"
-			UseMeleeThreatPrioritization	1
-			AimOffset	"0 0 54"
 			AimLeadProjectileSpeed	1000
 			ItemAttributes
 			{
@@ -1449,7 +1447,6 @@ This_fucking_sucks,_actually.
 				"damage bonus"				1.5
 				"override projectile type"	13
 				"energy weapon penetration"	1
-				"spread offset pattern"		"100 -35 -54"
 				"dmg bonus vs buildings"	3
 				"deploy time decreased"			0.2
 				"mod minigun can holster while spinning"	1
@@ -1769,7 +1766,7 @@ This_fucking_sucks,_actually.
 		WaveSpawn
 		{
 			Name	wave1c_g1
-			WaitForAllDead	wave1b_g
+			WaitForAllDead	wave1b
 			TotalCurrency	200
 			TotalCount	4
 			MaxActive	4
@@ -2956,6 +2953,11 @@ This_fucking_sucks,_actually.
 					ClassIcon	soldier_mangler_v2
 					Item		"The Cow Mangler 5000"
 					Name		"Cow Mangler Soldier"
+					ItemAttributes
+					{
+						ItemName	"The Cow Mangler 5000"
+						"energy weapon no hurt building"	0
+					}
 				}
 				TFBot
 				{

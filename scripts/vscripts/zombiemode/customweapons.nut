@@ -250,6 +250,7 @@
 			radius = 112
 			particle = "rd_robot_explosion"
 			killicon = "shotgun_pyro"
+			sound = "misc/null.wav"
 		}
 		"clip size penalty" : 0.5
 		"fire rate penalty" : 1.25
@@ -271,6 +272,7 @@
 			radius = 112
 			particle = "rd_robot_explosion"
 			killicon = "shotgun_pyro"
+			sound = "misc/null.wav"
 		}
 		"damage bonus HIDDEN" : 4
 		"fire rate penalty" : 1.25

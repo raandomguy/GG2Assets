@@ -355,8 +355,8 @@ const POWERUP_TIME = 30;
 {
 	foreach (player in PopExtUtil.HumanArray)
 	{
-		local scope = player.GetScriptScope().Preserved
-		if (scope.isusingstrongmann == true)
+		local scope = player.GetScriptScope()
+		if (scope.Preserved.isusingstrongmann == true)
 		{
 			return false;
 			break
@@ -505,7 +505,7 @@ const POWERUP_TIME = 30;
 		text_gas = SpawnEntityFromTable("game_text",
 		{
 			targetname = "__text_gas"
-			channel = 1
+			channel = 2
 			color = "255 255 255"
 		//	spawnflags = 1
 			fadein = 0
@@ -633,7 +633,7 @@ const POWERUP_TIME = 30;
 	self.ValidateScriptScope()
 	local scope = self.GetScriptScope();
 	self.AddCondEx(6,10,null)
-	scope.Preserved.teleporttime = Time() + STRONGMANN_TIME - 20; // I dunno keep it as like a minute??
+	scope.Preserved.teleporttime = Time() + STRONGMANN_TIME - 10; // I dunno keep it as like a minute??
 	scope.Preserved.isinstrongmannroom = true; // trip look up for playerlogic
 	ScreenFade(self,255,255,255,255,1,0,1)
 	ScreenShake(self.GetCenter(),16,144,2,48,0,true)

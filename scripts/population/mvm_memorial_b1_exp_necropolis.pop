@@ -940,7 +940,7 @@ WaveSchedule
 		}
 		WaveSpawn
 		{
-			Name "W3_A"
+			Name "awA"
 			Where spawnbot_mid
 			TotalCount 2
 			MaxActive 2
@@ -1095,9 +1095,9 @@ WaveSchedule
 			WaitForAllSpawned "W3_B"
 			Name "W3_C"
 			Where spawnbot_mid
-			TotalCount 12
-			MaxActive 12
-			SpawnCount 4
+			TotalCount 9
+			MaxActive 9
+			SpawnCount 3
 			WaitBetweenSpawns 21
 			WaitBeforeStarting 16
 			TotalCurrency 100
@@ -1117,12 +1117,6 @@ WaveSchedule
 				TFBot
 				{
 					Template T_TFBot_Medic_Uber_Armored
-				}
-				TFBot
-				{
-					Template T_TFBot_Soldier_Extended_Buff_Banner
-					Item "Honcho's Headgear"
-					Item "Fancy Dress Uniform"
 				}
 			}
 		}

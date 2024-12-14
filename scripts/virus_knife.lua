@@ -335,8 +335,8 @@ function virusKnifeKill(damage, activator, caller)
 
 	end)
 	
-	--16
-		local timeLeft = 16
+	--14
+		local timeLeft = 14
 		local logicLoop
 		
 		--checks every half second rather than every tick because this isn't code that needs to be updated constantly
@@ -358,7 +358,7 @@ function virusKnifeKill(damage, activator, caller)
 				botSpawn:Suicide()	
 				return
 			end
-		end, 32)
+		end, 29) --one extra because of a pair of freak incidents where the spies lived forever
 			
 end
 

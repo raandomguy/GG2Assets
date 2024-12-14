@@ -21,30 +21,12 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 	
 		//	SCOUT
 		
-	//CustomWeapon [$SIGSEGV]	
-	//{
-	//	Name								"T.K's Tsunami"
-	//	OriginalItemName					"TF_WEAPON_SCATTERGUN"
-	//	"set_item_texture_wear"				0	//	FN
-	//	"paintkit_proto_def_index"			273	//	Peppermint Swirl
-	//	"projectile spread angle penalty"	5	//	FINALLY IT WORKS! Just needed to remove 'fire full clip'. Kudos goes to Seelpit for figuring this out.
-	//	"override projectile type"			13	//	Bison
-	//	"energy weapon penetration"			1	//	Replaces bison projectile to pomson so it penetrates
-	//	"attach particle effect" 			704	//	Energy unusual effect
-	//	"dmg bonus vs buildings" 			0
-	//	"fire full clip at once"			1	//	no. FUCK YOU for preventing spread!
-	//	"hold fire until full reload"		1	//	apparently this prevents switching off the weapon while it reloads
-	//	"fire rate bonus"    				0.01
-	//	"mult dmg vs tanks"					0
-	//	"cannot be upgraded"				1
-	//	"projectile lifetime"				0.5
-	//	"special item description"			"Shoots a short burst of penetrating bison projectiles"
-	//	//	WORKS PERFECTLY!
-	//}
 	CustomWeapon [$SIGSEGV]	
 	{
 		Name								"T.K's Tsunami"
 		OriginalItemName					"TF_WEAPON_SCATTERGUN"
+		"killstreak tier"					2		//	enables killstreak effects with sheen
+		"killstreak idleeffect"				1		//	Team Shine
 		"projectile spread angle penalty"	2.5		//	FINALLY IT WORKS! Just needed to remove 'fire full clip'. Kudos goes to Seelpit for figuring this out.
 		"override projectile type"			13		//	Bison
 		"energy weapon penetration"			1		//	Replaces bison projectile to pomson so it penetrates
@@ -68,54 +50,23 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		}
 	CustomWeapon [$SIGSEGV]	
 	{
-		Name				"Cracked Scatter"
-		OriginalItemName	"The Back Scatter"
-		"crit from behind"			1
-		"auto fires full clip"		1	//	Loads and holds shots before firing (similar) but not quite like) the Bazooka
-		"special item description"	"Applies crits from behind; loads and holds shots before firing (similar to Bazooka)"
-		//	WORKS PERFECTLY!
-	}
-	CustomWeapon [$SIGSEGV]	
-	{
 		Name				"Sacrificial lamb"
 		OriginalItemName	"The Soda Popper"
+		"killstreak tier"				2		//	enables killstreak effects with sheen
+		"killstreak idleeffect"			2		//	Deadly Daffodil
 		"set_item_texture_wear"			0		//	FN
 		"paintkit_proto_def_index"		403		//	Sacred Slayer
-		"effect cond override"			4127	//	minicrits but cant be healed
-		"special item description"		"On hype: Deals minicrits, but cant be healed by any source"
+		"damage penalty"				0.9
+		"effect cond override"			16		//	minicrits
+		"special item description"		"On hype: Deals minicrits; -10% damage"
 		//	WORKS PERFECTLY!
 	}
-	CustomWeapon [$SIGSEGV]	
-	{
-		Name				"MilkBoy"
-		OriginalItemName	"Pretty Boy's Pocket Pistol"
-		"add cond on hit"			27
-		"add cond on hit duration"	1
-		"fire rate penalty"			6
-		"spread penalty"			0.01
-		"special item description"	"Applies 1 second milk effect on hit; 600% slower firing speed"
-		
-		//	WORKS PERFECTLY
-	}
-	//CustomWeapon [$SIGSEGV]	//	old version with direct damage only
-	//{
-	//	Name				"Chop Suey!"
-	//	OriginalItemName	"The Flying Guillotine"
-	//	"Projectile speed increased"			0.2
-	//	"bleeding duration"						-8		//	only bleeds once
-	//	"mult bleeding delay"					10		//	only bleeds once
-	//	"damage bonus"							3
-	//	"mod projectile heat seek power"		70		//	homing stuff
-	//	"mod projectile heat aim error"			90		//	homing stuff
-	//	"mod projectile heat aim start time"	0.2		//	homing stuff
-	//	"mod projectile heat aim time"			7		//	homing stuff
-	//	"special item description"				"Deals x3 impact damage; Only bleeds once on impact"
-	//	//	WORKS PERFECTLY!
-	//}
 	CustomWeapon [$SIGSEGV]
 	{
 		Name				"Chop Suey!"
 		OriginalItemName	"The Flying Guillotine"
+		"killstreak tier"						2		//	enables killstreak effects with sheen
+		"killstreak idleeffect"					2		//	Deadly Daffodil
 		"Blast radius increased"				2
 		"always crit"							1
 		"damage bonus"							6
@@ -142,12 +93,16 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		OriginalItemName	"TF_WEAPON_ROCKETLAUNCHER"
 		"set_item_texture_wear"				0	//	FN
 		"paintkit_proto_def_index"			413	//	Sky Stallion
+		"killstreak tier"					2	//	enables killstreak effects with sheen
+		"killstreak idleeffect"				2	//	Deadly Daffodil
+		"clip size penalty"					0.75
+	//	"clip size upgrade atomic"			-1
 		"projectile gravity"				600
 		"damage penalty"					0.8
 		"no damage falloff"					1
 		"fire rate bonus"					0.2
 		"projectile spread angle penalty"	5
-		"special item description"			"Fires a barrage of spreaded mortars; -20% damage"
+		"special item description"			"Fires a barrage of spreaded mortars; -25% clip size; -20% damage"
 		//	WORKS PERFECTLY!
 	}
 		DisallowUpgrade
@@ -156,40 +111,16 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 			MaxLevel 2	//	can only buy up to 2 ticks of that upgrade
 			ItemName	"Mortartillery Cannon"
 		}
-	//CustomWeapon [$SIGSEGV]	
-	//{
-	//	Name				"Bozon Bazooka"
-	//	OriginalItemName	"The Cow Mangler 5000"
-	//	"override projectile type extra"	"mechanicalarmorb"	//	short circuit orb
-	//	"fire rate penalty HIDDEN"			3
-	//	"damage bonus HIDDEN" 				2
-	//	"alt-fire disabled"					1
-	//	"special item description"			"Short Circuit projectiles; no alt fire"
-	//	//	WORKS PERFECTLY!
-	//}
-	//	DisallowUpgrade
-	//	{
-	//		Upgrade		"faster reload rate"
-	//		ItemName	"Bozon Bazooka"
-	//	}
-	//	DisallowUpgrade
-	//	{
-	//		Upgrade		"rocket specialist"
-	//		ItemName	"Bozon Bazooka"
-	//	}
-	//	DisallowUpgrade
-	//	{
-	//		Upgrade		"clip size bonus upgrade"
-	//		ItemName	"Bozon Bazooka"
-	//	}
 	CustomWeapon [$SIGSEGV]	
 	{
 		Name				"Topneaa Torchlight"
 		OriginalItemName	"The Cow Mangler 5000"
-		"attach particle effect"			13	//	Burning Flames
-		"alt fire attack"					1	//	enables altfire attributes
-		"alt fire attributes"				"fire rate penalty HIDDEN|2.5|damage bonus HIDDEN|2.5|override projectile type extra|mechanicalarmorb|Set DamageType Ignite|1|custom kill icon|purgatory"
-		"special item description"			"Altfire slowly shoots powerful Short Circuit projectiles that set enemies on fire"
+		"killstreak tier"			2	//	enables killstreak effects with sheen
+		"killstreak idleeffect"		1	//	Team Shine
+		"attach particle effect"	13	//	Burning Flames
+		"alt fire attack"			1	//	enables altfire attributes
+		"alt fire attributes"		"fire rate penalty HIDDEN|2.5|damage bonus HIDDEN|2.5|override projectile type extra|mechanicalarmorb|Set DamageType Ignite|1|custom kill icon|purgatory"
+		"special item description"	"Altfire slowly shoots powerful Short Circuit projectiles that set enemies on fire"
 		//	WORKS PERFECTLY!
 	}
 		DisallowUpgrade
@@ -205,27 +136,49 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		"special item description"		"Enables 'Resistance' powerup on user - Blocks 50% of incoming damage"
 		//	WORKS PERFECTLY!
 	}
+	//CustomWeapon [$SIGSEGV]	
+	//{
+	//	Name				"Ghost Wyrm"
+	//	OriginalItemName	"The Righteous Bison"
+	//	"killstreak tier"						2			//	enables killstreak effects with sheen
+	//	"killstreak idleeffect"					7			//	Hot Rod
+	//	"mod projectile heat seek power"		1080		//	homing stuff
+	//	"mod projectile heat aim error"			1080		//	homing stuff
+	//	"mod projectile heat aim time"			10			//	homing stuff
+	//	"mod projectile heat aim start time"	0			//	homing stuff
+	//	"mod projectile heat follow crosshair"	1			//	guided projectile
+	//	"add cond when active"					11
+	//	"damage penalty on bodyshot"			1.5
+	//	"add cond when active"					16			//	banner minicrit
+	//	"energy weapon penetration"				1			//	Replaces bison projectile to pomson so it penetrates
+	//	"no damage falloff"						1
+	//	"fire rate penalty"						5
+	//	"reload full clip at once"				1
+	//	"mult dmg vs tanks"						0.25
+	//	"projectile lifetime"					4
+	//	"set item tint rgb"						16738740	//	Pink as hell
+	//	"cannot be upgraded"					1
+	//	"special item description"				"A guided crit projectile"	//	this weapon has all the info you need to know built in
+	//	//	WORKS PERFECTLY!
+	//}
 	CustomWeapon [$SIGSEGV]	
 	{
 		Name				"Ghost Wyrm"
 		OriginalItemName	"The Righteous Bison"
+		"killstreak tier"						2			//	enables killstreak effects with sheen
+		"killstreak idleeffect"					7			//	Hot Rod
 		"mod projectile heat seek power"		1080		//	homing stuff
 		"mod projectile heat aim error"			1080		//	homing stuff
 		"mod projectile heat aim time"			10			//	homing stuff
 		"mod projectile heat aim start time"	0			//	homing stuff
 		"mod projectile heat follow crosshair"	1			//	guided projectile
-	//	"add cond when active"					11
-		"damage penalty on bodyshot"			1.5
-		"add cond when active"					16			//	banner minicrit
 		"energy weapon penetration"				1			//	Replaces bison projectile to pomson so it penetrates
 		"no damage falloff"						1
-		"fire rate penalty"						5
-	//	"reload full clip at once"				1
+		"fire rate penalty"						2.5
 		"mult dmg vs tanks"						0.25
-		"projectile lifetime"					4
+		"projectile lifetime"					3
 		"set item tint rgb"						16738740	//	Pink as hell
-	//	"cannot be upgraded"					1
-	//	"special item description"				"A guided crit projectile"	//	this weapon has all the info you need to know built in
+		"special item description"				"Projectiles pass through enemies till they disappear after 3 seconds"	//	this weapon has all the info you need to know built in
 		//	WORKS PERFECTLY!
 	}
 	CustomWeapon [$SIGSEGV]	
@@ -237,18 +190,6 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		"special item description"	"+75% buff duration"
 		//	WORKS PERFECTLY!
 	}
-	//CustomWeapon [$SIGSEGV]	
-	//{
-	//	Name				"Selfish Soldier (Haste)"
-	//	OriginalItemName	"The Concheror"
-	//	"effect cond override"		7771	//	Haste powerup (cond 91) + marked for death (cond 30)
-	//	"mod soldier buff range"	0.05
-	//	"rage receive scale"		0.20	//	takes x5 the amount of damage dealt to fill the rage meter
-	//	"health regen"				0		//	removes the natural hp regen of the conch
-	//	"cannot be upgraded"		1
-	//	"special item description"	"personal Haste powerup; marked for death when banner is active; no passive HP regen"
-	//	//	WORKS PERFECTLY!
-	//}
 	CustomWeapon [$SIGSEGV]	
 	{
 		Name				"Selfish Soldier (Uber)"
@@ -257,8 +198,9 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		"mod soldier buff range"		0.05
 		"max health additive penalty"	-20
 		"rage receive scale"			0.33
+		"increase buff duration"		0.5
 		"cannot taunt" 					1		//	Taunting causes a glitch with a pickaxe taunt triggering infinite uber, thus disabled
-		"special item description"		"Personal Uber effect; takes x3 damage threshold to be filled; no passive HP buff"
+		"special item description"		"Personal Uber effect; -50% banner duration; no passive HP buff"
 		//	WORKS PERFECTLY!
 	}
 	
@@ -268,6 +210,8 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 	{
 		Name				"Pressurized Phosphorus"
 		OriginalItemName	"The Backburner"
+		"killstreak tier"				2	//	enables killstreak effects with sheen
+		"killstreak idleeffect"			4	//	Mean Green
 		"flame_drag"					4.5
 		"lunchbox adds minicrits"		2
 		"weapon burn dmg increased"		2
@@ -280,6 +224,8 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 	{
 		Name				"Adren Rush"
 		OriginalItemName	"The Phlogistinator"
+		"killstreak tier"				2	//	enables killstreak effects with sheen
+		"killstreak idleeffect"			2	//	Deadly Daffodil
 		"gesture speed increase"		9
 		"damage penalty"				0.85
 	//	"mult dmg vs tanks"				0.66
@@ -292,34 +238,26 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 	{
 		Name				"Draconic Dash"
 		OriginalItemName	"The Dragon's Fury"
-		"set_item_texture_wear"			0		//	FN
-		"paintkit_proto_def_index"		390		//	Dragon Slayer
+		"set_item_texture_wear"			0	//	FN
+		"paintkit_proto_def_index"		390	//	Dragon Slayer
+		"killstreak tier"				2	//	enables killstreak effects with sheen
+		"killstreak idleeffect"			3	//	Manndarin
 		"airblast dashes"				1
-		"airblast cost increased"		3
-		"special item description"		"Stronger airblast force when crouching; x3 airblast ammo cost"
+		"special item description"		"Stronger airblast force when crouching"
 		//	WORKS PERFECTLY!
 	}
 	CustomWeapon [$SIGSEGV]	
 	{
 		Name				"Kinetic Bhop"
 		OriginalItemName	"The Detonator"
-		"set_item_texture_wear"			0		//	FN
-		"paintkit_proto_def_index"		297		//	Necromanced
+		"set_item_texture_wear"			0	//	FN
+		"paintkit_proto_def_index"		297	//	Necromanced
+		"killstreak tier"				2	//	enables killstreak effects with sheen
+		"killstreak idleeffect"			5	//	Agonizing Emerald
 		"self dmg push force increased"	1.5
 		"blast dmg to self increased"	2
 		"allow bunny hop"				1
 		"special item description"		"Self push force is 50% stronger; Self blast damage is 100% stronger"
-		//	WORKS PERFECTLY!
-	}
-	CustomWeapon [$SIGSEGV]	
-	{
-		Name				"Torching Transmission"
-		OriginalItemName	"The Third Degree"
-		"mult crit when health is below percent"	0.5
-		"dmg from melee increased"					1.5
-		"mult dmg vs tanks"							0
-		"crit mod disabled"							0
-		"special item description"					"+50% damage taken from melee enemies; no random crits"
 		//	WORKS PERFECTLY!
 	}
 	
@@ -331,6 +269,8 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		OriginalItemName	"TF_WEAPON_GRENADELAUNCHER"
 		"set_item_texture_wear"			0		//	FN
 		"paintkit_proto_def_index"		130		//	Bovine Blazemaker
+		"killstreak tier"				2		//	enables killstreak effects with sheen
+		"killstreak idleeffect"			1		//	Team Shine
 		"add cond on hit"				27		//	milk enemies
 		"add cond on hit duration"		3
 		"add cond when active"			27		//	milk yourself, idiot!
@@ -352,8 +292,11 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		OriginalItemName	"The Loose Cannon"
 		"set_item_texture_wear"				0		//	FN
 		"paintkit_proto_def_index"			285		//	Swashbuckled
+		"killstreak tier"					2		//	enables killstreak effects with sheen
+		"killstreak idleeffect"				4			//	Manndarin
 		"clip size upgrade atomic"			-3
 		"damage bonus" 						1.5
+		"mult dmg vs giants"				3
 	//	"add cond when active"				11
 		"always crit"						1
 		"blast radius increased" 			3
@@ -365,7 +308,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		"grenade launcher mortar mode"		0		//	disables fuse prime mechanism
 	//	"grenade launcher mortar mode"		1		//	detonates when fuse time ends, also disables smoke effect on misfire
 	//	"fuse bonus"    					-1		//	redundant attribute for 'mortar mode 0'
-		"projectile detonate time"			0.3
+		"projectile detonate time"			0.75
 		"kill forces attacker to laugh"		1
 		"gesture speed increase"			3
 		"cannot be upgraded"				1
@@ -378,7 +321,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		"heal on kill"						25
 		"single wep deploy time increased"	1.5
 		"single wep holster time increased"	1.5
-		"no primary ammo from dispensers while active"	1
+	//	"no primary ammo from dispensers while active"	1
 		"self dmg push force increased"		3		//	Mann Co. Space Program is under way!
 		"custom kill icon"				"megaton"
 		"special item description"			"Releases a single nuke-sized projectile near self; +25hp on kill; low fire rate and reload; 85% less ammo"
@@ -390,28 +333,30 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		OriginalItemName	"The King of Scotland Cape"
 		"add cond when active"				109	//	'King' powerup
 		"health regen"						-5
-	//	"max health additive penalty"		-75
-		"special item description"			"'King' Powerup - Constant fire rate and reload speed boost for you and every player around you ; +100 HP; 5 HP drain per second"
-		//	
+		"max health additive penalty"		-100
+		"special item description"			"'King' Powerup - Constant fire rate and reload speed boost for you and every player around you; 5 HP drain per second"
+		//	WORKS PERFECTLY!
 	}
 	CustomWeapon [$SIGSEGV]	
 	{
 		Name				"Sticky Squirter"
 		OriginalItemName	"TF_WEAPON_PIPEBOMBLAUNCHER"
-		"set_item_texture_wear"				0	//	FN
-		"paintkit_proto_def_index"			405	//	Bonzo Gnawed
+		"set_item_texture_wear"				0		//	FN
+		"paintkit_proto_def_index"			405		//	Bonzo Gnawed
+		"killstreak tier"					2		//	enables killstreak effects with sheen
+		"killstreak idleeffect"				4		//	Mean Green
 		"clip size penalty"					0.5
 		"projectile spread angle penalty"	10
 		"fire rate bonus"					-3
 		"stickybomb charge rate"			0.01
 		"Projectile range increased" 		0.4
 		"Blast radius decreased"			0.65
-		"max pipebombs decreased"			-4	//	only 1 sticky is alive at any given time
+		"max pipebombs decreased"			-4		//	only 1 sticky is alive at any given time
 	//	"fire full clip at once"			1
 		"stickybomb stick to enemies"		1
-		"auto fires full clip"				1	//	These 2 attribs give the weapon 'beggars' effect
-		"auto fires when full"				1	//	These 2 attribs give the weapon 'beggars' effect
-	//	"can overload"						0	//	
+		"auto fires full clip"				1		//	These 2 attribs give the weapon 'beggars' effect
+		"auto fires when full"				1		//	These 2 attribs give the weapon 'beggars' effect
+	//	"can overload"						0
 		"special item description"			"Load and release 4 stickies at once; stickies are launched in spread; -35% blast radius"
 		//	WORKS PERFECTLY!
 	}
@@ -429,7 +374,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		"charge time decreased"				-69
 		"cannot be upgraded"				1
 		"special item description"			"x2 max ammo on primary weapon; -20% move speed; cannot charge"
-		//	
+		//	WORKS PERFECTLY!
 	}
 	CustomWeapon [$SIGSEGV]	
 	{
@@ -452,6 +397,8 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		OriginalItemName	"Tomislav"
 		"set_item_texture_wear"			0	//	FN
 		"paintkit_proto_def_index"		217	//	Bomber Soul
+		"killstreak tier"				2	//	enables killstreak effects with sheen
+		"killstreak idleeffect"			5	//	Agonizing Emerald
 		"damage bonus"					3
 		"mult dmg vs giants"			1.5
 		"penetrate teammates"			1
@@ -460,7 +407,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		"bullets per shot bonus"		0.25
 		"explosive bullets"				100
 		"special item description"		"Fires single heavy caliber rounds that explode with AoE damage on impact (weapon deals blast damage)"
-	//	WORKS PERFECTLY!
+		//	WORKS PERFECTLY!
 	}
 		DisallowUpgrade	//	apparently i cant stack disallowing upgrades into one block so i need to write them individually. come on...
 		{
@@ -484,6 +431,8 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		"set_item_texture_wear"			0	//	FN
 		"paintkit_proto_def_index"		232	//	Alien Tech
 		"attach particle effect" 		702	//	Isotope unusual effect
+		"killstreak tier"				2	//	enables killstreak effects with sheen
+		"killstreak idleeffect"			4	//	Mean Green
 		"no damage falloff"				1
 		"shot penetrate all players"	1
 		"projectile penetration"		1
@@ -499,7 +448,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 	//	"fire input on attack"			"!self^$playsound^weapons/capper2.mp3"	//	makes the capper sound not break when spammed
 	//	"custom weapon fire sound"		"weapons/capper2.mp3"
 		"special item description"		"Fires neutrino particles that penetrates all enemies with no damage falloff"
-	//	WORKS PERFECTLY!
+		//	WORKS PERFECTLY!
 	}
 		DisallowUpgrade
 		{
@@ -523,13 +472,15 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		"gesture speed increase"				2
 		"switch from wep deploy time decreased"	0.33
 		"alt-fire disabled"						1
-		"special item description"				"Shortens Second Banana's feed animation by half; +67% faster deploy time; -50% health given when eaten; cant be dropped"
+		"special item description"				"40% less 'noms'; +67% faster deploy time; -50% health given when eaten; cant be dropped"
 		//	WORKS PERFECTLY
 	}
 	CustomWeapon [$SIGSEGV]
 	{
 		Name				"Terminal Tumor"
 		OriginalItemName	"The Bread Bite"
+		"killstreak tier"				2	//	enables killstreak effects with sheen
+		"killstreak idleeffect"			5	//	Agonizing Emerald
 		"mod_maxhealth_drain_rate"		0
 		"reduced_healing_from_medics"	0.9
 		"special item description"		"No health drain; -10% heal rate from medics"
@@ -538,29 +489,14 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		
 		//	ENGINEER
 		
-	//CustomWeapon [$SIGSEGV]
-	//{
-	//	Name				"High Voltage"
-	//	OriginalItemName	"The Pomson 6000"
-	//	"attach particle effect"				3149	//	Electrocutio
-	//	"fire rate bonus"    					0.05
-	//	"Projectile speed increased"			1.5
-	//	"maxammo metal increased"				0.5
-	//	"mult dmg vs tanks"						0.5
-	//	"energy weapon penetration"				1		//	Replaces bison projectile to pomson so it penetrates
-	//	"subtract victim medigun charge on hit"	0		//	disabled uber drain on hit
-	//	"engy sentry damage bonus"				0		//	deals no damage.
-	//	"engy sentry fire rate increased"		69		//	doesnt practically shoot anything (and when it shoots, its still 0 damage)
-		//	"mod sentry cost"						69		//	basically cant buy a sentry gun (good idea - doesnt work, because it can still be deployed normally during setup time for free)
-	//	"special item description"				"Shoots a long stream of particles that penetrate enemies; no sentry usage"
-	//	//	WORKS PERFECTLY!
-	//}
 	CustomWeapon [$SIGSEGV]
 	{
 		Name				"Express Dellivery"
 		OriginalItemName	"The Rescue Ranger"
 		"set_item_texture_wear"					0	//	FN
 		"paintkit_proto_def_index"				234	//	Damascus & Mahogany
+		"killstreak tier"						2	//	enables killstreak effects with sheen
+		"killstreak idleeffect"					1	//	Team Shine
 		"mark for death on building pickup"		0
 		"arrow heals buildings"					0
 		"clip size bonus"						1.5
@@ -573,6 +509,8 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 	{
 		Name				"EMP Casings"
 		OriginalItemName	"The C.A.P.P.E.R"
+		"killstreak tier"				2		//	enables killstreak effects with sheen
+		"killstreak idleeffect"			3		//	Manndarin
 		"damage applies to sappers"		1
 		"stun on damage"				120
 		"weapon spread bonus"			0.2
@@ -587,6 +525,8 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		OriginalItemName	"TF_WEAPON_WRENCH"
 		"set_item_texture_wear"			0		//	FN
 		"paintkit_proto_def_index"		412		//	Secretly Serviced
+		"killstreak tier"				2		//	enables killstreak effects with sheen
+		"killstreak idleeffect"			6		//	Villainous Violet
 		"building color rgb"			69		//	BlacK, like my soul
 		"engy building health bonus"	5
 		"Repair rate decreased"			0
@@ -603,7 +543,9 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 	{
 		Name				"Milk of the Sloppy"
 		OriginalItemName	"The Crusader's Crossbow"
-		"add cond on hit"					27		//	milk enemies
+		"killstreak tier"					2	//	enables killstreak effects with sheen
+		"killstreak idleeffect"				7	//	Hot Rod
+		"add cond on hit"					27	//	milk enemies
 		"add cond on hit duration"			8
 		"damage penalty"					0.1
 		"passive reload"					1
@@ -617,6 +559,8 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		Name				"Flash Protocol"
 		OriginalItemName	"gentlemanne_medigun_highrollers"
 		"set_item_texture_wear"			0	//	FN
+		"killstreak tier"				2	//	enables killstreak effects with sheen
+		"killstreak idleeffect"			1	//	Team Shine
 		"ubercharge rate bonus"			8
 		"uber duration bonus"			-6
 		"special item description"		"+700% faster uber rate; -6 sec uber duration; cant buy shield"
@@ -631,6 +575,8 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 	{
 		Name				"Passive Powerlifter"
 		OriginalItemName	"The Kritzkrieg"
+		"killstreak tier"				2	//	enables killstreak effects with sheen
+		"killstreak idleeffect"			2	//	Deadly Daffodil
 		"medigun passive attributes"	"minicritboost on kill|2|effect cond override|16|mult dmg vs tanks|1.15"
 		"effect cond override"			90	//	'Strenght' powerup
 		"special item description"		"While healing players, they will recieve 2s minicrit on kill and +15% damage to tanks; Kritz Ubercharge is replaced with the 'Strenght' powerup - double damage (doesnt work on tanks)"
@@ -640,6 +586,8 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 	{
 		Name				"Soul Split"
 		OriginalItemName	"The Quick-Fix"
+		"killstreak tier"					2	//	enables killstreak effects with sheen
+		"killstreak idleeffect"				4	//	Mean Green
 		"medigun attack enemy"				1.3	//	attacks enemies at x1.3 of its heal rate
 		"medigun attack enemy heal mult"	0
 		"overheal penalty"					1
@@ -665,17 +613,21 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 	{
 		Name				"Uberweisen Saw"
 		OriginalItemName	"The Ubersaw"
-		"set_item_texture_wear"					0		//	Factory New
-		"paintkit_proto_def_index"				204		//	Kill Covered
-		"add uber charge on hit"				0.5
-		"fire input on hit"						"!activator^$TakeDamage^50"
-		"special item description"				"+25% uber gain per hit; when hitting enemies, hit yourself for 50hp"
+		"killstreak tier"				2	//	enables killstreak effects with sheen
+		"killstreak idleeffect"			6	//	Villainous Violet
+		"set_item_texture_wear"			0	//	Factory New
+		"paintkit_proto_def_index"		204	//	Kill Covered
+		"add uber charge on hit"		0.5
+		"fire input on hit"				"!activator^$TakeDamage^50"
+		"special item description"		"+25% uber gain per hit; when hitting enemies, hit yourself for 50hp"
 		//	WORKS PERFECTLY!
 	}
 	CustomWeapon [$SIGSEGV]
 	{
 		Name				"Uber Container"
 		OriginalItemName	"The Vita-Saw"
+		"killstreak tier"					2	//	enables killstreak effects with sheen
+		"killstreak idleeffect"				1	//	Team Shine
 		"ubercharge_preserved_on_spawn_max"	1
 		"max health additive penalty"		0
 		"special item description"			"Retains all ubercharge after death depending on how many organs have been collected; removes the original health penalty"
@@ -688,6 +640,8 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 	{
 		Name				"Black King"
 		OriginalItemName	"The Machina"
+		"killstreak tier"							2	//	enables killstreak effects with sheen
+		"killstreak idleeffect"						3	//	Manndarin
 		"explosive bullets"							250
 		"sniper full charge damage bonus"			1.25
 		"mult dmg vs tanks"							1.5
@@ -714,6 +668,8 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 	{
 		Name				"Brushfire"
 		OriginalItemName	"The Huntsman"
+		"killstreak tier"				2	//	enables killstreak effects with sheen
+		"killstreak idleeffect"			1	//	Team Shine
 		"attach particle effect" 		13	//	Burning Flames
 		"Set DamageType Ignite"			1
 		"cannot headshot"				1
@@ -733,22 +689,15 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		OriginalItemName	"Das Feelinbeterbager"
 	//	"add cond when active"			94
 	//	"drop health pack on kill"		1
-		"uber on damage taken"			0.05	//	when hit, gain 5% of becoming ubercharged for 3 seconds
-		//	WORKS PERFECTLY!
-	}
-	CustomWeapon [$SIGSEGV]
-	{
-		Name				"Titanium plank"
-		OriginalItemName	"The Razorback"
-		"cannot be backstabbed"			1
-		"max health additive penalty"	-10
-		"special item description"		"permanent backstab immunity; -10hp on wearer"
+		"uber on damage taken"			0.05	//	when hit, gain 5% chance of becoming ubercharged for 3 seconds
 		//	WORKS PERFECTLY!
 	}
 	CustomWeapon [$SIGSEGV]
 	{
 		Name				"Croky Assassin"
 		OriginalItemName	"The Cleaner's Carbine"
+		"killstreak tier"				2	//	enables killstreak effects with sheen
+		"killstreak idleeffect"			2	//	Deadly Daffodil
 		"provide on active"				1
 		"effect cond override"			66
 		"special item description"		"Crikey minicrits become invisibility spell for 8s"
@@ -758,6 +707,8 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 	{
 		Name				"Maniacal Mercenary"
 		OriginalItemName	"The Bushwacka"
+		"killstreak tier"				2	//	enables killstreak effects with sheen
+		"killstreak idleeffect"			2	//	Deadly Daffodil
 		"fire rate penalty"				1.5
 		"mult dmg vs tanks"				0.5
 		"add cond when active"			16	//	buff banner effect
@@ -771,6 +722,8 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 	{
 		Name				"Cloak Leak"
 		OriginalItemName	"L'Etranger"
+		"killstreak tier"				2	//	enables killstreak effects with sheen
+		"killstreak idleeffect"			7	//	Hot Rod
 		"add cloak on hit"				50
 		"cloak consume rate decreased"	3
 		"special item description"		"+50% cloak gain on hit; x3 cloak drain rate"
@@ -780,52 +733,38 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 	{
 		Name				"Magnum Opus"
 		OriginalItemName	"The Enforcer"
+		"killstreak tier"			2	//	enables killstreak effects with sheen
+		"killstreak idleeffect"		2	//	Deadly Daffodil
 		"provide on active"			1
 		"mult dmg vs tanks"			3
 		"move speed penalty"		0.33
 		"Reload time increased"		2.5
+		"hand scale"				2
 		"special item description"	"66% slower movement speed while deployed; +250% reload time"
 		//	WORKS PERFECTLY!
 	}
-	//CustomWeapon [$SIGSEGV]	//	original idea
-	//{
-	//	Name				"AB+"
-	//	OriginalItemName	"TF_WEAPON_REVOLVER"
-	//	"set_item_texture_wear"			0		//	Factory New
-	//	"paintkit_proto_def_index"		263		//	Death Deluxe
-	//	"mult decloak rate"				0.01	//	practically removes the cloak flicker when shooting, for aesthetic purposes
-	//	"add cond when active"			66		//	always cloaked
-	//	"self add cond on hit"			66
-	//	"self add cond on hit duration"	0.25	//	also procs per gun's bleed damage so it lasts as long as someone bleeds
-	//	"bleeding duration"				10
-	//	"mult bleeding delay"			0.5
-	//	"mult bleeding dmg"				2
-	//	"damage penalty"				0.1
-	//	"cannot disguise"				1
-	//	"provide on active"				1		
-	//	"alt-fire disabled"				1		//	meant to disable cloaking from wristwatch when equipped but it only somewhat breaks
-	//	"cloak consume rate decreased"	69		//	practically no cloak from wristwatch, forcing you to flee from danger when having no ammo
-	//	"special item description"		"Enemies bleed for 10s on hit; Automatically cloaks when dealing bleed damage; -90% damage; cant disguise nor manually cloak via watches"
-	//	//
-	//}
 	CustomWeapon [$SIGSEGV]
 	{
 		Name				"AB+"
 		OriginalItemName	"TF_WEAPON_REVOLVER"
-		"set_item_texture_wear"			0		//	Factory New
-		"paintkit_proto_def_index"		263		//	Death Deluxe
+		"set_item_texture_wear"			0	//	Factory New
+		"paintkit_proto_def_index"		263	//	Death Deluxe
+		"killstreak tier"				2	//	enables killstreak effects with sheen
+		"killstreak idleeffect"			5	//	Agonizing Emerald
 		"bleeding duration"				10
 		"mult bleeding delay"			0.5
 		"mult bleeding dmg"				3
 		"damage penalty"				0.5
 		"self add attributes on hit"	"move speed penalty|0.85|0.5"
 		"special item description"		"Enemies bleed for 10s on hit; Bleed damage causes 15% slow movement to self; -50% damage"
-		//
+		//	WORKS PERFECTLY!
 	}
 	CustomWeapon [$SIGSEGV]
 	{
 		Name				"Eternal Earner"
 		OriginalItemName	"The Big Earner"
+		"killstreak tier"				2	//	enables killstreak effects with sheen
+		"killstreak idleeffect"			6	//	Villainous Violet
 		"disguise on backstab"			1
 		"silent killer"					1
 		"lunchbox adds minicrits"		1
@@ -839,11 +778,13 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 	{
 		Name				"Joker"
 		OriginalItemName	"The Black Rose"
-		"fire rate penalty"						1.2
-		"critboost on kill"						3
-		"crit forces victim to laugh"			1	//	only works on non giants
-	//	"provide on active"						1
-		"special item description"				"3s Crit on kill; crits forces non giants to laugh; +20% slower swing speed"
+		"killstreak tier"				2	//	enables killstreak effects with sheen
+		"killstreak idleeffect"			1	//	Team Shine
+		"fire rate penalty"				1.2
+		"critboost on kill"				3
+		"crit forces victim to laugh"	1	//	only works on non giants
+	//	"provide on active"				1
+		"special item description"		"3s Crit on kill; crits forces non giants to laugh; +20% slower swing speed"
 		//	WORKS PERFECTLY!
 	}
 	
@@ -855,9 +796,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		Scout
 		{
 			Primary		"T.K's Tsunami"
-			Primary		"Cracked Scatter"
 			Primary		"Sacrificial lamb"
-			Secondary	"MilkBoy"
 			Secondary	"Chop Suey!"
 		}
 		Soldier
@@ -875,7 +814,6 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 			Primary		"Adren Rush"
 			Primary		"Draconic Dash"
 			Secondary	"Kinetic Bhop"
-			Melee		"Torching Transmission"
 		}
 		Demoman
 		{
@@ -913,7 +851,6 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 			Primary		"Black King"
 			Primary		"Brushfire"
 			Primary		"Bushman's Boon"
-			Secondary	"Titanium plank"
 			Secondary	"Croky Assassin"
 			Melee		"Maniacal mercenary"
 		}

@@ -2,7 +2,10 @@
 
 WaveSchedule
 {
-	PointTemplates	[$SIGSEGV]	//	this thingy is to prevent other players from picking the haste powerup if the soldier dies while its in use
+PrecacheModel "models/weapons/c_models/c_sd_cleaver/c_sd_cleaver.mdl"
+PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
+
+	PointTemplates	[$SIGSEGV]	//	this piece of code is to remove the powerup from the game if its dropped, hence making it only be used by the designated class
 	{
 		powerup_fix
 		{
@@ -22,6 +25,8 @@ WaveSchedule
 	{
 		Name								"T.K's Tsunami"
 		OriginalItemName					"TF_WEAPON_SCATTERGUN"
+		"killstreak tier"					2		//	enables killstreak effects with sheen
+		"killstreak idleeffect"				1		//	Team Shine
 		"projectile spread angle penalty"	2.5		//	FINALLY IT WORKS! Just needed to remove 'fire full clip'. Kudos goes to Seelpit for figuring this out.
 		"override projectile type"			13		//	Bison
 		"energy weapon penetration"			1		//	Replaces bison projectile to pomson so it penetrates
@@ -47,17 +52,21 @@ WaveSchedule
 	{
 		Name				"Sacrificial lamb"
 		OriginalItemName	"The Soda Popper"
+		"killstreak tier"				2		//	enables killstreak effects with sheen
+		"killstreak idleeffect"			2		//	Deadly Daffodil
 		"set_item_texture_wear"			0		//	FN
 		"paintkit_proto_def_index"		403		//	Sacred Slayer
-		"effect cond override"			4127	//	minicrits but cant be healed
-		"special item description"		"On hype: Deals minicrits, but cant be healed by any source"
-	
+		"damage penalty"				0.9
+		"effect cond override"			16		//	minicrits
+		"special item description"		"On hype: Deals minicrits; -10% damage"
 		//	WORKS PERFECTLY!
 	}
 	CustomWeapon [$SIGSEGV]	
 	{
 		Name				"Chop Suey!"
 		OriginalItemName	"The Flying Guillotine"
+		"killstreak tier"						2		//	enables killstreak effects with sheen
+		"killstreak idleeffect"					2		//	Deadly Daffodil
 		"Blast radius increased"				2
 		"always crit"							1
 		"damage bonus"							6
@@ -79,6 +88,8 @@ WaveSchedule
 	{
 		Name				"Tanksaber"
 		OriginalItemName	"Batsaber"
+		"killstreak tier"			2		//	enables killstreak effects with sheen
+		"killstreak idleeffect"		1		//	Team Shine
 		"mult dmg vs tanks"			2.5
 		"move speed penalty"		0.75
 		"provide on active"			1
@@ -89,12 +100,14 @@ WaveSchedule
 	{
 		Name				"Olympic Protection"
 		OriginalItemName	"Sun-on-a-Stick"
-		"dmg taken from fire reduced"			0.01	//	full fire immunity (will say 99% in game but its 100%)
-		"dmg taken from crit reduced"			0
-		"add cond when active"					60		//	fire vac bubble
-		"mult credit collect range"				0.1
-		"provide on active"						1
-		"special item description"				"Full protection from fire damage when equipped"
+		"killstreak tier"				2		//	enables killstreak effects with sheen
+		"killstreak idleeffect"			3		//	Manndarin
+		"dmg taken from fire reduced"	0.01	//	full fire immunity (will say 99% in game but its 100%)
+		"dmg taken from crit reduced"	0
+		"add cond when active"			60		//	fire vac bubble
+		"mult credit collect range"		0.1
+		"provide on active"				1
+		"special item description"		"Full protection from fire damage when equipped"
 		//	WORKS PERFECTLY!
 	}	
 	
@@ -106,6 +119,8 @@ WaveSchedule
 		OriginalItemName	"The Air Strike"
 		"set_item_texture_wear"			0		//	FN
 		"paintkit_proto_def_index"		418		//	Warborn
+		"killstreak tier"				2		//	enables killstreak effects with sheen
+		"killstreak idleeffect"			5		//	Agonizing Emerald
 		"Projectile speed decreased"	0		//	turns missiles into mines
 	//	"dmg taken increased"			0.25
 		"dmg taken from blast reduced"	0.75
@@ -124,10 +139,12 @@ WaveSchedule
 	{
 		Name				"Topneaa Torchlight"
 		OriginalItemName	"The Cow Mangler 5000"
-		"attach particle effect"			13	//	Burning Flames
-		"alt fire attack"					1	//	enables altfire attributes
-		"alt fire attributes"				"fire rate penalty HIDDEN|2.5|damage bonus HIDDEN|2.5|override projectile type extra|mechanicalarmorb|Set DamageType Ignite|1|custom kill icon|purgatory"
-		"special item description"			"Altfire slowly shoots powerful Short Circuit projectiles that set enemies on fire"
+		"killstreak tier"			2	//	enables killstreak effects with sheen
+		"killstreak idleeffect"		1	//	Team Shine
+		"attach particle effect"	13	//	Burning Flames
+		"alt fire attack"			1	//	enables altfire attributes
+		"alt fire attributes"		"fire rate penalty HIDDEN|2.5|damage bonus HIDDEN|2.5|override projectile type extra|mechanicalarmorb|Set DamageType Ignite|1|custom kill icon|purgatory"
+		"special item description"	"Altfire slowly shoots powerful Short Circuit projectiles that set enemies on fire"
 		//	WORKS PERFECTLY!
 	}
 		DisallowUpgrade
@@ -144,18 +161,6 @@ WaveSchedule
 		"special item description"	"+75% buff duration"
 		//	WORKS PERFECTLY!
 	}
-	//CustomWeapon [$SIGSEGV]	
-	//{
-	//	Name				"Selfish Soldier (Haste)"
-	//	OriginalItemName	"The Concheror"
-	//	"effect cond override"		7771	//	Haste powerup (cond 91) + marked for death (cond 30)
-	//	"mod soldier buff range"	0.05
-	//	"rage receive scale"		0.20	//	takes x5 the amount of damage dealt to fill the rage meter
-	//	"health regen"				0		//	removes the natural hp regen of the conch
-	//	"cannot be upgraded"		1
-	//	"special item description"	"personal Haste powerup; marked for death when banner is active; no passive HP regen"
-	//	//	WORKS PERFECTLY!
-	//}
 	CustomWeapon [$SIGSEGV]	
 	{
 		Name				"Selfish Soldier (Uber)"
@@ -164,14 +169,17 @@ WaveSchedule
 		"mod soldier buff range"		0.05
 		"max health additive penalty"	-20
 		"rage receive scale"			0.33
+		"increase buff duration"		0.5
 		"cannot taunt" 					1		//	Taunting causes a glitch with a pickaxe taunt triggering infinite uber, thus disabled
-		"special item description"		"Personal Uber effect; takes x3 damage threshold to be filled; no passive HP buff"
+		"special item description"		"Personal Uber effect; -50% banner duration; no passive HP buff"
 		//	WORKS PERFECTLY!
 	}
 	CustomWeapon [$SIGSEGV]	
 	{
 		Name				"Critqualizer"
 		OriginalItemName	"The Equalizer"
+		"killstreak tier"							2	//	enables killstreak effects with sheen
+		"killstreak idleeffect"						7	//	Hot Rod
 		"mult crit when health is below percent"	0.5
 		"move speed penalty"						0.7
 		"provide on active"							1
@@ -185,6 +193,8 @@ WaveSchedule
 	{
 		Name				"Pressurized Phosphorus"
 		OriginalItemName	"The Backburner"
+		"killstreak tier"				2	//	enables killstreak effects with sheen
+		"killstreak idleeffect"			4	//	Mean Green
 		"flame_drag"					4.5
 		"lunchbox adds minicrits"		2
 		"weapon burn dmg increased"		2
@@ -197,34 +207,40 @@ WaveSchedule
 	{
 		Name				"Adren Rush"
 		OriginalItemName	"The Phlogistinator"
+		"killstreak tier"				2	//	enables killstreak effects with sheen
+		"killstreak idleeffect"			2	//	Deadly Daffodil
 		"gesture speed increase"		9
-		"mult dmg vs tanks"				0.66
-		"dmg taken from fire increased"	0.85
+		"damage penalty"				0.85
+	//	"mult dmg vs tanks"				0.66
+	//	"dmg taken from fire increased"	0.85
 		"provide on active"				1
-		"special item description"		"Near instant 'mmmph' taunt; +15% fire vulnerability when equipped"
+		"special item description"		"Near instant 'mmmph' taunt; -15% damage"
 		//	WORKS PERFECTLY!
 	}
 	CustomWeapon [$SIGSEGV]	
 	{
 		Name				"Draconic Dash"
 		OriginalItemName	"The Dragon's Fury"
-		"set_item_texture_wear"			0		//	FN
-		"paintkit_proto_def_index"		390		//	Dragon Slayer
+		"set_item_texture_wear"			0	//	FN
+		"paintkit_proto_def_index"		390	//	Dragon Slayer
+		"killstreak tier"				2	//	enables killstreak effects with sheen
+		"killstreak idleeffect"			3	//	Manndarin
 		"airblast dashes"				1
-		"airblast cost increased"		3
-		"special item description"		"Stronger airblast force when crouching; x3 airblast ammo cost"
+		"special item description"		"Stronger airblast force when crouching"
 		//	WORKS PERFECTLY!
 	}
 	CustomWeapon [$SIGSEGV]	
 	{
 		Name				"Hot Shot"
 		OriginalItemName	"Upgradeable TF_WEAPON_SHOTGUN_PRIMARY"
-		"set_item_texture_wear"			0		//	FN
-		"paintkit_proto_def_index"		256		//	Organ-ically Hellraised
-		"attach particle effect"		701		//	Hot unusual effect
+		"set_item_texture_wear"			0	//	FN
+		"paintkit_proto_def_index"		256	//	Organ-ically Hellraised
+		"killstreak tier"				2	//	enables killstreak effects with sheen
+		"killstreak idleeffect"			1	//	Team Shine
+		"attach particle effect"		701	//	Hot unusual effect
 		"crit vs burning players"		1
 		"deploy time decreased"			0.5
-	//	"add cond when active"			123		//	Gas passer effect on self
+	//	"add cond when active"			123	//	Gas passer effect on self
 		"clip size penalty"				0.5
 		"special item description"		"Crits vs burning players; +50% weapon swap speed; -50% mag size"
 		//	WORKS PERFECTLY!
@@ -233,6 +249,8 @@ WaveSchedule
 	{
 		Name				"TankScratcher"
 		OriginalItemName	"The Back Scratcher"
+		"killstreak tier"				2	//	enables killstreak effects with sheen
+		"killstreak idleeffect"			6	//	Villainous Violet
 		"provide on active"				1
 		"dmg taken increased"			1.3
 		"mult dmg vs tanks"				1.5
@@ -240,17 +258,6 @@ WaveSchedule
 	//	"health from healers reduced"	1
 	//	"health from packs increased"	1
 		"special item description"		"+30% damage taken when deployed; minicrits instead of crits"
-		//	WORKS PERFECTLY!
-	}
-	CustomWeapon [$SIGSEGV]	
-	{
-		Name				"Torching Transmission"
-		OriginalItemName	"The Third Degree"
-		"mult crit when health is below percent"	0.5
-		"dmg from melee increased"					1.5
-		"mult dmg vs tanks"							0
-		"crit mod disabled"							0
-		"special item description"					"+50% damage taken from melee enemies; no random crits"
 		//	WORKS PERFECTLY!
 	}
 	
@@ -262,7 +269,8 @@ WaveSchedule
 		OriginalItemName	"The Iron Bomber"
 		"set_item_texture_wear"			0		//	FN
 		"paintkit_proto_def_index"		268		//	Mummified Mimic
-	//	"attach particle effect"		3097	//	Prismatic Haze
+		"killstreak tier"				2		//	enables killstreak effects with sheen
+		"killstreak idleeffect"			5		//	Agonizing Emerald
 		"damage penalty"				0.75
 		"mult dmg with reduced health"	2
 		"mod weapon blocks healing"		1
@@ -276,6 +284,8 @@ WaveSchedule
 		OriginalItemName	"The Loch-n-Load"
 		"set_item_texture_wear"				0			//	FN
 		"paintkit_proto_def_index"			281			//	Frosty Delivery
+		"killstreak tier"					2			//	enables killstreak effects with sheen
+		"killstreak idleeffect"				1			//	Team Shine
 		"override projectile type extra"	"ornament" 	//	Wrap Assassin projectile
 		"damage bonus"						2.5
 		"mult bleeding delay"				0.5
@@ -294,6 +304,8 @@ WaveSchedule
 		OriginalItemName	"The Quickiebomb Launcher"
 		"damage penalty" 				0.75
 		"fire rate bonus"				0.5
+		"killstreak tier"				2	//	enables killstreak effects with sheen
+		"killstreak idleeffect"			3	//	Manndarin
 		"alt-fire disabled"				1	//	can only detonate a sticky by releasing another
 		"max pipebombs decreased"		-7	//	only 1 sticky is alive at any given time
 		"clip size bonus"				25	//	basically infinite clip size so no reload is needed
@@ -334,6 +346,8 @@ WaveSchedule
 	{
 		Name				"Polished Powder"
 		OriginalItemName	"The Ullapool Caber"
+		"killstreak tier"			2	//	enables killstreak effects with sheen
+		"killstreak idleeffect"		2	//	Deadly Daffodil
 		"regenerate stickbomb"		1
 		"blast radius increased"	2
 		"fire rate penalty"			3
@@ -352,6 +366,8 @@ WaveSchedule
 		OriginalItemName	"Tomislav"
 		"set_item_texture_wear"			0	//	FN
 		"paintkit_proto_def_index"		217	//	Bomber Soul
+		"killstreak tier"				2	//	enables killstreak effects with sheen
+		"killstreak idleeffect"			5	//	Agonizing Emerald
 		"damage bonus"					3
 		"mult dmg vs giants"			1.5
 		"penetrate teammates"			1
@@ -379,25 +395,6 @@ WaveSchedule
 		}
 	CustomWeapon [$SIGSEGV]
 	{
-		Name				"Soviet Sanguisuge"
-		OriginalItemName	"TF_WEAPON_MINIGUN"
-		"set_item_texture_wear"			0		//	FN
-		"paintkit_proto_def_index"		294		//	Party Phantoms
-		"restore health on kill"		100
-		"max health additive bonus"		-100
-		"overheal bonus"				100
-		"mod weapon blocks healing"		1
-		"killstreak tier"				1
-		"special item description"		"Leeches health from killed enemies; -100HP on wearer; cant be healed by medics; cant buy HoK upgrades"
-		//	WORKS PERFECTLY!
-	}
-		DisallowUpgrade
-		{
-			Upgrade	"heal on kill"
-			ItemName "Soviet Sanguisuge"
-		}
-	CustomWeapon [$SIGSEGV]
-	{
 		Name				"Cardio Kingpin"
 		OriginalItemName	"Jupiter Jetpack"
 		"move speed bonus"				1.5
@@ -411,6 +408,8 @@ WaveSchedule
 		OriginalItemName	"The Family Business"
 		"set_item_texture_wear"			0	//	FN
 		"paintkit_proto_def_index"		407	//	Metalized Soul
+		"killstreak tier"				2	//	enables killstreak effects with sheen
+		"killstreak idleeffect"			4	//	Mean Green
 		"attach particle effect" 		702	//	Isotope unusual effect
 	//	"move speed bonus"				2	//	attribute moved to primary
 		"slow enemy on hit"				1
@@ -432,13 +431,15 @@ WaveSchedule
 		"gesture speed increase"				2
 		"switch from wep deploy time decreased"	0.33
 		"alt-fire disabled"						1
-		"special item description"				"Shortens Second Banana's feed animation by half; +67% faster deploy time; -50% health given when eaten; cant be dropped"
+		"special item description"				"40% less 'noms'; +67% faster deploy time; -50% health given when eaten; cant be dropped"
 		//	WORKS PERFECTLY
 	}
 	CustomWeapon [$SIGSEGV]
 	{
 		Name				"Terminal Tumor"
 		OriginalItemName	"The Bread Bite"
+		"killstreak tier"				2	//	enables killstreak effects with sheen
+		"killstreak idleeffect"			5	//	Agonizing Emerald
 		"mod_maxhealth_drain_rate"		0
 		"reduced_healing_from_medics"	0.9
 		"special item description"		"No health drain; -10% heal rate from medics"
@@ -452,7 +453,9 @@ WaveSchedule
 		Name				"High Voltage"
 		OriginalItemName	"The Pomson 6000"
 		"attach particle effect"				3149	//	Electrocution
-	//	"damage penalty"						0.75
+		"killstreak tier"						2		//	enables killstreak effects with sheen
+		"killstreak idleeffect"					7		//	Hot Rod
+		"damage penalty"						0.75
 		"fire rate bonus"    					0.05
 		"Projectile speed increased"			1.5
 	//	"faster reload rate"					0.5
@@ -474,6 +477,8 @@ WaveSchedule
 		OriginalItemName	"The Rescue Ranger"
 		"set_item_texture_wear"					0	//	FN
 		"paintkit_proto_def_index"				234	//	Damascus & Mahogany
+		"killstreak tier"						2	//	enables killstreak effects with sheen
+		"killstreak idleeffect"					1	//	Team Shine
 		"mark for death on building pickup"		0
 		"arrow heals buildings"					0
 		"clip size bonus"						1.5
@@ -494,6 +499,8 @@ WaveSchedule
 	{
 		Name				"EMP Casings"
 		OriginalItemName	"The C.A.P.P.E.R"
+		"killstreak tier"				2		//	enables killstreak effects with sheen
+		"killstreak idleeffect"			3		//	Manndarin
 		"damage applies to sappers"		1
 		"stun on damage"				120
 		"weapon spread bonus"			0.2
@@ -502,24 +509,12 @@ WaveSchedule
 		"special item description"		"Removes sappers on hit; +80% accuracy; giants and armored enemies cant be stunned; a lot less reserve ammo"
 		//	WORKS PERFECTLY!
 	}
-	//CustomWeapon [$SIGSEGV]
-	//{
-	//	Name				"Immovable Object"
-	//	OriginalItemName	"TF_WEAPON_WRENCH"
-	//	"set_item_texture_wear"			0		//	FN
-	//	"paintkit_proto_def_index"		412		//	Secretly Serviced
-	//	"building color rgb"			69		//	BlacK, like my soul
-	//	"engy building health bonus"	10
-	//	"Repair rate decreased"			0
-	//	"buildings cannot be sapped"	1
-	//	"cannot pick up buildings"		1
-	//	"special item description"		"Buldings have x10 health; cant be repaired by wrench or picked up"
-	//	//	WORKS PERFECTLY! (albeit there's a loophole that can be made with this wrench, which i will not mention)
-	//}
 	CustomWeapon [$SIGSEGV]
 	{
 		Name				"Delirious Deputy"
 		OriginalItemName	"The Gunslinger"
+		"killstreak tier"				2	//	enables killstreak effects with sheen
+		"killstreak idleeffect"			7	//	Hot Rod
 		"max health additive penalty"	50
 		"mod teleporter speed boost"	1
 		"mult dispenser rate"			2
@@ -537,7 +532,9 @@ WaveSchedule
 	{
 		Name				"Milk of the Sloppy"
 		OriginalItemName	"The Crusader's Crossbow"
-		"add cond on hit"					27		//	milk enemies
+		"killstreak tier"					2	//	enables killstreak effects with sheen
+		"killstreak idleeffect"				7	//	Hot Rod
+		"add cond on hit"					27	//	milk enemies
 		"add cond on hit duration"			8
 		"damage penalty"					0.1
 		"passive reload"					1
@@ -546,29 +543,12 @@ WaveSchedule
 		"special item description"			"Milks enemies on hit for 8s; fires entire clip at once; slight spread; -90% damage"
 		//	WORKS PERFECTLY!
 	}
-	//CustomWeapon [$SIGSEGV]
-	//{
-	//	Name				"Heliumedes"
-	//	OriginalItemName	"The Kritzkrieg"
-	//	"medigun passive attributes"	"minicritboost on kill|2|effect cond override|16|voice pitch scale|1.25"
-	//	"model scale"					0.75
-	//	"voice pitch scale"				1.25
-	//	"alt-fire disabled"				1
-	//	"ubercharge rate bonus"			69	//	charges to 100% instantly, as its nullified anyway
-	//	"provide on active"				1
-	//	"effect cond override"			16	//	banner minicrits - infinite uber sound :(
-	//	"special item description"		"While healing players, they will recieve 2s minicrit on kill; no ubercharge"
-	//	//	WORKS PERFECTLY!
-	//}
-	//	DisallowUpgrade	 // Disallow upgrade. You can use the position on the upgrade list instead, starting from 1
-	//	{
-	//		Upgrade	"uber duration bonus" // Upgrade name
-	//		ItemName "Heliumedes" // Apply upgrade restrictions only to those items if specified
-	//	}
 	CustomWeapon [$SIGSEGV]
 	{
 		Name				"Passive Powerlifter"
 		OriginalItemName	"The Kritzkrieg"
+		"killstreak tier"				2	//	enables killstreak effects with sheen
+		"killstreak idleeffect"			2	//	Deadly Daffodil
 		"medigun passive attributes"	"minicritboost on kill|2|effect cond override|16|mult dmg vs tanks|1.15"
 		"effect cond override"			90	//	'Strenght' powerup
 		"special item description"		"While healing players, they will recieve 2s minicrit on kill and +15% damage to tanks; Kritz Ubercharge is replaced with double damage (doesnt work on tanks)"
@@ -578,6 +558,8 @@ WaveSchedule
 	{
 		Name				"Soul Split"
 		OriginalItemName	"The Quick-Fix"
+		"killstreak tier"					2	//	enables killstreak effects with sheen
+		"killstreak idleeffect"				4	//	Mean Green
 		"medigun attack enemy"				1.3	//	attacks enemies at x1.3 of its heal rate
 		"medigun attack enemy heal mult"	0
 		"overheal penalty"					1
@@ -603,17 +585,21 @@ WaveSchedule
 	{
 		Name				"Uberweisen Saw"
 		OriginalItemName	"The Ubersaw"
-		"set_item_texture_wear"					0		//	Factory New
-		"paintkit_proto_def_index"				204		//	Kill Covered
-		"add uber charge on hit"				0.5
-		"fire input on hit"						"!activator^$TakeDamage^50"
-		"special item description"				"+25% uber gain per hit; when hitting enemies, hit yourself for 50hp"
+		"killstreak tier"				2	//	enables killstreak effects with sheen
+		"killstreak idleeffect"			6	//	Villainous Violet
+		"set_item_texture_wear"			0	//	Factory New
+		"paintkit_proto_def_index"		204	//	Kill Covered
+		"add uber charge on hit"		0.5
+		"fire input on hit"				"!activator^$TakeDamage^50"
+		"special item description"		"+25% uber gain per hit; when hitting enemies, hit yourself for 50hp"
 		//	WORKS PERFECTLY!
 	}
 	CustomWeapon [$SIGSEGV]
 	{
 		Name				"Uber Container"
 		OriginalItemName	"The Vita-Saw"
+		"killstreak tier"					2	//	enables killstreak effects with sheen
+		"killstreak idleeffect"				1	//	Team Shine
 		"ubercharge_preserved_on_spawn_max"	1
 		"fire rate penalty"					1.1
 		"special item description"			"Retains all ubercharge after death depending on how many organs have been collected; -10% swing speed"
@@ -626,6 +612,8 @@ WaveSchedule
 	{
 		Name				"Brushfire"
 		OriginalItemName	"The Huntsman"
+		"killstreak tier"				2	//	enables killstreak effects with sheen
+		"killstreak idleeffect"			3	//	Manndarin
 		"attach particle effect" 		13	//	Burning Flames
 		"Set DamageType Ignite"			1
 		"cannot headshot"				1
@@ -645,13 +633,15 @@ WaveSchedule
 		OriginalItemName	"Das Feelinbeterbager"
 	//	"add cond when active"			94
 	//	"drop health pack on kill"		1
-		"uber on damage taken"			0.05	//	when hit, gain 5% of becoming ubercharged for 3 seconds
+		"uber on damage taken"			0.05	//	when hit, gain 5% chance of becoming ubercharged for 3 seconds
 		//	WORKS PERFECTLY!
 	}
 	CustomWeapon [$SIGSEGV]
 	{
 		Name				"Croky Assassin"
 		OriginalItemName	"The Cleaner's Carbine"
+		"killstreak tier"				2	//	enables killstreak effects with sheen
+		"killstreak idleeffect"			2	//	Deadly Daffodil
 		"provide on active"				1
 		"effect cond override"			66
 		"special item description"		"Crikey minicrits become invisibility spell for 8s"
@@ -661,6 +651,8 @@ WaveSchedule
 	{
 		Name				"Maniacal Mercenary"
 		OriginalItemName	"The Bushwacka"
+		"killstreak tier"				2	//	enables killstreak effects with sheen
+		"killstreak idleeffect"			2	//	Deadly Daffodil
 		"fire rate penalty"				1.5
 		"mult dmg vs tanks"				0.5
 		"add cond when active"			16
@@ -672,8 +664,43 @@ WaveSchedule
 		
 	CustomWeapon [$SIGSEGV]
 	{
+		Name				"Cloakwork"
+		OriginalItemName	"TF_WEAPON_REVOLVER"
+		"killstreak tier"						2	//	enables killstreak effects with sheen
+		"killstreak idleeffect"					1	//	Team Shine
+		"set_item_texture_wear"					0	//	Factory New
+		"paintkit_proto_def_index"				431	//	Team Blackout
+		"self add cond on hit"					66	//	Becomes invisible
+		"self add cond on hit duration"			4
+		"weapon spread bonus"					0.1
+		"damage penalty"						0.1
+		"cannot disguise"						1	
+		"switch from wep deploy time decreased"	0.3
+		"alt-fire disabled"						1	//	meant to disable cloaking from wristwatch when equipped but it only somewhat breaks
+		"cloak consume rate decreased"			69	//	practically no cloak from wristwatch, forcing you to flee from danger when having no ammo
+		"special item description"				"Cloaks for 4s when hitting an enemy; +90% accuracy; +70% holster speed; -90% damage; cant disguise nor manually cloak via watches"
+		// WORKS PERFECTLY!
+	}
+	CustomWeapon [$SIGSEGV]
+	{
+		Name				"Magnum Opus"
+		OriginalItemName	"The Enforcer"
+		"killstreak tier"			2	//	enables killstreak effects with sheen
+		"killstreak idleeffect"		2	//	Deadly Daffodil
+		"provide on active"			1
+		"mult dmg vs tanks"			3
+		"move speed penalty"		0.33
+		"Reload time increased"		2.5
+		"hand scale"				2
+		"special item description"	"66% slower movement speed while deployed; +250% reload time"
+		//	WORKS PERFECTLY!
+	}
+	CustomWeapon [$SIGSEGV]
+	{
 		Name				"Eternal Earner"
 		OriginalItemName	"The Big Earner"
+		"killstreak tier"				2	//	enables killstreak effects with sheen
+		"killstreak idleeffect"			6	//	Villainous Violet
 		"disguise on backstab"			1
 		"silent killer"					1
 		"lunchbox adds minicrits"		1
@@ -687,39 +714,13 @@ WaveSchedule
 	{
 		Name				"Joker"
 		OriginalItemName	"The Black Rose"
-		"fire rate penalty"						1.2
-		"critboost on kill"						3
-		"crit forces victim to laugh"			1	//	only works on non giants
-	//	"provide on active"						1
-		"special item description"				"3s Crit on kill; crits forces non giants to laugh; +20% slower swing speed"
-		//	WORKS PERFECTLY!
-	}
-	CustomWeapon [$SIGSEGV]
-	{
-		Name				"Cloakwork"
-		OriginalItemName	"TF_WEAPON_REVOLVER"
-		"set_item_texture_wear"					0		//	Factory New
-		"paintkit_proto_def_index"				431		//	Team Blackout
-		"self add cond on hit"					66		//	Becomes invisible
-		"self add cond on hit duration"			4
-		"weapon spread bonus"					0.1
-		"damage penalty"						0.1
-		"cannot disguise"						1	
-		"switch from wep deploy time decreased"	0.3
-		"alt-fire disabled"						1		//	meant to disable cloaking from wristwatch when equipped but it only somewhat breaks
-		"cloak consume rate decreased"			69		//	practically no cloak from wristwatch, forcing you to flee from danger when having no ammo
-		"special item description"				"Cloaks for 4s when hitting an enemy; +90% accuracy; +70% holster speed; -90% damage; cant disguise nor manually cloak via watches"
-		// WORKS PERFECTLY!
-	}
-	CustomWeapon [$SIGSEGV]
-	{
-		Name				"Magnum Opus"
-		OriginalItemName	"The Enforcer"
-		"provide on active"			1
-		"mult dmg vs tanks"			3
-		"move speed penalty"		0.33
-		"Reload time increased"		2.5
-		"special item description"	"66% slower movement speed while deployed; +150% reload time"
+		"killstreak tier"				2	//	enables killstreak effects with sheen
+		"killstreak idleeffect"			6	//	Villainous Violet
+		"fire rate penalty"				1.2
+		"critboost on kill"				3
+		"crit forces victim to laugh"	1	//	only works on non giants
+	//	"provide on active"				1
+		"special item description"		"3s Crit on kill; crits forces non giants to laugh; +20% slower swing speed"
 		//	WORKS PERFECTLY!
 	}
 	
@@ -750,7 +751,6 @@ WaveSchedule
 			Primary		"Draconic Dash"
 			Secondary	"Hot Shot"
 			Melee		"TankScratcher"
-			Melee		"Torching Transmission"
 		}
 		Demoman
 		{
@@ -763,7 +763,6 @@ WaveSchedule
 		HeavyWeapons
 		{
 			Primary		"DShK"
-			Primary		"Soviet Sanguisuge"
 			Primary		"Cardio Kingpin"
 			Secondary	"Omerta"
 			Secondary	"Fast food"
@@ -794,10 +793,10 @@ WaveSchedule
 		}
 		Spy
 		{
-			Melee		"Eternal Earner"
-			Melee		"Joker"
 			Secondary	"Cloakwork"
 			Secondary	"Magnum Opus"
+			Melee		"Eternal Earner"
+			Melee		"Joker"
 		}
 	}
 }

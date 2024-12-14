@@ -4,19 +4,27 @@
 
 // A pack of weapons and rebalances specifically made for my next set of NORMAL missions because I feel like it.
 // Originally made on a reverse mission that is now scrapped and considered a demo for the various things showcased in that mission.
+// If desired, you may ask me (Athazar in the potato.tf Discord) if you want to use these in your mission- chances are, I'll say yes. 
+// Just please don't take my stuff without asking and then slap this into some trespasser popfile theft slop like some guy randomly did while also removing all credits/comments/etc from the popfile.
 
 // Disclaimer: None of the weapon models were made by me. They were recompiled by lite after being sent to me in an old community server weapon pack.
 // However, I did modify some of the VMT files to fix bugs that spit out consoles in the console. Someone really fucking forgot the CLOSING BRACKET in some of these vmts.
 
+// DISCLAIMER 2: You probably shouldn't combine these with overclocks. I know the GG2 Terrorlict missions combined those two- but as a certain someone said, that was like combining oil and water. Cue the pre-nerf Handheld Howitzer + Crit On Hit Rocket Jumper Incident.
 
 // Actual new normal missions where these will show up featuring brand new ones not originally in TME:
 
-// HH3
+// GG2
 // * Butcher - Malpractice [INT]
-// * Whitecliff Event - Light Up The Night [EXP]
+// * Whitecliff Event - Light Up The Night [EXP] (note: this was a mistake)
+// * Terrorlict: Accursed Aggrievocation [ADV]
+// * Terrorlict: Echoes of a Warzone [EXP]
 
+// Unnamed New Event, probably
+// * Humbridge: Unnamed [INT]
+// * Isolation: Unnamed [ADV]
 
-// LIST OF WEAPONS
+// LIST OF WEAPONS (extremely outdated because of my five hundred updates over the course of GG2. Ignore this entire list aside from the weapon names for now; I'll rewrite the list later.)
 
 // SCOUT:
 // Primary: The Payoff - Sets your credit collection radius to half, but killing bots grants you a significantly boosted credit collection range + bonus healing from credits. -1 bullet per shot, 20% more accurate.
@@ -150,6 +158,7 @@ athazar's_bar_and_bazaar	// subtle sneed's seed and feed reference
 		"special item description 3"	"Bonus collection radius and healing will reset after 5 seconds. Killing again resets the timer."
 		"mult credit collect range"		0.5
 		"add attributes on kill"		"mult credit collect range|2.50|5|health from credits|25|5"
+		"clip size penalty"	0.66
 	}
 	// Dev Notes: The Payoff is a revised version of "Pay to Play" from Powerplant Rev.
 	// The older version functioned in a really weird and admittedly unconventional/fucking goofy way.
@@ -162,13 +171,14 @@ athazar's_bar_and_bazaar	// subtle sneed's seed and feed reference
 		Name	"The Meta-Cola"
 		OriginalItemName	"Crit-a-Cola"
 		"custom item model"				"models/weapons/c_models/c_energy_drink/c_energy_drink_green.mdl"
-		"special item description"		"Upon drinking, grants Soda Popper's hype effect to you + Attacking an enemy milks them for 3 seconds"
-		"special item description 2"	"''What do you mean they put the meta in a cola?''"
+		"special item description"		"Upon drinking, grants a speed boost and 75% chance to dodge incoming damage + Attacking an enemy milks them for 3 seconds"
+		"special item description 2"		"Successful dodges are indicated by healing 1 HP"
+		"special item description 3"	"''What do you mean they put the meta in a cola?''"
 		
-		"mod_mark_attacker_for_death"	0	// so you can actually use the benefit of the milk on hit. there's no opportunity to use the milk on hit when you're fucking dead from eating a mini-crit rocket or pipe
+		"mod_mark_attacker_for_death"	0
 
-		"effect add attributes"	"add cond on hit|27|add cond on hit duration|3|add cond when active|36"
-		"effect cond override"	65
+		"effect add attributes"	"add cond on hit|27|add cond on hit duration|3"
+		"effect cond override"	8271
 		"mult effect duration"	1.25
 
 	}
@@ -181,16 +191,17 @@ athazar's_bar_and_bazaar	// subtle sneed's seed and feed reference
 		"custom item model"	"models/ctf2w/weapons/c_models/c_spitfire_rocketlauncher/c_spitfire_rocketlauncher.mdl"
 		"custom projectile model"	"models/ctf2w/weapons/c_models/c_spitfire_rocketlauncher/w_rocket_spitfire.mdl"
 		"special item description"	"Launches mortars; Aim higher to shoot farther!"
-		"special item description 2"	"No damage ramp-up or fall-off. Inflicts bleed on hit. Projectile has a slightly larger hitbox."
+		"special item description 2"	"No damage ramp-up or fall-off. Inflicts bleed on hit. Projectile has a slightly larger hitbox and passes through teammates."
 		"projectile gravity"	800
 		"projectile speed increased"	1.3
 		"damage penalty"	0.85
-		//"blast radius increased"	1.3
+		"blast radius increased"	1.1
 		"bleeding duration"		5
 		"no damage falloff"		1
 		"no self effect"		1
 		"mult dmg vs tanks"		1.20
 		"mult projectile scale"	1.15
+		"penetrate teammates" 1
 		
 	}
 	// Dev Notes: Returning weapon from Powerplant Rev but tweaked a bit.
@@ -214,14 +225,20 @@ athazar's_bar_and_bazaar	// subtle sneed's seed and feed reference
 		"damage bonus"				15
 		"bullets per shot bonus"	0.15
 		"no damage falloff"			1
-		"explosive bullets"			150
+		"explosive bullets"			85
 		"weapon always gib"			1
-		"fire rate penalty"			2.2
+		"fire rate penalty"			2.5
 		"switch from wep deploy time decreased"	0.5
-		"maxammo secondary reduced"	0.5
+		"maxammo secondary reduced"	0.25
 		"mod max primary clip override"	-1
 		"attack projectiles"			1	// I think this is reasonable because you're giving up a banner
+		"penetrate teammates"	1
 		// what in the actual fuck am I cooking
+		
+		// cooked too hard, ultranerf time
+		"crits_become_minicrits"	1
+		"crit mod disabled"			0
+		
 	}
 
 
@@ -536,7 +553,7 @@ athazar's_bar_and_bazaar	// subtle sneed's seed and feed reference
 		OriginalItemName	"Upgradeable TF_WEAPON_PDA_ENGINEER_BUILD"
 		"custom item model"	"models/ctf2w/weapons/w_models/w_mini_pda.mdl"
 		"custom dispenser model"		"models/buildables/mini_dispenser_faithful"
-		"special item description"		"Replaces dispenser and teleporters with a Mini-Dispenser and Mini-Teleporters. Gives you a free disposable Mini-Sentry."
+		"special item description"		"Replaces dispenser and teleporters with a Mini-Dispenser and Mini-Teleporters. Gives you a free disposable Mini-Sentry. Synergizes with the Gunslinger."
 		"special item description 2"	"Grants a 75% damage bonus to your primary weapon"
 		"special item description 3"	"All buildings are locked to level 1 but your dispenser and teleporters build 200% faster"
 		"building max level"			1
@@ -618,15 +635,18 @@ athazar's_bar_and_bazaar	// subtle sneed's seed and feed reference
 		OriginalItemName	"Upgradeable TF_WEAPON_MEDIGUN"
 		"paintkit_proto_def_index"		205	// Fire Glazed
 		"set_item_texture_wear"			0
-		"special item description"		"Passively grants a 25% damage bonus vs burning targets to your patient and afterburn immunity to you"
-		"special item description 2"	"Ubercharge grants minicrits, ignite on hit, high burn damage, and x2 revive rate. Taking fatal damage while Ubercharge is active instantly sends you or your patient to spawn with 1 HP."
-		"special item description 3"	"Tripled Ubercharge rate that stacks with buyable upgrade"
-		"medigun passive attributes"	"damage bonus vs burning|1.25"	// should hopefully not stack with the huo long's inherent bonus
+		"special item description"		"Passively grants afterburn immunity to you and your patient while healing"
+		"special item description 2"	"Ubercharge grants minicrits, ignite on hit, high burn damage, and x2 revive rate. Taking fatal damage while Ubercharge is active instantly sends you (not your patient) to spawn with 1 HP."
+		"special item description 3"	"Tripled Ubercharge rate that stacks with buyable upgrade. Projectile Shield ignites enemies."
+		"medigun passive attributes"	"afterburn immunity|1|attribute immunity|teleport instead of die"	// should hopefully not stack with the huo long's inherent bonus // edit 12/12/24: it did. fuck.
 		"medigun passive attributes owner"	"afterburn immunity|1"
 		"effect cond override"			16
 		"effect add attributes"			"attach particle effect|1|weapon burn dmg increased|4|Set DamageType Ignite|1|projectile trail particle|spell_fireball_small_red|revive rate|2|teleport instead of die|2"
 		"heal rate bonus"				1.20
 		"ubercharge rate penalty"		3	// should stack with base ubercharge bonus upgrade and not count as already bought
+		"Set DamageType Ignite"			1
+		"weapon burn dmg reduced"		0.5
+		"fire input on effect"			"!activator^$PlaySoundToSelf^=90|player/mannpower_invulnerable.wav"
 	}
 	CustomWeapon
 	{
@@ -638,15 +658,15 @@ athazar's_bar_and_bazaar	// subtle sneed's seed and feed reference
 		"damage penalty"				0.05
 		"add uber charge on hit"		0
 		"special item description"		"Extremely low damage but inflicts a very powerful yet slow bleed that lowers enemy healing by 50%"	// I am definitely not beating the Grouch allegations at this point
-		"special item description 2"	"While an enemy is bleeding, grants +50% revive rate, +50% medigun range, and Backup + Conch effect. Effects persist for 3 seconds after bleed ends"
+		"special item description 2"	"While an enemy is bleeding, grants +50% revive rate, +50% medigun range, and Backup + Conch effect. Effects persist for 5 seconds after bleed ends"
 		"mult bleeding delay"			3
 		"mult bleeding dmg"				7.5
 		"bleeding duration"				5
 		"add attributes on hit"			"healing received penalty|0.5|3"
 		
 		"self add cond on hit"			7450
-		"self add cond on hit duration"	3	// effectively same duration as bleed- every tick of bleed counts as a hit and resets the timer
-		"self add attributes on hit"	"mult medigun range|1.5|3|revive rate|1.5|3"
+		"self add cond on hit duration"	5	// effectively same duration as bleed- every tick of bleed counts as a hit and resets the timer
+		"self add attributes on hit"	"mult medigun range|1.5|5|revive rate|1.5|5"
 	}
 
 	CustomWeapon
@@ -654,19 +674,26 @@ athazar's_bar_and_bazaar	// subtle sneed's seed and feed reference
 	    Name				"50th Caliber"
 		OriginalItemName	"The AWPer Hand"
 		"custom item model"	"models/ctf2w/weapons/c_models/c_atgun/c_atgun.mdl"
-		"special item description"	"Anti-Materiel rifle; Inherent explosive bullets, explosive headshot upgrade disabled"
+		"special item description"	"[NOTICE] CAN ONLY FIRE WHILE ZOOMED"
+		"special item description 2"	"Anti-Materiel rifle; Inherent explosive bullets, explosive headshot upgrade disabled"
+		"special item description 3"	"-50% charge rate, but normal charge rate while actively aiming at an enemy. A beep sound will play while aiming at an enemy."
 		"no damage falloff"	1	// I think this fixes the chicanery with the way explosive bullets seems to work // no it does not
 		"explosive bullets"	200
 		"dmg pierces resists absorbs"	1
-		"CARD: damage bonus"	1.20
+		"sniper full charge damage bonus"	1.20
 		//"move speed penalty"	0.85
-		"SRifle Charge rate decreased"	0.8
+		"SRifle Charge rate decreased"	0.5
 		"self dmg push force decreased"	0.5
-		"blast dmg to self increased"	1.5
+		"blast dmg to self increased"	0.2
 		//"single wep holster time increased"	1.45
 		//"single wep deploy time increased"	1.45
-		"mult dmg vs tanks"	1.85	// It IS an anti-materiel rifle after all	
+		"mult dmg vs tanks"	1.25	// It IS an anti-materiel rifle after all	
 		"dmg bonus vs buildings"	2
+		"penetrate teammates"		1
+		"sniper only fire zoomed"	1
+		"damage penalty on bodyshot"	0.75
+		"mult sniper charge per sec with enemy under crosshair"	2
+		"sniper beep with enemy under crosshair" 1
 	}
 	CustomWeapon
 	{
@@ -763,12 +790,13 @@ athazar's_bar_and_bazaar	// subtle sneed's seed and feed reference
 		"no damage falloff"				1
 		"grenade bounce speed"			1.25
 		"reset arrow hits on bounce"	1
-		"projectile lifetime"			2
+		"projectile lifetime"			1.5
 		"projectile penetration"		1
 		"hidden secondary max ammo penalty"	0.5
 		"custom projectile model"		"models/weapons/w_models/w_rocketbullet.mdl"
 		"custom kill icon"				"deflect_promode"	// why is it called specifically promode?
 		"spread offset pattern"		"10 -15 -10"
+		"mult crit dmg"				0.8
 	}
 	// Dev Notes: Oh hey, here's a fucking awesome new one.
 	// So when Waters of Wrath was in development, I'm pretty sure Colonel wanted to add a Sharpshooter revolver- but woe be upon us, because the stupid projectile falls to ground thing happens.
@@ -1248,7 +1276,7 @@ for(local i = 0; i <= 8; i++)
 				//ItemName	"Artillery Sentry Wrench"
 				ItemName	"Pill Popper"
 				//ItemName	"Infrared Transmitter"
-				ItemName	"The Cauterizer"
+				ItemName	"Phoenix's Bulwark"
 				ItemName	"The Lethal Injector"
 				ItemName	"50th Caliber"
 				ItemName	"The Astral Assassin"
@@ -1385,7 +1413,7 @@ for(local i = 0; i <= 8; i++)
 			Attribute		"cannot trade"
 			Cap				1
 			Increment		1
-			Cost			900
+			Cost			750
 			Description		"Grenades now apply mad milk to enemies."
 			SecondaryAttributes
 			{
@@ -1440,10 +1468,10 @@ for(local i = 0; i <= 8; i++)
 
 		howitzer_damagebonus
 		{
-			Name			"+25% Damage Bonus"
+			Name			"+20% Damage Bonus"
 			Attribute		"CARD: damage bonus"
-			Cap				2
-			Increment		0.25
+			Cap				1.8
+			Increment		0.2
 			Cost			400
 			AllowedWeapons
 			{
@@ -1506,7 +1534,7 @@ for(local i = 0; i <= 8; i++)
 			Description		"Effect now grants briefly halved movement speed on hit enemies"
 			SecondaryAttributes
 			{
-				"effect add attributes"	"add cond on hit|27|add cond on hit duration|3|add cond when active|36|stun on hit type|movement|stun on hit|1|stun on hit slow|0.5"
+				"effect add attributes"	"add cond on hit|27|add cond on hit duration|3|stun on hit type|movement|stun on hit|1|stun on hit slow|0.5"
 			}
 			AllowedWeapons
 			{

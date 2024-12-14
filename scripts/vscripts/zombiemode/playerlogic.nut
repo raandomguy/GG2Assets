@@ -917,7 +917,6 @@ local ImportantItems =
 		}
 		function PressButton(box, message, input, param = "", delay = -1, activator = null, caller = null)
 		{
-
 			if (GetPropBool(box, "m_bLocked")) // shouldnt call something box if the box isnt the only one using it!!
 			{
 				ClientPrint(self, HUD_PRINTCENTER, "")
@@ -930,12 +929,14 @@ local ImportantItems =
 			{
 				box.EmitSound("buttons/button4.wav")
 				EntFireByHandle(box, input, param, delay, activator, caller)
-				ClientPrint(self, HUD_PRINTCENTER, "")
+				if (box.GetName() == "teleport_button_1") ClientPrint(self, HUD_PRINTCENTER, "Data Link connection lost. Please resynchronize.")	// add a hint for teleporter
+				else ClientPrint(self, HUD_PRINTCENTER, "")
 			
 				//set cooldown time
 				scope.Preserved.cooldowntime = Time() + BUTTON_COOLDOWN_TIME
 				//manually set it here just in case
 				SetPropBool(self, "m_bUsingActionSlot", false)
+				
 			}
 		}
 		local key = ""
@@ -982,6 +983,7 @@ local ImportantItems =
 			if ("caller" in GenericButtons[key]) param = GenericButtons[key].caller
 	
 			PressButton(box, GenericButtons[key].message, GenericButtons[key].input, param, delay, activator, caller)
+			
 		}
 	}
 	for (local reanimator; reanimator = FindByClassnameWithin(reanimator, "entity_revive_marker", self.GetOrigin(), BUTTON_RADIUS); ) 

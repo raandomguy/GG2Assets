@@ -18,7 +18,7 @@ WaveSchedule
 	AllowBotExtraSlots 1
 	RobotLimit 45 //reconfigurer
     NoRedBotsRandomCrit 1	
-	StuckTimeMultiplier 3.5
+	//StuckTimeMultiplier 3.5
 	
 	
 	PrecacheSound "nuke_soldier_angry.mp3"
