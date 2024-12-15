@@ -2521,6 +2521,34 @@ WaveSchedule
 		
 		WaveSpawn
 		{
+			Name relay
+			WaitForAllDead 3c-changepath-2
+			WaitBeforeStarting 2
+			WaitBetweenSpawns 0
+		}
+		
+		WaveSpawn
+		{
+			Name closed-upgradestation
+			WaitForAllDead relay
+
+			WaitBeforeStarting 2
+			WaitBetweenSpawns 0
+			
+			StartWaveOutput
+			{
+				Target wave_start_relay_ironman
+				Action RunScriptCode
+				Param
+				"
+					EntFire(`upgrade_forward_door`, `Close`)
+					EntFire(`FrontUpgradeStationL`, `Disable`)
+				"
+			}
+		}
+		
+		WaveSpawn
+		{
 			Name 3d
 			WaitForAllDead 3c-changepath-2
 
@@ -2545,8 +2573,8 @@ WaveSchedule
 					EntFire(`Ironman_Mode_Intel_45_sec`, `Enable`)
 					EntFire(`Ironman_Mode_Intel`, `Enable`)
 					EntFire(`Ironman_Mode_Intel`, `SetReturnTime`, `45`)
-					EntFire(`upgrade_forward_door`, `Close`)
-					EntFire(`FrontUpgradeStationL`, `Disable`)
+					//EntFire(`upgrade_forward_door`, `Close`)
+					//EntFire(`FrontUpgradeStationL`, `Disable`)
 					EntFire(`buring_fire_1_timer`, `Enable`)
 					if(Entities.FindByName(null, `twinbomb`) == null)
 					{

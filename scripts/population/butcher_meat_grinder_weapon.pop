@@ -23,12 +23,11 @@ WaveSchedule
 		"The Chasethrower"
 		{
 			OriginalItemName "Upgradeable TF_WEAPON_FLAMETHROWER"
-			"add attributes on kill" "CARD: move speed bonus|1.2|4|CARD: damage bonus|1.2|4"
+			"add attributes on kill" "CARD: move speed bonus|1.2|5|CARD: damage bonus|1.25|5"
 			"dmg penalty vs players" 0.925
-			"maxammo primary reduced" 0.75
-			"special item description" "[INFO] Defeat any robot will gain a 20% move speed and damage in 4 seconds."
-			"special item description 2" "-7.5% damage, -25% max Ammo, +25% airblast cost"
-			//"special item description 2" "[INFO] เมื่อฆ่าหุ่นยนต์ได้: ความเร็วในการวิ่งและความเสียหายจะเพิ่ม 20% ภายใน 4 วินาที"
+			//"maxammo primary reduced" 0.75
+			"special item description" "[INFO] Defeat any robot will gain a 20% move speed and 25% damage in 5 seconds."
+			"special item description 2" "-7.5% damage vs players, +25% airblast cost"
 			"airblast cost increased" 1.25
 			"paintkit_proto_def_index" 226
 			"set_item_texture_wear" 0
