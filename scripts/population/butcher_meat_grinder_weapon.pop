@@ -24,10 +24,11 @@ WaveSchedule
 		{
 			OriginalItemName "Upgradeable TF_WEAPON_FLAMETHROWER"
 			"add attributes on kill" "CARD: move speed bonus|1.2|5|CARD: damage bonus|1.25|5"
-			"dmg penalty vs players" 0.925
+			"damage penalty" 0.925
+			"mult dmg vs tanks" 1.09
 			//"maxammo primary reduced" 0.75
 			"special item description" "[INFO] Defeat any robot will gain a 20% move speed and 25% damage in 5 seconds."
-			"special item description 2" "-7.5% damage vs players, +25% airblast cost"
+			"special item description 2" "-7.5% damage on robot, +25% airblast cost"
 			"airblast cost increased" 1.25
 			"paintkit_proto_def_index" 226
 			"set_item_texture_wear" 0
@@ -65,7 +66,7 @@ WaveSchedule
 		{
 			OriginalItemName "The Kritzkrieg"
 			"heal rate bonus" 1.25
-			"ubercharge rate bonus" 5
+			"ubercharge rate bonus" 6
 			"effect cond override" 16
 			"special item description" "Minicrit when ubercharge"
 		}
@@ -75,7 +76,7 @@ WaveSchedule
 			"paintkit_proto_def_index" 414
 			"set_item_texture_wear"	0
 			"heal rate bonus" 1.1
-			"ubercharge rate bonus" 3
+			"ubercharge rate bonus" 4
 			"effect cond override" 90
 			"special item description" "Strength powerup when ubercharge (Doesn't work on Tank)"
 		}
@@ -85,7 +86,7 @@ WaveSchedule
 			"paintkit_proto_def_index" 257
 			"heal rate bonus" 1.4
 			"set_item_texture_wear"	0
-			"ubercharge rate bonus" 5
+			"ubercharge rate bonus" 6
 			"effect cond override" 97
 			"special item description" "Agility powerup when ubercharge"
 		}
@@ -145,7 +146,7 @@ WaveSchedule
 			Name "+25% Ubercharge Rate"
 			Attribute "ubercharge rate bonus"
 			Increment 0.25
-			Cap 6
+			Cap 7
 			Cost 300
 			AllowedWeapons
 			{
@@ -161,7 +162,7 @@ WaveSchedule
 			Name "+25% Ubercharge Rate"
 			Attribute "ubercharge rate bonus"
 			Increment 0.25
-			Cap 4
+			Cap 5
 			Cost 300
 			AllowedWeapons
 			{
