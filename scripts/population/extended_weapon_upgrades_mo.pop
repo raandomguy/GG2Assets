@@ -276,7 +276,7 @@ NoRomevisionCosmetics 1 //THEY FIXED IT NOW SO I'VE TO REMOVE THE RETARDED UPGRA
 				"mult dmg vs tanks" -0.65
 				"no primary ammo from dispensers while active" 1
 				"crits_become_minicrits"		1
-				"mult dmg vs giants" -0.66
+				"mult dmg vs giants" -0.5
 			}
 			Description "A version of the Laser Wall Rocket Launcher that won't blow your arms off. Can't rocket jump. Rocket Specialist and Damage also do not work" 
 			Tier 1
@@ -403,6 +403,7 @@ NoRomevisionCosmetics 1 //THEY FIXED IT NOW SO I'VE TO REMOVE THE RETARDED UPGRA
 				"uses ammo while aiming" 4
 				"damage bonus vs burning" 0.18
 				"Set DamageType Ignite"	1
+				"no primary ammo from dispensers while active" 1
 			}
 			Description "Bullets burn on hit and do more damage if targets are on fire. Consumes more ammo."
 			Tier 1
@@ -667,7 +668,7 @@ NoRomevisionCosmetics 1 //THEY FIXED IT NOW SO I'VE TO REMOVE THE RETARDED UPGRA
 		KGBKnight
 		{
 			Name "Weapon Type: Cage-y Bee"
-			Attribute "provide on active"
+			Attribute "lunchbox adds minicrits"
 			Cap 1
 			Increment 1
 			Cost 0
