@@ -26,6 +26,8 @@ WaveSchedule
 					{
 						`tf_weapon_scattergun` : null
 						`tf_weapon_soda_popper` : null
+						`tf_weapon_handgun_scout_primary` : null
+						`tf_weapon_pep_brawler_blaster` : null
 						`tf_weapon_jar_milk` : null
 						`Bonk! Atomic Punch` : null
 						`tf_weapon_rocketlauncher` : null
@@ -57,6 +59,8 @@ WaveSchedule
 						`tf_weapon_laser_pointer` : null
 						`tf_weapon_mechanical_arm` : null
 						`tf_weapon_sniperrifle` : null
+						`tf_weapon_sniperrifle_decap` : null
+						`tf_weapon_sniperrifle_classic` : null
 						`tf_weapon_compound_bow` : null
 						`tf_weapon_jar` : null // replacing with smg errors
 					}
