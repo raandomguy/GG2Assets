@@ -651,6 +651,7 @@ NoRomevisionCosmetics 1 //THEY FIXED IT NOW SO I'VE TO REMOVE THE RETARDED UPGRA
 				"force fire full clip"		1
 				"hidden primary max ammo bonus" 0.5
 				"mult crit dmg" -0.33
+				"projectile no deflect" 1
 			}
 			Description "Burst of explosive (sandman) balls. Literally. Has extra ammo but comes with a damage penalty." 
 			Tier 1
@@ -668,7 +669,7 @@ NoRomevisionCosmetics 1 //THEY FIXED IT NOW SO I'VE TO REMOVE THE RETARDED UPGRA
 		KGBKnight
 		{
 			Name "Weapon Type: Cage-y Bee"
-			Attribute "lunchbox adds minicrits"
+			Attribute "turn to gold"
 			Cap 1
 			Increment 1
 			Cost 0
