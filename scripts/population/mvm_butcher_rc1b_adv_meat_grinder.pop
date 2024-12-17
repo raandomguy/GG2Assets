@@ -2380,7 +2380,7 @@ WaveSchedule
 							origin = `3062 1502 512`
 							angles = `0 0 0`
 							lifetime = `21.5`
-							display_text = `The next subwave robot will start spawn this area!`
+							display_text = `The next robot subwave will spawn in this area!`
 						})
 					}
 					EntFire(`botspawning`,`show`)
@@ -2400,7 +2400,7 @@ WaveSchedule
 				Action RunScriptCode
 				Param
 				"
-					ClientPrint(null,3,`\x08FFFF00FFThe Mission begins 20 seconds!`)
+					ClientPrint(null,3,`\x08FFFF00FFThe Mission begins in 20 seconds!`)
 				"
 			}
 		}
@@ -2417,7 +2417,7 @@ WaveSchedule
 				Action RunScriptCode
 				Param
 				"
-					ClientPrint(null,3,`\x08FFFF00FFThe Mission begins 10 seconds`)
+					ClientPrint(null,3,`\x08FFFF00FFThe Mission begins in 10 seconds`)
 				"
 			}
 		}
@@ -2593,7 +2593,7 @@ WaveSchedule
 			TFBot
 			{
 				Template T_TFBot_Giant_Scout
-				Skill Normal
+				//Skill Normal
 			}
 		}
 		
