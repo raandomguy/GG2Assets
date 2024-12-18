@@ -244,6 +244,8 @@ Real?
 		"custom impact sound"			"=75|weapons/cow_mangler_explosion_charge_01.wav"
 		"no damage falloff"				1
 		"damage bonus"					2
+		"mult dmg vs giants"	2
+		"mult dmg vs tanks"		2
 	}
 	
 	CustomWeapon
@@ -2177,9 +2179,12 @@ Real?
 			logic_relay
 			{
 				"targetname"	"cvs_troll_relay"
-				"OnTrigger"		"!activator,$SetLocalOrigin,-2432 -1540 544,0,-1"
-				"OnTrigger"		"player,$DisplayTextChat,{blue}Chief Viper Spy{reset} has used their {9BBF4D}RECALL{reset} Power Up Canteen!,0,0,-1"
-				"OnTrigger"		"player,$PlaySoundToSelf,=35|mvm/mvm_used_powerup.wav,0,0,-1"
+				"OnTrigger"		"!activator,$PlaySound,=85|player/pl_impact_stun.wav,0,-1"
+				"OnTrigger"		"!activator,$AddCond,71 5,0,-1"
+				"OnTrigger"		"!activator,$SetLocalOrigin,847 -6350 688,2.5,-1"
+				"OnTrigger"		"player,$DisplayTextChat,{blue}Chief Viper Spy{reset} has used their {9BBF4D}RECALL{reset} Power Up Canteen!,2.5,-1"
+				"OnTrigger"		"player,$PlaySoundToSelf,=35|mvm/mvm_used_powerup.wav,2.5,-1"
+				
 			}
 			trigger_multiple
 			{
@@ -2190,7 +2195,7 @@ Real?
 				"spawnflags"	"1"
 				"filtername"	"filter_chief_viper"
 				
-				"OnStartTouch"	"!activator,$SetLocalOrigin,-2432 -1540 544,0,0,-1"
+				"OnStartTouch"	"!activator,$SetLocalOrigin,847 -6350 688,2.5,-1"
 				"OnStartTouch"	"player,$DisplayTextChat,{blue}Chief Viper Spy{reset} has used their {9BBF4D}RECALL{reset} Power Up Canteen!,0,0,-1"
 				"OnStartTouch"	"player,$PlaySoundToSelf,=35|mvm/mvm_used_powerup.wav,0,0,-1"
 			}
@@ -2203,7 +2208,7 @@ Real?
 				"spawnflags"	"1"
 				"filtername"	"filter_chief_viper"
 				
-				"OnStartTouch"	"!activator,$SetLocalOrigin,-2432 -1540 544,0,0,-1"
+				"OnStartTouch"	"!activator,$SetLocalOrigin,847 -6350 688,2.5,-1"
 				"OnStartTouch"	"player,$DisplayTextChat,{blue}Chief Viper Spy{reset} has used their {9BBF4D}RECALL{reset} Power Up Canteen!,0,0,-1"
 				"OnStartTouch"	"player,$PlaySoundToSelf,=35|mvm/mvm_used_powerup.wav,0,0,-1"
 			}
@@ -3546,6 +3551,8 @@ Real?
 			logic_relay
 			{
 				"targetname"	"skybreaker_phase6_relay"
+				"OnTrigger"		"player,$DisplayTextChat,{green}The bomb has been reset- regain your ground as soon as possible!,0,-1"
+				"OnTrigger"		"intel,ForceReset,,0,-1"
 				"OnTrigger"		"point_populator_interface,$PauseWavespawn,wave7_inf_scout_support,5,-1"
 				"OnTrigger"		"@f@filter_skybreaker@player,$AddPlayerAttribute,no_attack|1,0,-1"
 				"OnTrigger"		"!activator,$AddCond,71 5,0.0,-1"
@@ -3594,8 +3601,8 @@ Real?
 				"OnTrigger"		"point_populator_interface,$ResumeWavespawn,wave7_inf_scout_support,0,-1"
 				"OnTrigger"		"point_populator_interface,$PauseWavespawn,wave7_inf_fan_support,0,-1"
 
-				"OnTrigger"		"player,$DisplayTextChat,{green}The bomb has been reset- regain your ground as soon as possible!,0,-1"
-				"OnTrigger"		"intel,ForceReset,,0,-1"
+				//"OnTrigger"		"player,$DisplayTextChat,{green}The bomb has been reset- regain your ground as soon as possible!,0,-1"
+				//"OnTrigger"		"intel,ForceReset,,0,-1"
 
 
 				"OnTrigger"		"@f@filter_skybreaker@player,$SetLocalOrigin,832 -1899 275,10,-1"
@@ -5092,7 +5099,7 @@ Real?
 		// sky_goldrush_01
 		// sky_halloween_night_01
 
-		TCS_Ending_Sequence
+		TCS_Ending_Sequence	// >making the stalker tutorial and seeing this unfinished thing at the bottom of the pt list
 		{
 			NoFixup		1
 			KeepAlive	1
@@ -5143,7 +5150,44 @@ Real?
 			}
 		}
 
-
+		StalkerTutorial
+		{
+			NoFixup	1
+            training_annotation
+            {
+              "targetname"		"stalker_anno_1"
+              "display_text"	"Stalkers will target the furthest giant on the field and detonate on them."
+              "lifetime"		"7.5"
+              "origin"			"847 -6350 725"
+            }
+            training_annotation
+            {
+              "targetname"		"stalker_anno_2"
+              "display_text"	"Upon detonation, nearby enemies are coated in GOLD."
+              "lifetime"		"7.5"
+              "origin"			"921 -4864 420"
+            }
+            training_annotation
+            {
+              "targetname"		"stalker_anno_3"
+              "display_text"	"GOLD enemies will TEMPORARILY DISABLE ALL HEALING on hit."
+              "lifetime"		"7.5"
+              "origin"			"921 -4864 420"
+            }
+            training_annotation
+            {
+              "targetname"		"stalker_anno_4"
+              "display_text"	"Stalkers will target players if no giant is on the field."
+              "lifetime"		"7.5"
+              "origin"			"847 -6350 725"
+            }
+			logic_relay
+			{
+				"targetname"	"stalker_tutorial_relay"
+				"OnTrigger"		"stalker_anno_2,Show,,0,-1"
+				"OnTrigger"		"stalker_anno_3,Show,,7.5,-1"
+			}
+		}
 
 
 	}
@@ -5848,6 +5892,7 @@ Real?
 			Item	"dec2014 Armoured Appendages"
 			Item	"The Scoped Spartan"
 			Item	"The Razorback"
+			Skill	Normal
 			ItemModel
 			{
 				ItemName	"Zombie Sniper"
@@ -6419,7 +6464,7 @@ Real?
 			{
 				ItemName	"TF_WEAPON_PIPEBOMBLAUNCHER"
 				"faster reload rate"			0.8
-				"max pipebombs decreased"		-7
+				"max pipebombs decreased"		-6
 				"stickybomb charge rate"		0.01
 				"Projectile range decreased"	0.5
 				"sticky arm time penalty"		1.3
@@ -6683,7 +6728,7 @@ Real?
 			Name		"Chief Laser Strike Soldier"	// formerly Chief Crimson Glow Soldier
 			ClassIcon	soldier_barrage_mangler_rain
 			Skill		Expert
-			Health		20000
+			Health		17000
 			Item		"Battle Bird"	// rule #1: every athazar mission MUST have a bird cosmetic robot
 			Attributes	MiniBoss
 			Attributes	HoldFireUntilFullReload
@@ -7160,8 +7205,8 @@ Real?
 			{
 				ItemName	"The Direct Hit"
 				"damage bonus"		1.5
-				"mult dmg direct hit" 0.66	// normal damage on direct hit
-				"blast radius decreased"	1.2
+				"mult dmg direct hit" 0.5
+				"blast radius decreased"	1
 				"projectile detonate time"	2
 				"no damage falloff"			1	// ensures punishment
 				"projectile acceleration time"	0.5
@@ -7554,10 +7599,10 @@ Real?
 			{
 				ItemName	"TF_WEAPON_FISTS"
 				"add attributes when active"	"dmg taken increased|1.25"
-				"deploy time decreased"			0.2
+				//"deploy time decreased"			0.2
 				"melee range multiplier"		1.5
 				"damage causes airblast"		1
-				"damage bonus"					2
+				"damage bonus"					1.5
 				"melee cleave attack"			1
 				
 			}
@@ -7658,7 +7703,7 @@ Real?
 				"projectile lifetime"	0.000001
 				"blast radius decreased"	0.001
 				"damage penalty"	0.001
-				"faster reload rate"	0.5
+				"faster reload rate"	0.75
 			}
 			CharacterAttributes
 			{
@@ -7682,6 +7727,7 @@ Real?
 			Attributes	UseBossHealthBar
 			Attributes	IgnoreFlag
 			Attributes	HoldFireUntilFullReload
+			ExtAttr		IgnoreBuildings 
 			Item	"Big Steel Jaw of Summer Fun"
 			Item	"Corona Australis"
 			Item	"Batter's Bracers"
@@ -7886,6 +7932,7 @@ Real?
 				"airblast vulnerability multiplier"	2
 				"override footstep sound set"		6
 				"voice pitch scale"					0
+				"not solid to players"				1
 			}
 		}
 		
@@ -7920,16 +7967,17 @@ Real?
 			{
 				ItemName	"The Direct Hit"
 				"damage bonus"		1.5
-				"mult dmg direct hit" 0.66
-				"blast radius decreased"	1.2
+				"mult dmg direct hit" 0.5
+				"blast radius decreased"	1
 				"projectile detonate time"	4
 				"no damage falloff"			1
 				"projectile acceleration time"	0.5
-				"projectile acceleration"		-3960
+				"projectile acceleration"		-1100
+				"projectile speed increased"	1
 				"mult explosion radius direct hit" 0.2
 				"clip size bonus"	2
 				"fire rate bonus"	0.35
-				"faster reload rate"	0.55
+				"faster reload rate"	0.7
 				"mod projectile heat seek power"	360
 				"mod projectile heat aim error"		90
 				"mod projectile heat aim time"		0.5
@@ -7955,7 +8003,7 @@ Real?
 			{
 				ItemName	"Upgradeable TF_WEAPON_FISTS"
 				"damage causes airblast"		1
-				"damage bonus"					2
+				"damage bonus"					1.5
 				"melee cleave attack"			1
 				"fire rate penalty"				1.5
 			}
@@ -8074,7 +8122,7 @@ Real?
 			Class	Soldier
 			ClassIcon	soldier_sergeant_crits
 			Name	"Lieutenant Crits"
-			Health	1200
+			Health	900
 			Scale	1.5
 			Attributes	HoldFireUntilFullReload
 			Attributes	AlwaysCrit
@@ -8124,7 +8172,7 @@ Real?
 			Name	"Lieutenant Bomber"
 			ClassIcon	demo_bomber
 			Skill	Expert
-			Health	1200
+			Health	900
 			WeaponRestrictions	PrimaryOnly
 			Attributes	HoldFireUntilFullReload
 			Scale	1.5
@@ -9042,7 +9090,7 @@ Real?
 		DesiredCount		1
 		TFBot
 		{
-			Template	T_TFBot_Spy_Tranquilizer_MissionSupport
+			Template	T_TFBot_Spy
 		}
 	}
 
@@ -9107,7 +9155,7 @@ Real?
 		Where				flankers
 		BeginAtWave	 		4
 		RunForThisManyWaves	1
-		InitialCooldown		15
+		InitialCooldown		35
 		CooldownTime		30
 		DesiredCount		1
 		TFBot
@@ -9127,7 +9175,7 @@ Real?
 		Where				flankers
 		BeginAtWave	 		4
 		RunForThisManyWaves	1
-		InitialCooldown		30
+		InitialCooldown		50
 		CooldownTime		30
 		DesiredCount		2
 		TFBot
@@ -9265,7 +9313,7 @@ Real?
 			{
 				Class	Soldier
 				ClassIcon	soldier_blackbox_armored_seel
-				Skill	Normal
+				Skill	Hard
 				Health	900
 				Scale	1.5
 				Name	"Armored Black Box Soldier"
@@ -9275,10 +9323,10 @@ Real?
 				ItemAttributes
 				{
 					ItemName					"The Black Box"
-					"faster reload rate"		0.9
-					"fire rate bonus"			0.15
+					//"faster reload rate"		0.9
+					"fire rate bonus"			0.25
 					"blast radius decreased"	0.69
-					"heal on hit"				300
+					"heal on hit"				200
 				}
 				CharacterAttributes
 				{
@@ -9342,9 +9390,9 @@ Real?
 					Item		"Night Vision Gawkers"
 					Item		"The Bruiser's Bandanna"
 					Action		FetchFlag
-					AimAt		Head				[$SIGSEGV]
-					AimLeadProjectileSpeed	1000	[$SIGSEGV]
-					AimOffset	"0 0 20"			[$SIGSEGV]
+					//AimAt		Head				[$SIGSEGV]
+					//AimLeadProjectileSpeed	1000	[$SIGSEGV]
+					//AimOffset	"0 0 20"			[$SIGSEGV]
 					ItemAttributes
 					{
 						ItemName	"The Bruiser's Bandanna"
@@ -9516,6 +9564,7 @@ Real?
 			TotalCount	30
 			MaxActive	12
 			SpawnCount	3	
+			WaitBeforeStarting	1
 			WaitBetweenSpawns	3
 			Where	spawnbot
 			TFBot
@@ -9549,9 +9598,9 @@ Real?
 			TotalCurrency	50
 			TotalCount	25
 			MaxActive	10
-			SpawnCount	1
+			SpawnCount	3
 			Where	spawnbot
-			WaitBetweenSpawns	1.5
+			WaitBetweenSpawns	4
 			TFBot
 			{
 				Class	Demoman
@@ -9647,7 +9696,7 @@ Real?
 			MaxActive	8
 			SpawnCount	2
 			WaitBeforeStarting	5
-			WaitBetweenSpawns	5
+			WaitBetweenSpawns	7
 			Where	spawnbot
 			Where	flankers
 			TFBot
@@ -9688,7 +9737,7 @@ Real?
 		//}
 		Explanation	[$SIGSEGV]
 		{
-			Line	"{yellow}[WARNING] An orbital weapon system has been detected in the atmosphere..."
+			Line	"{yellow}[WARNING] An orbital weapon system has been detected... A tutorial explaining this mechanic will play at the start of this wave."
 		}
 
 		WaveSpawn
@@ -9724,7 +9773,6 @@ Real?
 			TFBot
 			{
 				Template	T_TFBot_Demoknight_Claid_Splendid
-				Attributes	AlwaysCrit
 			}
 		}
 		WaveSpawn
@@ -9735,7 +9783,7 @@ Real?
 			MaxActive	4
 			SpawnCount	2
 			WaitBeforeStarting	35
-			WaitBetweenSpawns	15
+			WaitBetweenSpawns	20
 			Where	flankers
 			Squad
 			{
@@ -9887,7 +9935,7 @@ Real?
 			TFBot
 			{
 				Class	Heavyweapons
-				Skill	Normal
+				Skill	Easy
 				Tag	bot_nopoints
 			}
 		}
@@ -9933,13 +9981,128 @@ Real?
 		//}
 		Explanation	[$SIGSEGV]
 		{
-			Line	"{yellow}[WARNING] {blue}Stalkers {yellow}will spawn during this wave."
-			Line	"{yellow}Stalkers behave similar to Busters but target the giant furthest away from front, coating them in gold on explosion; they go after players if no giant is on the field."
-			Line	"{yellow}When hit by a golden enemy, you'll temporarily be unable to heal from most sources. Look out for their distinct outline!"
+			Line	"{yellow}[WARNING] {blue}Stalkers {yellow}will spawn during this wave. A tutorial explaining their mechanics will play upon wave start."
+		}
+		SpawnTemplate	StalkerTutorial
+		WaveSpawn
+		{
+			Name	w4_stalker_initial
+			TotalCount	1
+			MaxActive	1
+			SpawnCount	1
+			Support		Limited
+			WaitBeforeStarting	3
+			Where	spawnbot
+			FirstSpawnOutput
+			{
+				Target	stalker_anno_1
+				Action	Show
+			}
+			TFBot
+			{
+				Template	T_TFBot_Stalker
+				AddCond
+				{
+					Index	51
+					Duration	17.5
+				}
+				Health		999999
+				CharacterAttributes
+				{
+					"damage force reduction" 0.00001
+					"airblast vulnerability multiplier" 0.00001
+					"override footstep sound set" 5
+					"dmg taken increased"	0.01
+				}
+			}
 		}
 		WaveSpawn
 		{
-			Name	w4_stalker
+			Name			w4_tutorial
+			Support			Limited
+			WaitForAllDead	w4_stalker_initial
+			DoneOutput
+			{
+				Target	stalker_tutorial_relay
+				Action	Trigger
+			}
+		}
+		WaveSpawn
+		{
+			Name	w4_stalker_tutorial
+			TotalCount	1
+			MaxActive	1
+			SpawnCount	1
+			Support		Limited
+			Where	spawnbot
+			TFBot
+			{
+				Class		Scout
+				Name		"Giant Scout"
+				ClassIcon	dead_ylw_lite
+				Skill		Expert
+				Health		1200
+				WeaponRestrictions	PrimaryOnly
+				Attributes	MiniBoss
+				Attributes	IgnoreFlag
+				Attributes	DisableDodge
+				Action		Mobber
+				Tag			"bot_goldweapon|Goldified Scattergun|I FUCKING LOVE GOLD"
+				AddCond
+				{
+					Index	51
+					Duration	20
+				}
+				FireInput   
+				{
+					Target		"!self"
+					Action		"$SetLocalOrigin"
+					Param		"960 -5936 704"
+					Delay 		0.01
+					Repeats		1
+				}
+				InterruptAction
+				{
+					Target			"921 -4864 360"
+					Name			"stalker_tutorial_initial"
+					Delay			0.01
+					Duration		15
+					Repeats			1 
+					Distance		0
+				}
+				RemoveAttribute
+				{
+					Item		"player"
+					Name		"no_attack"
+					Delay		17.5
+					Repeats		1
+				}
+				FireInput
+				{
+					Target		"!self"
+					Action		"$PlaySound"
+					Param		"=85|mvm/mvm_tele_deliver.wav"
+					Repeats		1
+					Delay		0.01
+				}
+				CharacterAttributes
+				{
+					"damage force reduction" 0.00001
+					"airblast vulnerability multiplier" 0.00001
+					"override footstep sound set" 5
+					"no_attack"	1
+					"damage penalty"	0.15
+					"dmg taken increased"	70
+				}
+			}
+		}
+
+
+
+		WaveSpawn
+		{
+			Name	w4_stalker_real
+			WaitForAllDead	w4_stalker_tutorial
 			TotalCount	69
 			MaxActive	1
 			SpawnCount	1
@@ -9958,12 +10121,18 @@ Real?
 		WaveSpawn
 		{
 			Name	wave4a1
+			WaitForAllDead	w4_stalker_tutorial
 			TotalCurrency	100
 			TotalCount	20
 			MaxActive	8
 			SpawnCount	2
 			WaitBetweenSpawns	4
 			Where	flankers
+			FirstSpawnOutput
+			{
+				Target	stalker_anno_4
+				Action	Show
+			}
 			Squad
 			{
 				TFBot
@@ -9988,6 +10157,7 @@ Real?
 		WaveSpawn
 		{
 			Name	wave4a2
+			WaitForAllDead	w4_stalker_tutorial
 			TotalCurrency	100
 			TotalCount	32
 			MaxActive	12
@@ -10256,6 +10426,8 @@ Real?
 			{
 				Template	T_TFBot_Armored_Rapid_Skeleton_Archer
 				PreferClass	Medic
+				PreferClass	Heavy
+				PreferClass Sniper
 				Attributes	AlwaysCrit
 			}
 		}
