@@ -1,9 +1,12 @@
 // Modded weapons by BlacKy
+// Massive thanks to Lazy, Oskar, Murko and others for helping me test these weapons.
+// Massive thanks to Ptyx and Ian Hunter for assisting me with custom models and attributes.
 
 WaveSchedule
 {
 PrecacheModel "models/weapons/c_models/c_sd_cleaver/c_sd_cleaver.mdl"
 PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
+PrecacheModel "models\weapons\c_models\c_eternal_earner\c_eternal_earner.mdl"
 
 	PointTemplates	[$SIGSEGV]	//	this piece of code is to remove the powerup from the game if its dropped, hence making it only be used by the designated class
 	{
@@ -122,17 +125,16 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		"killstreak tier"				2		//	enables killstreak effects with sheen
 		"killstreak idleeffect"			5		//	Agonizing Emerald
 		"Projectile speed decreased"	0		//	turns missiles into mines
-	//	"dmg taken increased"			0.25
-		"dmg taken from blast reduced"	0.75
+		"dmg taken increased"			0.75
 		"blast radius increased"		1.5
 	//	"move speed bonus"				1.5
 		"No self blast dmg"				2		//	cant hurt yourself with the mines
 		"penetrate teammates"			1		//	mines dont detonate when bumped by teammates
 		"mult projectile scale"			1.5
 		"provide on active"				1
-		"no damage falloff"				1		//	forcing the same damage regardless of distance of player from mine upon explosion
+		"no damage falloff"				1		//	forcing the same damage regardless of distance of player from a mine upon explosion
 		"projectile lifetime"			15
-		"special item description"		"Lays mines that last 15 seconds; +50% blast radius; when deployed: +25% damage invuln"
+		"special item description"		"Lays mines that last 15 seconds; +50% blast radius; when deployed: +25% damage invuln to self"
 		//	WORKS PERFECTLY
 	}
 	CustomWeapon [$SIGSEGV]	
@@ -141,7 +143,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		OriginalItemName	"The Cow Mangler 5000"
 		"killstreak tier"			2	//	enables killstreak effects with sheen
 		"killstreak idleeffect"		1	//	Team Shine
-		"attach particle effect"	13	//	Burning Flames
+		"attach particle effect" 	2	//	Flying Bits
 		"alt fire attack"			1	//	enables altfire attributes
 		"alt fire attributes"		"fire rate penalty HIDDEN|2.5|damage bonus HIDDEN|2.5|override projectile type extra|mechanicalarmorb|Set DamageType Ignite|1|custom kill icon|purgatory"
 		"special item description"	"Altfire slowly shoots powerful Short Circuit projectiles that set enemies on fire"
@@ -287,14 +289,13 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		"killstreak tier"					2			//	enables killstreak effects with sheen
 		"killstreak idleeffect"				1			//	Team Shine
 		"override projectile type extra"	"ornament" 	//	Wrap Assassin projectile
-		"damage bonus"						2.5
+		"damage bonus HIDDEN"				1.5
 		"mult bleeding delay"				0.5
 		"mult dmg vs tanks"					0
 		"bleeding duration"					10
 	//	"clip size penalty"					0.66		//	doesnt seem to work with ornament projectile
 		"clip size upgrade atomic"			-1			//	the alternative choice, but has its own issue (cant buy clip size)
 		"No self blast dmg"					2			//	cant hurt yourself with the projectile
-	//	"self dmg push force increased"		0
 		"special item description"			"Launches ornaments on enemies that causes bleed for 10s; -33% clip size that cant be upgraded"
 		//	WORKS PERFECTLY!
 	}
@@ -614,7 +615,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		OriginalItemName	"The Huntsman"
 		"killstreak tier"				2	//	enables killstreak effects with sheen
 		"killstreak idleeffect"			3	//	Manndarin
-		"attach particle effect" 		13	//	Burning Flames
+		"attach particle effect" 		2	//	Flying Bits
 		"Set DamageType Ignite"			1
 		"cannot headshot"				1
 		"weapon burn dmg increased"		3
@@ -707,6 +708,8 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		"special taunt"					1
 		"mult cloak meter consume rate"	1.33
 		"mod_disguise_consumes_cloak"	1
+		"custom kill icon"				"eternal_reward"
+	//	"custom item model" 			"models\weapons\c_models\c_eternal_earner\c_eternal_earner.mdl"
 		"special item description"		"Big Earner + YER properties combined"
 		//	WORKS PERFECTLY!
 	}

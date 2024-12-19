@@ -1,9 +1,12 @@
 // Modded weapons by BlacKy
+// Massive thanks to Lazy, Oskar, Murko and others for helping me test these weapons.
+// Massive thanks to Ptyx and Ian Hunter for assisting me with custom models and attributes.
 
 WaveSchedule
 {
 PrecacheModel "models/weapons/c_models/c_sd_cleaver/c_sd_cleaver.mdl"
 PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
+PrecacheModel "models\weapons\c_models\c_eternal_earner\c_eternal_earner.mdl"
 
 	PointTemplates	[$SIGSEGV]	//	this piece of code is to remove the powerup from the game if its dropped, hence making it only be used by the designated class
 	{
@@ -117,7 +120,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		OriginalItemName	"The Cow Mangler 5000"
 		"killstreak tier"			2	//	enables killstreak effects with sheen
 		"killstreak idleeffect"		1	//	Team Shine
-		"attach particle effect"	13	//	Burning Flames
+		"attach particle effect" 	2	//	Flying Bits
 		"alt fire attack"			1	//	enables altfire attributes
 		"alt fire attributes"		"fire rate penalty HIDDEN|2.5|damage bonus HIDDEN|2.5|override projectile type extra|mechanicalarmorb|Set DamageType Ignite|1|custom kill icon|purgatory"
 		"special item description"	"Altfire slowly shoots powerful Short Circuit projectiles that set enemies on fire"
@@ -670,7 +673,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		OriginalItemName	"The Huntsman"
 		"killstreak tier"				2	//	enables killstreak effects with sheen
 		"killstreak idleeffect"			1	//	Team Shine
-		"attach particle effect" 		13	//	Burning Flames
+		"attach particle effect" 		2	//	Flying Bits
 		"Set DamageType Ignite"			1
 		"cannot headshot"				1
 		"weapon burn dmg increased"		3
@@ -701,6 +704,15 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		"provide on active"				1
 		"effect cond override"			66
 		"special item description"		"Crikey minicrits become invisibility spell for 8s"
+		//	WORKS PERFECTLY!
+	}
+	CustomWeapon [$SIGSEGV]
+	{
+		Name				"Titanium plank"
+		OriginalItemName	"The Razorback"
+		"cannot be backstabbed"			1
+		"max health additive penalty"	-10
+		"special item description"		"permanent backstab immunity; -10hp on wearer"
 		//	WORKS PERFECTLY!
 	}
 	CustomWeapon [$SIGSEGV]
@@ -771,6 +783,8 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 		"special taunt"					1
 		"mult cloak meter consume rate"	1.33
 		"mod_disguise_consumes_cloak"	1
+		"custom kill icon"				"eternal_reward"
+	//	"custom item model" 			"models\weapons\c_models\c_eternal_earner\c_eternal_earner.mdl"
 		"special item description"		"Big Earner + YER properties combined"
 		//	WORKS PERFECTLY!
 	}
@@ -852,6 +866,7 @@ PrecacheModel "models\weapons\c_models\c_sho_scattergun.mdl"
 			Primary		"Brushfire"
 			Primary		"Bushman's Boon"
 			Secondary	"Croky Assassin"
+			Secondary	"Titanium plank"
 			Melee		"Maniacal mercenary"
 		}
 		Spy
