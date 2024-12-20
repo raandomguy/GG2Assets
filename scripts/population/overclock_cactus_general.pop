@@ -1082,14 +1082,15 @@ WaveSchedule
 		{
 			Name "Stable Mod: Titanium Soles"
 			Attribute "mult credit collect range" 
-			Cap 3
-			Increment 2
+			Cap 1.1
+			Increment 0.1
 			Cost 0
 			SecondaryAttributes 
 			{
 				"cancel falling damage" 1
+				"rocket specialist" 1
 			}
-			Description "+increased cash collection range +fall damage immunity" 
+			Description "+Free Rocket Specialist +fall damage immunity" 
 			Tier 1
 			AllowedWeapons
 			{
@@ -2918,27 +2919,6 @@ WaveSchedule
 				ItemName "The C.A.P.P.E.R"
 			}
 		}
-//		shield_gen_sentry
-//		{
-//			Name "Personal Shield Generator"
-//			Description "Attach a projectile shield to your sentry guns. Decreased primary sentry fire rate" 
-//			Attribute "throwable fire speed" // this should not be changed as lua logic relies on checking for this
-//			Cap 2 
-//			Increment 1
-//			Cost 350
-//
-//			AllowedWeapons 
-//			{
-//				ClassName "TF_WEAPON_PDA_ENGINEER_BUILD"
-//			}
-//
-//			SecondaryAttributes
-//			{
-//				// 0.5 firerate
-//				"engy sentry fire rate increased" 2
-//				"mult firerocket rate" 0.5
-//			}
-//		}
 		PistolEngieB
 		{
 			Name "Stable Mod: Combat Sensor"
@@ -2998,11 +2978,11 @@ WaveSchedule
 				"dmg penalty vs players" -0.35
 				"alt-fire disabled" 1	
 				"add onhit addammo" 10
-				"attack projectiles" 2
 				"no self effect" 1
 				"bleeding duration" 4
+				"engy building health bonus" 0.5
 			}
-			Description "+Primary fire is now explosive +10 metal per hit +On hit: bleed -250% slower firing speed -No Alt fire" 
+			Description "+Primary fire is now explosive +10 metal per hit +On hit: bleed -250% slower firing speed +50% building health -No Alt fire" 
 			Tier 1
 			AllowedWeapons
 			{
@@ -3120,16 +3100,16 @@ WaveSchedule
 		Wrench_b
 		{
 			Name "Stable Mod: Battle Augmentations"
-			Attribute "engy building health bonus"
-			Cap 1.35
-			Increment 0.35
+			Attribute "mvm sentry ammo" 
+			Cap 2
+			Increment 1
 			Cost 0
 			AllowPlayerClass Engineer
 			SecondaryAttributes //Secondary attributes applied when upgrade is applied, for each upgrade level
 			{
 				"mult firerocket rate" -0.4
 			}
-			Description "+35% building health +40% Sentry Rocket Firing Speed" 
+			Description "+100% sentry Ammo +40% Sentry Rocket Firing Speed" 
 			Tier 1
             AllowedWeapons
 			{
@@ -3315,9 +3295,10 @@ WaveSchedule
 			Cap 1
 			Increment 1
 			Cost 0
-			d //Secondary attributes applied when upgrade is applied, for each upgrade level
+			SecondaryAttributes //Secondary attributes applied when upgrade is applied, for each upgrade level
 			{
-				"melee range multiplier"	1.0
+				"melee range multiplier"	0.6
+				"melee bounds multiplier"	0.2
 				"damage penalty" -0.15
 			}
 			Description "+50% melee range -15% damage penalty"
@@ -3576,25 +3557,35 @@ WaveSchedule
 			Cost 0
 			SecondaryAttributes //Secondary attributes applied when upgrade is applied, for each upgrade level
 			{
-				"mult bleeding dmg" -0.5
+				"mult bleeding dmg" -0.2
 			}
-			Description "+40% faster zoom time +50% faster charge speed -50% explosive headshot damage" 
+			Description "+40% faster zoom time +50% faster charge speed -20% explosive headshot damage" 
+			Tier 1
+            AllowedWeapons
+			{
+				SimilarToItem "The Bazaar Bargain"
+			}
+		}
+		RifleB
+		{
+			Name "Unstable Mod: Hitman's Scope"
+			Attribute "mod soldier buff type" 
+			Cap 6
+			Increment 6
+			Cost 0
+			SecondaryAttributes //Secondary attributes applied when upgrade is applied, for each upgrade level
+			{			
+				"rage on kill" 35
+				"rage on assists" 15
+				"no primary ammo from dispensers while active" 1
+				"mult bleeding dmg" -0.25
+			}
+			Description "+Rifle has focus -No ammo from dispensers while active -25% explosive headshot damage" 
 			Tier 1
             Allowplayerclass Sniper
             AllowedWeapons
 			{
-				Slot "Primary"
-			}
-            DisallowedWeapons
-			{
-				ItemName "The Hitman's Heatmaker"
-				ItemName "The Huntsman"
-				ItemName "The Fortified Compound"
-				ItemName "Festive Huntsman"
-				ItemName "Shooting Star"
-				ItemName "The Machina"
-				ItemName "The Sydney Sleeper"
-				ItemName "The Plasma Bow"
+				SimilarToItem "Festive Sniper Rifle 2011"
 			}
 		}
 		Sleeper
@@ -3607,9 +3598,9 @@ WaveSchedule
 			SecondaryAttributes //Secondary attributes applied when upgrade is applied, for each upgrade level
 			{
 				"add attributes on hit" "damage penalty|0.65|5|move speed penalty|0.75|5"
-				"mult bleeding dmg" -0.5
+				"mult bleeding dmg" -0.25
 			}
-			Description "+Robots are slowed by 25% and deal 35% less damage for 5 seconds -50% explosive headshot damage" 
+			Description "+Robots are slowed by 25% and deal 35% less damage for 5 seconds -25% explosive headshot damage" 
 			Tier 1
             Allowplayerclass Sniper
             AllowedWeapons
@@ -3626,10 +3617,13 @@ WaveSchedule
 			Cost 0
 			SecondaryAttributes //Secondary attributes applied when upgrade is applied, for each upgrade level
 			{
-				"mult bleeding dmg" -0.35
+				"mult bleeding dmg" -0.75
 				"Sniper charge per sec" -0.25
+				"mod soldier buff type" 6
+				"rage on kill" 35
+				"rage on assists" 15
 			}
-			Description "+Jarate splash headshot -35% explosive headshot damage -25% charge rate" 
+			Description "+Jarate splash headshot +Focus -75% explosive headshot damage -25% charge rate" 
 			Tier 1
             Allowplayerclass Sniper
             AllowedWeapons
@@ -3654,6 +3648,7 @@ WaveSchedule
 				"cannot headshot" 1
 				"projectile no deflect" 1
 				"reset arrow hits on bounce" 1
+				"mult dmg vs tanks" -0.35
 			}
 			Description "+Arrows now bounce +4x bleed damage +Arrows will seek target after 3 seconds -20% damage penalty -No Headshots" 
 			Tier 1
@@ -3683,6 +3678,27 @@ WaveSchedule
             AllowedWeapons
 			{
 				ItemName "The Classic"
+			}
+		}
+		Machina
+		{
+			Name "Unstable Mod: Anti Material Rifle"
+			Attribute "sniper full charge damage bonus"
+			Cap 1.35
+			Increment 0.2
+			Cost 0
+			SecondaryAttributes  
+			{
+				"aiming movespeed decreased" -0.9
+				"mod ammo per shot" 2
+				"mult bleeding dmg" -0.15
+			}
+			Description "+20% charge damage -2 ammo per shot -90% speed whole scoped -15% explosive headshot damage" 
+			Tier 1
+            Allowplayerclass Sniper
+            AllowedWeapons
+			{
+				ItemName "The Machina"
 			}
 		}
 		SMG
@@ -3748,6 +3764,25 @@ WaveSchedule
 				ItemName "The Tribalman's Shiv"
 			}
 		}
+		Shah
+		{
+			Name "Unstable Mod: Basher Blade"
+			Attribute "hit self on miss" 
+			Cap 1
+			Increment 1
+			Cost 0
+			SecondaryAttributes  
+			{
+				"mult crit when health is below percent" -0.5
+				"mult dmgtaken from melee" -0.25
+			}
+			Description "+Crits when below 50% health +25% resistance to melee -On Miss: Hit yourself, wanka" 
+			Tier 1
+			AllowedWeapons
+			{
+				ItemName "The Shahanshah"
+			}
+		}
 		croc_back
 		{
 			Name "Stable Mod: Thicker Hide"
@@ -3755,6 +3790,7 @@ WaveSchedule
 			SecondaryAttributes  
 			{
 				"dmg taken from crit reduced" 0.75
+				"mult dmgtaken from melee" -0.35
 			}
 			Cap 25
 			Increment 25
@@ -3766,18 +3802,22 @@ WaveSchedule
 				ItemName "Darwin's Danger Shield"
 			}
 		}
-		croc_back_b
+		razor
 		{
 			Name "Stable Mod: Supply Storage"
 			Attribute "maxammo primary increased" 
 			Cap 1.5
 			Increment 0.5
 			Cost 0
-			Description "+50% max ammo" 
+			Description "+50% max ammo +35% melee resistance" 
+			SecondaryAttributes  
+			{
+				"mult dmgtaken from melee" -0.35
+			}
 			Tier 1
 			AllowedWeapons
 			{
-				ItemName "Darwin's Danger Shield"
+				ItemName "The Razorback"
 			}
 		}
 	}	
