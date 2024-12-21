@@ -54,8 +54,8 @@ WaveSchedule
             Item "The Kritzkrieg"
             ItemAttributes
             {
-                ItemName "The Kriztkrieg"
-                "uber duration bonus" 900
+                ItemName "The Kritzkrieg"
+                "uber duration bonus" 1000
                 "ubercharge rate bonus" 900
             }
             CharacterAttributes
@@ -82,6 +82,8 @@ WaveSchedule
         TFbot
         {
             Template T_TFBot_SentryBuster
+            Tag bot_giant
+            Tag bot_sentrybuster
         }
 
     }
@@ -99,6 +101,7 @@ WaveSchedule
         TFBot
         {
             Template T_TFBot_SentryBuster_Buffed
+            Tag bot_sentrybuster
         }
     }
 
@@ -211,6 +214,7 @@ WaveSchedule
             TotalCurrency 500
             Where spawnbot_main0_short
             Where spawnbot_main1
+            Where spawnbot_main2
             TotalCount 9
             SpawnCount 3
             MaxActive 6
@@ -227,12 +231,12 @@ WaveSchedule
             
                 TFBot
                 {
-                    Template T_TFBot_Medic
+                    Template T_TFBot_Medic_Non_Uber
                 }
 
                 TFBot
                 {
-                    Template T_TFBot_Medic
+                    Template T_TFBot_Medic_Non_Uber
          
                 }
             }
@@ -246,7 +250,7 @@ WaveSchedule
         {
             Name "1.1"
             TotalCurrency 100
-            Where spawnbot_upper0
+            Where spawnbot_main0_short
             Where spawnbot_main1
             Where spawnbot_main2
             TotalCount 20
@@ -256,7 +260,8 @@ WaveSchedule
             WaitBeforeStarting 10
             TFBot
             {
-                Template T_TFGateBot_Scout_Scattergun
+                Class Scout
+                Skill Easy
             }
         }
 
@@ -310,7 +315,7 @@ WaveSchedule
             Where spawnbot_main0_flank
             Where spawnbot_main1
             Where spawnbot_main2
-            TotalCount 22
+            TotalCount 21
             MaxActive 11
             SpawnCount 3
             WaitBetweenSpawns 7
@@ -356,9 +361,9 @@ WaveSchedule
             Where spawnbot_main0_short
             Where spawnbot_main1
             Where spawnbot_main2
-            TotalCount 2
-            SpawnCount 1
-            MaxActive 1
+            TotalCount 4
+            SpawnCount 2
+            MaxActive 2
             WaitBeforeStarting 1
             TFBot
             {
@@ -410,6 +415,9 @@ WaveSchedule
             }
         }
 
+        
+
+
 
         WaveSpawn
         {
@@ -428,7 +436,7 @@ WaveSchedule
             }
             Tank
             {
-        
+                Skin 1
                 Health 18000
                 Speed 75
                 StartingPathTrackNode "boss_path_1_0"
@@ -451,7 +459,7 @@ WaveSchedule
             MaxActive 10
             WaitBetweenSpawns 9
             WaitForAllDead "2.1"
-            WaitBetweenSpawns 2
+            WaitBeforeStarting 2
             TFBot
             {
                 Class Pyro
@@ -477,6 +485,7 @@ WaveSchedule
             {
                 Template T_TFBot_Giant_Heavyweapons
                 Skill Normal
+                Tag bot_giant
             }
         }
 
@@ -494,9 +503,9 @@ WaveSchedule
             SpawnCount 4
             MaxActive 8
 			WaitForAllDead "2.2"
-            WaitBetweenSpawns 12
+            WaitBetweenSpawns 10
             WaitBeforeStarting 00
-            Support limited
+            Support 1
             TFBot
             {
                 Template T_TFBot_Crit_a_cola_Scout
@@ -509,12 +518,12 @@ WaveSchedule
             Where spawnbot_main0_short
             Where spawnbot_main1
             Where spawnbot_main2
-            TotalCount 18
+            TotalCount 38
             SpawnCount 3
             MaxActive 8
             WaitBetweenSpawns 12
             WaitBeforeStarting 3
-            WaitForAllSpawned "2.2"
+            WaitForAllSpawned "2.1a"
             Support limited
             TFBot
             {
@@ -550,7 +559,7 @@ WaveSchedule
 
         WaveSpawn
         {
-            Name "3.1"
+            Name "3.1a"
             TotalCurrency 300
             Where spawnbot_main0_short
             Where spawnbot_upper0
@@ -560,7 +569,7 @@ WaveSchedule
             MaxActive 2
             SpawnCount 1
             WaitBetweenSpawns 10
-            WaitBeforeStarting 1
+            WaitBeforeStarting 7
             TFBot
             {
                 Template T_TFGateBot_Giant_Scout_FAN
@@ -575,11 +584,11 @@ WaveSchedule
             Where spawnbot_upper0
             Where spawnbot_main1
             Where spawnbot_main2
-            TotalCount 24
+            TotalCount 25
             SpawnCount 5
             MaxActive 12
             WaitBetweenSpawns 5
-            WaitBeforeStarting 5
+            WaitBeforeStarting 2
             TFBot
             {
                 Template T_TFYukarisGateBot_Soldier_Extended_Buff_Banner
@@ -595,10 +604,10 @@ WaveSchedule
             Where spawnbot_upper0
             Where spawnbot_main1
             Where spawnbot_main2
-            TotalCount 6
-            MaxActive 4
+            TotalCount 4
+            MaxActive 2
             SpawnCount 2
-            WaitBetweenSpawns 18
+            WaitBetweenSpawns 20
             WaitForAllDead "3.1"
             WaitBeforeStarting 0
             Squad
@@ -606,14 +615,20 @@ WaveSchedule
                 TFBot
                 {
                     Template T_TFGateBot_Giant_Dragon_Fury_Pyro
+                    ClassIcon pyro_dragon_fury_swordstone_giant
+                    Tag bot_giant
                 }
+                
                 TFBot
                 {
-                    Template T_TFBot_Giant_Medic
+                    Template T_TFBot_Giant_Medic_Regen
+                    Tag bot_giant
+                    ClassIcon medic_pop_giant
                 }
             }
-
+            
         }
+
 
         WaveSpawn
         {
@@ -623,11 +638,11 @@ WaveSchedule
             Where spawnbot_main0_short
             Where spawnbot_main1
             Where spawnbot_main2
-            TotalCount 8
-            MaxActive 4
-            SpawnCount 4
+            TotalCount 2
+            MaxActive 2
+            SpawnCount 1
             WaitForAllSpawned "3.2"
-            WaitBetweenSpawns 18
+            WaitBetweenSpawns 22
             WaitBeforeStarting 20
             Squad
             {
@@ -638,23 +653,9 @@ WaveSchedule
                     Tag bot_giant
                 }
 
-                TFBot
-                {
-                    Template T_TFBot_Medic_SlowRecharge
-                }
-
-                TFBot
-                {
-                    Template T_TFBot_Medic_SlowRecharge
-                }
-
-                TFBot
-                {
-                    Template T_TFBot_Medic_SlowRecharge
-                }
             }
-        }
-
+        }  
+    
         WaveSpawn
         {
             Name "3.3a"
@@ -663,11 +664,11 @@ WaveSchedule
             Where spawnbot_upper0
             Where spawnbot_main1
             Where spawnbot_main2
-            TotalCount 33
-            MaxActive 12
-            SpawnCount 4
+            TotalCount 27
+            MaxActive 16
+            SpawnCount 8
             WaitForAllDead "3.1"
-            WaitBetweenSpawns 7
+            WaitBetweenSpawns 10
             WaitBeforeStarting 3
             Support 1
             Squad
@@ -680,6 +681,8 @@ WaveSchedule
             }
         }
     }
+
+
 
 
     //Wave 04
@@ -723,11 +726,13 @@ WaveSchedule
                 }
                 TFBot
                 {
-                    Template T_TFBot_Medic_Kritzkrieg 
+                    Template T_TFBot_Medic_Kritzkrieg
+                    Name "Kritzkrieg Medic"
                 }
                 TFBot
                 {
-                    Template T_TFBot_Medic_Kritzkrieg 
+                    Template T_TFBot_Medic_Kritzkrieg
+                    Name "Kritzkrieg Medic"
                 }
             }
         }
@@ -760,8 +765,8 @@ WaveSchedule
             Where spawnbot_main0_short
             Where spawnbot_main1
             Where spawnbot_main2
-            TotalCurrency 200
-            TotalCount 5
+            TotalCurrency 300
+            TotalCount 3
             MaxActive 2
             SpawnCount 1
             WaitBetweenSpawns 11
@@ -769,7 +774,7 @@ WaveSchedule
             WaitBeforeStarting 1
             TFBot
             {
-                Template T_TFBot_Giant_AirStrike_Soldier
+                Template T_TFBot_Giant_Soldier_Spammer_Reload 
                 Tag bot_giant
             }
         }
@@ -782,12 +787,12 @@ WaveSchedule
             Where spawnbot_main1
             Where spawnbot_main2
             Where spawnbot_upper0
-            TotalCurrency 50
-            TotalCount 36
-            MaxActive 20
+            TotalCurrency 150
+            TotalCount 26
+            MaxActive 18
             SpawnCount 2
             WaitForAllDead "4.1"
-            WaitBetweenSpawns 8
+            WaitBetweenSpawns 2
             WaitBeforeStarting 5
             Squad
             {
@@ -807,14 +812,14 @@ WaveSchedule
         WaveSpawn // support for heavies and medics
         {
             Name "4.2a"
-            TotalCurrency 50
+            TotalCurrency 150
             Where spawnbot_upper0
             Where spawnbot_main1
             Where spawnbot_main2
-            TotalCount 40
+            TotalCount 42
             SpawnCount 3
             MaxActive 9
-            WaitBetweenSpawns 12
+            WaitBetweenSpawns 8
             WaitBeforeStarting 30
             TFBot
             {
@@ -827,14 +832,14 @@ WaveSchedule
         WaveSpawn
         {
             Name "4.3"
-            TotalCurrency 300
+            TotalCurrency 400
             Where spawnbot_main0_flank
             Where spawnbot_main1
             Where spawnbot_main2
             TotalCount 1
             SpawnCount 1
             MaxActive 1
-            WaitForAllSpawned "4.2a"
+            WaitForAllSpawned "4.2"
             WaitBetweenSpawns 0
             WaitBeforeStarting 1
             TFBot
@@ -854,7 +859,7 @@ WaveSchedule
             Where spawnbot_main2
             SpawnCount 3
             MaxActive 10
-            WaitForAllSpawned "4.3"
+            WaitForAllSpawned "4.2a"
             WaitBeforeStarting 1
             WaitBetweenSpawns 8
             Support limited
@@ -909,7 +914,7 @@ WaveSchedule
             WaitBeforeStarting 5
             TFBot
             {
-                Template T_TFGateBot_Demo_Burst_Normal_Crit
+                Template T_TFGateBot_Demo_Burst_Normal
                 Skill Normal
             }
         }
@@ -928,8 +933,8 @@ WaveSchedule
             WaitBeforeStarting 3
             TFBot
             {
-                template T_TFBot_Giant_Heavyweapons_BrassBeast
-                Tag bot_giant 
+                Template T_TFBot_Giant_Heavyweapons_Brass_Beast
+                Tag bot_giant
             }
         }
 
@@ -1004,7 +1009,7 @@ WaveSchedule
             Where spawnbot_main0_flank
             Where spawnbot_main1
             Where spawnbot_main2
-            TotalCount 15
+            TotalCount 18
             SpawnCount 6
             MaxActive 12
             WaitBetweenSpawns 12
@@ -1029,6 +1034,7 @@ WaveSchedule
             WaitBetweenSpawns 4
             WaitBeforeStarting 10 
             WaitForAllSpawned "5.4"
+            Support limited
             TFBot
             {
                 Template T_TFBot_Demoman_Knight
@@ -1099,33 +1105,32 @@ WaveSchedule
             Name "6.A"
             Where spawnbot_upper0
             TotalCount 20
-            SpawnCount 2
+            SpawnCount 5
             MaxActive 10
-            WaitBetweenSpawns 6
+            WaitBetweenSpawns 7
             WaitBeforeStarting 3
 
             Support 1
             TFBot
             {
                 Template T_TFBot_Demo_Burst
-                Skill Hard
             }
             
         }
         WaveSpawn
         {
             Name "6.B"
-            Where spawnbot_upper0
+            Where spawnbot_main0_short
             TotalCount 30
             SpawnCount 5
             MaxActive 10
-            WaitBetweenSpawns 9
-            WaitBeforeStarting 20
+            WaitBetweenSpawns 8
+            WaitBeforeStarting 12
             Support 1
             TFBot
             {
-                Class Scout
-                Skill Easy
+                Template T_TFBot_Mad_Soldier
+                ClassIcon soldier_directhit_lite
             }
         }
         
@@ -1140,6 +1145,7 @@ WaveSchedule
 
 
     
+
 
 
 
