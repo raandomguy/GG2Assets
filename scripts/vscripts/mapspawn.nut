@@ -175,6 +175,9 @@ try IncludeScript("vpi/vpi.nut") catch (_) {}
 // The modules here can be found in the "vscripts/potato" folder.
 // They are not dependent on each other.
 
+// Temporary refund exploit fix.
+::__potato.Include("temp_refund_exploit_fix")
+
 // Map-specific bug fixes.
 ::__potato.Include("map_fixes")
 // Auto-formats the scoreboard mission name.
